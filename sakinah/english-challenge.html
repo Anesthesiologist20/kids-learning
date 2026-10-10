@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#3d53aa"><meta name="color-scheme" content="light">
+<title>Sakinah's English Challenge · 40 Questions · Review Edition</title>
+<style>
+:root{--blue:#4157b5;--dark:#222d4a;--muted:#64728d;--mint:#0c866b;--red:#b33b54;--gold:#e3a339;--line:#e2e7f1;--paper:#fff;--bg:#f5f7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth;direction:ltr}body{direction:ltr;text-align:left;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--dark);margin:0;padding:0 0 50px}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:3px solid #8ac8fa;outline-offset:2px}main{max-width:850px;margin:auto;padding:16px}
+.hero{padding:27px 21px;border-radius:24px;color:#fff;background:linear-gradient(135deg,#4c66ce,#6d4eb0);box-shadow:0 8px 24px #34477b24;position:relative;overflow:hidden}.hero:after{content:'✦';position:absolute;right:15px;top:14px;font-size:80px;opacity:.16}.eyebrow{font-size:12px;letter-spacing:1.2px;font-weight:750;opacity:.83}.hero h1{font-size:clamp(26px,5vw,36px);margin:7px 0 6px;line-height:1.25}.hero p{font-size:15px;margin:0;opacity:.95}.chips{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}.chip{background:#ffffff28;border:1px solid #ffffff65;border-radius:999px;padding:6px 11px;font-size:12px;font-weight:700}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:17px;box-shadow:0 4px 15px #33446b08}.small{color:var(--muted);font-size:13px}.progress-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-weight:750}.meter{height:12px;background:#e9ecf5;border-radius:999px;overflow:hidden;margin:12px 0 2px}.meter span{display:block;background:linear-gradient(90deg,#7dd7ae,#1b9d7b);height:100%;width:0;transition:width .2s}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin:16px 0}.step{background:#f7f8fc;border:1px solid var(--line);border-radius:13px;padding:10px 2px;text-align:center;color:var(--dark);font-size:12px;min-width:0}.step.active{background:#eef0ff;border:2px solid var(--blue);font-weight:800}.step .symbol{display:block;font-size:21px;margin-bottom:2px}.step .count{display:block;font-size:11px;color:var(--muted)}
+h2{font-size:clamp(20px,4vw,25px);margin:0 0 6px}.en{direction:ltr;text-align:left;font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif;unicode-bidi:plaintext}.story{background:#f8f9ff;border:1px solid #dde3f8;border-radius:14px;padding:17px;margin:13px 0;line-height:1.85}.story strong{display:block;color:#324b98;margin-bottom:7px}.story p{margin:5px 0}.helper{background:#fff7e5;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.7;margin:12px 0;color:#795a29}
+.question{padding:18px 0;border-top:1px solid var(--line)}.question:first-of-type{border-top:0}.qtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}.qno{font-size:12px;font-weight:800;color:var(--blue)}.qmark{font-size:12px;color:var(--muted)}.qtitle{font-size:17px;line-height:1.65;font-weight:700;margin:0 0 13px;direction:ltr;text-align:left}.opt{display:flex;flex-direction:row;justify-content:flex-start;align-items:center;gap:10px;border:1px solid var(--line);border-radius:13px;padding:11px 13px;margin:8px 0;background:white;direction:ltr;text-align:left;cursor:pointer;transition:.12s}.opt:has(input:checked){background:#eff2ff;border-color:#7184e4}.opt input{accent-color:var(--blue);width:19px;height:19px;flex-shrink:0;margin:0}.opt span{flex:1;line-height:1.45;min-width:0}.answer{width:100%;border:1.5px solid #c9d2e6;border-radius:12px;padding:14px;font-size:17px;background:#fff;direction:ltr;text-align:left}.answer:focus{border-color:#586ed0}
+.actions{display:flex;gap:9px;justify-content:space-between;flex-wrap:wrap;margin:20px 0 5px}.btn{border:0;border-radius:13px;font-weight:800;padding:12px 16px;min-height:47px}.primary{background:var(--blue);color:white}.success{background:#087e66;color:white}.secondary{background:#ecf0f9;color:#304273}.outline{border:1px solid #bdc7dd;background:#fff;color:#344667}.btn:disabled{opacity:.4;cursor:default}.submit{width:100%;margin-top:15px;font-size:17px;box-shadow:0 7px 15px #0f866422}.foot-note{text-align:center;color:var(--muted);font-size:12px;margin-top:11px}
+.result-hero{text-align:center;padding:12px 2px}.result-hero .award{font-size:47px}.result-hero h2{margin:5px 0}.score{font-weight:900;font-size:clamp(46px,9vw,64px);color:var(--blue);direction:ltr}.percent{font-weight:800;font-size:23px;color:var(--mint)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:16px 0}.stat{text-align:center;border:1px solid var(--line);border-radius:14px;padding:13px 6px}.stat b{font-size:28px;display:block}.stat.good b{color:var(--mint)}.stat.bad b{color:var(--red)}.stat.skip b{color:var(--muted)}
+.section-score{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}.section-score b{white-space:nowrap}.filters{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0 16px}.filter{background:#f1f3f9;border:1px solid #e1e5ee;border-radius:10px;padding:9px 12px;font-weight:800;color:#3c4c70}.filter.active{background:#e7ecff;color:#243ead;border-color:#9daeee}
+.review-card{border:1px solid var(--line);border-radius:15px;padding:15px;margin:10px 0;background:#fff}.review-card.is-wrong{border-left:5px solid #d35e77}.review-card.is-right{border-left:5px solid #17a076}.review-card.is-empty{border-left:5px solid #97a2b7}.status{display:inline-block;border-radius:99px;font-size:12px;font-weight:900;padding:4px 9px;margin-bottom:8px}.status.right{background:#e2f7ee;color:#047655}.status.wrong{background:#ffe9ed;color:#a52545}.status.empty{background:#edf0f5;color:#5a6576}.review-q{font-weight:800;margin:5px 0 9px;line-height:1.6}.correct{color:#006f56;font-weight:850}.user-answer{color:#46536c}.explain{text-align:left;font-size:13px;line-height:1.7;color:#586681;background:#f5f7fc;border-radius:8px;padding:8px 10px;margin-top:10px}#error{color:#b12844;background:#ffeff2;padding:12px;margin:14px 0;border-radius:12px;display:none}#quiz-view[hidden],#result-view[hidden]{display:none!important}
+@media(max-width:520px){main{padding:10px}.hero{border-radius:18px;padding:22px 17px}.panel{padding:15px;border-radius:17px}.step{padding:8px 1px}.step .symbol{font-size:18px}.step .count{font-size:10px}.qtitle{font-size:16px}.stats{gap:5px}.stat{padding:11px 2px}.stat b{font-size:23px}.actions .btn{flex:1}}
+@media print{body{background:#fff}.hero,.screen-only,#quiz-view,#error,.filters{display:none!important}main{max-width:none;padding:0}.panel{border:0;box-shadow:none;margin:0;padding:8px 0}.review-card{break-inside:avoid;border:1px solid #aaa}.result-hero{padding:0}.score{font-size:39px}#result-view[hidden]{display:block!important}}
+
+/* v4: navigation, flags, progress and restart dialogue */
+[hidden]{display:none!important}
+html,body{direction:ltr!important;text-align:left!important}
+.nav-legend{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 16px;color:var(--muted);font-size:12px}
+.nav-legend span{display:inline-flex;align-items:center;gap:5px}
+.legend-dot{display:inline-block;width:11px;height:11px;border-radius:4px;border:1px solid #aeb7cc;background:#fff}
+.legend-dot.done{background:#dceee8;border-color:#188669}.legend-dot.flag{background:#fff0cf;border-color:#d99324}
+.nav-section{margin:10px 0 16px}.nav-section-title{font-size:12px;font-weight:800;color:#485878;margin-bottom:8px}
+.question-nav{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px}
+.nav-q{border:1.5px solid #cbd4e4;border-radius:10px;background:white;min-height:42px;font-weight:800;font-size:13px;color:#40506e;position:relative;padding:5px 0}
+.nav-q.answered{background:#e6f6ef;border-color:#61b79a;color:#06664d}
+.nav-q.flagged{background:#fff0cd;border-color:#d69a2f;color:#8f5c0d}
+.nav-q.active{outline:3px solid #8499ee;outline-offset:1px}
+.nav-q.flagged:after{content:'⚑';font-size:10px;position:absolute;right:2px;top:1px;color:#ae6f07}
+.counters{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0}
+.counter{border:1px solid var(--line);background:#f9faff;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:750}
+.counter b{font-variant-numeric:tabular-nums}
+.counter.flag{background:#fff8e9;color:#996316;border-color:#f1d69c}
+.flag-button{border:1px solid #d8ddea;border-radius:11px;padding:8px 10px;background:#f6f7fb;color:#54627a;font-size:12px;font-weight:800;white-space:nowrap;min-height:37px}
+.flag-button.flagged{background:#ffedc2;border-color:#e6ad4d;color:#855513}
+.question{scroll-margin-top:16px}.question.is-flagged{border-left:4px solid #f0b64e;padding-left:12px;margin-left:-12px}
+.section-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.section-actions .btn{flex:1}
+.review-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:16px 0}
+.review-total{background:#f5f7ff;border:1px solid var(--line);border-radius:13px;padding:13px 5px;text-align:center;font-size:12px;color:#596982}
+.review-total b{display:block;color:#30446a;font-size:27px}
+.pre-review-row{border:1px solid var(--line);border-radius:12px;margin:8px 0;padding:10px 12px;display:flex;align-items:center;gap:12px;justify-content:space-between}
+.pre-review-row .desc{min-width:0;flex:1}.pre-review-row .desc b{display:block;font-size:12px;color:#506184}
+.pre-review-row .desc span{display:block;font-size:13px;line-height:1.6;margin-top:3px}
+.pre-review-row .btn{min-height:37px;padding:7px 10px;font-size:12px;flex-shrink:0}
+.review-flag{font-size:12px;background:#ffedc5;border-radius:7px;color:#89570c;padding:4px 7px;display:inline-block;margin:5px 0}
+.review-jump{border:1px solid #b8c6df;background:#f3f6ff;color:#30467a;border-radius:9px;padding:6px 9px;font-weight:800;font-size:12px;margin-top:10px}
+.results-tools{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}.results-tools .btn{flex:1}
+.dialog-backdrop{position:fixed;inset:0;background:#17224399;display:flex;align-items:center;justify-content:center;z-index:1000;padding:18px}
+.dialog{background:#fff;width:min(440px,100%);border-radius:20px;padding:25px;box-shadow:0 20px 70px #1c29484d}
+.dialog h2{margin-bottom:9px}.dialog p{line-height:1.7;color:#57657d}
+.dialog .actions{justify-content:flex-end}.dialog .btn{flex:1}
+.notice{font-size:13px;background:#f1f5ff;border:1px solid #d5dff8;color:#415274;border-radius:12px;padding:12px;margin:12px 0}
+@media(max-width:600px){.question-nav{grid-template-columns:repeat(8,minmax(0,1fr))}.qtop{align-items:flex-start;gap:7px}.qno{font-size:11px}.flag-button{font-size:11px;padding:6px 7px}.section-actions .btn{flex:1 1 100%}}
+@media(max-width:380px){.question-nav{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media print{.nav-panel,#pre-review,.dialog-backdrop,.screen-only,.review-jump{display:none!important}.result-hero{page-break-after:avoid}}
+
+</style>
+</head>
+<body>
+<main>
+<header class="hero"><div class="eyebrow">AL-ANJAL • ENGLISH PRACTICE</div><h1>Sakinah's English Challenge 🌟</h1><p>Practice your English, earn points, and discover your strengths!</p><div class="chips"><span class="chip">40 Questions</span><span class="chip">5 Sections</span><span class="chip">40 Points</span><span class="chip">Instant Results</span><span class="chip">Save & Review</span></div></header>
+<div id="error" role="alert"></div>
+<div id="quiz-view">
+ <div class="panel"><div class="progress-meta"><span id="stage-label">Section 1 of 5</span><span id="answered-label">Answered 0 / 40</span></div><div class="meter" role="progressbar" aria-label="Answer completion" aria-valuemin="0" aria-valuemax="40" aria-valuenow="0"><span id="meter-fill"></span></div><div class="counters"><span class="counter">✅ Answered: <b id="counter-answered">0</b></span><span class="counter">◯ Unanswered: <b id="counter-unanswered">40</b></span><span class="counter flag">🚩 Marked for Review: <b id="counter-flagged">0</b></span></div><div class="steps" id="steps"></div><p class="small" style="margin:0">Your answers and review flags are automatically saved when your browser allows it.</p></div>
+ <div class="panel nav-panel screen-only"><h2>🧭 Question Navigator</h2><p class="small">Tap any number to jump to a question. Gold means marked for review.</p><div class="nav-legend"><span><i class="legend-dot"></i> Unanswered</span><span><i class="legend-dot done"></i> Answered</span><span><i class="legend-dot flag"></i> Marked for Review</span></div><div id="question-nav"></div><div class="section-actions"><button type="button" class="btn outline" id="review-top">🔎 Review Questions</button><button type="button" class="btn secondary" id="restart-top">🔁 Start New Quiz</button></div></div>
+ <section class="panel" id="exam"><h2 id="section-head"></h2><p class="small" id="section-hint"></p><div id="reading"></div><div id="questions"></div><div class="actions screen-only"><button class="btn outline" type="button" id="prev">← Previous</button><button class="btn primary" type="button" id="next">Next Section →</button></div><div class="section-actions screen-only"><button type="button" class="btn outline" id="review-before">🔎 Review Questions</button><button type="button" class="btn success" id="submit">✅ Submit Quiz & See My Score</button></div><p class="foot-note">You may submit at any time. Unanswered questions will appear in your report.</p></section>
+</div>
+<div id="pre-review" hidden>
+ <section class="panel"><h2>🔎 Review Before Submission</h2><p class="small">Check unanswered questions and the questions you marked for review. Correct answers are only shown after submitting.</p><div class="review-summary"><div class="review-total"><b id="pre-done">0</b>Answered</div><div class="review-total"><b id="pre-empty">40</b>Unanswered</div><div class="review-total"><b id="pre-flags">0</b>Marked</div></div><div class="notice" id="review-notice"></div><div class="filters screen-only" id="pre-filters"><button class="filter active" data-pre-filter="all" type="button">All (40)</button><button class="filter" data-pre-filter="empty" type="button">Unanswered</button><button class="filter" data-pre-filter="flagged" type="button">Marked for Review</button><button class="filter" data-pre-filter="answered" type="button">Answered</button></div><div id="pre-list"></div><div class="section-actions screen-only"><button type="button" class="btn outline" id="back-to-quiz">← Back to Quiz</button><button type="button" class="btn success" id="confirm-submit">✅ Submit Quiz & See My Score</button></div></section>
+</div>
+<div id="result-view" hidden>
+ <section class="panel"><div class="result-hero"><div class="award" id="award">🏆</div><h2 id="message">Final Results</h2><div class="score" id="score">0 / 40</div><div class="percent" id="percent">0%</div><p id="encouragement"></p></div><div class="stats"><div class="stat good"><b id="correct">0</b>Correct ✅</div><div class="stat bad"><b id="wrong">0</b>Incorrect ❌</div><div class="stat skip"><b id="unanswered">0</b>Unanswered ◯</div></div></section>
+ <section class="panel"><h2>📊 Scores by Section</h2><div id="breakdown"></div></section>
+ <section class="panel"><h2>📝 Detailed Answer Review</h2><p class="small">Review your answer, the correct answer, and a simple explanation for every question.</p><div class="filters screen-only"><button class="filter active" data-filter="all" type="button">All (40)</button><button class="filter" data-filter="wrong" type="button">Incorrect</button><button class="filter" data-filter="empty" type="button">Unanswered</button><button class="filter" data-filter="right" type="button">Correct</button><button class="filter" data-filter="flagged" type="button">🚩 Marked for Review</button></div><div id="reviews"></div></section>
+ <section class="panel screen-only"><div class="actions"><button class="btn primary" type="button" id="edit">✏️ Edit My Answers</button><button class="btn outline" type="button" id="print">🖨️ Print Report</button><button class="btn secondary" type="button" id="restart">🔁 Start New Quiz</button></div></section>
+</div>
+<noscript><div class="panel" style="color:#bd2541">Please open this quiz in a browser that supports JavaScript, such as Safari or Chrome. File previews may not support scoring.</div></noscript>
+<div class="dialog-backdrop screen-only" id="reset-dialog" role="dialog" aria-modal="true" aria-labelledby="reset-title" hidden><div class="dialog"><h2 id="reset-title">🔁 Start a New Quiz?</h2><p>Starting a new quiz clears all 40 answers and all marked questions. Your current score will also be reset.</p><div class="actions"><button type="button" class="btn outline" id="cancel-reset">Cancel</button><button type="button" class="btn primary" id="confirm-reset">Yes, Start New Quiz</button></div></div></div>
+</main>
+<script type="application/json" id="quiz-data">[{"title":"Reading Comprehension","emoji":"📖","hint":"Read both stories carefully, then choose the correct answers.","questions":[{"id":1,"section":0,"q":"How did Maya feel before the spelling test?","type":"choice","options":["She felt excited.","She felt nervous.","She felt angry."],"answer":"She felt nervous.","why":"Maya felt nervous before the spelling test."},{"id":2,"section":0,"q":"What happened to Maya's hands?","type":"choice","options":["They began to shake.","They began to hurt.","They became cold."],"answer":"They began to shake.","why":"The story says her hands began to shake."},{"id":3,"section":0,"q":"Why was Sara upset?","type":"choice","options":["Maya failed the test.","Maya accidentally took her pencil.","Maya lost her book."],"answer":"Maya accidentally took her pencil.","why":"Maya accidentally took Sara's pencil."},{"id":4,"section":0,"q":"What did Maya do after taking Sara's pencil?","type":"choice","options":["She kept the pencil.","She started to cry.","She apologized and gave it back."],"answer":"She apologized and gave it back.","why":"She apologized and returned the pencil."},{"id":5,"section":0,"q":"When did Sara walk to the park?","type":"choice","options":["In the evening.","In the morning.","At night."],"answer":"In the morning.","why":"The story begins with Yesterday morning."},{"id":6,"section":0,"q":"Sara went to the park with her brother.","type":"choice","options":["True","False"],"answer":"True","why":"The text says with her brother."},{"id":7,"section":0,"q":"Sara and her brother saw a bird on the grass.","type":"choice","options":["True","False"],"answer":"True","why":"They saw a small bird on the grass."},{"id":8,"section":0,"q":"Sara and her brother walked home slowly after it started to rain.","type":"choice","options":["True","False"],"answer":"False","why":"They ran home happily, not slowly."}]},{"title":"Vocabulary","emoji":"🧠","hint":"Choose the correct meanings and vocabulary words.","questions":[{"id":9,"section":1,"q":"If you are annoyed, something is bothering you.","type":"choice","options":["True","False"],"answer":"True","why":"Annoyed means bothered or irritated."},{"id":10,"section":1,"q":"To apologize means to say that you are sorry.","type":"choice","options":["True","False"],"answer":"True","why":"Apologize means to say sorry."},{"id":11,"section":1,"q":"If you stomp your feet, you hit the ground with your feet.","type":"choice","options":["True","False"],"answer":"True","why":"Stomp means hitting the ground hard with your foot."},{"id":12,"section":1,"q":"If something drives you crazy, it makes you very happy and relaxed.","type":"choice","options":["True","False"],"answer":"False","why":"Drives you crazy means it annoys you very much."},{"id":13,"section":1,"q":"A girl feels worried before an exam. She is ____.","type":"choice","options":["nervous","smile","upset"],"answer":"nervous","why":"Nervous means worried or anxious."},{"id":14,"section":1,"q":"Sara looks sad and unhappy. She is ____.","type":"choice","options":["shake","upset","smile"],"answer":"upset","why":"Upset means sad or unhappy."},{"id":15,"section":1,"q":"What does a happy face usually show?","type":"choice","options":["stomp","shake","smile"],"answer":"smile","why":"A smile shows happiness."},{"id":16,"section":1,"q":"What does 'shake' mean?","type":"choice","options":["To move back and forth quickly","To say sorry","To feel happy"],"answer":"To move back and forth quickly","why":"Shake means to move back and forth quickly."}]},{"title":"Past Simple & Past Progressive","emoji":"⏳","hint":"Choose the correct sentence. Pay attention to was/were and past tense verbs.","questions":[{"id":17,"section":2,"q":"My phone / ring / while / I / sleep","type":"choice","options":["My phone ringing while I slept.","My phone rang while I was sleeping.","My phone rang while I were sleeping."],"answer":"My phone rang while I was sleeping.","why":"My phone rang (past simple) while I was sleeping (past progressive)."},{"id":18,"section":2,"q":"While / we / study / Ali / call / us","type":"choice","options":["While we was studying, Ali called us.","While we were studying, Ali call us.","While we were studying, Ali called us."],"answer":"While we were studying, Ali called us.","why":"With we, use were studying; the short action is called."},{"id":19,"section":2,"q":"She / drop / her bag / while / she / run","type":"choice","options":["She dropped her bag while she was running.","She drop her bag while she was running.","She dropped her bag while she were running."],"answer":"She dropped her bag while she was running.","why":"Dropped is past simple; she was running is past progressive."},{"id":20,"section":2,"q":"While / the children / play football / it / start to rain","type":"choice","options":["While the children was playing football, it started to rain.","While the children were playing football, it started to rain.","While the children playing football, it start to rain."],"answer":"While the children were playing football, it started to rain.","why":"Children is plural: were playing. Then it started to rain."},{"id":21,"section":2,"q":"I ____ breakfast when Mum ____.","type":"choice","options":["was eating / arrived","were eating / arrived","ate / was arrive"],"answer":"was eating / arrived","why":"I was eating while Mum arrived."},{"id":22,"section":2,"q":"He ____ a book when his friend ____.","type":"choice","options":["were reading / called","was reading / called","was read / calling"],"answer":"was reading / called","why":"He was reading; his friend called."},{"id":23,"section":2,"q":"While the teacher ____, the bell ____.","type":"choice","options":["was talking / rang","were talking / ring","talking / was rang"],"answer":"was talking / rang","why":"The teacher was talking when the bell rang."},{"id":24,"section":2,"q":"We ____ to school when it ____ to rain.","type":"choice","options":["was walking / started","were walking / start","were walking / started"],"answer":"were walking / started","why":"We were walking; it started to rain."}]},{"title":"Adjectives -ed / -ing","emoji":"✨","hint":"Use -ed for how someone feels and -ing for what causes the feeling.","questions":[{"id":25,"section":3,"q":"Look at that photo! It is very ____.","type":"choice","options":["amazed","amazing"],"answer":"amazing","why":"The photo causes amazement, so it is amazing."},{"id":26,"section":3,"q":"I was very ____ when I got my results.","type":"choice","options":["excited","exciting"],"answer":"excited","why":"I feel excited."},{"id":27,"section":3,"q":"That long story was really ____.","type":"choice","options":["bored","boring"],"answer":"boring","why":"The story causes boredom; it is boring."},{"id":28,"section":3,"q":"The students were ____ in the museum tour.","type":"choice","options":["interested","interesting"],"answer":"interested","why":"The students felt interested."},{"id":29,"section":3,"q":"The children were ____ by the loud noise.","type":"choice","options":["frightened","frightening"],"answer":"frightened","why":"The children felt frightened."},{"id":30,"section":3,"q":"The loud noise was ____.","type":"choice","options":["frightened","frightening"],"answer":"frightening","why":"The noise causes fear, so it is frightening."},{"id":31,"section":3,"q":"We were ____ after the long trip.","type":"choice","options":["tired","tiring"],"answer":"tired","why":"We felt tired."},{"id":32,"section":3,"q":"The long trip was very ____.","type":"choice","options":["tired","tiring"],"answer":"tiring","why":"The trip causes tiredness; it is tiring."}]},{"title":"Spelling Challenge","emoji":"✏️","hint":"Type the missing word in English. Check your spelling carefully.","questions":[{"id":33,"section":4,"q":"Before the test, Maya felt ______.","type":"text","answer":"nervous","why":"Nervous means feeling worried or anxious.","alt":[]},{"id":34,"section":4,"q":"Her hands began to ______.","type":"text","answer":"shake","why":"Shake means to move quickly back and forth.","alt":[]},{"id":35,"section":4,"q":"Sara ______ and said, 'You can do it!'","type":"text","answer":"smiled","why":"Smiled is the past of smile.","alt":[]},{"id":36,"section":4,"q":"Sara looked ______ when Maya took her pencil.","type":"text","answer":"upset","why":"Upset means feeling unhappy or worried.","alt":[]},{"id":37,"section":4,"q":"Maya ______ and gave the pencil back.","type":"text","answer":"apologized","why":"Apologized means said sorry. The British spelling apologised is also correct.","alt":["apologised"]},{"id":38,"section":4,"q":"When you ______ your feet, you hit the ground hard.","type":"text","answer":"stomp","why":"Stomp means to put your foot down hard on the ground.","alt":[]},{"id":39,"section":4,"q":"The long story was really ______. (bore)","type":"text","answer":"boring","why":"A story is boring, not bored.","alt":[]},{"id":40,"section":4,"q":"My phone ______ while I was sleeping. (ring)","type":"text","answer":"rang","why":"Rang is the past form of ring.","alt":[]}]}]</script>
+<script>
+(function () {
+'use strict';
+const sections=JSON.parse(document.getElementById('quiz-data').textContent);
+const questions=sections.reduce((out,s)=>out.concat(s.questions),[]);
+const STORAGE_KEY='sakinah-english-challenge-v4';
+const OLD_KEY='sakinah-english-challenge-v3';
+let answers={}, flags={}, page=0, submitted=false, filter='all', preFilter='all';
+const $=id=>document.getElementById(id);
+const total=questions.length;
+function safe(v){return String(v==null?'':v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function norm(v){return String(v==null?'':v).trim().toLowerCase().replace(/[.!?,;\s]+$/g,'').replace(/\s+/g,' ');}
+function given(q){return String(answers[q.id]==null?'':answers[q.id]).trim();}
+function hasAnswer(q){return given(q)!=='';}
+function isRight(q){return hasAnswer(q)&&[q.answer].concat(q.alt||[]).some(a=>norm(a)===norm(given(q)));}
+function status(q){return !hasAnswer(q)?'empty':isRight(q)?'right':'wrong';}
+function nAnswered(){return questions.filter(hasAnswer).length;}
+function nFlags(){return questions.filter(q=>!!flags[q.id]).length;}
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify({answers,flags,page,submitted}));}catch(err){}}
+function load(){try{let saved=localStorage.getItem(STORAGE_KEY)||localStorage.getItem(OLD_KEY);if(!saved)return;const x=JSON.parse(saved);if(!x||typeof x!=='object')return;answers=x.answers&&typeof x.answers==='object'?x.answers:{};flags=x.flags&&typeof x.flags==='object'?x.flags:{};page=Math.max(0,Math.min(sections.length-1,Number(x.page)||0));submitted=!!x.submitted;}catch(err){}}
+function view(which){$('quiz-view').hidden=which!=='quiz';$('pre-review').hidden=which!=='pre';$('result-view').hidden=which!=='results';}
+function top(){try{window.scrollTo({top:0,behavior:'instant'});}catch(err){window.scrollTo(0,0);}}
+function updateProgress(){
+ const done=nAnswered();$('stage-label').textContent='Section '+(page+1)+' of '+sections.length;
+ $('answered-label').textContent='Answered '+done+' / '+total;
+ $('meter-fill').style.width=(100*done/total)+'%';
+ const meter=document.querySelector('.meter');meter.setAttribute('aria-valuenow',String(done));
+ $('counter-answered').textContent=done;$('counter-unanswered').textContent=total-done;$('counter-flagged').textContent=nFlags();
+ $('steps').innerHTML=sections.map((s,i)=>'<button type="button" class="step '+(i===page?'active':'')+'" data-go="'+i+'"><span class="symbol">'+s.emoji+'</span><span>Section '+(i+1)+'</span><span class="count">'+s.questions.filter(hasAnswer).length+' / '+s.questions.length+'</span></button>').join('');
+ $('question-nav').innerHTML=sections.map((s,i)=>'<div class="nav-section"><div class="nav-section-title">'+s.emoji+' Section '+(i+1)+' — '+safe(s.title)+'</div><div class="question-nav">'+s.questions.map(q=>{
+  const f=!!flags[q.id],a=hasAnswer(q);
+  return '<button type="button" class="nav-q '+(f?'flagged':a?'answered':'')+'" data-jump="'+q.id+'" aria-label="Go to question '+q.id+(f?', marked for review':'')+(a?', answered':', unanswered')+'" title="Question '+q.id+(f?', marked for review':'')+'">'+q.id+'</button>';
+ }).join('')+'</div></div>').join('');
+}
+function renderQuiz(focusId){
+ submitted=false;view('quiz');updateProgress();
+ const sec=sections[page];$('section-head').textContent=sec.emoji+' '+sec.title;$('section-hint').textContent=sec.hint;
+ $('reading').innerHTML=page===0?'<div class="story en"><strong>Story A — Maya’s Spelling Test</strong><p>On Monday, Maya had a spelling test at school. Before the test, she felt nervous, and her hands began to shake. Her friend Sara smiled and said, “You can do it!”</p><p>After the test, Maya accidentally took Sara’s pencil. Sara looked upset, so Maya apologized and gave the pencil back. Both girls felt better.</p></div><div class="story en"><strong>Story B — A Day at the Park</strong><p>Yesterday morning, Sara walked to the park with her brother. While they were playing near the trees, they saw a small bird on the grass. Sara was excited to feed the bird. Later, it started to rain, so they ran home happily.</p></div>':page===3?'<div class="helper"><b>-ed</b> describes how a person feels: I am bored.<br><b>-ing</b> describes what causes the feeling: The movie is boring.</div>':'';
+ $('questions').innerHTML=sec.questions.map(q=>{
+  let input='';
+  if(q.type==='choice')input=q.options.map((o,i)=>'<label class="opt"><input type="radio" name="q'+q.id+'" value="'+i+'" data-id="'+q.id+'" '+(given(q)===o?'checked':'')+'><span>'+safe(o)+'</span></label>').join('');
+  else input='<input class="answer" type="text" data-id="'+q.id+'" value="'+safe(given(q))+'" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type the missing word..." aria-label="Answer question '+q.id+'">';
+  const marked=!!flags[q.id];
+  return '<article class="question '+(marked?'is-flagged':'')+'" id="question-'+q.id+'"><div class="qtop"><span class="qno">QUESTION '+q.id+' / '+total+' · 1 POINT</span><button type="button" class="flag-button '+(marked?'flagged':'')+'" data-flag="'+q.id+'" aria-pressed="'+marked+'">'+(marked?'🚩 Marked — Remove Flag':'🚩 Mark for Review')+'</button></div><h3 class="qtitle">'+safe(q.q)+'</h3>'+input+'</article>';
+ }).join('');
+ $('prev').disabled=page===0;$('next').disabled=page===sections.length-1;
+ $('next').textContent=page===sections.length-1?'Final Section ✓':'Next Section →';
+ save();
+ if(focusId!=null){const el=$('question-'+focusId);if(el)requestAnimationFrame(()=>el.scrollIntoView({block:'start',behavior:'instant'}));}
+}
+function rememberInput(input){
+ const q=questions.find(x=>x.id===Number(input.dataset.id));if(!q)return;
+ answers[q.id]=q.type==='choice'?q.options[Number(input.value)]:input.value;
+ updateProgress();save();
+}
+function go(i,focusId){page=Math.max(0,Math.min(sections.length-1,i));renderQuiz(focusId);if(focusId==null)top();}
+function jump(id){const q=questions.find(x=>x.id===Number(id));if(!q)return;go(q.section,q.id);}
+function showPreReview(){
+ preFilter='all';view('pre');renderPreReview();save();top();
+}
+function renderPreReview(){
+ $('pre-done').textContent=nAnswered();$('pre-empty').textContent=total-nAnswered();$('pre-flags').textContent=nFlags();
+ $('review-notice').textContent=(total-nAnswered())?'You have '+(total-nAnswered())+' unanswered question(s). You can return to them, or submit now to see your results.':'All questions are answered! You can check your marked questions before submitting.';
+ const counts={all:total,empty:total-nAnswered(),answered:nAnswered(),flagged:nFlags()};
+ document.querySelectorAll('[data-pre-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.preFilter===preFilter);const labels={all:'All',empty:'Unanswered',answered:'Answered',flagged:'Marked for Review'};b.textContent=labels[b.dataset.preFilter]+' ('+counts[b.dataset.preFilter]+')';});
+ const qs=questions.filter(q=>preFilter==='all'||(preFilter==='flagged'?!!flags[q.id]:preFilter==='empty'?!hasAnswer(q):hasAnswer(q)));
+ $('pre-list').innerHTML=qs.length?qs.map(q=>'<div class="pre-review-row"><div class="desc"><b>QUESTION '+q.id+' · '+(hasAnswer(q)?'✅ Answered':'◯ Unanswered')+'</b><span>'+safe(q.q)+'</span>'+(flags[q.id]?'<span class="review-flag">🚩 Marked for Review</span>':'')+'</div><button type="button" class="btn outline" data-jump="'+q.id+'">Go to Q'+q.id+' →</button></div>').join(''):'<p class="helper">There are no questions in this category.</p>';
+}
+function submit(){submitted=true;filter='all';save();renderResult();top();}
+function renderResult(){
+ view('results');submitted=true;
+ const right=questions.filter(q=>status(q)==='right').length;
+ const wrong=questions.filter(q=>status(q)==='wrong').length;
+ const empty=total-right-wrong;const pct=Math.round(right/total*100);
+ $('score').textContent=right+' / '+total;$('percent').textContent=pct+'%';
+ $('correct').textContent=right;$('wrong').textContent=wrong;$('unanswered').textContent=empty;
+ $('award').textContent=pct>=90?'🏆':pct>=75?'🌟':pct>=60?'💪':'🌱';
+ $('message').textContent=pct>=90?'English Champion, Sakinah!':pct>=75?'Excellent Work, Sakinah!':pct>=60?'Great Progress, Sakinah!':'Every Try Makes You Stronger!';
+ $('encouragement').textContent=pct>=90?'Outstanding score! Keep up the great work!':pct>=75?'Review your mistakes and aim for a perfect score!':pct>=60?'Read the explanations and focus on the sections to improve.':'Keep practicing! Review the correct answers and try again.';
+ $('breakdown').innerHTML=sections.map(s=>'<div class="section-score"><span>'+s.emoji+' '+safe(s.title)+'</span><b>'+s.questions.filter(q=>status(q)==='right').length+' / '+s.questions.length+'</b></div>').join('');
+ renderReviews();save();
+}
+function renderReviews(){
+ const counts={all:total,wrong:questions.filter(q=>status(q)==='wrong').length,empty:questions.filter(q=>status(q)==='empty').length,right:questions.filter(q=>status(q)==='right').length,flagged:nFlags()};
+ document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b.dataset.filter===filter);const labels={all:'All',wrong:'Incorrect',empty:'Unanswered',right:'Correct',flagged:'🚩 Marked for Review'};b.textContent=labels[b.dataset.filter]+' ('+counts[b.dataset.filter]+')';});
+ const filtered=questions.filter(q=>filter==='all'||(filter==='flagged'?!!flags[q.id]:status(q)===filter));
+ $('reviews').innerHTML=filtered.length?filtered.map(q=>{
+  const st=status(q);const label=st==='right'?'✅ Correct':st==='wrong'?'❌ Incorrect':'◯ Unanswered';
+  return '<article class="review-card is-'+st+'"><div><span class="status '+(st==='right'?'right':st==='wrong'?'wrong':'empty')+'">'+label+'</span> <span class="small">Question '+q.id+' · '+safe(sections[q.section].title)+'</span></div>'+(flags[q.id]?'<span class="review-flag">🚩 Marked for Review</span>':'')+'<div class="review-q en">'+safe(q.q)+'</div><div class="user-answer">Your answer: <span class="en" style="display:inline-block">'+(st==='empty'?'— Not answered —':safe(given(q)))+'</span></div><div class="correct">Correct answer: <span class="en" style="display:inline-block">'+safe(q.answer)+'</span></div><div class="explain">💡 '+safe(q.why)+'</div><button type="button" class="review-jump screen-only" data-jump="'+q.id+'">✏️ Edit Question '+q.id+'</button></article>';
+ }).join(''):'<p class="helper">No questions in this category. ✨</p>';
+}
+function showReset(){ $('reset-dialog').hidden=false; }
+function hideReset(){ $('reset-dialog').hidden=true; }
+function resetAll(){answers={};flags={};page=0;submitted=false;filter='all';preFilter='all';hideReset();save();renderQuiz();top();}
+$('questions').addEventListener('change',e=>{if(e.target.matches('input[type="radio"][data-id]'))rememberInput(e.target);});
+$('questions').addEventListener('input',e=>{if(e.target.matches('input.answer[data-id]'))rememberInput(e.target);});
+$('questions').addEventListener('click',e=>{const b=e.target.closest('button[data-flag]');if(!b)return;const id=Number(b.dataset.flag);flags[id]=!flags[id];renderQuiz();});
+$('steps').addEventListener('click',e=>{const b=e.target.closest('button[data-go]');if(b)go(Number(b.dataset.go));});
+$('question-nav').addEventListener('click',e=>{const b=e.target.closest('button[data-jump]');if(b)jump(Number(b.dataset.jump));});
+$('prev').addEventListener('click',()=>go(page-1));$('next').addEventListener('click',()=>go(page+1));
+$('review-before').addEventListener('click',showPreReview);$('review-top').addEventListener('click',showPreReview);
+$('submit').addEventListener('click',submit);$('confirm-submit').addEventListener('click',submit);
+$('back-to-quiz').addEventListener('click',()=>{renderQuiz();top();});
+$('pre-filters').addEventListener('click',e=>{const b=e.target.closest('button[data-pre-filter]');if(b){preFilter=b.dataset.preFilter;renderPreReview();}});
+$('pre-list').addEventListener('click',e=>{const b=e.target.closest('button[data-jump]');if(b)jump(Number(b.dataset.jump));});
+$('reviews').addEventListener('click',e=>{const b=e.target.closest('button[data-jump]');if(b)jump(Number(b.dataset.jump));});
+document.querySelector('.filters:not(#pre-filters)').addEventListener('click',e=>{const b=e.target.closest('button[data-filter]');if(b){filter=b.dataset.filter;renderReviews();}});
+$('edit').addEventListener('click',()=>{renderQuiz();top();});
+$('print').addEventListener('click',()=>{filter='all';renderReviews();window.print();});
+$('restart').addEventListener('click',showReset);$('restart-top').addEventListener('click',showReset);
+$('cancel-reset').addEventListener('click',hideReset);$('confirm-reset').addEventListener('click',resetAll);
+$('reset-dialog').addEventListener('click',e=>{if(e.target===$('reset-dialog'))hideReset();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hideReset();});
+window.addEventListener('error',e=>{const el=$('error');el.style.display='block';el.textContent='There was an error: '+(e.message||'Unknown error')+'. Open this HTML file in Safari or Chrome, not a preview app.';});
+load();if(submitted)renderResult();else renderQuiz();
+})();
+</script>
+</body></html>
