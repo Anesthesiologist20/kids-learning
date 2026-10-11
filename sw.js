@@ -1,10 +1,14 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v2';
+const CACHE = 'kids-learning-pwa-v3';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
  '/kids-learning/sakinah/english-challenge.html',
  '/kids-learning/sakinah/ultimate-english-quest.html',
+ '/kids-learning/raghd/', '/kids-learning/raghd/index.html',
+ '/kids-learning/raghd/letter-za.html',
+ '/kids-learning/raghd/print.html', '/kids-learning/raghd/name-practice.png',
+ '/kids-learning/assets/style.css',
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
  '/kids-learning/aboud/lughati-116-questions.html',
  '/kids-learning/aboud/lughati-92-questions.html',
