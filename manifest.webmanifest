@@ -1,0 +1,31 @@
+{
+  "id": "/kids-learning/",
+  "name": "مغامرات التعلّم | سكينة وعبود ورغد",
+  "short_name": "مغامرات التعلّم",
+  "description": "تعلم وتدرب مع سكينة وعبود ورغد",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/kids-learning/",
+  "scope": "/kids-learning/",
+  "display": "fullscreen",
+  "display_override": [
+    "fullscreen",
+    "standalone"
+  ],
+  "background_color": "#f6f7fe",
+  "theme_color": "#6957d7",
+  "icons": [
+    {
+      "src": "/kids-learning/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/kids-learning/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

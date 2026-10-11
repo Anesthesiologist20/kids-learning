@@ -61,6 +61,14 @@ html,body{direction:ltr!important;text-align:left!important}
 @media print{.nav-panel,#pre-review,.dialog-backdrop,.screen-only,.review-jump{display:none!important}.result-hero{page-break-after:avoid}}
 
 </style>
+<link rel="manifest" href="/kids-learning/manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="مغامرات التعلّم">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="icon" type="image/png" sizes="192x192" href="/kids-learning/icons/icon-192.png">
+<link rel="apple-touch-icon" href="/kids-learning/icons/icon-192.png">
+<style>body{padding-top:env(safe-area-inset-top)!important;}</style>
 </head>
 <body>
 <main>
@@ -200,5 +208,13 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape')hideReset();});
 window.addEventListener('error',e=>{const el=$('error');el.style.display='block';el.textContent='There was an error: '+(e.message||'Unknown error')+'. Open this HTML file in Safari or Chrome, not a preview app.';});
 load();if(submitted)renderResult();else renderQuiz();
 })();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/kids-learning/sw.js', { scope: '/kids-learning/' })
+      .catch(function () {});
+  });
+}
 </script>
 </body></html>
