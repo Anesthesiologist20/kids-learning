@@ -14,6 +14,6 @@ This repository includes a manual GitHub Actions workflow that updates the exist
 1. Open **Actions → Sync Raghd Layla audio → Run workflow**.
 2. Enter Layla's voice ID and choose **TTS** or **Flows**, matching where the clips were generated.
 3. Run the workflow. It downloads exact-text matches for the 14 expected clips, replaces the MP3 files at their current URLs, increments the service-worker cache version, and commits the update.
-4. If any clip is missing or ambiguous, the workflow stops without replacing any files.
+4. If any expected clip is missing, the workflow stops without replacing any files. If multiple exact matches exist, it selects the newest one.
 
 The voice ID is an input to the workflow and is not stored as a repository secret. The API key stays in GitHub Actions secrets.
