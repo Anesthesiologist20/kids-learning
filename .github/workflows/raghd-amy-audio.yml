@@ -1,0 +1,137 @@
+name: Refresh Raghd I and P audio (Amy)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raghd-amy-audio
+  cancel-in-progress: false
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Generate Amy teacher recordings
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          voice_id="n3Vun1rdyiQUF5EqCtmC"
+          temp_dir="$(mktemp -d)"
+          trap 'rm -rf "$temp_dir"' EXIT
+
+          generate_clip() {
+            local text="$1"
+            local filename="$2"
+            local payload="$temp_dir/payload.json"
+            local output="$temp_dir/$filename"
+
+            python3 - "$text" > "$payload" <<'PY'
+          import json, sys
+          print(json.dumps({
+              "text": sys.argv[1],
+              "model_id": "eleven_multilingual_v2",
+              "voice_settings": {
+                  "stability": 0.52,
+                  "similarity_boost": 0.78,
+                  "style": 0.12,
+                  "use_speaker_boost": True
+              }
+          }))
+          PY
+
+            curl --fail-with-body --silent --show-error --retry 2 --retry-all-errors \
+              -X POST "https://api.elevenlabs.io/v1/text-to-speech/$voice_id?output_format=mp3_44100_128" \
+              -H "xi-api-key: $ELEVENLABS_API_KEY" \
+              -H "Content-Type: application/json" \
+              --data-binary "@$payload" \
+              --output "$output"
+
+            python3 - "$output" <<'PY'
+          from pathlib import Path
+          import sys
+          data = Path(sys.argv[1]).read_bytes()
+          valid_mp3 = data.startswith(b"ID3") or (len(data) > 1 and data[0] == 0xff and data[1] & 0xe0 == 0xe0)
+          if len(data) < 500 or not valid_mp3:
+              raise SystemExit("ElevenLabs returned an invalid or empty MP3.")
+          PY
+          }
+
+          generate_clip "The letter I." i-letter.mp3
+          generate_clip "Ice cream." i-icecream.mp3
+          generate_clip "Iron." i-iron.mp3
+          generate_clip "Ink." i-ink.mp3
+          generate_clip "Island." i-island.mp3
+          generate_clip "Insect." i-insect.mp3
+          generate_clip "Ill." i-ill.mp3
+          generate_clip "The letter P." p-letter.mp3
+          generate_clip "Pancake." p-pancake.mp3
+          generate_clip "Pencil." p-pencil.mp3
+          generate_clip "Potato." p-potato.mp3
+          generate_clip "Pig." p-pig.mp3
+          generate_clip "Plane." p-plane.mp3
+          generate_clip "Popcorn." p-popcorn.mp3
+
+          mkdir -p raghd/audio
+          for clip in "$temp_dir"/*.mp3; do
+            install -m 0644 "$clip" "raghd/audio/$(basename "$clip")"
+          done
+
+      - name: Refresh offline cache and validate links
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          sw = Path("sw.js")
+          source = sw.read_text()
+          match = re.search(r"const CACHE = 'kids-learning-pwa-v(\\d+)';", source)
+          if not match:
+              raise SystemExit("Could not find the service-worker cache version.")
+          next_version = int(match.group(1)) + 1
+          source = source[:match.start(1)] + str(next_version) + source[match.end(1):]
+          sw.write_text(source)
+
+          expected = [
+              "i-letter.mp3", "i-icecream.mp3", "i-iron.mp3", "i-ink.mp3",
+              "i-island.mp3", "i-insect.mp3", "i-ill.mp3",
+              "p-letter.mp3", "p-pancake.mp3", "p-pencil.mp3", "p-potato.mp3",
+              "p-pig.mp3", "p-plane.mp3", "p-popcorn.mp3",
+          ]
+          for name in expected:
+              path = Path("raghd/audio") / name
+              if not path.is_file() or path.stat().st_size < 500:
+                  raise SystemExit(f"Missing or empty audio: {path}")
+              if f"/kids-learning/raghd/audio/{name}" not in source:
+                  raise SystemExit(f"Audio is missing from offline cache: {name}")
+
+          for letter in ("i", "p"):
+              page = Path(f"raghd/letter-{letter}.html").read_text()
+              if f'const L="{letter}"' not in page or "new Audio('audio/'+L+'-'+key+'.mp3')" not in page:
+                  raise SystemExit(f"Audio link check failed for letter {letter.upper()} page.")
+          print(f"Validated 14 Amy MP3 files; offline cache bumped to v{next_version}.")
+          PY
+
+          git diff --check
+
+      - name: Commit updated recordings
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add raghd/audio sw.js
+          if git diff --cached --quiet; then
+            echo "No audio changes to publish."
+            exit 0
+          fi
+          git commit -m "Replace Raghd I and P audio with Amy teacher voice"
+          git push
