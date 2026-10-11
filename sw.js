@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v7';
+const CACHE = 'kids-learning-pwa-v8';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
@@ -19,6 +19,10 @@ const SHELL = [
  '/kids-learning/raghd/audio/oil.mp3',
  '/kids-learning/raghd/audio/olives.mp3',
  '/kids-learning/raghd/audio/raisins.mp3',
+ '/kids-learning/raghd/audio/farm.mp3',
+ '/kids-learning/raghd/audio/scale.mp3',
+ '/kids-learning/raghd/audio/banana.mp3',
+ '/kids-learning/raghd/audio/bread.mp3',
  '/kids-learning/raghd/print.html', '/kids-learning/raghd/name-practice.png',
  '/kids-learning/assets/style.css',
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
