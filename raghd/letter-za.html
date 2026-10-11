@@ -86,14 +86,14 @@ footer{max-width:800px;text-align:center;color:#8c859a;margin:23px auto;font-siz
  <header class="top">
   <div class="topline"><div class="logo"><div class="stamp">ز</div><div><div class="brand">مغامرة رغد مع حرف ز</div><div class="caption">نتعلّم، نسمع، نلعب، ونكتب ✨</div></div></div><div class="starbox" id="stars">⭐ 0</div></div>
   <div class="progressbg"><div class="progressfg" id="progressfg"></div></div><div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;background:#fff8;padding:10px;border-radius:13px;margin-top:10px">
-<label for="arabicVoice" style="font-size:14px;font-weight:900">🎙️ الصوت العربي الطبيعي</label>
+<label for="arabicVoice" style="font-size:14px;font-weight:900">🎙️ الصوت الاحتياطي</label>
 <select id="arabicVoice" aria-label="اختاري الصوت العربي" style="flex:1;min-width:150px;padding:10px;border-radius:10px;border:1px solid #baa8dc;background:white;font:inherit"></select>
-<button type="button" id="voiceTest" style="padding:10px 14px;border:0;border-radius:10px;background:#7350ce;color:white;font:inherit;font-weight:900">🔊 جربي الصوت</button>
+<button type="button" id="voiceTest" style="padding:10px 14px;border:0;border-radius:10px;background:#7350ce;color:white;font:inherit;font-weight:900">🔊 جربي صوت المعلمة</button>
 </div>
  </header>
  <nav class="nav" id="nav" aria-label="أقسام الدرس"></nav>
  <main class="board" id="board" aria-live="polite"></main>
- <footer>🔊 اختاري صوتًا عربيًا محليًا من القائمة لقراءة أوضح. تعتمد جودة النطق على الأصوات المثبتة بالجهاز؛ إذا لم يظهر صوت عربي، ثبّتي صوتًا عربيًا من إعدادات الجهاز. الرسم بالإصبع للتدريب، ولا يُصحَّح آليًا.</footer>
+ <footer>🔊 🎙️ تسجيلات المعلمة المسبقة متاحة للحرف والحركات والمدود والكلمات، وتعمل بالنطق نفسه على كل الأجهزة. قائمة الصوت العربي مخصصة للكلام الإضافي عند الحاجة. الرسم بالإصبع للتدريب، ولا يُصحَّح آليًا.</footer>
 </div>
 <script>
 'use strict';
@@ -152,17 +152,35 @@ document.getElementById('arabicVoice').addEventListener('change',e=>{
  try{localStorage.setItem(VOICE_PREF_KEY,selectedArabicVoice)}catch(err){}
  say('زَرَافَة. زَيْتُون. زَبِيب.');
 });
-document.getElementById('voiceTest').addEventListener('click',()=>say('مَرْحَبًا يَا رَغَدُ! هَيَّا نَتَعَلَّمُ حَرْفَ الزَّايِ.'));
+document.getElementById('voiceTest').addEventListener('click',()=>say('زَرَافَة'));
+const AUDIO_CLIPS={
+ 'زاي':'letter','زَايْ':'letter',
+ 'زَ':'fatha','زُ':'damma','زِ':'kasra',
+ 'زَا':'alif','زُو':'waw','زِي':'ya',
+ 'زَرَافَة':'giraffe','زُبْدَة':'butter','زَيْت':'oil','زَيْتُون':'olives','زَبِيب':'raisins'
+};
+let activeAudio=null;
 function say(txt,slow=false){
+ if(activeAudio){activeAudio.pause();activeAudio=null}
+ if('speechSynthesis' in window)window.speechSynthesis.cancel();
+ const key=AUDIO_CLIPS[txt];
+ if(key){
+   const a=new Audio('audio/'+key+'.mp3');
+   activeAudio=a;
+   a.onerror=()=>{if(activeAudio===a){activeAudio=null;fallbackSpeech(txt,slow)}};
+   a.play().catch(()=>{if(activeAudio===a){activeAudio=null;fallbackSpeech(txt,slow)}});
+   return;
+ }
+ fallbackSpeech(txt,slow);
+}
+function fallbackSpeech(txt,slow=false){
  const ss=safeSpeech();if(!ss)return;
  loadVoices();
- if(!audioVoices.length){notice('لا يوجد صوت عربي على الجهاز. ثبّتي صوتًا عربيًا من إعدادات الجهاز ثم أعيدي فتح اللعبة.');return}
+ if(!audioVoices.length){notice('لا يوجد صوت عربي على الجهاز.');return}
  ss.cancel();
  const u=new SpeechSynthesisUtterance(txt);
  const voice=preferredVoice(audioVoices);if(voice)u.voice=voice;
- u.lang=voice?voice.lang:'ar-SA';
- u.rate=slow?.73:.88;u.pitch=1;u.volume=1;
- ss.speak(u);
+ u.lang=voice?voice.lang:'ar-SA';u.rate=slow?.73:.88;u.pitch=1;u.volume=1;ss.speak(u);
 }
 function notice(t){let el=document.getElementById('notice');if(!el){el=document.createElement('div');el.id='notice';el.style.cssText='position:fixed;bottom:18px;left:14px;right:14px;max-width:540px;margin:auto;background:#33264c;color:white;padding:14px 17px;border-radius:15px;z-index:9;text-align:center;font-weight:900;box-shadow:0 9px 30px #5555';document.body.appendChild(el)}el.textContent=t;setTimeout(()=>{if(el.textContent===t)el.remove()},2600)}
 function updateTop(){document.getElementById('stars').textContent='⭐ '+state.stars;document.getElementById('progressfg').style.width=(state.stage/7*100)+'%';document.getElementById('nav').innerHTML=labels.map((x,i)=>`<button type="button" class="${i===state.stage?'active':''}" data-go="${i}">${x}</button>`).join('');document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go))))}
