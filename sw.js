@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v3';
+const CACHE = 'kids-learning-pwa-v4';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
@@ -10,7 +10,7 @@ const SHELL = [
  '/kids-learning/raghd/print.html', '/kids-learning/raghd/name-practice.png',
  '/kids-learning/assets/style.css',
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
- '/kids-learning/aboud/lughati-grade4-term1.html',
+ '/kids-learning/sakinah/lughati-grade4-term1.html',
  '/kids-learning/aboud/lughati-116-questions.html',
  '/kids-learning/aboud/lughati-92-questions.html',
  '/kids-learning/manifest.webmanifest',
