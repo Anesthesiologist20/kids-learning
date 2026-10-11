@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v10';
+const CACHE = 'kids-learning-pwa-v11';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
@@ -7,6 +7,22 @@ const SHELL = [
  '/kids-learning/sakinah/ultimate-english-quest.html',
  '/kids-learning/raghd/', '/kids-learning/raghd/index.html',
  '/kids-learning/raghd/letter-za.html',
+ '/kids-learning/raghd/letter-p.html',
+ '/kids-learning/raghd/letter-i.html',
+ '/kids-learning/raghd/audio/p-letter.mp3',
+ '/kids-learning/raghd/audio/p-pencil.mp3',
+ '/kids-learning/raghd/audio/p-pancake.mp3',
+ '/kids-learning/raghd/audio/p-potato.mp3',
+ '/kids-learning/raghd/audio/p-pig.mp3',
+ '/kids-learning/raghd/audio/p-plane.mp3',
+ '/kids-learning/raghd/audio/p-popcorn.mp3',
+ '/kids-learning/raghd/audio/i-letter.mp3',
+ '/kids-learning/raghd/audio/i-icecream.mp3',
+ '/kids-learning/raghd/audio/i-iron.mp3',
+ '/kids-learning/raghd/audio/i-ink.mp3',
+ '/kids-learning/raghd/audio/i-island.mp3',
+ '/kids-learning/raghd/audio/i-insect.mp3',
+ '/kids-learning/raghd/audio/i-ill.mp3',
  '/kids-learning/raghd/audio/letter.mp3',
  '/kids-learning/raghd/audio/fatha.mp3',
  '/kids-learning/raghd/audio/damma.mp3',
