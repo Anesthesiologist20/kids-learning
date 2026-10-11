@@ -93,7 +93,7 @@ jobs:
 
           sw = Path("sw.js")
           source = sw.read_text()
-          match = re.search(r"const CACHE = 'kids-learning-pwa-v(\\d+)';", source)
+          match = re.search(r"const CACHE = 'kids-learning-pwa-v(\d+)';", source)
           if not match:
               raise SystemExit("Could not find the service-worker cache version.")
           next_version = int(match.group(1)) + 1
