@@ -1,9 +1,10 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v1';
+const CACHE = 'kids-learning-pwa-v2';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
  '/kids-learning/sakinah/english-challenge.html',
+ '/kids-learning/sakinah/ultimate-english-quest.html',
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
  '/kids-learning/aboud/lughati-116-questions.html',
  '/kids-learning/aboud/lughati-92-questions.html',
