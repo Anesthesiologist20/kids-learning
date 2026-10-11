@@ -85,11 +85,15 @@ footer{max-width:800px;text-align:center;color:#8c859a;margin:23px auto;font-siz
 <div class="app">
  <header class="top">
   <div class="topline"><div class="logo"><div class="stamp">ز</div><div><div class="brand">مغامرة رغد مع حرف ز</div><div class="caption">نتعلّم، نسمع، نلعب، ونكتب ✨</div></div></div><div class="starbox" id="stars">⭐ 0</div></div>
-  <div class="progressbg"><div class="progressfg" id="progressfg"></div></div>
+  <div class="progressbg"><div class="progressfg" id="progressfg"></div></div><div style="display:flex;gap:9px;align-items:center;flex-wrap:wrap;background:#fff8;padding:10px;border-radius:13px;margin-top:10px">
+<label for="arabicVoice" style="font-size:14px;font-weight:900">🎙️ الصوت العربي الطبيعي</label>
+<select id="arabicVoice" aria-label="اختاري الصوت العربي" style="flex:1;min-width:150px;padding:10px;border-radius:10px;border:1px solid #baa8dc;background:white;font:inherit"></select>
+<button type="button" id="voiceTest" style="padding:10px 14px;border:0;border-radius:10px;background:#7350ce;color:white;font:inherit;font-weight:900">🔊 جربي الصوت</button>
+</div>
  </header>
  <nav class="nav" id="nav" aria-label="أقسام الدرس"></nav>
  <main class="board" id="board" aria-live="polite"></main>
- <footer>🔊 الصوت يستخدم النطق العربي المتوفر في الجهاز. للحصول على أفضل تجربة على الآيفون افتحي الصفحة في Safari واضغطي السماعة. الرسم بالإصبع للتدريب، ولا يُصحَّح آليًا.</footer>
+ <footer>🔊 اختاري صوتًا عربيًا محليًا من القائمة لقراءة أوضح. تعتمد جودة النطق على الأصوات المثبتة بالجهاز؛ إذا لم يظهر صوت عربي، ثبّتي صوتًا عربيًا من إعدادات الجهاز. الرسم بالإصبع للتدريب، ولا يُصحَّح آليًا.</footer>
 </div>
 <script>
 'use strict';
@@ -113,9 +117,53 @@ function earn(key,amount=1){if(!state.earned.has(key)){state.earned.add(key);sta
 function shuffle(arr){return [...arr].sort(()=>Math.random()-.5)}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function safeSpeech(){if(!('speechSynthesis' in window)){notice('الصوت غير متوفر في هذا المتصفح. جربي Safari.');return null}return window.speechSynthesis}
-function loadVoices(){if(!('speechSynthesis' in window))return;audioVoices=window.speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'))}
-loadVoices();if('speechSynthesis' in window)window.speechSynthesis.addEventListener?.('voiceschanged',loadVoices);
-function say(txt,slow=false){const ss=safeSpeech();if(!ss)return;ss.cancel();const u=new SpeechSynthesisUtterance(txt);u.lang='ar-SA';u.rate=slow?.65:.82;u.pitch=1.02;const voice=audioVoices.find(v=>v.lang.toLowerCase()==='ar-sa')||audioVoices[0];if(voice)u.voice=voice;ss.speak(u)}
+const VOICE_PREF_KEY='raghd_arabic_voice_v1';
+let selectedArabicVoice='';
+try{selectedArabicVoice=localStorage.getItem(VOICE_PREF_KEY)||''}catch(e){}
+function preferredVoice(voices){
+ return voices.find(v=>v.voiceURI===selectedArabicVoice)||
+ voices.find(v=>v.localService&&v.lang.toLowerCase()==='ar-sa')||
+ voices.find(v=>v.localService)||
+ voices.find(v=>v.lang.toLowerCase()==='ar-sa')||voices[0];
+}
+function loadVoices(){
+ if(!('speechSynthesis' in window))return;
+ audioVoices=window.speechSynthesis.getVoices().filter(v=>v.lang&&v.lang.toLowerCase().startsWith('ar'));
+ const picker=document.getElementById('arabicVoice');
+ if(!picker)return;
+ const chosen=preferredVoice(audioVoices);
+ picker.innerHTML='';
+ if(!audioVoices.length){
+   const opt=document.createElement('option');opt.value='';opt.textContent='لا يوجد صوت عربي مثبت';picker.appendChild(opt);picker.disabled=true;
+ }else{
+   picker.disabled=false;
+   audioVoices.forEach(v=>{
+     const opt=document.createElement('option');opt.value=v.voiceURI;
+     opt.textContent=v.name+' ('+v.lang+')'+(v.localService?' • صوت الجهاز':'');
+     picker.appendChild(opt);
+   });
+   picker.value=chosen.voiceURI;
+ }
+}
+loadVoices();
+if('speechSynthesis' in window)window.speechSynthesis.addEventListener?.('voiceschanged',loadVoices);
+document.getElementById('arabicVoice').addEventListener('change',e=>{
+ selectedArabicVoice=e.target.value;
+ try{localStorage.setItem(VOICE_PREF_KEY,selectedArabicVoice)}catch(err){}
+ say('زَرَافَة. زَيْتُون. زَبِيب.');
+});
+document.getElementById('voiceTest').addEventListener('click',()=>say('مَرْحَبًا يَا رَغَدُ! هَيَّا نَتَعَلَّمُ حَرْفَ الزَّايِ.'));
+function say(txt,slow=false){
+ const ss=safeSpeech();if(!ss)return;
+ loadVoices();
+ if(!audioVoices.length){notice('لا يوجد صوت عربي على الجهاز. ثبّتي صوتًا عربيًا من إعدادات الجهاز ثم أعيدي فتح اللعبة.');return}
+ ss.cancel();
+ const u=new SpeechSynthesisUtterance(txt);
+ const voice=preferredVoice(audioVoices);if(voice)u.voice=voice;
+ u.lang=voice?voice.lang:'ar-SA';
+ u.rate=slow?.73:.88;u.pitch=1;u.volume=1;
+ ss.speak(u);
+}
 function notice(t){let el=document.getElementById('notice');if(!el){el=document.createElement('div');el.id='notice';el.style.cssText='position:fixed;bottom:18px;left:14px;right:14px;max-width:540px;margin:auto;background:#33264c;color:white;padding:14px 17px;border-radius:15px;z-index:9;text-align:center;font-weight:900;box-shadow:0 9px 30px #5555';document.body.appendChild(el)}el.textContent=t;setTimeout(()=>{if(el.textContent===t)el.remove()},2600)}
 function updateTop(){document.getElementById('stars').textContent='⭐ '+state.stars;document.getElementById('progressfg').style.width=(state.stage/7*100)+'%';document.getElementById('nav').innerHTML=labels.map((x,i)=>`<button type="button" class="${i===state.stage?'active':''}" data-go="${i}">${x}</button>`).join('');document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>go(Number(b.dataset.go))))}
 function go(n){state.stage=n;state.answered=false;state.tapped=new Set();if(n===4){state.quizIndex=0;state.correctQuiz=0;state.quizWrong=0;quizQuestions=quizQueue()}if(n===5){state.fillIndex=0;state.correctFill=0;fillQuestions=fillQueue()}if(n===6){state.traceIndex=0}save();render();window.scrollTo({top:0,behavior:'smooth'})}
