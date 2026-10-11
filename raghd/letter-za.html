@@ -91,7 +91,7 @@ footer{max-width:800px;text-align:center;color:#8c859a;margin:23px auto;font-siz
 <button type="button" id="voiceTest" style="padding:10px 14px;border:0;border-radius:10px;background:#7350ce;color:white;font:inherit;font-weight:900">🔊 جربي صوت المعلمة</button>
 </div>
  </header>
- <nav class="nav" id="nav" aria-label="أقسام الدرس"></nav>
+ <section id="positionLesson" style="max-width:1160px;margin:14px auto;padding:18px;border:2px solid #dbcaf5;border-radius:24px;background:#fff;box-shadow:0 8px 30px #6445ae11" dir="rtl"><h2 style="text-align:center;margin:0;color:#6941b8">🌼 أين يقع حرف ز في الكلمة؟</h2><p style="text-align:center">استمعي إلى الكلمة ثم اختاري مكان حرف الزاي.</p><div id="positionCards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px"></div><div id="positionTask" style="padding:14px;border-radius:16px;background:#f3edff;margin-top:14px;text-align:center"></div></section><nav class="nav" id="nav" aria-label="أقسام الدرس"></nav>
  <main class="board" id="board" aria-live="polite"></main>
  <footer>🔊 🎙️ تسجيلات المعلمة المسبقة متاحة للحرف والحركات والمدود والكلمات، وتعمل بالنطق نفسه على كل الأجهزة. قائمة الصوت العربي مخصصة للكلام الإضافي عند الحاجة. الرسم بالإصبع للتدريب، ولا يُصحَّح آليًا.</footer>
 </div>
@@ -157,7 +157,7 @@ const AUDIO_CLIPS={
  'زاي':'letter','زَايْ':'letter',
  'زَ':'fatha','زُ':'damma','زِ':'kasra',
  'زَا':'alif','زُو':'waw','زِي':'ya',
- 'زَرَافَة':'giraffe','زُبْدَة':'butter','زَيْت':'oil','زَيْتُون':'olives','زَبِيب':'raisins'
+ 'مَزْرَعَة':'farm','مِيزَان':'scale','مَوْز':'banana','خُبْز':'bread','زَرَافَة':'giraffe','زُبْدَة':'butter','زَيْت':'oil','زَيْتُون':'olives','زَبِيب':'raisins'
 };
 let activeAudio=null;
 function say(txt,slow=false){
@@ -212,6 +212,30 @@ function setupCanvas(){canvas=document.getElementById('trace');const rect=canvas
 function clearCanvas(){if(ctx&&canvas)ctx.clearRect(0,0,canvas.width,canvas.height);strokeCount=0}
 function finalStage(){place(`<div class="kicker">🎉 نهاية الدرس</div><div class="floating">🏅</div><h1>أحسنتِ يا رغد!</h1><p class="sub">أنتِ نجمة حرف ز اليوم! 🌷</p><div class="doneBox"><div class="mega" style="font-size:110px">ز</div><div style="font-size:27px;font-weight:900;color:#7a4ce0">${state.stars} ⭐ نجمة</div><div class="badgeRow"><span class="badge">الحركات ✓</span><span class="badge">المدود ✓</span><span class="badge">القراءة ✓</span><span class="badge">الكتابة ✓</span></div></div><div class="actions"><button class="btn primary" id="again">🔁 أعيد الدرس</button><button class="btn secondary" id="wordsAgain">📚 أراجع الكلمات</button></div>`);document.getElementById('again').onclick=()=>{state.stars=0;state.earned.clear();state.wordIndex=0;state.quizIndex=0;state.fillIndex=0;save();go(0)};document.getElementById('wordsAgain').onclick=()=>{state.wordIndex=0;go(3)}}
 function render(){if(state.stage===0)intro();else if(state.stage===1)vowelStage(false);else if(state.stage===2)vowelStage(true);else if(state.stage===3)wordStage();else if(state.stage===4)quizStage();else if(state.stage===5)fillStage();else if(state.stage===6)traceStage();else finalStage()}
+
+const positionWords=[
+ {word:'زَرَافَة',plain:'زرافة',position:'أول',emoji:'🦒'},
+ {word:'زَيْتُون',plain:'زيتون',position:'أول',emoji:'🫒'},
+ {word:'مَزْرَعَة',plain:'مزرعة',position:'وسط',emoji:'🌾'},
+ {word:'مِيزَان',plain:'ميزان',position:'وسط',emoji:'⚖️'},
+ {word:'مَوْز',plain:'موز',position:'آخر',emoji:'🍌'},
+ {word:'خُبْز',plain:'خبز',position:'آخر',emoji:'🍞'}
+];
+const positionTarget=document.getElementById('positionCards');
+positionTarget.innerHTML=positionWords.map((w,i)=>'<div style="border:1px solid #e7defa;border-radius:18px;padding:14px;text-align:center;background:#faf7ff"><div style="font-size:40px">'+w.emoji+'</div><div style="font-size:29px;font-weight:900">'+w.word+'</div><div style="font-weight:800;color:#7c5dab">ز في '+w.position+' الكلمة</div><button type="button" data-posaudio="'+i+'" style="border:0;border-radius:12px;background:#7450d4;color:white;padding:11px;margin-top:8px;font:inherit;font-weight:800">🔊 اسمعي</button></div>').join('');
+positionTarget.querySelectorAll('[data-posaudio]').forEach(b=>b.onclick=()=>say(positionWords[Number(b.dataset.posaudio)].word));
+let positionIndex=0,positionScore=0;
+function nextPosition(){
+ const w=positionWords[positionIndex%positionWords.length],p=document.getElementById('positionTask');
+ p.innerHTML='<div style="font-size:17px;font-weight:900">🎯 أين حرف ز في كلمة <span style="color:#673cb7">'+w.plain+'</span>؟</div><div style="font-size:14px;margin:5px">السؤال '+(positionIndex%positionWords.length+1)+' من 6</div><div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:12px">'+['أول','وسط','آخر'].map(k=>'<button type="button" data-choice="'+k+'" style="padding:12px 20px;border-radius:12px;border:2px solid #d3c7ef;background:white;font:inherit;font-weight:800">'+k+'</button>').join('')+'</div><p id="posAnswer" aria-live="polite"></p>';
+ p.querySelectorAll('[data-choice]').forEach(b=>b.onclick=()=>{
+ const correct=b.dataset.choice===w.position;
+ document.getElementById('posAnswer').textContent=correct?'🌟 ممتاز! إجابة صحيحة':'حاولي مرة ثانية يا رغد 💗';
+ if(correct){positionScore++;p.querySelectorAll('[data-choice]').forEach(x=>x.disabled=true);setTimeout(()=>{positionIndex++;if(positionIndex===6){p.innerHTML='<h3>🎉 أحسنتِ يا رغد! ٦ من ٦</h3><button type="button" id="posAgain" style="padding:12px;border:0;border-radius:12px;background:#7450d4;color:white;font:inherit">أعيدي اللعبة ↻</button>';document.getElementById('posAgain').onclick=()=>{positionIndex=0;positionScore=0;nextPosition()}}else nextPosition()},750)}
+ });
+}
+nextPosition();
+
 render();
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("/kids-learning/sw.js",{scope:"/kids-learning/"}).catch(()=>{}))}</script></body>
