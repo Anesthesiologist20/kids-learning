@@ -10,6 +10,7 @@ const SHELL = [
  '/kids-learning/raghd/print.html', '/kids-learning/raghd/name-practice.png',
  '/kids-learning/assets/style.css',
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
+ '/kids-learning/aboud/lughati-grade4-term1.html',
  '/kids-learning/aboud/lughati-116-questions.html',
  '/kids-learning/aboud/lughati-92-questions.html',
  '/kids-learning/manifest.webmanifest',
