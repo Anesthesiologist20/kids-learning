@@ -1,10 +1,18 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v15';
+const CACHE = 'kids-learning-pwa-v16';
 const SHELL = [
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
  '/kids-learning/sakinah/english-challenge.html',
  '/kids-learning/sakinah/interesting-day-writing.html',
+ '/kids-learning/sakinah/audio/sentence-1.mp3',
+ '/kids-learning/sakinah/audio/sentence-2.mp3',
+ '/kids-learning/sakinah/audio/sentence-3.mp3',
+ '/kids-learning/sakinah/audio/sentence-4.mp3',
+ '/kids-learning/sakinah/audio/sentence-5.mp3',
+ '/kids-learning/sakinah/audio/sentence-6.mp3',
+ '/kids-learning/sakinah/audio/sentence-7.mp3',
+ '/kids-learning/sakinah/audio/sentence-8.mp3',
  '/kids-learning/sakinah/ultimate-english-quest.html',
  '/kids-learning/raghd/', '/kids-learning/raghd/index.html',
  '/kids-learning/raghd/letter-za.html',
