@@ -59,3 +59,5 @@ def main():
     for name,phrase in CLIPS.items():generate(name,phrase,key)
     print("Ready: "+str(len(CLIPS))+" audio clips",flush=True)
 if __name__=="__main__":main()
+
+# Touch trigger: republish Sunday clips with safe rebase on GitHub Actions.
