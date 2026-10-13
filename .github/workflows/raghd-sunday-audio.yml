@@ -50,5 +50,6 @@ jobs:
           git add raghd/audio/sunday-*.mp3 sw.js
           if ! git diff --cached --quiet; then
             git commit -m "Publish Raghd Sunday ElevenLabs audio"
+            git pull --rebase origin main
             git push
           fi
