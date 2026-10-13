@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v26';
+const CACHE = 'kids-learning-pwa-v27';
 const SHELL = [
  '/kids-learning/raghd/audio/sunday-layla-quiz-26.mp3',
  '/kids-learning/raghd/audio/sunday-layla-quiz-25.mp3',
