@@ -55,6 +55,7 @@ def generate(name,phrase,key):
 def main():
     key=os.environ.get("ELEVENLABS_API_KEY","").strip()
     if not key:raise SystemExit("Missing ELEVENLABS_API_KEY Actions secret")
+    print("Producing 33 stable ElevenLabs MP3 clips for Raghd.",flush=True)
     pathlib.Path("raghd/audio").mkdir(parents=True,exist_ok=True)
     for name,phrase in CLIPS.items():generate(name,phrase,key)
     print("Ready: "+str(len(CLIPS))+" audio clips",flush=True)
