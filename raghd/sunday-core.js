@@ -6,10 +6,10 @@ const properties=[
  ["🌱","Grow","Living things can grow.","can-grow"],
  ["🐰🥕","Eat and drink","Living things can eat and drink.","can-eat"],
  ["🐶🌬️","Breathe","Living things can breathe.","can-breathe"],
- ["🐈❤️","Feel","Living things can feel.","can-feel"],
- ["🐣🥚","Have babies","Animals can give birth or lay eggs.","can-babies"]
+ ["🐣🥚","Give birth or lay eggs","Living things can give birth or lay eggs.","slide-06"],
+ ["🐈❤️","Feel","Living things can feel.","can-feel"]
 ];
-const needs=[["🍎","Food","need-food"],["💧","Water","need-water"],["🏡","Home","need-home"]];
+const needs=[["🍎","Food","need-food"],["🌬️","Air","need-air"],["🏡","Home","need-home"]];
 const names=["One","Two","Three","Four","Five","Six"];
 const voiceKey="raghd-sunday-voice-v2",rateKey="raghd-sunday-rate-v2",version="v=20261013c";
 let voice="layla",rate="0.95",playback=null;
