@@ -27,7 +27,8 @@ const q=[
  ["Math","🌼 🌼 🌼","How many flowers can you count?",["6","3","2","1"],1],
  ["Math","🐠 🐠 🐠 🐠","How many fish can you count?",["2","5","4","6"],2],
  ["Math","🦋 🦋 🦋 🦋 🦋","How many butterflies can you count?",["6","2","5","4"],2],
- ["Math","🍓 🍓 🍓 🍓 🍓 🍓","How many strawberries can you count?",["6","5","3","1"],0]
+ ["Math","🍓 🍓 🍓 🍓 🍓 🍓","How many strawberries can you count?",["6","5","3","1"],0],
+ ["Science","🌬️🍃","Look at the air. What do living things need?",["Air","Toys","Books","Cars"],0]
 ];
 const key="raghd-sunday-quiz-v2";
 let at=0,chosen=Array(q.length).fill(null),flag=Array(q.length).fill(false);
