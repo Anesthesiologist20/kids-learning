@@ -1,0 +1,66 @@
+<!doctype html><html lang="en" dir="ltr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#745cda"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>Raghd's Sunday Star Quest | N · Science · Numbers</title>
+<link rel="manifest" href="/kids-learning/manifest.webmanifest"><link rel="stylesheet" href="sunday.css"></head>
+<body><main class="wrap">
+<div class="top"><a href="./">← Raghd's Learning Room</a><span class="muted">Sunday, 18 October 2026</span></div>
+<header class="hero"><div style="font-size:14px;font-weight:900;letter-spacing:.1em">🌈 RAGHD'S SUNDAY STAR QUEST</div>
+<h1>Let's shine, Raghd! ✨</h1><p>Learn, listen, speak and write! Get ready for your English, Science and Math assessment.</p>
+<div class="tags"><a class="tag" href="#letter">🔤 Letter N n</a><a class="tag" href="#science">🌱 Living & non-living</a><a class="tag" href="#math">🔢 Numbers 1–6</a><a class="tag" href="#test">🏆 Star Test</a><button class="tag" data-audio="intro">🔊 Listen to Teacher Amy</button></div></header>
+<div class="warning" id="warning" role="status"></div>
+<div class="progress"><span>My learning journey</span><div class="bar"><i id="progress-bar"></i></div><span id="progress-text">0 / 3</span></div>
+
+<section class="panel" id="letter">
+<div class="heading"><div class="symbol">🔤</div><div><h2>1. The letter N n</h2><p class="lead">Listen • Say • Trace • Write</p></div></div>
+<div class="letters"><span>N</span><span>n</span></div>
+<div class="buttons"><button class="btn" data-audio="letter-name">🔊 Hear N n</button><button class="btn light" data-audio="letter-sound">👂 Hear the N sound</button></div>
+<h3>🌸 N is for ...</h3><div class="cards" id="word-list"></div>
+<h3>✍️ Write capital N and small n</h3><p class="lead">Use your finger or pen. One finger writes; two fingers scroll the page.</p>
+<div class="notebook"><div class="paper"><label>Capital N</label><div class="writebox"><span class="ghost">N</span><canvas id="write-N" aria-label="Write capital N"></canvas></div></div>
+<div class="paper"><label>Small n</label><div class="writebox"><span class="ghost">n</span><canvas id="write-n" aria-label="Write small n"></canvas></div></div></div>
+<div class="buttons"><button class="btn light" id="clear-letters">🧽 Erase writing</button><button class="btn green" data-complete="n">⭐ I practiced N n!</button></div>
+</section>
+
+<section class="panel" id="science">
+<div class="heading"><div class="symbol">🌿</div><div><h2>2. Living and non-living things</h2><p class="lead">Look at the picture and SAY the answer</p></div></div>
+<div class="pair"><div class="classcard"><div class="iconbig">🐈🌳</div><h3>Living things</h3><button class="btn green" data-audio="living">🔊 Listen</button></div>
+<div class="classcard other"><div class="iconbig">🪑🚗</div><h3>Non-living things</h3><button class="btn" data-audio="nonliving">🔊 Listen</button></div></div>
+<p class="tip">👩‍🏫 Look first, say the full sentence OUT LOUD, then tap “Show answer.”</p>
+<h3>✨ 6 properties of living things</h3><div class="oralgrid" id="property-list"></div>
+<h3>🥗 3 needs of living things</h3><div class="needs" id="need-list"></div>
+<h3>🎤 Teacher's Picture Show & Tell</h3>
+<div class="show"><strong id="oral-number">Picture 1 / 9</strong><div class="showpic" id="oral-pic">🐦</div><div class="answer hidden" id="oral-text">What can it do or need?</div>
+<p class="lead">Say the complete sentence by yourself before revealing the answer.</p>
+<div class="buttons"><button class="btn light" id="oral-prev">← Previous</button><button class="btn green" id="oral-reveal">👀 Show the answer</button><button class="btn light" id="oral-next">Next →</button></div></div>
+<p class="sectionnote">Science note: animals may give birth or lay eggs; plants reproduce differently. A car moves but is non-living.</p>
+<div class="buttons"><button class="btn green" data-complete="science">⭐ I can say the six properties!</button></div>
+</section>
+
+<section class="panel" id="math">
+<div class="heading"><div class="symbol">🔢</div><div><h2>3. Numbers 1 to 6</h2><p class="lead">Count • Pronounce • Write</p></div></div>
+<div class="numbers" id="number-list"></div><h3>✍️ My number writing notebook</h3>
+<div class="digitarea"><div class="paper"><label id="digit-label">Write number 1</label><div class="writebox"><span class="ghost" id="digit-ghost">1</span><canvas id="write-number" aria-label="Write your selected number"></canvas></div></div>
+<div class="digitsidenav"><p>Say the number. Count. Write with your finger.</p><div class="buttons"><button class="btn light" id="digit-prev">←</button><button class="btn" id="digit-speak">🔊 One</button><button class="btn light" id="digit-next">→</button></div>
+<button class="btn light" id="clear-number">🧽 Erase number</button><p class="sectionnote">1 One · 2 Two · 3 Three · 4 Four · 5 Five · 6 Six</p></div></div>
+<div class="buttons"><button class="btn green" data-complete="math">⭐ I counted and wrote!</button></div>
+</section>
+
+<section class="panel" id="test"><div class="heading"><div class="symbol">🏆</div><div><h2>4. Raghd's Star Test</h2><p class="lead">17 questions • Clear scoring • Review wrong and missing answers</p></div></div>
+<p class="tip">Tap your answer. Flag ⚑ any question to return to it. Submit at any time for the result and full review.</p>
+<div id="quiz-body"><nav class="quiznav" id="quiz-tabs" aria-label="Question navigation"></nav>
+<div class="question"><div style="display:flex;justify-content:space-between;font-weight:900"><span id="q-part">Letters</span><span class="muted" id="q-count">Question 1 / 17</span></div>
+<div class="big" id="q-image">N n</div><h3 id="q-text">Which is capital N?</h3>
+<div class="buttons"><button class="btn light" id="q-hear">🔊 Listen to the instruction</button></div>
+<div class="options" id="quiz-options"></div></div>
+<div class="quizactions"><button class="btn light" id="q-back">← Back</button><button class="btn light" id="q-flag">⚑ Mark</button><button class="btn" id="q-next">Next →</button><button class="btn pink" id="q-submit">🏆 Submit Test</button></div></div>
+<div id="result"><h2 style="text-align:center" id="result-title">Amazing work! 🌟</h2><div class="stats" id="test-stats"></div><h3>My answer review</h3><div id="review-list"></div>
+<div class="buttons"><button class="btn" id="q-restart">🔄 Start New Test</button><button class="btn light" id="q-edit">✏️ Edit my answers</button></div></div></section>
+
+<details class="parent"><summary>ملاحظات لولي الأمر • تقييم يوم الأحد</summary>
+<p>الحرف المطلوب: N n، النطق والتمييز والكتابة. العلوم: رغد تشوف الصورة وتقول الخاصية بالإنجليزي قبل كشف الإجابة: move, grow, eat and drink, breathe, feel, give birth or lay eggs. الاحتياجات: food, water, home. الرياضيات: من 1 إلى 6 كتابةً ونطقًا.</p>
+<p>إنجاز التقييم في وقته يمنع تراكمه مع الأسبوع القادم. التسجيلات الصوتية كلها من ElevenLabs بصوت Amy المستخدم في دروسها الإنجليزية؛ وتُحفظ كملفات MP3 داخل GitHub بعد نجاح تشغيل مهمة الصوت.</p></details>
+<footer>Made with love for Raghd 💜 • <a href="./">Back to Raghd's activities</a></footer>
+</main><script src="sunday-core.js"></script><script src="sunday-test.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("/kids-learning/sw.js",{scope:"/kids-learning/"}).catch(()=>{}))}</script>
+</body></html>
