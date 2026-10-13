@@ -51,5 +51,18 @@ jobs:
           if ! git diff --cached --quiet; then
             git commit -m "Publish Raghd Sunday ElevenLabs audio"
             git pull --rebase origin main
-            git push
+            # Rebase because the lesson can be updated while ElevenLabs generates audio.
+          # Do not force-push or overwrite lesson edits made after checkout.
+          for attempt in 1 2 3 4; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              echo "ElevenLabs audio published successfully."
+              exit 0
+            fi
+            echo "Push raced with another commit; retrying ($attempt of 4)"
+            sleep 4
+          done
+          echo "Could not publish generated ElevenLabs audio after four safe retries" >&2
+          exit 1
           fi
