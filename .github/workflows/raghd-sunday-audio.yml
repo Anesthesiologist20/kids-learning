@@ -1,4 +1,4 @@
-name: Raghd Sunday ElevenLabs Audio
+name: Raghd Sunday Layla Audio
 on:
   push:
     branches: [main]
@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Generate all lesson recordings with ElevenLabs Amy
+      - name: Generate all lesson recordings with ElevenLabs Layla
         env:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
         run: python3 scripts/raghd_sunday_audio.py
@@ -49,7 +49,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add raghd/audio/sunday-*.mp3 sw.js
           if ! git diff --cached --quiet; then
-            git commit -m "Publish Raghd Sunday ElevenLabs audio"
+            git commit -m "Publish Raghd Sunday Layla voice recordings"
             git pull --rebase origin main
             # Rebase because the lesson can be updated while ElevenLabs generates audio.
           # Do not force-push or overwrite lesson edits made after checkout.
@@ -57,7 +57,7 @@ jobs:
             git fetch origin main
             git rebase origin/main
             if git push origin HEAD:main; then
-              echo "ElevenLabs audio published successfully."
+              echo "ElevenLabs Layla audio published successfully."
               exit 0
             fi
             echo "Push raced with another commit; retrying ($attempt of 4)"
