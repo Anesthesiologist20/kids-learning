@@ -53,6 +53,18 @@ CLIPS = {
     "n-spot": "Find the capital N and the small n. Tap only the correct letters!",
     "quiz-ready": "Time for your Star Test! Listen carefully. Choose the correct answer. You can mark a question and come back later.",
     "reveal": "Now check your answer. Listen again, and repeat the complete sentence!",
+    # Exact school-presentation wording, in its original page order.
+    "slide-01": "Living and non living things.",
+    "slide-02": "Living things can move.",
+    "slide-03": "Living things can grow.",
+    "slide-04": "Living things can eat and drink.",
+    "slide-05": "Living things can breathe.",
+    "slide-06": "Living things can give birth or lay eggs.",
+    "slide-07": "Living things can feel.",
+    "slide-08": "Living things need food.",
+    "slide-09": "Living things need air.",
+    "slide-10": "Living things need home.",
+    "need-air": "Living things need air. Air helps living things breathe.",
 }
 # Every final-quiz Listen button now speaks its ACTUAL question, not a generic prompt.
 QUESTIONS = [
@@ -90,6 +102,9 @@ OUTPUT = pathlib.Path("raghd/audio")
 
 def generate(voice_name, voice_id, name, phrase, api_key):
     path = OUTPUT / ("sunday-" + voice_name + "-" + name + ".mp3")
+    if path.exists() and path.stat().st_size > 700:
+        print("Already recorded", voice_name, name, flush=True)
+        return
     # Recreate the complete set for a new style, but do not generate an incomplete single clip.
     data = json.dumps({
         "text": phrase,
