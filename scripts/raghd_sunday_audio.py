@@ -97,6 +97,7 @@ QUESTIONS = [
 ]
 for index, question in enumerate(QUESTIONS, 1):
     CLIPS["quiz-%02d" % index] = question
+CLIPS["quiz-27"] = "Look at the air. What do living things need?"
 
 OUTPUT = pathlib.Path("raghd/audio")
 
