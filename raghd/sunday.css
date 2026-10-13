@@ -67,3 +67,23 @@ button:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid #f3b
  .oral-report .btn{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){.btn,.tag,.voice-choice,.oral{transition:none!important}}
+
+
+/* Source-based science presentation: 10 pages in the exact supplied teacher-PDF order. */
+.schooldeck{background:linear-gradient(145deg,#fffaf1,#fdf8f0);border:2px solid #e4d3b9;border-radius:24px;padding:clamp(13px,3vw,24px);margin:20px 0 23px;box-shadow:0 12px 26px #a77e4414}
+.schooldeck-heading{text-align:center}.schooldeck-heading h3{color:#155f5d;margin:9px 0;font-size:clamp(20px,4vw,28px)!important}.schooldeck-heading p{color:#6b6b75;font-size:14px;margin:7px auto 18px;max-width:650px}
+.schooldeck-badge{display:inline-block;border-radius:99px;background:#e6f3ee;color:#246e62;padding:7px 13px;font-size:12px;font-weight:900;letter-spacing:.07em}
+.schooldeck-bar{display:flex;align-items:center;gap:9px;color:#426964;font-weight:850;font-size:13px;margin:16px 0}
+.schooldeck-meter{height:10px;border-radius:50px;background:#eee2d3;flex:1;overflow:hidden}.schooldeck-meter span{display:block;width:0;height:100%;background:linear-gradient(90deg,#f2ab76,#51aca1);transition:width .18s}
+.schoolslide{position:relative;background:#fbeddd;border:3px solid #f0dbc0;border-radius:25px;padding:15px 14px;min-height:310px;overflow:hidden;box-shadow:0 6px 20px #a2743916;transition:background .2s}
+.schoolslide.tone-blue{background:#e9f5f2}.schoolslide.tone-green{background:#f1f7df}.schoolslide.tone-pink{background:#fff0e7}.schoolslide.tone-peach{background:#fff2df}
+.schoolslide-head{font-size:12px;color:#256963;font-weight:900;text-align:center;letter-spacing:.07em}
+.schoolslide-scene{display:grid;place-items:center;min-height:145px;position:relative;margin:13px 0}.schoolslide-emojis{text-align:center;font-size:clamp(40px,7.5vw,75px);line-height:1.8;letter-spacing:.035em;z-index:1;max-width:100%;overflow-wrap:anywhere;filter:drop-shadow(0 8px 2px #715e3720)}
+.scene-garnish{position:absolute;font-size:47px;opacity:.35}.scene-garnish.top-left{left:0;top:0}.scene-garnish.bottom-right{right:0;bottom:0}
+.schoolslide-instruction{color:#537271;font-size:clamp(15px,2.5vw,19px);font-weight:800;text-align:center;max-width:610px;margin:8px auto}
+.schoolslide-answer{font-family:Georgia,"Times New Roman",serif;text-align:center;font-size:clamp(25px,4.9vw,38px);font-weight:900;line-height:1.3;max-width:700px;margin:10px auto;color:#183f42;min-height:61px}
+.schoolslide-answer.schoolslide-hidden{filter:blur(6px);user-select:none;opacity:.25}
+.schoolslide-credit{text-align:center;color:#7d817a;font-size:11px;margin-top:12px}
+.schooldeck-buttons,.schooldeck-tools{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin-top:14px}.schooldeck-buttons .btn{font-size:13px}.schooldeck-tools{align-items:center}.schooldeck-tools span{flex-basis:100%;text-align:center}
+.source-note{border:2px solid #f4d39c;background:#fffaf0;border-radius:18px;padding:13px 17px;color:#654e25;font-size:14px;line-height:1.6;margin:13px 0 17px}.source-note .btn{margin-left:8px;font-size:13px}
+@media(max-width:620px){.schooldeck{padding:13px 10px}.schoolslide{padding:12px 8px;min-height:300px}.schoolslide-scene{min-height:134px}.schoolslide-emojis{font-size:clamp(37px,10vw,56px)}.schooldeck-buttons .btn{flex:1 1 calc(50% - 10px)}.schooldeck-bar{font-size:11px}.schoolslide-instruction{font-size:14px}.source-note .btn{display:block;margin:8px 0 0}}
