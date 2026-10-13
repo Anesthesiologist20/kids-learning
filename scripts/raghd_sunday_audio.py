@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate the stable ElevenLabs MP3 clips for Raghd's Sunday assessment."""
 import json, os, pathlib, time, urllib.request, urllib.error
-VOICE_ID="n3Vun1rdyiQUF5EqCtmC"  # Raghd's earlier English teacher voice Amy
+VOICE_ID="WQhVGGVQ8EhNpBYHFE8c"  # Layla - Buttery smooth, calm & versatile (English American)
 CLIPS={
 "intro":"Hello Raghd! Let's practice together for your Sunday assessment.",
 "letter-name":"This is capital N and small n. The letter N.",
@@ -39,9 +39,7 @@ CLIPS={
 }
 def generate(name,phrase,key):
     out=pathlib.Path("raghd/audio/sunday-"+name+".mp3")
-    if out.is_file() and out.stat().st_size>700:
-        print("Keeping",out,flush=True);return
-    data=json.dumps({"text":phrase,"model_id":"eleven_multilingual_v2","voice_settings":{"stability":0.55,"similarity_boost":0.78,"style":0.12,"speed":0.85,"use_speaker_boost":True}}).encode()
+    data=json.dumps({"text":phrase,"model_id":"eleven_multilingual_v2","voice_settings":{"stability":0.55,"similarity_boost":0.78,"style":0.12,"speed":0.86,"use_speaker_boost":True}}).encode()
     for attempt in range(3):
         req=urllib.request.Request("https://api.elevenlabs.io/v1/text-to-speech/"+VOICE_ID+"?output_format=mp3_44100_128",data=data,headers={"xi-api-key":key,"Content-Type":"application/json","Accept":"audio/mpeg"},method="POST")
         try:
@@ -55,7 +53,7 @@ def generate(name,phrase,key):
 def main():
     key=os.environ.get("ELEVENLABS_API_KEY","").strip()
     if not key:raise SystemExit("Missing ELEVENLABS_API_KEY Actions secret")
-    print("Producing 33 stable ElevenLabs MP3 clips for Raghd.",flush=True)
+    print("Replacing all 33 previous recordings with English Layla, not Amy Cartwright.",flush=True)
     pathlib.Path("raghd/audio").mkdir(parents=True,exist_ok=True)
     for name,phrase in CLIPS.items():generate(name,phrase,key)
     print("Ready: "+str(len(CLIPS))+" audio clips",flush=True)
