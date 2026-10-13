@@ -3,7 +3,6 @@ on:
   push:
     branches: [main]
     paths:
-      - 'raghd/sunday-assessment.html'
       - 'scripts/raghd_sunday_audio.py'
   workflow_dispatch:
 
