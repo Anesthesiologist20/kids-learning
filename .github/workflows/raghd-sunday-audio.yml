@@ -1,0 +1,54 @@
+name: Raghd Sunday ElevenLabs Audio
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'raghd/sunday-assessment.html'
+      - 'scripts/raghd_sunday_audio.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raghd-sunday-voice
+  cancel-in-progress: false
+
+jobs:
+  create-and-publish-audio:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate all lesson recordings with ElevenLabs Amy
+        env:
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+        run: python3 scripts/raghd_sunday_audio.py
+      - name: Validate recordings and refresh PWA
+        run: |
+          python3 - <<'PY'
+          import pathlib, re, importlib.util
+          spec=importlib.util.spec_from_file_location("clips","scripts/raghd_sunday_audio.py")
+          m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+          for k in m.CLIPS:
+              p=pathlib.Path("raghd/audio/sunday-"+k+".mp3")
+              if not p.is_file() or p.stat().st_size<700:raise SystemExit("Missing "+str(p))
+          sw_path=pathlib.Path("sw.js");sw=sw_path.read_text()
+          found=re.search(r"const CACHE = 'kids-learning-pwa-v(\d+)';",sw)
+          if not found:raise SystemExit("Cache version missing")
+          sw=sw[:found.start(1)]+str(int(found.group(1))+1)+sw[found.end(1):]
+          urls=["/kids-learning/raghd/sunday-assessment.html"]+["/kids-learning/raghd/audio/sunday-"+k+".mp3" for k in m.CLIPS]
+          for u in urls:
+              quote=" '"+u+"',"
+              if quote not in sw:sw=sw.replace("const SHELL = [","const SHELL = [\n"+quote)
+          sw_path.write_text(sw);print("Validated",len(m.CLIPS),"MP3s")
+          PY
+          git diff --check
+      - name: Publish stable MP3s
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add raghd/audio/sunday-*.mp3 sw.js
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Raghd Sunday ElevenLabs audio"
+            git push
+          fi
