@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v30';
+const CACHE = 'kids-learning-pwa-v31';
 const SHELL = [
  '/kids-learning/raghd/teacher-slides.js',
  '/kids-learning/raghd/teacher-original-slides.html',
@@ -165,6 +165,9 @@ const SHELL = [
  '/kids-learning/raghd/sunday-assessment.html',
  '/kids-learning/', '/kids-learning/index.html',
  '/kids-learning/sakinah/', '/kids-learning/sakinah/index.html',
+ '/kids-learning/sakinah/weeks8-9-english-studio.html',
+ '/kids-learning/sakinah/week8-english.html',
+ '/kids-learning/sakinah/week9-irregular-verbs.html',
  '/kids-learning/sakinah/english-challenge.html',
  '/kids-learning/sakinah/interesting-day-writing.html',
  '/kids-learning/sakinah/audio/sentence-1.mp3',
