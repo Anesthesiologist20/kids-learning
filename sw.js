@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v35';
+const CACHE = 'kids-learning-pwa-v36';
 const SHELL = [
  '/kids-learning/raghd/teacher-slides.js',
  '/kids-learning/raghd/teacher-original-slides.html',
