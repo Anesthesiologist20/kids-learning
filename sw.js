@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v32';
+const CACHE = 'kids-learning-pwa-v33';
 const SHELL = [
  '/kids-learning/raghd/teacher-slides.js',
  '/kids-learning/raghd/teacher-original-slides.html',
@@ -219,6 +219,7 @@ const SHELL = [
  '/kids-learning/aboud/', '/kids-learning/aboud/index.html',
  '/kids-learning/aboud/math-midterm-grade2-50.html',
  '/kids-learning/aboud/math-period1-mnhaji-50.html',
+ '/kids-learning/aboud/spelling-24-words.html',
  '/kids-learning/sakinah/lughati-grade4-term1.html',
  '/kids-learning/aboud/lughati-116-questions.html',
  '/kids-learning/aboud/lughati-92-questions.html',
