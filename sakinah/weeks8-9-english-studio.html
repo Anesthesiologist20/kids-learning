@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#6551c9"><title>Sakinah · Weeks 8 & 9 English Studio</title>
+<style>
+:root{--ink:#25344c;--p:#6551c9;--muted:#66738d}*{box-sizing:border-box}body{margin:0;background:#f5f6ff;color:var(--ink);font:16px system-ui,-apple-system,"Segoe UI",sans-serif}header{padding:27px 16px;text-align:center;color:#fff;background:linear-gradient(120deg,#5445b8,#8e6cda,#ec8eb3)}header h1{font-size:clamp(27px,5vw,42px);margin:8px}header p{margin:6px}main{max-width:1100px;margin:auto;padding:14px}.toolbar{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow:auto;padding:12px 2px;background:#f5f6ff}.toolbar button{white-space:nowrap;border:0;border-radius:14px;background:#fff;color:#493a9c;font-weight:800;padding:12px 16px;box-shadow:0 3px 12px #29335512}.toolbar button.active{background:var(--p);color:white}.intro,.frame-wrap{background:#fff;border:1px solid #e5e6f4;border-radius:20px;padding:17px;margin:12px 0;box-shadow:0 5px 19px #2933550b}.intro{background:linear-gradient(130deg,#fff,#edecff)}.intro p{line-height:1.7;color:#52607a}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{background:#eeebff;color:#4b3aa5;padding:7px 11px;border-radius:99px;font-size:13px;font-weight:750}.frame-wrap{padding:0;overflow:hidden}.frame-head{padding:12px 15px;background:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.frame-head a{font-weight:750;color:#5140b3;text-decoration:none}.frame-wrap iframe{width:100%;height:calc(100vh - 115px);min-height:680px;border:0;background:#f6f6ff}.back{color:#5140b3;text-decoration:none;font-weight:800;padding:10px}.hint{font-size:14px;color:var(--muted)}footer{text-align:center;padding:22px;color:var(--muted)}@media(max-width:650px){main{padding:9px}.intro{padding:14px}.frame-wrap iframe{height:calc(100vh - 155px);min-height:650px}}
+</style></head>
+<body>
+<header><div>🌷 Sakinah · Grade 4 · Cambridge Primary Path 4</div><h1>Weeks 8 & 9 English Studio</h1><p>Vocabulary · Reading · Writing · Grammar · Irregular verbs · Interactive practice</p></header>
+<main>
+<div class="toolbar" role="tablist" aria-label="Choose a study week">
+<button type="button" class="active" role="tab" aria-selected="true" data-week="8">🌌 Week 8 · Space</button>
+<button type="button" role="tab" aria-selected="false" data-week="9">✨ Week 9 · Grammar & Verbs</button>
+<a class="back" href="./index.html">← Sakinah's Corner</a>
+</div>
+<section class="intro">
+<h2>Choose a week and start learning 💜</h2>
+<p>Each week has its own interactive lesson with vocabulary, listening, reading or grammar, fill-in activities, flashcards and self-checking practice. Your saved answers stay in this browser.</p>
+<div class="chips"><span class="chip">🎙️ Up to 5 device voices</span><span class="chip">🐢 3 speaking speeds</span><span class="chip">🔊 ElevenLabs with voice fallback</span><span class="chip">📱 Touch-friendly</span></div>
+<p class="hint">The lesson pages include their own voice controls. Device voice choices depend on the voices installed on your phone or tablet.</p>
+</section>
+<section class="frame-wrap" aria-label="Interactive English lesson">
+<div class="frame-head"><strong id="lessonTitle">Week 8 · Space Adventure</strong><a id="openLesson" href="week8-english.html" target="_blank" rel="noopener">Open lesson in a new tab ↗</a></div>
+<iframe id="lesson" title="Sakinah's Week 8 English lesson" src="week8-english.html" allow="autoplay"></iframe>
+</section>
+<footer>Made for Sakinah 💜 · Use the week buttons above to switch lessons.</footer>
+</main>
+<script>
+'use strict';
+const frame=document.getElementById('lesson'), title=document.getElementById('lessonTitle'), open=document.getElementById('openLesson');
+const pages={8:{src:'week8-english.html',title:'Week 8 · Space Adventure',frame:'Sakinah Week 8 English lesson'},9:{src:'week9-irregular-verbs.html',title:'Week 9 · Grammar & Irregular Verbs',frame:'Sakinah Week 9 grammar and irregular verbs lesson'}};
+function chooseWeek(n){const w=pages[n];frame.src=w.src;frame.title=w.frame;title.textContent=w.title;open.href=w.src;document.querySelectorAll('[data-week]').forEach(b=>{const active=Number(b.dataset.week)===n;b.classList.toggle('active',active);b.setAttribute('aria-selected',String(active))});}
+document.querySelectorAll('[data-week]').forEach(b=>b.addEventListener('click',()=>chooseWeek(Number(b.dataset.week))));
+</script>
+</body></html>
