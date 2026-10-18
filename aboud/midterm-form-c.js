@@ -218,7 +218,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Find the correctly ordered sentence.",
+   "prompt": "Which sentence uses sometimes with bake correctly?",
    "choices": [
     "People sometimes bake cupcakes.",
     "People bake sometimes cupcakes.",
@@ -231,7 +231,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Find the correctly ordered sentence.",
+   "prompt": "Which sentence uses always with makes correctly?",
    "choices": [
     "He makes always a wish.",
     "He always makes a wish.",
