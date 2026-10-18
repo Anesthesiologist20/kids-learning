@@ -2,10 +2,10 @@ window.MIDTERM_FORMS=window.MIDTERM_FORMS||[];
 window.MIDTERM_FORMS.push({
  "id": "c",
  "name": "Agent Gamma",
- "arabic": "خبير تحديات الاختبار",
+ "arabic": "Challenge Coach",
  "tagline": "Higher Reasoning · Challenge",
  "theme": "purple",
- "focus": "أسئلة تتطلب فهم المعنى واكتشاف الفروق",
+ "focus": "Questions that build meaning and comparison skills",
  "revision": "Cross-review: removed trick questions without a single supported answer and kept comparisons inside Vick/Kira, Simon/Ryan and Nina/Alexa.",
  "questions": [
   {
