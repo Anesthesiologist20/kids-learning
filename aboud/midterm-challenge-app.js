@@ -5,7 +5,7 @@ const sections={v:{name:"Vocabulary",ar:"المفردات",icon:"🎂"},f:{name:
 const avatars={a:"🧑‍🏫",b:"🧩",c:"🧠",d:"🌱"};
 const KEY="aboud-midterm-three-form-exams-v1";
 const app=document.getElementById("app");
-let data={drafts:{},history:{}},mode="home",active=null,viewAll=false;
+let data={drafts:{},history:{}},mode="home",active=null,reviewFilter="wrong";
 function escapeHtml(x){return String(x).replace(/[&<>"']/g,function(s){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]})}
 function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&saved.drafts&&saved.history)data=saved;}catch(e){}}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}}
@@ -23,7 +23,7 @@ function wrap(n){return '<strong>'+escapeHtml(n)+'</strong>'}
 function sourceLabel(src){return src.replace("Guide p","Study Guide p").replace("AB p","Activity Book p")}
 function navigateTop(){if(typeof window.scrollTo==="function"){window.scrollTo({top:0,behavior:"auto"})}}
 function renderHome(){
-mode="home";active=null;viewAll=false;
+mode="home";active=null;reviewFilter="wrong";
 const list=getResults();const completed=list.filter(function(x){return x.b}).sort(function(a,b){return b.b.score-a.b.score});
 let cards="";
 list.forEach(function(x){
@@ -74,24 +74,38 @@ const g=grade(f,s.answers);
 const result={id:f.id,score:g.score,sections:g.scores,answers:s.answers.slice(),date:Date.now(),duration:secs(s)};
 if(!data.history[f.id])data.history[f.id]=[];
 data.history[f.id].push(result);data.history[f.id]=data.history[f.id].slice(-12);
-delete data.drafts[f.id];save();mode="result";viewAll=false;renderResult(f.id,result);navigateTop();
+delete data.drafts[f.id];save();mode="result";reviewFilter="wrong";renderResult(f.id,result);navigateTop();
 }
 function renderResult(id,result){
 const f=getForm(id);if(!f||!result)return;
 mode="result";active=id;
 const g=grade(f,result.answers);
-const wrong=f.questions.map(function(q,i){return {q:q,i:i}}).filter(function(x){return result.answers[x.i]!==x.q.answer});
+const wrong=f.questions.map(function(q,i){return {q:q,i:i}}).filter(function(x){return result.answers[x.i]!==null&&result.answers[x.i]!==x.q.answer});
 const weak=Object.keys(sections).slice().sort(function(a,b){return g.scores[a]/g.totals[a]-g.scores[b]/g.totals[b]})[0];
 const pct=Math.round(g.score/f.questions.length*100),unanswered=result.answers.filter(function(a){return a===null}).length;
+const solved=result.answers.length-unanswered,correct=g.score;
+const counts={solved:solved,correct:correct,wrong:wrong.length,unanswered:unanswered};
 const message=pct>=90?"ممتاز! أتقنت أغلب المهارات. راجع فقط أخطاءك.":pct>=75?"مستوى جيد. ركّز على الأسئلة التي فاتتك.":pct>=60?"مراجعة مركّزة للمحور الأضعف ستساعدك.":"ابدأ بمراجعة الكلمات والقاعدة ثم أعد النموذج.";
 const rows=Object.keys(sections).map(function(k){return '<div class="sr"><div>'+sections[k].icon+'</div><strong>'+g.scores[k]+' / '+g.totals[k]+'</strong><small>'+sections[k].ar+'</small></div>'}).join("");
-const items=f.questions.map(function(q,i){return {q:q,i:i}}).filter(function(x){return viewAll||result.answers[x.i]!==x.q.answer}).map(function(x){
+const filters=[{id:"solved",label:"محلول"},{id:"correct",label:"صحيح"},{id:"wrong",label:"خطأ"},{id:"unanswered",label:"غير محلول"}];
+const filterButtons=filters.map(function(x){return '<button class="btn '+(reviewFilter===x.id?"gold":"outline")+'" data-action="reviewFilter" data-filter="'+x.id+'" aria-pressed="'+(reviewFilter===x.id)+'">'+x.label+' · '+counts[x.id]+'</button>'}).join("");
+const items=f.questions.map(function(q,i){return {q:q,i:i}}).filter(function(x){
+ const answer=result.answers[x.i],isCorrect=answer===x.q.answer;
+ if(reviewFilter==="solved")return answer!==null;
+ if(reviewFilter==="correct")return isCorrect;
+ if(reviewFilter==="wrong")return answer!==null&&!isCorrect;
+ if(reviewFilter==="unanswered")return answer===null;
+ return true;
+}).map(function(x){
  const q=x.q,i=x.i,chosen=result.answers[i],correct=chosen===q.answer;
- return '<article class="review-item"><span class="label">'+sections[q.section].icon+' '+sections[q.section].ar+' · سؤال '+(i+1)+'</span><h4 class="en">'+escapeHtml(q.prompt)+'</h4><p class="en '+(correct?"yes":"no")+'">'+(correct?"✓ Your answer: ":"✗ Your answer: ")+escapeHtml(q.choices[chosen]||"No answer")+'</p>'+(!correct?'<p class="en yes">✓ Correct answer: '+escapeHtml(q.choices[q.answer])+'</p>':"")+'<p class="en" lang="en">'+escapeHtml(q.explanation)+'</p><code>'+escapeHtml(sourceLabel(q.source))+'</code></article>';
- }).join("");
-app.innerHTML='<section class="panel"><div class="exam-top"><span class="label">🏁 '+escapeHtml(f.name)+'</span><span class="label">⏱ '+fmtTime(result.duration)+'</span></div><div class="score-big"><div class="small">النتيجة النهائية لعبود</div><div class="number">'+g.score+' / '+f.questions.length+'</div><div class="score-desc">'+pct+'% · '+message+'</div></div><h2>📈 مستوى الإتقان حسب المحور</h2><div class="sections-result">'+rows+'</div><p class="subtle">🎯 الأولوية للمراجعة: <b>'+sections[weak].ar+'</b> ('+g.scores[weak]+' من '+g.totals[weak]+'). تم حساب النتيجة من الإجابات التي سجلها عبود، و'+unanswered+' سؤالًا متروكًا حُسب ضمن غير الصحيح. لا يمكن التغيير بعد التسليم.</p><div class="actions"><button class="btn gold" data-action="startfresh" data-id="'+id+'">🔄 تحدٍ جديد بالنموذج نفسه</button><button class="btn outline" data-action="home">🏠 العودة للمنافسة</button></div></section><section class="panel"><h2>🔍 مراجعة الإجابات · '+wrong.length+' خطأ</h2><p class="small">التصحيح من Mid-Term Study Guide وصفحات Activity Book المشار إليها تحت كل سؤال.</p><button class="btn outline" data-action="toggleReview">'+(viewAll?"عرض الأخطاء فقط":"عرض جميع الأسئلة والإجابات")+'</button>'+(!wrong.length&&!viewAll?'<p class="subtle">🎉 جميع الإجابات صحيحة! لا توجد أسئلة تحتاج تصحيحًا.</p>':items)+'</section>';
+ const state=chosen===null?"⏳ غير محلول":correct?"✅ صحيح":"❌ خطأ";
+ const answerLine=chosen===null?"⏳ لم يُجب عن السؤال":(correct?"✓ Your answer: ":"✗ Your answer: ")+escapeHtml(q.choices[chosen]);
+ return '<article class="review-item"><div class="exam-top"><span class="label">'+sections[q.section].icon+' '+sections[q.section].ar+' · سؤال '+(i+1)+'</span><span class="label">'+state+'</span></div><h4 class="en">'+escapeHtml(q.prompt)+'</h4><p class="en '+(correct?"yes":"no")+'">'+answerLine+'</p>'+(!correct?'<p class="en yes">✓ Correct answer: '+escapeHtml(q.choices[q.answer])+'</p>':"")+'<p class="en" lang="en">'+escapeHtml(q.explanation)+'</p><code>'+escapeHtml(sourceLabel(q.source))+'</code></article>';
+}).join("");
+const empty=items?"":'<p class="subtle">لا توجد أسئلة في فئة «'+filters.find(function(x){return x.id===reviewFilter}).label+'».</p>';
+app.innerHTML='<section class="panel"><div class="exam-top"><span class="label">🏁 '+escapeHtml(f.name)+'</span><span class="label">⏱ '+fmtTime(result.duration)+'</span></div><div class="score-big"><div class="small">النتيجة النهائية لعبود</div><div class="number">'+g.score+' / '+f.questions.length+'</div><div class="score-desc">'+pct+'% · '+message+'</div></div><h2>📈 مستوى الإتقان حسب المحور</h2><div class="sections-result">'+rows+'</div><p class="subtle">🎯 الأولوية للمراجعة: <b>'+sections[weak].ar+'</b> ('+g.scores[weak]+' من '+g.totals[weak]+'). أجاب عبود عن '+solved+' سؤالًا، وترك '+unanswered+' دون حل. لا يمكن تغيير الإجابات بعد التسليم.</p><div class="actions"><button class="btn gold" data-action="startfresh" data-id="'+id+'">🔄 تحدٍ جديد بالنموذج نفسه</button><button class="btn outline" data-action="home">🏠 العودة للمنافسة</button></div></section><section class="panel"><h2>🔍 مراجعة الاختبار</h2><p class="small">اختر فئة لمراجعة أسئلتها. «محلول» يشمل الإجابات الصحيحة والخاطئة.</p><div class="actions">'+filterButtons+'</div>'+empty+'</section>'+items;
 }
-function showLast(id){const r=lastResult(id);if(r){viewAll=false;renderResult(id,r);navigateTop()}}
+function showLast(id){const r=lastResult(id);if(r){reviewFilter="wrong";renderResult(id,r);navigateTop()}}
 function handleClick(e){const btn=e.target.closest("button[data-action]");if(!btn||btn.disabled)return;const action=btn.dataset.action;
 if(action==="home"){renderHome();navigateTop();}
 else if(action==="start")start(btn.dataset.id,false);
@@ -102,7 +116,7 @@ else if(action==="prev")advance(-1);
 else if(action==="next")advance(1);
 else if(action==="jump")jump(Number(btn.dataset.pos));
 else if(action==="finish")finish();
-else if(action==="toggleReview"){viewAll=!viewAll;renderResult(active,lastResult(active));}
+else if(action==="reviewFilter"){const filter=btn.dataset.filter;if(["solved","correct","wrong","unanswered"].indexOf(filter)>=0){reviewFilter=filter;renderResult(active,lastResult(active));}}
 }
 if(!app)return;
 load();app.addEventListener("click",handleClick);
