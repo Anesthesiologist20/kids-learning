@@ -270,16 +270,16 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "I brush my teeth every morning. I ____ brush my teeth in the morning.",
+   "prompt": "Which sentence about cupcakes has the correct word order?",
    "choices": [
-    "always",
-    "never",
-    "behind",
-    "between"
+    "People sometimes bake cupcakes.",
+    "People sometimes bakes cupcakes.",
+    "People bake sometimes cupcakes.",
+    "People sometimes baking cupcakes."
    ],
    "answer": 0,
-   "explanation": "Every morning means always in this example.",
-   "source": "AB p26"
+   "explanation": "In the Activity Book, sometimes is placed before bake.",
+   "source": "AB p27"
   },
   {
    "section": "f",
