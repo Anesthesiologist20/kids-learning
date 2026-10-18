@@ -218,7 +218,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct sentence.",
+   "prompt": "Which sentence correctly places always before the verb?",
    "choices": [
     "I always play football.",
     "I play always football.",
@@ -231,7 +231,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct sentence.",
+   "prompt": "Which sentence correctly places usually before reads?",
    "choices": [
     "He reads usually books.",
     "He usually reads books.",
@@ -244,7 +244,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct sentence.",
+   "prompt": "Which sentence correctly places sometimes before ride?",
    "choices": [
     "We ride sometimes our bikes.",
     "We bikes sometimes ride.",
@@ -257,7 +257,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct sentence.",
+   "prompt": "Which sentence correctly places never before arrive?",
    "choices": [
     "They arrive never late.",
     "Never they late arrive.",
