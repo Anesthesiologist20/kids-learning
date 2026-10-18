@@ -22,6 +22,23 @@ function getResults(){return forms.map(function(f){return {f:f,b:bestResult(f.id
 function wrap(n){return '<strong>'+escapeHtml(n)+'</strong>'}
 function sourceLabel(src){return src.replace("Guide p","Study Guide p").replace("AB p","Activity Book p")}
 function navigateTop(){if(typeof window.scrollTo==="function"){window.scrollTo({top:0,behavior:"auto"})}}
+let readerVoiceURI="",readerRate=0.85;
+function readerVoices(){return window.speechSynthesis?window.speechSynthesis.getVoices().filter(function(v){return /^en(-|$)/i.test(v.lang)}):[]}
+function readerControls(f){
+if(f.id!=="d")return "";
+const voices=readerVoices();
+return '<div class="reader-tools" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 12px"><button class="btn outline" data-action="readQuestion" type="button">🔊 Read question</button><label class="small">Voice <select data-reader-voice style="padding:8px;border-radius:8px;max-width:220px"><option value="">Automatic English voice</option>'+voices.map(function(v){return '<option value="'+escapeHtml(v.voiceURI)+'" '+(readerVoiceURI===v.voiceURI?'selected':'')+'>'+escapeHtml(v.name)+' · '+escapeHtml(v.lang)+'</option>'}).join("")+'</select></label><label class="small">Speed <select data-reader-rate style="padding:8px;border-radius:8px"><option value="0.7" '+(readerRate===0.7?'selected':'')+'>Slow</option><option value="0.85" '+(readerRate===0.85?'selected':'')+'>Normal</option><option value="1" '+(readerRate===1?'selected':'')+'>Fast</option></select></label></div>';
+}
+function readCurrentQuestion(){
+const f=getForm(active),s=getSession(active);if(!f||!s||f.id!=="d")return;if(!window.speechSynthesis||typeof SpeechSynthesisUtterance==="undefined"){alert("Text to speech is not supported on this device.");return;}
+const q=f.questions[s.qOrder[s.pos]],voices=readerVoices(),utterance=new SpeechSynthesisUtterance(q.prompt);
+let voice=voices.find(function(v){return v.voiceURI===readerVoiceURI});
+if(!voice)voice=voices.find(function(v){return /layla|amy/i.test(v.name)})||voices.find(function(v){return /female|samantha|aria|jenny|zira|ava|susan|karen/i.test(v.name)})||voices[0];
+if(voice)utterance.voice=voice;
+utterance.rate=readerRate;utterance.lang=voice?voice.lang:"en-US";
+window.speechSynthesis.cancel();window.speechSynthesis.speak(utterance);
+}
+
 function renderHome(){
 mode="home";active=null;reviewFilter="wrong";
 const list=getResults();const completed=list.filter(function(x){return x.b}).sort(function(a,b){return b.b.score-a.b.score});
@@ -47,9 +64,9 @@ let options=order.map(function(n,i){return '<button class="choice'+(selected===n
 let dots=s.qOrder.map(function(qi,pos){const answer=s.answers[qi],status=answer===null?"":answer===f.questions[qi].answer?" correct":" wrong";return '<button class="dot'+(answer!==null?" done":"")+status+(pos===s.pos?" active":"")+'" data-action="jump" data-pos="'+pos+'" aria-label="Question '+(pos+1)+(answer===null?" — unanswered":answer===f.questions[qi].answer?" — correct":" — incorrect")+'">'+(pos+1)+'</button>'}).join("");
 const okAll=done===f.questions.length;
 const rightCount=s.answers.filter(function(answer,i){return answer!==null&&answer===f.questions[i].answer}).length,wrongCount=done-rightCount;
-app.innerHTML='<section class="panel"><div class="exam-top"><div class="title-line"><span class="icon-large">'+avatars[f.id]+'</span><div><span class="label">'+escapeHtml(f.name)+'</span><h2>'+escapeHtml(f.arabic)+'</h2></div></div><div><b id="clock">⏱ '+fmtTime(secs(s))+'</b><div class="small">Answered: '+done+' / '+f.questions.length+'</div></div></div><div class="progress-wrap"><div class="progress-inner" style="width:'+Math.round(done/f.questions.length*100)+'%"></div></div><div class="exam-top"><span class="label">Question '+(s.pos+1)+' of '+f.questions.length+'</span><span class="label">'+sections[q.section].icon+' '+sections[q.section].ar+'</span></div><section class="question"><h2 class="en" lang="en">'+escapeHtml(q.prompt)+'</h2><div class="choices en" lang="en">'+options+'</div></section><div class="exam-controls"><button class="btn outline" data-action="prev" '+(s.pos===0?'disabled':'')+'>← Previous</button><button class="btn outline" data-action="home">🏠 Models</button><button class="btn" data-action="next">'+(s.pos===f.questions.length-1&&!okAll?"Go to an unanswered question →":"Next →")+'</button></div><div class="actions"><button class="btn gold" data-action="finish">🏆 Submit Test & View Results</button></div><details class="question-map" open><summary>🗺️ Question Map · ✅ '+rightCount+' correct · ❌ '+wrongCount+' incorrect · ◻️ '+(f.questions.length-done)+' unanswered</summary><div class="map-legend"><span><i class="map-swatch correct"></i>Correct</span><span><i class="map-swatch wrong"></i>Incorrect</span><span><i class="map-swatch"></i>Unanswered</span></div><div class="dots">'+dots+'</div></details></section>';
+app.innerHTML='<section class="panel"><div class="exam-top"><div class="title-line"><span class="icon-large">'+avatars[f.id]+'</span><div><span class="label">'+escapeHtml(f.name)+'</span><h2>'+escapeHtml(f.arabic)+'</h2></div></div><div><b id="clock">⏱ '+fmtTime(secs(s))+'</b><div class="small">Answered: '+done+' / '+f.questions.length+'</div></div></div><div class="progress-wrap"><div class="progress-inner" style="width:'+Math.round(done/f.questions.length*100)+'%"></div></div><div class="exam-top"><span class="label">Question '+(s.pos+1)+' of '+f.questions.length+'</span><span class="label">'+sections[q.section].icon+' '+sections[q.section].ar+'</span></div><section class="question">'+readerControls(f)+'<h2 class="en" lang="en">'+escapeHtml(q.prompt)+'</h2><div class="choices en" lang="en">'+options+'</div></section><div class="exam-controls"><button class="btn outline" data-action="prev" '+(s.pos===0?'disabled':'')+'>← Previous</button><button class="btn outline" data-action="home">🏠 Models</button><button class="btn" data-action="next">'+(s.pos===f.questions.length-1&&!okAll?"Go to an unanswered question →":"Next →")+'</button></div><div class="actions"><button class="btn gold" data-action="finish">🏆 Submit Test & View Results</button></div><details class="question-map" open><summary>🗺️ Question Map · ✅ '+rightCount+' correct · ❌ '+wrongCount+' incorrect · ◻️ '+(f.questions.length-done)+' unanswered</summary><div class="map-legend"><span><i class="map-swatch correct"></i>Correct</span><span><i class="map-swatch wrong"></i>Incorrect</span><span><i class="map-swatch"></i>Unanswered</span></div><div class="dots">'+dots+'</div></details></section>';
 }
-function renderExamAtCurrentPosition(){const y=window.scrollY;renderExam();window.scrollTo({top:y,behavior:"auto"});}
+function renderExamAtCurrentPosition(){if(window.speechSynthesis)window.speechSynthesis.cancel();const y=window.scrollY;renderExam();window.scrollTo({top:y,behavior:"auto"});}
 function pick(index){
 const f=getForm(active),s=getSession(active);if(!f||!s)return;
 const qi=s.qOrder[s.pos];if(s.answers[qi]!==null||!Number.isInteger(index)||index<0||index>3)return;
@@ -108,7 +125,7 @@ app.innerHTML='<section class="panel"><div class="exam-top"><span class="label">
 }
 function showLast(id){const r=lastResult(id);if(r){reviewFilter="wrong";renderResult(id,r);navigateTop()}}
 function handleClick(e){const btn=e.target.closest("button[data-action]");if(!btn||btn.disabled)return;const action=btn.dataset.action;
-if(action==="home"){renderHome();navigateTop();}
+if(action==="home"){if(window.speechSynthesis)window.speechSynthesis.cancel();renderHome();navigateTop();} else if(action==="readQuestion")readCurrentQuestion();
 else if(action==="start")start(btn.dataset.id,false);
 else if(action==="startfresh"){if(getSession(btn.dataset.id)&&!confirm("This will replace the saved progress for this model. Continue?"))return;start(btn.dataset.id,true);}
 else if(action==="history")showLast(btn.dataset.id);
@@ -121,6 +138,11 @@ else if(action==="reviewFilter"){const filter=btn.dataset.filter;if(["solved","c
 }
 if(!app)return;
 load();app.addEventListener("click",handleClick);
+if(window.speechSynthesis)window.speechSynthesis.onvoiceschanged=function(){if(mode==="exam"&&active==="d")renderExamAtCurrentPosition();};
+app.addEventListener("change",function(e){
+if(e.target.matches("[data-reader-voice]"))readerVoiceURI=e.target.value;
+else if(e.target.matches("[data-reader-rate]"))readerRate=Number(e.target.value)||0.85;
+});
 document.addEventListener("keydown",function(e){if(mode!=="exam"||e.altKey||e.ctrlKey||e.metaKey||e.target.closest("input,textarea"))return;const n=Number(e.key);if(n>=1&&n<=4){const s=getSession(active);if(!s)return;const qi=s.qOrder[s.pos];pick(s.optionOrders[qi][n-1]);}});
 setInterval(function(){if(mode==="exam"){const s=getSession(active),clock=document.getElementById("clock");if(s&&clock)clock.textContent="⏱ "+fmtTime(secs(s));}},1000);
 if(forms.length!==4||forms.some(function(f){return f.questions.length!==45;})){app.innerHTML='<section class="panel"><h2>Could not load the four question models</h2><p>Refresh the page. If the issue continues, open it from GitHub Pages.</p></section>';}
