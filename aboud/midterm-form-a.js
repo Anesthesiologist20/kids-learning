@@ -2,10 +2,10 @@ window.MIDTERM_FORMS=window.MIDTERM_FORMS||[];
 window.MIDTERM_FORMS.push({
  "id": "a",
  "name": "Agent Alpha",
- "arabic": "المعلّم الدقيق",
+ "arabic": "Precision Coach",
  "tagline": "Core Skills · Accuracy First",
  "theme": "blue",
- "focus": "أساسيات الكلمات والقواعد والاختيار الصحيح",
+ "focus": "Core vocabulary and grammar with clear choices",
  "revision": "Cross-review: balanced noun/verb vocabulary, removed ambiguous frequency clues, checked reading facts against AB pp24–25.",
  "questions": [
   {
