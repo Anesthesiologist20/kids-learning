@@ -2,10 +2,10 @@ window.MIDTERM_FORMS=window.MIDTERM_FORMS||[];
 window.MIDTERM_FORMS.push({
   "id": "d",
   "name": "Easy Model",
-  "arabic": "النموذج السهل",
-  "tagline": "Easy Start · خطوة بخطوة",
+  "arabic": "Easy Model",
+  "tagline": "Easy Start · Step by Step",
   "theme": "green",
-  "focus": "أسئلة مباشرة وكلمات مألوفة لمراجعة الأساسيات بهدوء",
+  "focus": "Short questions and familiar words for a calm review of the basics",
   "revision": "Easy level: short, direct questions; simple vocabulary and one clear correct answer.",
   "questions": [
     {
