@@ -205,7 +205,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct word order.",
+   "prompt": "Which sentence has the correct word order for always?",
    "choices": [
     "We always celebrate New Year.",
     "We celebrate always New Year.",
@@ -218,7 +218,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "f",
-   "prompt": "Choose the correct word order.",
+   "prompt": "Which sentence has the correct word order for usually?",
    "choices": [
     "He makes usually a wish.",
     "He usually makes a wish.",
@@ -387,7 +387,7 @@ window.MIDTERM_FORMS.push({
   },
   {
    "section": "p",
-   "prompt": "Choose the correct sentence.",
+   "prompt": "Which sentence correctly describes the bikes beside the school?",
    "choices": [
     "The bikes are between next to school.",
     "The bikes in front school.",
