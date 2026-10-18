@@ -2,10 +2,10 @@ window.MIDTERM_FORMS=window.MIDTERM_FORMS||[];
 window.MIDTERM_FORMS.push({
  "id": "b",
  "name": "Agent Beta",
- "arabic": "خبير تطبيقات الكتاب",
+ "arabic": "Workbook Coach",
  "tagline": "Workbook Scenes · Applied Grammar",
  "theme": "orange",
- "focus": "تطبيق القاعدة داخل الجمل ومواقف الكتاب",
+ "focus": "Apply grammar in sentences and workbook scenes",
  "revision": "Cross-review: converted workbook pictures to unambiguous textual scenes and rechecked all Simon/Ryan and Vick/Kira details.",
  "questions": [
   {
