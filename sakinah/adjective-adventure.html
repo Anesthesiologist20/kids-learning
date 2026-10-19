@@ -18,11 +18,21 @@ const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Mat
 const initial=()=>({wins:[],mistakes:[],seen:[],sentences:[],history:[],session:null,voice:'bella',speed:.85});
 let state;try{state=Object.assign(initial(),JSON.parse(localStorage.getItem(KEY)||'{}'));if(!['wins','mistakes','seen','sentences','history'].every(k=>Array.isArray(state[k])))throw Error()}catch(e){state=initial()}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){$('voiceStatus').textContent='Storage is unavailable. Keep this page open to retain your progress.'}};
-let voiceList=[],speechId=0,toastTimer,ruleIndex=0;
+let audio=null,speechId=0,toastTimer,ruleIndex=0;
 function toast(t){$('toast').textContent=t;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,2500)}
-function stop(){speechId++;if('speechSynthesis'in window)speechSynthesis.cancel()}
-function say(t){stop();if(!('speechSynthesis'in window)){$('voiceStatus').textContent='Speech is unavailable here. You can still read every example.';return}const ticket=speechId,u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=Number(state.speed)||.85;const v=voiceList.find(v=>v.name===state.voice);if(v)u.voice=v;u.onstart=()=>{$('voiceStatus').textContent='Listening…'};u.onend=()=>{if(ticket===speechId)$('voiceStatus').textContent='Ready to listen again.'};u.onerror=()=>{if(ticket===speechId)$('voiceStatus').textContent='Could not play. Choose another voice or try again.'};speechSynthesis.speak(u)}
-function voices(){if(!('speechSynthesis'in window))return;voiceList=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));$('voice').innerHTML='<option value="">Automatic English voice</option>'+voiceList.map(v=>`<option value="${esc(v.name)}">${esc(v.name)} · ${esc(v.lang)}</option>`).join('');$('voice').value=voiceList.some(v=>v.name===state.voice)?state.voice:''}
+function stop(){speechId++;if(audio){audio.pause();audio.removeAttribute('src');audio.load();audio=null}document.querySelectorAll('.sound[aria-pressed=true]').forEach(b=>b.setAttribute('aria-pressed','false'))}
+function soundStatus(msg,error=false){$('voiceStatus').textContent=msg;$('voiceStatus').classList.toggle('is-error',error)}
+function clip(id,preview=false,button=null){
+ stop();const ticket=speechId;
+ const v=['bella','heart','sarah'].includes(state.voice)?state.voice:'bella';
+ const path=preview?'audio/kokoro/'+v+'/welcome.mp3':'audio/adjective/'+v+'/'+id+'.mp3';
+ const player=new Audio(path);audio=player;player.preload='auto';player.playbackRate=Number(state.speed)||.85;
+ if(button)button.setAttribute('aria-pressed','true');
+ player.onplaying=()=>{if(ticket===speechId)soundStatus('🔊 '+v[0].toUpperCase()+v.slice(1)+' is speaking. Listen and repeat!')};
+ player.onended=()=>{if(ticket===speechId){audio=null;if(button)button.setAttribute('aria-pressed','false');soundStatus('Your turn: say the word or sentence aloud.')}};
+ player.onerror=()=>{if(ticket===speechId){if(button)button.setAttribute('aria-pressed','false');soundStatus('This AI recording is not available yet. Check that audio generation completed.',true)}};
+ player.play().catch(()=>{if(ticket===speechId){if(button)button.setAttribute('aria-pressed','false');soundStatus('Audio could not play. Try the button again.',true)}});
+}
 const rules=[
 ['1 · Add -er','Short adjective? Often add <em>-er</em>.','cold → colder','Many short adjectives take -er. If the word already ends in e, add only -r.','Uranus is colder than Earth.','cold → colder · warm → warmer · nice → nicer','We compare two things. We do not say “more colder”.'],
 ['2 · Double it','One vowel + one final consonant?','big → bigger','For short words like big and hot, double the final consonant before -er.','Jupiter is bigger than Saturn.','big → bigger · hot → hotter','Do not double w, x, or y. This pattern does not apply to every adjective.'],
@@ -85,5 +95,16 @@ document.addEventListener('input',e=>{if(e.target.id==='answer'&&current()&&!cur
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='answer'){e.preventDefault();submit(e.target.value)}});
 ['subject','describe','place'].forEach(id=>$(id).addEventListener('input',renderWriting));
 $('saveSentence').onclick=()=>{if(!$('place').value.trim()){$('writeStatus').textContent='Add a place to compare with first.';return}const s=sentence();if(state.sentences.some(x=>clean(x)===clean(s))){$('writeStatus').textContent='This sentence is already in your notebook.';return}state.sentences.push(s);save();renderWriting();$('writeStatus').textContent='Saved. The comparison pattern is correct; your description expresses your opinion.';toast('✍️ A new sentence in your notebook!')};
-$('hearDraft').onclick=()=>{if($('place').value.trim())say(sentence());else toast('Add a place first.')};$('voice').onchange=e=>{state.voice=e.target.value;save()};$('speed').value=String(state.speed);$('speed').onchange=e=>{state.speed=Number(e.target.value);save()};$('testVoice').onclick=()=>say('Hello Sakinah. Big, bigger. Beautiful, more beautiful. Let’s compare!');$('stopVoice').onclick=()=>{stop();$('voiceStatus').textContent='Stopped.'};window.addEventListener('pagehide',stop);voices();if('speechSynthesis'in window)speechSynthesis.addEventListener('voiceschanged',voices);home();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/kids-learning/sw.js',{scope:'/kids-learning/'}).catch(()=>{}));
+$('hearDraft').onclick=()=>clip('writing-model',false,$('hearDraft'));
+if(!['bella','heart','sarah'].includes(state.voice))state.voice='bella';
+if(![.7,.85,1,1.15].includes(Number(state.speed)))state.speed=.85;
+$('voice').value=state.voice;
+$('speed').value=String(state.speed);
+$('voice').onchange=e=>{stop();state.voice=e.target.value;save();soundStatus('Teacher changed to '+state.voice+'. Try her voice above!')};
+$('speed').onchange=e=>{state.speed=Number(e.target.value);save();if(audio)audio.playbackRate=state.speed;soundStatus('Speed set to '+state.speed+'×.')};
+$('testVoice').onclick=()=>clip(null,true,$('testVoice'));
+$('stopVoice').onclick=()=>{stop();soundStatus('Stopped. Ready!')};
+window.addEventListener('pagehide',stop);
+home();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/kids-learning/sw.js',{scope:'/kids-learning/'}).catch(()=>{}));
 </script></body></html>
