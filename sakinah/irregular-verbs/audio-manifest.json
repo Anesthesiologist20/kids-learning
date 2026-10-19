@@ -1,0 +1,375 @@
+{
+  "description": "Standalone Sakinah irregular verbs, 10 verbs, individual AI speech for V1/V2/V3, examples and questions",
+  "voices": {
+    "bella": "af_bella",
+    "heart": "af_heart",
+    "sarah": "af_sarah"
+  },
+  "speed": 1,
+  "lines": [
+    {
+      "id": "welcome",
+      "text": "Hello Sakinah! Welcome to the Irregular Verb Galaxy. Let's learn the three forms of each verb, one step at a time!"
+    },
+    {
+      "id": "word-0-0",
+      "text": "know"
+    },
+    {
+      "id": "example-0-0",
+      "text": "I know the answer."
+    },
+    {
+      "id": "word-0-1",
+      "text": "knew"
+    },
+    {
+      "id": "example-0-1",
+      "text": "Yesterday, I knew the answer."
+    },
+    {
+      "id": "word-0-2",
+      "text": "known"
+    },
+    {
+      "id": "example-0-2",
+      "text": "I have known Sara for two years."
+    },
+    {
+      "id": "word-1-0",
+      "text": "buy"
+    },
+    {
+      "id": "example-1-0",
+      "text": "I buy fruit every week."
+    },
+    {
+      "id": "word-1-1",
+      "text": "bought"
+    },
+    {
+      "id": "example-1-1",
+      "text": "Yesterday, I bought fruit."
+    },
+    {
+      "id": "word-1-2",
+      "text": "bought"
+    },
+    {
+      "id": "example-1-2",
+      "text": "I have bought some apples."
+    },
+    {
+      "id": "word-2-0",
+      "text": "eat"
+    },
+    {
+      "id": "example-2-0",
+      "text": "I eat breakfast every day."
+    },
+    {
+      "id": "word-2-1",
+      "text": "ate"
+    },
+    {
+      "id": "example-2-1",
+      "text": "Yesterday, I ate breakfast."
+    },
+    {
+      "id": "word-2-2",
+      "text": "eaten"
+    },
+    {
+      "id": "example-2-2",
+      "text": "I have eaten breakfast."
+    },
+    {
+      "id": "word-3-0",
+      "text": "be"
+    },
+    {
+      "id": "example-3-0",
+      "text": "I am a student."
+    },
+    {
+      "id": "word-3-1",
+      "text": "was or were"
+    },
+    {
+      "id": "example-3-1",
+      "text": "Yesterday, I was at school."
+    },
+    {
+      "id": "word-3-2",
+      "text": "been"
+    },
+    {
+      "id": "example-3-2",
+      "text": "I have been to the library."
+    },
+    {
+      "id": "word-4-0",
+      "text": "think"
+    },
+    {
+      "id": "example-4-0",
+      "text": "I think about my lessons."
+    },
+    {
+      "id": "word-4-1",
+      "text": "thought"
+    },
+    {
+      "id": "example-4-1",
+      "text": "Yesterday, I thought about my lesson."
+    },
+    {
+      "id": "word-4-2",
+      "text": "thought"
+    },
+    {
+      "id": "example-4-2",
+      "text": "I have thought about the answer."
+    },
+    {
+      "id": "word-5-0",
+      "text": "find"
+    },
+    {
+      "id": "example-5-0",
+      "text": "I find new books every week."
+    },
+    {
+      "id": "word-5-1",
+      "text": "found"
+    },
+    {
+      "id": "example-5-1",
+      "text": "Yesterday, I found a new book."
+    },
+    {
+      "id": "word-5-2",
+      "text": "found"
+    },
+    {
+      "id": "example-5-2",
+      "text": "I have found my book."
+    },
+    {
+      "id": "word-6-0",
+      "text": "take"
+    },
+    {
+      "id": "example-6-0",
+      "text": "I take photos every weekend."
+    },
+    {
+      "id": "word-6-1",
+      "text": "took"
+    },
+    {
+      "id": "example-6-1",
+      "text": "Yesterday, I took a photo."
+    },
+    {
+      "id": "word-6-2",
+      "text": "taken"
+    },
+    {
+      "id": "example-6-2",
+      "text": "I have taken a photo."
+    },
+    {
+      "id": "word-7-0",
+      "text": "make"
+    },
+    {
+      "id": "example-7-0",
+      "text": "I make cakes on Fridays."
+    },
+    {
+      "id": "word-7-1",
+      "text": "made"
+    },
+    {
+      "id": "example-7-1",
+      "text": "Yesterday, I made a cake."
+    },
+    {
+      "id": "word-7-2",
+      "text": "made"
+    },
+    {
+      "id": "example-7-2",
+      "text": "I have made a cake."
+    },
+    {
+      "id": "word-8-0",
+      "text": "write"
+    },
+    {
+      "id": "example-8-0",
+      "text": "I write notes in class."
+    },
+    {
+      "id": "word-8-1",
+      "text": "wrote"
+    },
+    {
+      "id": "example-8-1",
+      "text": "Yesterday, I wrote a note."
+    },
+    {
+      "id": "word-8-2",
+      "text": "written"
+    },
+    {
+      "id": "example-8-2",
+      "text": "I have written a note."
+    },
+    {
+      "id": "word-9-0",
+      "text": "build"
+    },
+    {
+      "id": "example-9-0",
+      "text": "I build models at school."
+    },
+    {
+      "id": "word-9-1",
+      "text": "built"
+    },
+    {
+      "id": "example-9-1",
+      "text": "Yesterday, I built a model."
+    },
+    {
+      "id": "word-9-2",
+      "text": "built"
+    },
+    {
+      "id": "example-9-2",
+      "text": "I have built a model."
+    },
+    {
+      "id": "question-v2-0",
+      "text": "What is the past simple, V2, of know?"
+    },
+    {
+      "id": "question-v3-0",
+      "text": "Spell the past participle, V3, of know."
+    },
+    {
+      "id": "question-time-0",
+      "text": "Complete the sentence. Yesterday, I blank the answer."
+    },
+    {
+      "id": "question-v2-1",
+      "text": "What is the past simple, V2, of buy?"
+    },
+    {
+      "id": "question-v3-1",
+      "text": "Spell the past participle, V3, of buy."
+    },
+    {
+      "id": "question-time-1",
+      "text": "Complete the sentence. I have blank some apples."
+    },
+    {
+      "id": "question-v2-2",
+      "text": "What is the past simple, V2, of eat?"
+    },
+    {
+      "id": "question-v3-2",
+      "text": "Spell the past participle, V3, of eat."
+    },
+    {
+      "id": "question-time-2",
+      "text": "Complete the sentence. Yesterday, I blank breakfast."
+    },
+    {
+      "id": "question-v2-3",
+      "text": "What is the past simple, V2, of be?"
+    },
+    {
+      "id": "question-v3-3",
+      "text": "Spell the past participle, V3, of be."
+    },
+    {
+      "id": "question-time-3",
+      "text": "Complete the sentence. I have blank to the library."
+    },
+    {
+      "id": "question-v2-4",
+      "text": "What is the past simple, V2, of think?"
+    },
+    {
+      "id": "question-v3-4",
+      "text": "Spell the past participle, V3, of think."
+    },
+    {
+      "id": "question-time-4",
+      "text": "Complete the sentence. Yesterday, I blank about my lesson."
+    },
+    {
+      "id": "question-v2-5",
+      "text": "What is the past simple, V2, of find?"
+    },
+    {
+      "id": "question-v3-5",
+      "text": "Spell the past participle, V3, of find."
+    },
+    {
+      "id": "question-time-5",
+      "text": "Complete the sentence. I have blank my book."
+    },
+    {
+      "id": "question-v2-6",
+      "text": "What is the past simple, V2, of take?"
+    },
+    {
+      "id": "question-v3-6",
+      "text": "Spell the past participle, V3, of take."
+    },
+    {
+      "id": "question-time-6",
+      "text": "Complete the sentence. Yesterday, I blank a photo."
+    },
+    {
+      "id": "question-v2-7",
+      "text": "What is the past simple, V2, of make?"
+    },
+    {
+      "id": "question-v3-7",
+      "text": "Spell the past participle, V3, of make."
+    },
+    {
+      "id": "question-time-7",
+      "text": "Complete the sentence. I have blank a cake."
+    },
+    {
+      "id": "question-v2-8",
+      "text": "What is the past simple, V2, of write?"
+    },
+    {
+      "id": "question-v3-8",
+      "text": "Spell the past participle, V3, of write."
+    },
+    {
+      "id": "question-time-8",
+      "text": "Complete the sentence. Yesterday, I blank a note."
+    },
+    {
+      "id": "question-v2-9",
+      "text": "What is the past simple, V2, of build?"
+    },
+    {
+      "id": "question-v3-9",
+      "text": "Spell the past participle, V3, of build."
+    },
+    {
+      "id": "question-time-9",
+      "text": "Complete the sentence. I have blank a model."
+    }
+  ]
+}
