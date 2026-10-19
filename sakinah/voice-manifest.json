@@ -1,0 +1,31 @@
+{
+  "description": "Sakinah's Adjective Odyssey — free offline-rendered AI voice samples, generated once and reused",
+  "voice_speed": 0.86,
+  "voices": {
+    "bella": "af_bella",
+    "heart": "af_heart",
+    "sarah": "af_sarah"
+  },
+  "lines": [
+    {
+      "id": "welcome",
+      "text": "Hello Sakinah! Welcome to our adjective adventure. Listen, learn, and have fun!"
+    },
+    {
+      "id": "bigger",
+      "text": "Big. Bigger. The elephant is bigger than the mouse."
+    },
+    {
+      "id": "beautiful",
+      "text": "Beautiful. More beautiful. The butterfly is more beautiful than the ant."
+    },
+    {
+      "id": "compare",
+      "text": "Remember: We use than when we compare two things."
+    },
+    {
+      "id": "less",
+      "text": "Less. The turtle is less noisy than the lion."
+    }
+  ]
+}
