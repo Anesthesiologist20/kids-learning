@@ -15,7 +15,7 @@ manifest_path = ROOT / (sys.argv[1] if len(sys.argv) > 1 else "sakinah/voice-man
 manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 output = ROOT / "sakinah/audio/kokoro"
 output.mkdir(parents=True, exist_ok=True)
-pipeline = KPipeline(lang_code="a", repo_id="hexgrad/Kokoro-82M")
+pipeline = KPipeline(lang_code="a")
 speed = float(manifest.get("voice_speed", 0.86))
 assert 0.5 <= speed <= 1.5, "Invalid voice speed"
 
