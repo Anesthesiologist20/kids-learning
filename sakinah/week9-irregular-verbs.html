@@ -59,12 +59,12 @@ h2{font-size:clamp(1.4rem,2.2vw,2rem);margin:.2rem 0 .7rem}h3{font-size:1.15rem;
 .review-line{display:flex;justify-content:space-between;gap:.9rem;align-items:center;border-bottom:1px solid var(--line);padding:.7rem 0;flex-wrap:wrap}
 footer{text-align:center;color:#778298;padding:1.5rem 0;font-size:.8rem}
 @media(max-width:1000px){.voice-bar{grid-template-columns:1fr 1fr}.voice-info,.voice-status{grid-column:1/-1}.grid{grid-template-columns:1fr 1fr}}@media(max-width:670px){main{width:100%;padding:.8rem .75rem 2rem}.hero{grid-template-columns:1fr}.orbit{min-height:160px;font-size:3.4rem}.grid,.two{grid-template-columns:1fr}.voice-bar{grid-template-columns:1fr 1fr}.forms{grid-template-columns:1fr}.form-cell{flex-direction:row;align-items:center;flex-wrap:wrap;justify-content:space-between}.word-pick{grid-template-columns:repeat(2,minmax(0,1fr))}.choices{grid-template-columns:1fr}.stats{gap:.4rem}.stat{padding:.7rem}.stat strong{font-size:1.25rem}}
-@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+[hidden]{display:none!important}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style></head>
 <body>
 <header><span>🌷 SAKINAH'S SPACE ACADEMY · GRADE 4</span><a href="./">← Back to Sakinah's corner</a></header>
 <main>
-<section class="hero"><div><span class="eyebrow">WEEK 9 · TEN IRREGULAR VERBS · NEW AI EDITION</span><h1>Irregular Verb Galaxy 🚀</h1><p>Learn the three verb forms. Hear a real AI teacher. Explore 10 planets, play, remember, and become the Verb Captain!</p><button class="btn gold" data-panel="learn">Start my journey →</button></div><div class="orbit" aria-hidden="true">🚀<i class="o1">go · went</i><i class="o2">V1 → V2</i><i class="o3">V3 ✨</i></div></section>
+<section class="hero"><div><span class="eyebrow">WEEK 9 · TEN IRREGULAR VERBS · NEW AI EDITION</span><h1>Irregular Verb Galaxy 🚀</h1><p>Learn the three verb forms. Hear a real AI teacher. Explore 10 planets, play, remember, and become the Verb Captain!</p><button class="btn gold" data-panel="learn">Start my journey →</button></div><div class="orbit" aria-hidden="true">🚀<i class="o1">know · knew</i><i class="o2">V1 → V2</i><i class="o3">V3 ✨</i></div></section>
 <aside class="voice-bar" aria-label="AI English teacher settings">
  <div class="voice-info"><h2>🎙️ Meet your AI English teacher</h2><p>Choose before starting. Every 🔊 button plays only one word, sentence, or question — never the whole lesson.</p></div>
  <label for="voice">Teacher<select id="voice"><option value="bella">🌸 Bella · friendly</option><option value="heart">💜 Heart · warm</option><option value="sarah">⭐ Sarah · clear</option></select></label>
@@ -172,7 +172,7 @@ if("closeGame"in d){state.session=null;save();stop();renderGame();return}
 if(d.jump!==undefined){state.session.at=Number(d.jump);save();stop();renderGame();return}
 if(d.questionStep){state.session.at=Math.max(0,Math.min(state.session.items.length-1,state.session.at+Number(d.questionStep)));save();stop();renderGame();return}
 if("readQuestion"in d){play("question-"+taskFor(state.session.items[state.session.at].id).id,b);return}
-if("hearCorrect"in d){play("word-"+taskFor(state.session.items[state.session.at].id).verb+"-"+(taskFor(state.session.items[state.session.at].id).mode==="spell"?2:1),b);return}
+if("hearCorrect"in d){const t=taskFor(state.session.items[state.session.at].id);const v=V[t.verb];const k=t.answer===v[2]?2:t.answer===v[1]?1:(t.answer===v[8]?1:0);play("word-"+t.verb+"-"+k,b);return}
 if(d.option!==undefined){submit(state.session.items[state.session.at].options[Number(d.option)]);return}
 if("check"in d){submit($("typedAnswer").value);return}
 if("finish"in d){finish();return}
