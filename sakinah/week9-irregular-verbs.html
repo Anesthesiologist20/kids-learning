@@ -102,6 +102,15 @@ function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor
 const KEY="sakinah-irregular-galaxy-v1";
 let state={voice:"bella",speed:.85,visited:[],mastered:[],correct:0,wrong:[],last:null,session:null};
 try{let s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&Array.isArray(s.visited)&&Array.isArray(s.mastered)&&Array.isArray(s.wrong))state=Object.assign(state,s)}catch(e){}
+try{
+ if(!state.legacyQuiz){
+  const old=JSON.parse(localStorage.getItem("sakinah-week9-v2")||"null");
+  if(old&&old.submitted&&Array.isArray(old.answers)&&old.answers.length===10){
+   const correct=[0,0,0,0,0,0,1,0,0,0];
+   state.legacyQuiz={score:old.answers.filter((x,i)=>x===correct[i]).length,total:10};
+  }
+ }
+}catch(e){}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){status("Storage is unavailable. Leave this tab open to keep progress.",true)}}
 let audio=null,ticket=0,lesson=0,flash=0,flashOrder=V.map((_,i)=>i);
 function stop(){ticket++;if(audio){audio.pause();audio.removeAttribute("src");audio.load();audio=null}document.querySelectorAll(".audio[aria-pressed=true]").forEach(b=>b.setAttribute("aria-pressed","false"))}
@@ -159,6 +168,7 @@ function submit(value){const s=state.session;if(!s)return;const item=s.items[s.a
 function finish(){const s=state.session;if(!s||!s.items.every(x=>x.attempt))return;s.finished=true;state.last={mode:s.mode,score:s.items.filter(x=>x.attempt.correct).length,total:s.items.length};save();renderGame()}
 function renderProgress(){let good=state.mastered.length;$("progressStats").innerHTML='<div class="stat"><strong>'+state.visited.length+'/10</strong><small>planets explored</small></div><div class="stat"><strong>'+good+'/10</strong><small>memory cards mastered</small></div><div class="stat"><strong>'+state.correct+'</strong><small>correct answers</small></div>';
 $("progressVerbs").innerHTML=V.map((v,i)=>'<div class="review-line"><span>'+v[4]+' <b>'+esc(v[0])+'</b> → '+esc(v[1])+' → '+esc(v[2])+'</span><span>'+ (state.mastered.includes(i)?'⭐ Mastered':state.visited.includes(i)?'🔭 Explored':'🌑 Not yet')+'</span><button class="btn secondary" data-learn-verb="'+i+'">Review</button></div>').join("");
+if(state.legacyQuiz){$("progressStats").innerHTML+='<div class="stat"><strong>'+state.legacyQuiz.score+' / 10</strong><small>previous Week 9 quiz (preserved)</small></div>'}
 $("progressTip").textContent=state.wrong.length?'You have '+state.wrong.length+' tricky question(s). Repeat the games to practise them.':'Keep exploring, then practise a new game. Small steps are powerful!'}
 document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.disabled)return;const d=b.dataset;
 if(d.panel){show(d.panel);return}
@@ -183,5 +193,5 @@ $("gameSession").addEventListener("input",e=>{if(e.target.id==="typedAnswer"&&st
 $("gameSession").addEventListener("keydown",e=>{if(e.target.id==="typedAnswer"&&e.key==="Enter"){e.preventDefault();submit(e.target.value)}});
 window.addEventListener("pagehide",stop);
 if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("/kids-learning/sw.js",{scope:"/kids-learning/"}).catch(()=>{}));
-renderLesson();home();renderFlash();
+home();renderFlash();
 </script></body></html>
