@@ -1,0 +1,735 @@
+{
+  "description": "Sakinah Adjective Odyssey short segment AI audio; generated once then reused",
+  "voices": {
+    "bella": "af_bella",
+    "heart": "af_heart",
+    "sarah": "af_sarah"
+  },
+  "speed": 1,
+  "lines": [
+    {
+      "id": "rule-0-pattern",
+      "text": "cold , becomes colder"
+    },
+    {
+      "id": "rule-0-explain",
+      "text": "Many short adjectives take -er. If the word already ends in e, add only -r."
+    },
+    {
+      "id": "rule-0-example",
+      "text": "Uranus is colder than Earth."
+    },
+    {
+      "id": "rule-0-tip",
+      "text": "We compare two things. We do not say “more colder”."
+    },
+    {
+      "id": "rule-0-word-0",
+      "text": "cold , becomes colder"
+    },
+    {
+      "id": "rule-0-word-1",
+      "text": "warm , becomes warmer"
+    },
+    {
+      "id": "rule-0-word-2",
+      "text": "nice , becomes nicer"
+    },
+    {
+      "id": "rule-1-pattern",
+      "text": "big , becomes bigger"
+    },
+    {
+      "id": "rule-1-explain",
+      "text": "For short words like big and hot, double the final consonant before -er."
+    },
+    {
+      "id": "rule-1-example",
+      "text": "Jupiter is bigger than Saturn."
+    },
+    {
+      "id": "rule-1-tip",
+      "text": "Do not double w, x, or y. This pattern does not apply to every adjective."
+    },
+    {
+      "id": "rule-1-word-0",
+      "text": "big , becomes bigger"
+    },
+    {
+      "id": "rule-1-word-1",
+      "text": "hot , becomes hotter"
+    },
+    {
+      "id": "rule-2-pattern",
+      "text": "dry , becomes drier"
+    },
+    {
+      "id": "rule-2-explain",
+      "text": "For words like dry, tasty, busy, sunny, and windy, change y to i, then add -er."
+    },
+    {
+      "id": "rule-2-example",
+      "text": "This pizza is tastier than my mom’s."
+    },
+    {
+      "id": "rule-2-tip",
+      "text": "The book also uses less busy. Less + adjective keeps the base form."
+    },
+    {
+      "id": "rule-2-word-0",
+      "text": "tasty , becomes tastier"
+    },
+    {
+      "id": "rule-2-word-1",
+      "text": "busy , becomes busier"
+    },
+    {
+      "id": "rule-2-word-2",
+      "text": "sunny , becomes sunnier"
+    },
+    {
+      "id": "rule-2-word-3",
+      "text": "windy , becomes windier"
+    },
+    {
+      "id": "rule-3-pattern",
+      "text": "more beautiful. less comfortable"
+    },
+    {
+      "id": "rule-3-explain",
+      "text": "Long adjectives often use more to compare a greater amount. Less means a smaller amount of the quality."
+    },
+    {
+      "id": "rule-3-example",
+      "text": "Life on the I S S is less comfortable than life on Earth."
+    },
+    {
+      "id": "rule-3-tip",
+      "text": "In the page 45 exercise, use more or less as instructed: more watery, less stormy, more habitable, less icy, more visible."
+    },
+    {
+      "id": "rule-3-word-0",
+      "text": "more popular"
+    },
+    {
+      "id": "rule-3-word-1",
+      "text": "more habitable"
+    },
+    {
+      "id": "rule-3-word-2",
+      "text": "less stormy"
+    },
+    {
+      "id": "rule-3-word-3",
+      "text": "less icy"
+    },
+    {
+      "id": "rule-4-pattern",
+      "text": "Earth is warmer than Uranus."
+    },
+    {
+      "id": "rule-4-explain",
+      "text": "Than connects the two people, places, or things you compare."
+    },
+    {
+      "id": "rule-4-example",
+      "text": "My bike is less bulky than the orange cars."
+    },
+    {
+      "id": "rule-4-tip",
+      "text": "Beautiful, tasty, and interesting can express opinions. Different answers can describe different preferences."
+    },
+    {
+      "id": "rule-4-word-0",
+      "text": "colder than"
+    },
+    {
+      "id": "rule-4-word-1",
+      "text": "more beautiful than"
+    },
+    {
+      "id": "rule-4-word-2",
+      "text": "less bulky than"
+    },
+    {
+      "id": "vocab-0-base",
+      "text": "cold"
+    },
+    {
+      "id": "vocab-0-compare",
+      "text": "colder"
+    },
+    {
+      "id": "vocab-1-base",
+      "text": "hot"
+    },
+    {
+      "id": "vocab-1-compare",
+      "text": "hotter"
+    },
+    {
+      "id": "vocab-2-base",
+      "text": "big"
+    },
+    {
+      "id": "vocab-2-compare",
+      "text": "bigger"
+    },
+    {
+      "id": "vocab-3-base",
+      "text": "dry"
+    },
+    {
+      "id": "vocab-3-compare",
+      "text": "drier"
+    },
+    {
+      "id": "vocab-4-base",
+      "text": "tasty"
+    },
+    {
+      "id": "vocab-4-compare",
+      "text": "tastier"
+    },
+    {
+      "id": "vocab-5-base",
+      "text": "busy"
+    },
+    {
+      "id": "vocab-5-compare",
+      "text": "busier"
+    },
+    {
+      "id": "vocab-6-base",
+      "text": "sunny"
+    },
+    {
+      "id": "vocab-6-compare",
+      "text": "sunnier"
+    },
+    {
+      "id": "vocab-7-base",
+      "text": "windy"
+    },
+    {
+      "id": "vocab-7-compare",
+      "text": "windier"
+    },
+    {
+      "id": "vocab-8-base",
+      "text": "beautiful"
+    },
+    {
+      "id": "vocab-8-compare",
+      "text": "more beautiful"
+    },
+    {
+      "id": "vocab-9-base",
+      "text": "comfortable"
+    },
+    {
+      "id": "vocab-9-compare",
+      "text": "more comfortable"
+    },
+    {
+      "id": "vocab-10-base",
+      "text": "popular"
+    },
+    {
+      "id": "vocab-10-compare",
+      "text": "more popular"
+    },
+    {
+      "id": "vocab-11-base",
+      "text": "bulky"
+    },
+    {
+      "id": "vocab-11-compare",
+      "text": "less bulky"
+    },
+    {
+      "id": "vocab-12-base",
+      "text": "watery"
+    },
+    {
+      "id": "vocab-12-compare",
+      "text": "more watery"
+    },
+    {
+      "id": "vocab-13-base",
+      "text": "stormy"
+    },
+    {
+      "id": "vocab-13-compare",
+      "text": "less stormy"
+    },
+    {
+      "id": "vocab-14-base",
+      "text": "habitable"
+    },
+    {
+      "id": "vocab-14-compare",
+      "text": "more habitable"
+    },
+    {
+      "id": "vocab-15-base",
+      "text": "icy"
+    },
+    {
+      "id": "vocab-15-compare",
+      "text": "less icy"
+    },
+    {
+      "id": "vocab-16-base",
+      "text": "visible"
+    },
+    {
+      "id": "vocab-16-compare",
+      "text": "more visible"
+    },
+    {
+      "id": "vocab-17-base",
+      "text": "peaceful"
+    },
+    {
+      "id": "vocab-17-compare",
+      "text": "more peaceful"
+    },
+    {
+      "id": "vocab-18-base",
+      "text": "interesting"
+    },
+    {
+      "id": "vocab-18-compare",
+      "text": "more interesting"
+    },
+    {
+      "id": "question-bc1",
+      "text": "Jupiter is blank than Saturn."
+    },
+    {
+      "id": "answer-bc1",
+      "text": "bigger"
+    },
+    {
+      "id": "question-bc2",
+      "text": "The temperature on Earth is blank than the temperature on Venus."
+    },
+    {
+      "id": "answer-bc2",
+      "text": "more comfortable"
+    },
+    {
+      "id": "question-bc3",
+      "text": "The countryside is blank than the city."
+    },
+    {
+      "id": "answer-bc3",
+      "text": "less busy"
+    },
+    {
+      "id": "question-bc4",
+      "text": "What do you think is blank — soccer or basketball?"
+    },
+    {
+      "id": "answer-bc4",
+      "text": "more popular"
+    },
+    {
+      "id": "question-bc5",
+      "text": "Yum! This pizza is blank than my mom’s."
+    },
+    {
+      "id": "answer-bc5",
+      "text": "tastier"
+    },
+    {
+      "id": "question-bn1",
+      "text": "My bike is less bulky than the orange cars. Which word means a smaller amount?"
+    },
+    {
+      "id": "answer-bn1",
+      "text": "less"
+    },
+    {
+      "id": "question-bn2",
+      "text": "In “less bulky”, which word is the adjective?"
+    },
+    {
+      "id": "answer-bn2",
+      "text": "bulky"
+    },
+    {
+      "id": "question-bn3",
+      "text": "Enceladus is more beautiful than Earth. Which word comes before the adjective?"
+    },
+    {
+      "id": "answer-bn3",
+      "text": "more"
+    },
+    {
+      "id": "question-bn4",
+      "text": "Uranus is colder than Earth. Which adjective ends in -er?"
+    },
+    {
+      "id": "answer-bn4",
+      "text": "colder"
+    },
+    {
+      "id": "question-bn5",
+      "text": "Which word connects the comparisons: colder blank, less bulky blank, more beautiful blank?"
+    },
+    {
+      "id": "answer-bn5",
+      "text": "than"
+    },
+    {
+      "id": "question-bf0",
+      "text": "Earth is blank than Mars. Earth has more lakes, rivers, and seas. (watery)"
+    },
+    {
+      "id": "answer-bf0",
+      "text": "more watery"
+    },
+    {
+      "id": "question-bf1",
+      "text": "The weather on Earth is blank than on Jupiter or Neptune. It’s much calmer here. (stormy)"
+    },
+    {
+      "id": "answer-bf1",
+      "text": "less stormy"
+    },
+    {
+      "id": "question-bf2",
+      "text": "Earth is blank than Venus. People can live here! (habitable)"
+    },
+    {
+      "id": "answer-bf2",
+      "text": "more habitable"
+    },
+    {
+      "id": "question-bf3",
+      "text": "Earth is blank than Uranus. It’s warmer because it’s closer to the sun! (icy)"
+    },
+    {
+      "id": "answer-bf3",
+      "text": "less icy"
+    },
+    {
+      "id": "question-bf4",
+      "text": "From Earth, Venus is blank than Mars. It’s the brightest planet in our sky. (visible)"
+    },
+    {
+      "id": "answer-bf4",
+      "text": "more visible"
+    },
+    {
+      "id": "question-e0",
+      "text": "Choose the comparative of “cold”."
+    },
+    {
+      "id": "answer-e0",
+      "text": "colder"
+    },
+    {
+      "id": "question-s0",
+      "text": "Write the comparative of “cold”."
+    },
+    {
+      "id": "answer-s0",
+      "text": "colder"
+    },
+    {
+      "id": "question-e1",
+      "text": "Choose the comparative of “warm”."
+    },
+    {
+      "id": "answer-e1",
+      "text": "warmer"
+    },
+    {
+      "id": "question-s1",
+      "text": "Write the comparative of “warm”."
+    },
+    {
+      "id": "answer-s1",
+      "text": "warmer"
+    },
+    {
+      "id": "question-e2",
+      "text": "Choose the comparative of “big”."
+    },
+    {
+      "id": "answer-e2",
+      "text": "bigger"
+    },
+    {
+      "id": "question-s2",
+      "text": "Write the comparative of “big”."
+    },
+    {
+      "id": "answer-s2",
+      "text": "bigger"
+    },
+    {
+      "id": "question-e3",
+      "text": "Choose the comparative of “hot”."
+    },
+    {
+      "id": "answer-e3",
+      "text": "hotter"
+    },
+    {
+      "id": "question-s3",
+      "text": "Write the comparative of “hot”."
+    },
+    {
+      "id": "answer-s3",
+      "text": "hotter"
+    },
+    {
+      "id": "question-e4",
+      "text": "Choose the comparative of “dry”."
+    },
+    {
+      "id": "answer-e4",
+      "text": "drier"
+    },
+    {
+      "id": "question-s4",
+      "text": "Write the comparative of “dry”."
+    },
+    {
+      "id": "answer-s4",
+      "text": "drier"
+    },
+    {
+      "id": "question-e5",
+      "text": "Choose the comparative of “tasty”."
+    },
+    {
+      "id": "answer-e5",
+      "text": "tastier"
+    },
+    {
+      "id": "question-s5",
+      "text": "Write the comparative of “tasty”."
+    },
+    {
+      "id": "answer-s5",
+      "text": "tastier"
+    },
+    {
+      "id": "question-e6",
+      "text": "Choose the comparative of “busy”."
+    },
+    {
+      "id": "answer-e6",
+      "text": "busier"
+    },
+    {
+      "id": "question-s6",
+      "text": "Write the comparative of “busy”."
+    },
+    {
+      "id": "answer-s6",
+      "text": "busier"
+    },
+    {
+      "id": "question-e7",
+      "text": "Choose the comparative of “sunny”."
+    },
+    {
+      "id": "answer-e7",
+      "text": "sunnier"
+    },
+    {
+      "id": "question-s7",
+      "text": "Write the comparative of “sunny”."
+    },
+    {
+      "id": "answer-s7",
+      "text": "sunnier"
+    },
+    {
+      "id": "question-e8",
+      "text": "Choose the comparative of “windy”."
+    },
+    {
+      "id": "answer-e8",
+      "text": "windier"
+    },
+    {
+      "id": "question-s8",
+      "text": "Write the comparative of “windy”."
+    },
+    {
+      "id": "answer-s8",
+      "text": "windier"
+    },
+    {
+      "id": "question-e9",
+      "text": "Choose the comparative of “nice”."
+    },
+    {
+      "id": "answer-e9",
+      "text": "nicer"
+    },
+    {
+      "id": "question-s9",
+      "text": "Write the comparative of “nice”."
+    },
+    {
+      "id": "answer-s9",
+      "text": "nicer"
+    },
+    {
+      "id": "question-o0",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o0",
+      "text": "Uranus is colder than Earth."
+    },
+    {
+      "id": "question-o1",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o1",
+      "text": "Jupiter is bigger than Saturn."
+    },
+    {
+      "id": "question-o2",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o2",
+      "text": "My bike is less bulky than the cars."
+    },
+    {
+      "id": "question-o3",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o3",
+      "text": "My town is more peaceful than the city."
+    },
+    {
+      "id": "question-o4",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o4",
+      "text": "This pizza is tastier than that pizza."
+    },
+    {
+      "id": "question-o5",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o5",
+      "text": "Earth is more habitable than Venus."
+    },
+    {
+      "id": "question-o6",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o6",
+      "text": "Mars is drier than Earth."
+    },
+    {
+      "id": "question-o7",
+      "text": "Build a comparison. Tap the words in order."
+    },
+    {
+      "id": "answer-o7",
+      "text": "My region is sunnier than your region."
+    },
+    {
+      "id": "question-d0",
+      "text": "Repair the comparative: “Venus is more hotter than Mercury.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d0",
+      "text": "hotter"
+    },
+    {
+      "id": "question-d1",
+      "text": "Repair the comparative: “Jupiter is biger than Saturn.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d1",
+      "text": "bigger"
+    },
+    {
+      "id": "question-d2",
+      "text": "Repair the comparative: “Mars is dryer than Earth.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d2",
+      "text": "drier"
+    },
+    {
+      "id": "question-d3",
+      "text": "Repair the comparative: “My town is peacefuler than the city.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d3",
+      "text": "more peaceful"
+    },
+    {
+      "id": "question-d4",
+      "text": "Repair the comparative: “This pizza is tastyier than that pizza.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d4",
+      "text": "tastier"
+    },
+    {
+      "id": "question-d5",
+      "text": "Repair the comparative: “My bike is less bulkier than the car.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d5",
+      "text": "less bulky"
+    },
+    {
+      "id": "question-d6",
+      "text": "Repair the comparative: “My town is more busier than your town.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d6",
+      "text": "busier"
+    },
+    {
+      "id": "question-d7",
+      "text": "Repair the comparative: “Earth is less icier than Uranus.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d7",
+      "text": "less icy"
+    },
+    {
+      "id": "question-d8",
+      "text": "Repair the comparative: “My region is sunnyer than your region.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d8",
+      "text": "sunnier"
+    },
+    {
+      "id": "question-d9",
+      "text": "Repair the comparative: “Earth is comfortabler than Venus.” Type only the corrected comparative."
+    },
+    {
+      "id": "answer-d9",
+      "text": "more comfortable"
+    },
+    {
+      "id": "writing-model",
+      "text": "My town is more beautiful than the city."
+    }
+  ]
+}
