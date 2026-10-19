@@ -1,5 +1,5 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v38';
+const CACHE = 'kids-learning-pwa-v39';
 const SHELL = [
  '/kids-learning/sakinah/verb-adventure.html',
  '/kids-learning/raghd/teacher-slides.js',
