@@ -1,0 +1,135 @@
+{
+  "description": "Aboud Emilia reading, 31 individual sentence clips per AI voice",
+  "voices": {
+    "bella": "af_bella",
+    "heart": "af_heart",
+    "sarah": "af_sarah"
+  },
+  "speed": 1,
+  "lines": [
+    {
+      "id": "line-0",
+      "text": "Emilia is sitting on the sofa."
+    },
+    {
+      "id": "line-1",
+      "text": "She’s looking out the window."
+    },
+    {
+      "id": "line-2",
+      "text": "I’m so bored!"
+    },
+    {
+      "id": "line-3",
+      "text": "It’s her parents’ New Year’s Eve party."
+    },
+    {
+      "id": "line-4",
+      "text": "How’s second grade?"
+    },
+    {
+      "id": "line-5",
+      "text": "Any mysteries?"
+    },
+    {
+      "id": "line-6",
+      "text": "Emilia loves detective games."
+    },
+    {
+      "id": "line-7",
+      "text": "She likes reading detective stories, too."
+    },
+    {
+      "id": "line-8",
+      "text": "She wants to be a famous detective!"
+    },
+    {
+      "id": "line-9",
+      "text": "Why don’t you try out your new binoculars?"
+    },
+    {
+      "id": "line-10",
+      "text": "What a great idea!"
+    },
+    {
+      "id": "line-11",
+      "text": "I have them in my room."
+    },
+    {
+      "id": "line-12",
+      "text": "Emilia gets her binoculars and goes outside."
+    },
+    {
+      "id": "line-13",
+      "text": "She’s very excited."
+    },
+    {
+      "id": "line-14",
+      "text": "Emilia is outside looking through the binoculars."
+    },
+    {
+      "id": "line-15",
+      "text": "Suddenly, she hears a noise!"
+    },
+    {
+      "id": "line-16",
+      "text": "She’s scared."
+    },
+    {
+      "id": "line-17",
+      "text": "Then, the garden shed door opens."
+    },
+    {
+      "id": "line-18",
+      "text": "Who’s there?"
+    },
+    {
+      "id": "line-19",
+      "text": "Emilia runs into the house."
+    },
+    {
+      "id": "line-20",
+      "text": "Dad!"
+    },
+    {
+      "id": "line-21",
+      "text": "There’s someone in the yard!"
+    },
+    {
+      "id": "line-22",
+      "text": "Not now, Emilia."
+    },
+    {
+      "id": "line-23",
+      "text": "It’s almost midnight."
+    },
+    {
+      "id": "line-24",
+      "text": "Emilia looks around."
+    },
+    {
+      "id": "line-25",
+      "text": "Everyone is standing in a circle holding hands."
+    },
+    {
+      "id": "line-26",
+      "text": "It’s almost midnight."
+    },
+    {
+      "id": "line-27",
+      "text": "The new year is coming!"
+    },
+    {
+      "id": "line-28",
+      "text": "Ten, nine, eight, seven ..."
+    },
+    {
+      "id": "line-29",
+      "text": "Oh, no!"
+    },
+    {
+      "id": "line-30",
+      "text": "I have to do something!"
+    }
+  ]
+}
