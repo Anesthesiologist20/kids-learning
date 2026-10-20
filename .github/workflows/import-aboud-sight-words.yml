@@ -22,8 +22,7 @@ jobs:
           printf '%s\n' \
             '1984aa201d73d70ad1e24386c3add6c50b12f944b1abd63a5ca07ad7ec032e9e  aboud/sight-words/original-1.jpg' \
             'f465ff4e404afbe500d258254bd1d46f926eea3b6afbd12c508fad3226277a92  aboud/sight-words/original-2.jpg' \
-            '79548fca38c1f1604b41a9844e78f7bc6ca447f464b6f174aae9784e33192c99  aboud/sight-words/original-3.jpg' 
-             | sha256sum --check
+            '79548fca38c1f1604b41a9844e78f7bc6ca447f464b6f174aae9784e33192c99  aboud/sight-words/original-3.jpg' | sha256sum --check
       - name: Publish originals
         run: |
           git config user.name "github-actions[bot]"
