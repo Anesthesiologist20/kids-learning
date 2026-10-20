@@ -1,5 +1,5 @@
 {
-  "description": "Aboud Emilia reading, 31 individual sentence clips per AI voice",
+  "description": "Emilia reading: original sentence clips and complete page 40 passages transcribed from the book, including narration.",
   "voices": {
     "bella": "af_bella",
     "heart": "af_heart",
@@ -130,6 +130,46 @@
     {
       "id": "line-30",
       "text": "I have to do something!"
+    },
+    {
+      "id": "page-forty-panel-one",
+      "text": "Emilia is sitting on the sofa. She’s looking out the window."
+    },
+    {
+      "id": "page-forty-panel-two",
+      "text": "“I’m so bored!” she thinks. It’s her parents’ New Year’s Eve party."
+    },
+    {
+      "id": "page-forty-panel-three",
+      "text": "“How’s second grade?” asks a neighbor."
+    },
+    {
+      "id": "page-forty-panel-four",
+      "text": "“Any mysteries?” asks another."
+    },
+    {
+      "id": "page-forty-panel-five",
+      "text": "Emilia loves detective games. She likes reading detective stories, too."
+    },
+    {
+      "id": "page-forty-panel-six",
+      "text": "She wants to be a famous detective!"
+    },
+    {
+      "id": "page-forty-panel-seven",
+      "text": "“Why don’t you try out your new binoculars?” asks Mom."
+    },
+    {
+      "id": "page-forty-panel-eight",
+      "text": "“What a great idea! I have them in my room,” Emilia answers. She gets her binoculars and goes outside. She’s very excited."
+    },
+    {
+      "id": "page-forty-think",
+      "text": "Why do you think Emilia is bored?"
+    },
+    {
+      "id": "page-forty-title",
+      "text": "Emilia’s New Year’s Adventure. By Kim Milne."
     }
   ]
 }
