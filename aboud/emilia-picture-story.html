@@ -1,71 +1,185 @@
-<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Aboud · Emilia Illustrated Reading</title><style>*{box-sizing:border-box}body{margin:0;background:#f2f6ff;color:#24334f;font:clamp(16px,2vw,21px)/1.55 system-ui,sans-serif}main{max-width:1200px;margin:auto;padding:14px}a{color:#355a9a}header{background:linear-gradient(120deg,#55429c,#244c92);color:white;border-radius:20px;padding:20px}h1{font-size:clamp(27px,4vw,44px);margin:6px 0}.toolbar{display:flex;flex-wrap:wrap;align-items:end;gap:12px;background:#fff;padding:15px;border-radius:16px;margin:14px 0}label{display:grid;gap:4px;font-weight:750}button,select{font:inherit;border:1px solid #d1d9eb;border-radius:12px;padding:9px 12px;min-height:45px;cursor:pointer}button{background:#e9ecff;color:#354d89;font-weight:800}.primary{background:#f23c76;color:white;border:0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.story{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 5px 18px #283b6c16}.scene{height:220px;display:grid;place-items:center;position:relative;background:linear-gradient(140deg,#fee5a9,#b6d9fa);font-size:4.5rem}.scene svg{width:100%;height:100%;object-fit:cover}.scene small{position:absolute;bottom:10px;left:12px;font-size:.75rem;color:#223c69;background:#ffffffda;padding:3px 9px;border-radius:20px}.words{padding:14px}.words p{margin:0 0 12px;font-weight:650}.controls{display:flex;flex-wrap:wrap;gap:8px}.playing{outline:4px solid #ffca75}.pages{display:flex;justify-content:space-between;gap:8px;margin:15px 0}.pages button.selected{background:#3757ae;color:white}.status{font-size:.82rem;color:#68528e;flex-basis:100%}.quiz{background:white;padding:18px;border-radius:16px;margin:18px 0}.quiz button{margin:4px}.correct{background:#daf3e5}.wrong{background:#ffdde4}@media(max-width:650px){.grid{grid-template-columns:1fr}.scene{height:160px}.toolbar label{flex:1}}.original{background:#fff;border-radius:18px;padding:12px;margin:16px 0;box-shadow:0 5px 18px #283b6c16}.original img{display:block;width:100%;height:auto;border-radius:12px}.original figcaption{font-size:.85rem;color:#526185;padding:8px}.scene{display:none!important}.original{position:relative;margin:12px 0;padding:0;overflow:hidden}.original img{border-radius:12px}.hotspot{position:absolute;background:transparent;border:0;border-radius:10px;min-height:0;padding:0;touch-action:manipulation;cursor:pointer;z-index:2}.hotspot:focus-visible{outline:3px solid #f60;background:#ffffff44}.hotspot.active-hot{outline:3px solid #fbd05c;background:#ffea6333}.live-bar{position:sticky;bottom:10px;z-index:4;background:#263d83;color:white;padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px}.live-bar button{background:#fff;color:#243e82}.hotspot:active{background:#fff7}.hotspot[data-action="read"]{background:#ff3d761f;outline:2px dashed #e92e73;outline-offset:-2px}.hotspot[data-action="voice"],.hotspot[data-action="speed"]{background:#4c79f31a;outline:1px dashed #3864dd}.hotspot.active-hot{background:#ffdf7080!important;outline:3px solid #ffab1b!important}.original .overlay-notice{background:#fff7d5;color:#614a12;font-weight:800}.original .hotspot{font-size:0}.hotspot-label{position:absolute;left:-9999px}.original .overlay-notice{font-size:.8rem;padding:5px 12px;color:#516180}.original{display:none!important}.storybook{background:white;border-radius:20px;padding:10px;margin:16px 0}.picture{position:relative;width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:14px;background:#fff}.picture img{position:absolute;top:0;width:200%;height:100%;max-width:none;object-fit:fill}.picture[data-side="0"] img{left:0}.picture[data-side="1"] img{left:-100%}.picture .hotspot{position:absolute;z-index:3;border:2px solid #f83b75;background:#fa397527;border-radius:12px;min-height:0;padding:0;touch-action:manipulation;cursor:pointer}.picture .hotspot:active,.picture .hotspot.active-hot{background:#ffca4980;border-color:#f80}.picture-nav{display:flex;gap:10px;justify-content:space-between;margin:10px 0}.picture-nav button.current{background:#345ec3;color:white}.picture-tip{font-size:14px;font-weight:700;color:#344d82}.picture-feedback{position:sticky;bottom:8px;background:#253b7c;color:white;border-radius:14px;padding:12px;z-index:5;font-size:15px}</style></head><body><main><a href="./">← Aboud's corner</a><header><h1>📚 Emilia's New Year's Adventure</h1><p>Illustrated story · Pages 40–41 · One sentence, one listen button · Read with Aboud!</p></header><figure class="original" id="illustration"><img src="IMG_6012.png" alt="Interactive illustrated Emilia storybook pages 40 and 41" loading="eager"><div id="imageButtons"></div><figcaption class="overlay-notice">👆 الأزرار المحددة بإطار وردي قابلة للضغط! اختر المعلمة والسرعة ثم اضغط Read على الصورة.</figcaption></figure><div class="live-bar"><span id="imageStatus">🎧 Choose a teacher, then tap a Read button on the picture.</span><button id="imageStop">⏹ Stop</button></div><section class="storybook" aria-label="Interactive original story illustration"><div class="picture-nav"><button type="button" id="picture40" class="current">📖 Page 40</button><button type="button" id="picture41">📖 Page 41</button></div><div class="picture" id="picture" data-side="0"><img src="IMG_6012.png" alt="Original detailed Emilia story artwork"><div id="pictureButtons"></div></div><p class="picture-tip">👆 اضغط الزر الوردي Read داخل الصورة. اختر المعلمة والسرعة من الأعلى.</p><div class="picture-feedback" id="pictureFeedback" role="status">🎧 Ready to read · Page 40</div></section><div class="toolbar"><label>🎙️ Teacher<select id="voice"><option value="bella">Bella 🌸</option><option value="heart">Heart 💜</option><option value="sarah">Sarah ⭐</option></select></label><label>🐢 Speed<select id="speed"><option value="0.7">Very slow</option><option value="0.85" selected>Slow</option><option value="1">Normal</option></select></label><button id="try">▶ Test voice</button><button id="stop">⏹ Stop</button><div class="status" id="status" role="status">Tap the highlighted Read buttons on the original picture.</div></div><div class="pages"><button data-page="0" class="selected">📖 Page 40</button><button data-page="1">📖 Page 41</button></div><div class="grid" id="cards"></div><div class="quiz"><h2>🕵️ Detective Quiz</h2><p id="question"></p><div id="options"></div><p id="feedback"></p><button id="next">Next question →</button></div></main><script>const P=[["Emilia is sitting on the sofa.","She’s looking out the window.","I’m so bored!","It’s her parents’ New Year’s Eve party.","How’s second grade?","Any mysteries?","Emilia loves detective games.","She likes reading detective stories, too.","She wants to be a famous detective!","Why don’t you try out your new binoculars?","What a great idea!","I have them in my room.","Emilia gets her binoculars and goes outside.","She’s very excited."],["Emilia is outside looking through the binoculars.","Suddenly, she hears a noise!","She’s scared.","Then, the garden shed door opens.","Who’s there?","Emilia runs into the house.","Dad!","There’s someone in the yard!","Not now, Emilia.","It’s almost midnight.","Emilia looks around.","Everyone is standing in a circle holding hands.","It’s almost midnight.","The new year is coming!","Ten, nine, eight, seven ...","Oh, no!","I have to do something!"]];const S=["Emilia sitting on a yellow sofa at a New Year's Eve party","Emilia looking bored at a festive party with adults chatting","Guests talking to Emilia at the party","A guest asking Emilia about mysteries","Emilia imagining being a detective, magnifying glass and mystery books","Emilia getting binoculars from her room","Emilia walking into the moonlit garden with binoculars","Emilia hears a noise and looks startled outside","A wooden garden shed door opening in the night","Emilia rushing inside to find Dad","Dad waiting for the midnight countdown with the guests","Guests holding hands in a circle near midnight","A happy new year banner and countdown clock","Emilia remembering she must investigate the mystery"];const E=["🛋️","😑","🎉","❓","🔎","🔭","🌙","😱","🏚️","🏃‍♀️","👨","🧑‍🤝‍🧑","🕛","🎆"];const $=id=>document.getElementById(id);let pg=0,audio=null,q=0;const Q=[["Why is Emilia bored?",["She is at a party.","She is at school."],0],["What does Emilia want to become?",["A detective","A singer"],0],["What does Mom give Emilia?",["Binoculars","A football"],0],["What opens in the garden?",["A shed door","A car door"],0],["Why is Dad busy?",["It is almost midnight.","He is asleep."],0]];function stop(){if(audio){audio.pause();audio.src="";audio=null}document.querySelectorAll(".playing").forEach(e=>e.classList.remove("playing"))}function play(i,el){stop();audio=new Audio("audio/emilia/"+$("voice").value+"/line-"+i+".mp3");audio.playbackRate=Number($("speed").value);if(el)el.classList.add("playing");$("status").textContent="🔊 One sentence only — listen and repeat.";audio.onended=()=>{if(el)el.classList.remove("playing");$("status").textContent="Your turn, Aboud! Say the sentence."};audio.onerror=()=>{$("status").textContent="Recording unavailable. Please try again."};audio.play().catch(()=>{$("status").textContent="Playback could not start."})}function illustration(scene){
-const night=scene>=6;const sky=night?'#26365e':'#f9d48d';
-const girl='<g transform="translate(230 78)"><path d="M-36 79 Q-61 130 -45 174 L46 174 Q64 128 34 79Z" fill="#6152b2"/><path d="M-30 4 Q-54 -35 -18 -52 Q26 -67 42 -27 L40 48 Q8 73 -24 38Z" fill="#49312b"/><ellipse cx="0" cy="6" rx="39" ry="46" fill="#f7c39c"/><path d="M-37 -6 Q-30 -57 9 -47 Q38 -37 38 -3 Q8 -24 -3 -19 Q-22 -1 -37 -6" fill="#49312b"/><ellipse cx="-12" cy="8" rx="6" ry="9" fill="white"/><ellipse cx="15" cy="8" rx="6" ry="9" fill="white"/><circle cx="-10" cy="10" r="3" fill="#263552"/><circle cx="17" cy="10" r="3" fill="#263552"/><path d="M-6 31 Q5 39 16 29" stroke="#b25362" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M-36 83 Q-77 105 -67 137 M35 83 Q73 105 63 136" stroke="#f7c39c" stroke-width="16" fill="none" stroke-linecap="round"/></g>';
-const sofa='<rect x="30" y="184" width="440" height="95" rx="26" fill="#e8b951"/><rect x="50" y="160" width="400" height="75" rx="27" fill="#f5d875"/><path d="M58 230 H440" stroke="#bc9a40" stroke-width="6"/>';
-const shed='<path d="M28 120 L128 38 L228 120Z" fill="#956843"/><rect x="48" y="118" width="160" height="155" fill="#d7b77c" stroke="#815b39" stroke-width="5"/><path d="M128 155 H195 V273 H128Z" fill="#473c39"/>';
-const party='<path d="M25 35 Q130 90 250 35 Q370 90 480 35" stroke="#e8b747" stroke-width="8" fill="none"/><circle cx="55" cy="45" r="12" fill="#e47b94"/><circle cx="445" cy="45" r="12" fill="#82cbb6"/><rect x="20" y="235" width="470" height="50" rx="16" fill="#d9aa72"/>';
-const outside='<circle cx="415" cy="49" r="25" fill="#ffe7ac"/><path d="M0 210 Q110 165 240 210 T500 210 V300 H0" fill="#588a72"/><path d="M40 220 V105 M40 135 L15 112 M40 145 L65 115" stroke="#385c51" stroke-width="25" stroke-linecap="round"/>';
-const binoc='<g transform="translate(175 105)"><rect x="0" y="0" width="94" height="40" rx="14" fill="#25394e"/><circle cx="12" cy="20" r="20" fill="#34495e" stroke="#182c3e" stroke-width="7"/><circle cx="85" cy="20" r="20" fill="#34495e" stroke="#182c3e" stroke-width="7"/><rect x="33" y="-7" width="35" height="25" rx="8" fill="#26374b"/></g>';
-const dad='<g transform="translate(80 120)"><circle cx="0" cy="0" r="35" fill="#efbd94"/><path d="M-34 -8 Q-29 -50 13 -38 Q40 -28 34 0 L12 -25Z" fill="#43352e"/><path d="M-45 45 L45 45 L65 160 L-65 160Z" fill="#394e83"/><path d="M-12 45 L0 86 L12 45" fill="#e85d67"/><path d="M-10 10 Q0 18 10 10" stroke="#694333" stroke-width="3" fill="none"/></g>';
-let bg=night?outside:party;let objects='';
-if(scene<=1){bg=party+sofa;objects=girl}
-else if(scene<=4){bg=party;objects=girl+dad}
-else if(scene===5){bg=sofa;objects=girl+binoc}
-else if(scene===6){bg=outside;objects=girl+binoc}
-else if(scene===7){bg=outside;objects=girl+binoc+'<path d="M370 100 l12 -35 l12 35 l35 12 l-35 12 l-12 35 l-12 -35 l-35 -12Z" fill="#ffe08a"/>'}
-else if(scene===8){bg=outside+shed;objects=girl}
-else if(scene===9){bg=party;objects=girl+dad}
-else if(scene===10){bg=party;objects=dad+girl}
-else if(scene===11){bg=party;objects=dad+girl+'<g fill="#f7c39c"><circle cx="405" cy="125" r="32"/><circle cx="340" cy="130" r="28"/></g>'}
-else if(scene===12){bg=party;objects=girl+'<circle cx="100" cy="120" r="52" fill="#fff7d9" stroke="#536078" stroke-width="8"/><path d="M100 120 V80 M100 120 L115 128" stroke="#536078" stroke-width="6"/>'}
-else{bg=outside;objects=girl+'<path d="M50 60 L60 30 L70 60 L100 70 L70 80 L60 110 L50 80 L20 70Z" fill="#ffdd7b"/>'}
-return '<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated scene '+(scene+1)+' from Emilia story"><rect width="500" height="300" fill="'+sky+'"/>'+bg+objects+'</svg>'
-}function render(){const start=pg?P[0].length:0;const rows=P[pg];$("cards").innerHTML=rows.map((s,i)=>{const n=start+i,scene=Math.min(13,Math.floor(n/2));return '<article class="story"><div class="scene">'+illustration(scene)+'<small>Scene '+(scene+1)+'</small></div><div class="words"><p>'+s.replaceAll("&","&amp;").replaceAll("<","&lt;")+'</p><div class="controls"><button class="primary" data-read="'+n+'">🔊 Read</button><button data-repeat="'+n+'">🔁 Repeat</button><button data-done="'+n+'">⭐ I read it!</button></div></div></article>'}).join("");document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("selected",Number(b.dataset.page)===pg))}document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;if(b.dataset.page!==undefined){pg=Number(b.dataset.page);stop();render()}if(b.dataset.read!==undefined||b.dataset.repeat!==undefined){play(Number(b.dataset.read??b.dataset.repeat),b.closest(".story"))}if(b.dataset.done!==undefined){b.textContent="✅ Great job!";b.disabled=true}});$("voice").onchange=stop;$("speed").onchange=()=>{if(audio)audio.playbackRate=Number($("speed").value)};$("try").onclick=()=>play(0);$("stop").onclick=stop;function quiz(){const x=Q[q];$("question").textContent=(q+1)+". "+x[0];$("options").innerHTML=x[1].map((t,i)=>'<button data-answer="'+i+'">'+t+'</button>').join("");$("feedback").textContent=""}$("options").onclick=e=>{const b=e.target.closest("[data-answer]");if(!b||$("feedback").textContent)return;const x=Q[q],ok=Number(b.dataset.answer)===x[2];b.classList.add(ok?"correct":"wrong");$("feedback").textContent=ok?"Correct! ⭐":"Try again: "+x[1][x[2]]};$("next").onclick=()=>{q=(q+1)%Q.length;quiz()};render();quiz();
-// Interactive transparent buttons aligned to the ORIGINAL 1536×1024 artwork.
-// The same image scales uniformly; hit targets are percentages of its natural dimensions.
-const imageZones=[];
-function zone(x,y,w,hh,action,value,label){imageZones.push({x,y,w,hh,action,value,label})}
-const rowY=[421,704,935];
-const colX=[85,456];
-const lines=[0,2,4,6,8,10];
-for(let i=0;i<6;i++){const col=i%2,row=Math.floor(i/2),x=colX[col],y=rowY[row];zone(x,y,74,42,"read",lines[i],"Read story panel "+(i+1));zone(x+124,y,80,42,"say",lines[i],"Say story panel "+(i+1));zone(x+248,y,83,42,"quiz",i,"Quiz for panel "+(i+1))}
-const rightRow=[350,620,913],rightCols=[823,1195],rightLines=[14,17,20,23,26,29];
-for(let i=0;i<6;i++){const col=i%2,row=Math.floor(i/2),x=rightCols[col],y=rightRow[row];zone(x,y,78,40,"read",rightLines[i],"Read page 41 panel "+(i+1));zone(x+120,y,75,40,"say",rightLines[i],"Say page 41 panel "+(i+1));zone(x+240,y,79,40,"quiz",i+6,"Quiz page 41 panel "+(i+1))}
-for(const [i,x] of [465,595,700].entries()){zone(x,15,94,83,"voice",["bella","heart","sarah"][i],["Bella","Heart","Sarah"][i]+" teacher");zone(x+755,15,94,83,"voice",["bella","heart","sarah"][i],["Bella","Heart","Sarah"][i]+" teacher")}
-for(const [i,x] of [420,544,640].entries()){zone(x,116,i===0?120:92,40,"speed",[0.7,0.85,1][i],["Very slow","Slow","Normal"][i]);zone(x+735,116,i===0?120:92,40,"speed",[0.7,0.85,1][i],["Very slow","Slow","Normal"][i])}
-zone(35,973,200,49,"page",0,"Previous page");zone(1295,973,210,49,"page",1,"Next page");
-const hotArea=document.getElementById("imageButtons");const img=document.querySelector(".original img");
-function mountImageButtons(){const W=1536,H=1024;hotArea.innerHTML=imageZones.map((z,i)=>'<button type="button" class="hotspot" data-hot="'+i+'" data-action="'+z.action+'" aria-label="'+z.label.replaceAll('"','&quot;')+'" title="'+z.label+'" style="left:'+(z.x/W*100)+'%;top:'+(z.y/H*100)+'%;width:'+(z.w/W*100)+'%;height:'+(z.hh/H*100)+'%"></button>').join("")}
-mountImageButtons();
-let selectedPanel=0;
-function announce(s){document.getElementById("imageStatus").textContent=s}
-function imagePlay(n,el){play(n,el);announce("🔊 "+$("voice").selectedOptions[0].text+" · "+$("speed").selectedOptions[0].text+" · Listen and repeat")}
-hotArea.addEventListener("click",e=>{const b=e.target.closest("[data-hot]");if(!b)return;const z=imageZones[Number(b.dataset.hot)];hotArea.querySelectorAll(".active-hot").forEach(x=>x.classList.remove("active-hot"));b.classList.add("active-hot");
-if(z.action==="voice"){$("voice").value=z.value;stop();announce("🎙️ "+z.label+" selected. Tap Read.")}
-if(z.action==="speed"){$("speed").value=String(z.value);if(audio)audio.playbackRate=z.value;announce("🐢 Speed: "+z.label)}
-if(z.action==="read"){selectedPanel=z.value;imagePlay(z.value,b)}
-if(z.action==="say"){selectedPanel=z.value;stop();announce("🎤 Your turn! Read the sentence aloud. Tap Read to hear it again.")}
-if(z.action==="quiz"){document.querySelector(".quiz").scrollIntoView({behavior:"smooth",block:"center"});announce("🕵️ Answer the detective question below.")}
-if(z.action==="page"){announce("📖 Both pages are shown together. Scroll the illustration to explore.")}});
-document.getElementById("imageStop").onclick=()=>{stop();announce("⏹ Stopped")};
-
-(function(){
-const pic=document.getElementById("picture"),layer=document.getElementById("pictureButtons"),feed=document.getElementById("pictureFeedback");
-const zones=[
-[[40,669,88,43],[160,669,90,43],[278,669,90,43]],
-[[402,669,88,43],[529,669,90,43],[646,669,90,43]],
-[[40,927,88,43],[160,927,90,43],[278,927,90,43]],
-[[402,927,88,43],[529,927,90,43],[646,927,90,43]]
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f2f6ff">
+<meta name="description" content="Emilia’s New Year’s Adventure, page 40. Tap the picture to read, practise, and play.">
+<title>Aboud · Emilia · Page 40</title>
+<style>
+*{box-sizing:border-box}
+html{background:#f2f6ff}
+body{margin:0;font:16px/1.5 system-ui,-apple-system,sans-serif;color:#26334b}
+[hidden]{display:none!important}
+main{width:100%;margin:0 auto;max-width:calc(100svh * 754 / 1024)}
+.sheet{position:relative;width:100%;aspect-ratio:754/1024;overflow:hidden;isolation:isolate}
+.art{display:block;width:100%;height:100%;pointer-events:none}
+.hotspot{position:absolute;display:block;margin:0;padding:0;border:0;background:transparent;border-radius:12px;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;color:transparent;font:inherit}
+.hotspot::before{content:"";position:absolute;inset:-10px 0}
+.hotspot:focus-visible{outline:3px solid #13274e;outline-offset:2px}
+.hotspot:active{background:#ffffff55}
+.hotspot[data-action="voice"]{border-radius:35%}
+.hotspot[data-action="voice"][aria-pressed="true"]{box-shadow:inset 0 0 0 3px #a62c91}
+.hotspot[data-action="speed"]{color:#27334b;background:#fbfdff;border:1px solid #dce1ef;font-size:clamp(7px,1.62vw,13px);font-weight:750;line-height:1;white-space:nowrap;border-radius:10px}
+.hotspot[data-action="speed"][aria-pressed="true"]{background:#2e9dff;color:#fff;border-color:#2e9dff}
+.hotspot[data-action="read"][aria-pressed="true"]{box-shadow:0 0 0 3px #fcbe20;background:#ffd34d55}
+.hotspot[data-action="read"][aria-pressed="true"]::after{content:"Ⅱ";position:absolute;inset:0;display:grid;place-items:center;background:#e72c67e8;border-radius:12px;color:#fff;font-size:clamp(13px,2vw,24px);font-weight:900}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.toast{position:fixed;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#24365deb;color:#fff;border-radius:14px;padding:10px 16px;width:max-content;max-width:92vw;font-size:14px;text-align:center;z-index:10;pointer-events:none}
+dialog{border:0;padding:22px;border-radius:22px;width:min(92vw,470px);max-height:85svh;overflow:auto;color:#26334b;background:#fff;box-shadow:0 15px 70px #101b5155}
+dialog::backdrop{background:#15244988}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+h1{font-size:22px;line-height:1.25;margin:0}
+.close{border:0;background:#edf1f8;border-radius:50%;width:44px;height:44px;font:24px/1 system-ui;cursor:pointer;flex-shrink:0}
+.dialog-text{font-size:20px;line-height:1.6;margin:18px 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions button,.option{border:1px solid #d6dff0;border-radius:13px;min-height:46px;padding:10px 16px;background:#eef3ff;color:#274883;font:700 16px/1.3 system-ui;cursor:pointer}
+.actions button:disabled{opacity:.45;cursor:default}
+.actions .record{background:#e9f5ff;color:#116aae}
+.actions .record[aria-pressed="true"]{background:#ffe6eb;color:#c42d50}
+.actions .done{background:#e6f5e6;color:#2c7134}
+button:focus-visible,a:focus-visible{outline:3px solid #f3ac1a;outline-offset:3px}
+.option{width:100%;display:block;text-align:left;margin:10px 0;background:#f4f6fc}
+.option.correct{background:#daf2df;border-color:#49a25e;color:#246333}
+.option.wrong{background:#fff0f0;border-color:#d46b76;color:#91303f}
+.feedback{min-height:1.5em;font-size:16px;margin:15px 0 0}
+#recording{width:100%;margin-top:16px}
+@media(orientation:landscape) and (max-height:500px){main{max-width:none;width:min(100%,754px)}.hotspot[data-action="speed"]{font-size:clamp(8px,1.8vw,13px)}}
+@media(prefers-reduced-motion:no-preference){.hotspot{transition:background-color .15s,box-shadow .15s}}
+</style>
+</head>
+<body>
+<main aria-label="Emilia’s New Year’s Adventure, page 40">
+  <div class="sheet" id="sheet">
+    <!-- The original image is unchanged. This viewBox shows only page 40, at its original proportions. -->
+    <svg class="art" viewBox="0 0 754 1024" role="img" aria-labelledby="artTitle artDescription">
+      <title id="artTitle">Emilia’s New Year’s Adventure · Page 40</title>
+      <desc id="artDescription">Six illustrated scenes: Emilia on the sofa, a boring party, second grade, mysteries, detective stories, and becoming a detective. Choose a reader and speed, then use the Read, Say, and Quiz buttons on each scene.</desc>
+      <image href="IMG_6012.png" width="1536" height="1024"/>
+    </svg>
+    <div id="buttons"></div>
+  </div>
+</main>
+<p id="announcement" class="sr-only" role="status" aria-live="polite"></p>
+<div id="toast" class="toast" hidden></div>
+<audio id="reader" preload="none" playsinline></audio>
+<dialog id="practice" aria-labelledby="practiceTitle">
+  <div class="dialog-head"><h1 id="practiceTitle">🎤 Your turn</h1><button class="close" data-close="practice" aria-label="Close speaking practice">×</button></div>
+  <p id="practiceText" class="dialog-text"></p>
+  <div class="actions">
+    <button id="practiceListen">🔊 Listen</button>
+    <button id="record" class="record" aria-pressed="false">🎙 Record</button>
+    <button id="practiceDone" class="done">✓ I said it</button>
+  </div>
+  <audio id="recording" controls playsinline hidden></audio>
+  <p id="practiceFeedback" class="feedback" role="status">Read aloud. Record to hear yourself.</p>
+</dialog>
+<dialog id="quiz" aria-labelledby="quizTitle">
+  <div class="dialog-head"><h1 id="quizTitle">🔎 Quick quiz</h1><button class="close" data-close="quiz" aria-label="Close quiz">×</button></div>
+  <p id="question" class="dialog-text"></p>
+  <div id="answers"></div>
+  <p id="quizFeedback" class="feedback" role="status"></p>
+</dialog>
+<script>
+'use strict';
+const ART_WIDTH=754,ART_HEIGHT=1024;
+const PANELS=[
+ {clips:[0,1],text:'Emilia is sitting on the sofa. She’s looking out the window.',question:'Where is Emilia sitting?',answers:['On the sofa','At school'],correct:0},
+ {clips:[2,3],text:'“I’m so bored!” she thinks. It’s her parents’ New Year’s Eve party.',question:'How does Emilia feel?',answers:['Excited','Bored'],correct:1},
+ {clips:[4],text:'“How’s second grade?” asks a neighbor.',question:'Which grade is Emilia in?',answers:['Second grade','Fourth grade'],correct:0},
+ {clips:[5],text:'“Any mysteries?” asks another.',question:'What does the guest ask about?',answers:['Birthdays','Mysteries'],correct:1},
+ {clips:[6,7],text:'Emilia loves detective games. She likes reading detective stories, too.',question:'What does Emilia like reading?',answers:['Detective stories','Recipes'],correct:0},
+ {clips:[8],text:'She wants to be a famous detective!',question:'What does Emilia want to be?',answers:['A singer','A detective'],correct:1}
 ];
-const yRead=[669,669,927,927];const xRead=[40,402,40,402];
-let side=0;function place(){let z=[];
-if(side===0){z=[{x:40,y:669,n:0},{x:402,y:669,n:2},{x:40,y:927,n:4},{x:402,y:927,n:6}];}
-else{z=[{x:25,y:335,n:14},{x:404,y:335,n:17},{x:25,y:613,n:20},{x:404,y:613,n:23},{x:25,y:905,n:26},{x:404,y:905,n:29}];}
-layer.innerHTML=z.map((p,i)=>'<button type="button" class="hotspot" data-line="'+p.n+'" aria-label="Read scene '+(i+1)+'" style="left:'+(p.x/768*100)+'%;top:'+(p.y/1024*100)+'%;width:12%;height:4.7%"></button>').join("");
+// Measured against the original 1536 × 1024 image, with the right page outside the viewport.
+const ROW_Y=[405,686,916];
+const BUTTON_RECTS=[[[39,90],[163,89],[288,91]],[[432,85],[537,83],[640,85]]];
+const VOICES=[['bella','Bella',428,99],['heart','Heart',533,96],['sarah','Sarah',637,99]];
+const SPEEDS=[['0.7','🐌 Very Slow',420,121],['0.85','🐢 Slow',544,90],['1','🐇 Normal',639,100]];
+const $=id=>document.getElementById(id);
+const reader=$('reader');
+let voice='bella',speed='0.7',activePanel=-1,playToken=0,practicePanel=0,quizPanel=0;
+let toastTimer,recordTimer,stream=null,recorder=null,recordUrl=null,recordSession=0;
+try{const saved=JSON.parse(localStorage.getItem('aboud-emilia-picture-settings-v2')||'null');if(saved){if(VOICES.some(v=>v[0]===saved.voice))voice=saved.voice;if(SPEEDS.some(s=>s[0]===saved.speed))speed=saved.speed;}}catch(_){}
+function say(message,visible=false){$('announcement').textContent=message;if(visible){clearTimeout(toastTimer);$('toast').textContent=message;$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,3300);}}
+function saveSettings(){try{localStorage.setItem('aboud-emilia-picture-settings-v2',JSON.stringify({voice,speed}));}catch(_){} }
+function addButton(action,value,x,y,w,h,label,visibleText=''){
+ const button=document.createElement('button');button.type='button';button.className='hotspot';button.dataset.action=action;button.dataset.value=String(value);button.setAttribute('aria-label',label);button.title=label;
+ Object.assign(button.style,{left:x/ART_WIDTH*100+'%',top:y/ART_HEIGHT*100+'%',width:w/ART_WIDTH*100+'%',height:h/ART_HEIGHT*100+'%'});
+ if(['voice','speed','read'].includes(action))button.setAttribute('aria-pressed','false');
+ if(action==='say'||action==='quiz')button.setAttribute('aria-haspopup','dialog');
+ if(visibleText)button.textContent=visibleText;
+ $('buttons').append(button);
 }
-function choose(n){side=n;pic.dataset.side=n;place();document.getElementById("picture40").classList.toggle("current",n===0);document.getElementById("picture41").classList.toggle("current",n===1);feed.textContent="📖 Page "+(n===0?"40":"41")+" · Tap the outlined Read buttons";stop();}
-document.getElementById("picture40").onclick=()=>choose(0);document.getElementById("picture41").onclick=()=>choose(1);
-layer.onclick=e=>{const b=e.target.closest("button[data-line]");if(!b)return;layer.querySelectorAll("button").forEach(x=>x.classList.remove("active-hot"));b.classList.add("active-hot");const n=Number(b.dataset.line);play(n,b);feed.textContent="🔊 Playing sentence "+(n+1)+" · "+$("voice").value+" · "+$("speed").value+"×";};
-choose(0);
-})();
-</script></body></html>
+VOICES.forEach(([key,name,x,w])=>addButton('voice',key,x,8,w,98,'Choose '+name));
+SPEEDS.forEach(([value,label,x,w])=>addButton('speed',value,x,116,w,40,label,label));
+PANELS.forEach((panel,index)=>{
+ const column=index%2,row=Math.floor(index/2);
+ ['read','say','quiz'].forEach((action,k)=>{const [x,w]=BUTTON_RECTS[column][k];addButton(action,index,x,ROW_Y[row],w,38,(action==='read'?'Read':action==='say'?'Practise':'Quiz on')+' scene '+(index+1)+': '+panel.text);});
+});
+// The printed Previous Page control returns to Aboud; no second page or duplicate cards are mounted.
+const back=document.createElement('a');back.className='hotspot';back.href='./';back.setAttribute('aria-label','Back to Aboud’s learning corner');back.title='Back to Aboud’s learning corner';Object.assign(back.style,{left:33/ART_WIDTH*100+'%',top:970/ART_HEIGHT*100+'%',width:197/ART_WIDTH*100+'%',height:44/ART_HEIGHT*100+'%'});$('buttons').append(back);
+function updateSelection(){document.querySelectorAll('[data-action="voice"],[data-action="speed"]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.value===(button.dataset.action==='voice'?voice:speed))));}
+function clearPlaying(){document.querySelectorAll('[data-action="read"]').forEach(b=>b.setAttribute('aria-pressed','false'));$('practiceListen').textContent='🔊 Listen';activePanel=-1;}
+function stopReading(){playToken++;reader.onended=null;reader.onerror=null;reader.pause();reader.removeAttribute('src');reader.load();clearPlaying();}
+function readPanel(index){
+ if(activePanel===index){stopReading();say('Stopped.');return;}
+ stopReading();$('recording').pause();const panel=PANELS[index],token=playToken,chosenVoice=voice;let cursor=0;activePanel=index;
+ const button=document.querySelector('[data-action="read"][data-value="'+index+'"]');if(button)button.setAttribute('aria-pressed','true');
+ if($('practice').open)$('practiceListen').textContent='⏹ Stop';
+ const fail=()=>{if(token!==playToken)return;stopReading();say('The recording could not play. Tap Read to try again.',true);};
+ function next(){
+  if(token!==playToken)return;
+  if(cursor===panel.clips.length){reader.onended=null;reader.onerror=null;clearPlaying();say('Your turn. Read it aloud.');return;}
+  const clip=panel.clips[cursor++];reader.src='audio/emilia/'+chosenVoice+'/line-'+clip+'.mp3';reader.playbackRate=Number(speed);reader.preservesPitch=true;reader.onended=next;reader.onerror=fail;
+  try{const playing=reader.play();if(playing&&playing.catch)playing.catch(fail);}catch(_){fail();}
+ }
+ say('Reading scene '+(index+1)+' with '+chosenVoice+'.');next();
+}
+function showDialog(id){const dialog=$(id);if(typeof dialog.showModal==='function')dialog.showModal();else{dialog.setAttribute('open','');dialog.style.position='fixed';dialog.style.inset='10% 0 auto';dialog.style.zIndex='20';}}
+function finishRecording(discard=false){
+ clearTimeout(recordTimer);if(discard||!recorder)recordSession++;
+ if(recorder&&recorder.state!=='inactive'){if(discard){recorder.ondataavailable=null;recorder.onstop=null;}try{recorder.stop();}catch(_){} }
+ if(stream){stream.getTracks().forEach(track=>track.stop());stream=null;}
+ recorder=null;$('record').textContent='🎙 Record';$('record').setAttribute('aria-pressed','false');$('record').disabled=false;
+}
+function clearRecording(){finishRecording(true);$('recording').pause();$('recording').removeAttribute('src');$('recording').hidden=true;if(recordUrl){URL.revokeObjectURL(recordUrl);recordUrl=null;}}
+function closeDialog(id){stopReading();if(id==='practice')clearRecording();const dialog=$(id);if(typeof dialog.close==='function')dialog.close();else dialog.removeAttribute('open');}
+function openPractice(index){stopReading();clearRecording();practicePanel=index;$('practiceText').textContent=PANELS[index].text;$('practiceFeedback').textContent='Read aloud. Record to hear yourself.';showDialog('practice');}
+async function recordPractice(){
+ if(recorder&&recorder.state==='recording'){finishRecording();return;}
+ stopReading();clearRecording();
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){$('practiceFeedback').textContent='Recording is unavailable here. Open this page in Safari or Chrome, or practise aloud and tap “I said it”.';return;}
+ const session=recordSession;$('record').disabled=true;$('practiceFeedback').textContent='Allow the microphone to record your voice.';
+ try{
+  const input=await navigator.mediaDevices.getUserMedia({audio:true});
+  if(session!==recordSession||!$('practice').open){input.getTracks().forEach(track=>track.stop());return;}
+  stream=input;const current=new MediaRecorder(input),chunks=[];recorder=current;
+  current.ondataavailable=event=>{if(event.data.size)chunks.push(event.data);};
+  current.onstop=()=>{if(session!==recordSession||!$('practice').open||!chunks.length)return;const blob=new Blob(chunks,{type:current.mimeType||chunks[0].type});recordUrl=URL.createObjectURL(blob);$('recording').src=recordUrl;$('recording').hidden=false;$('practiceFeedback').textContent='Listen to your recording, then compare it with the reader.';};
+  current.onerror=()=>{finishRecording(true);$('practiceFeedback').textContent='Recording stopped. You can try again.';};
+  current.start();$('record').disabled=false;$('record').textContent='■ Stop recording';$('record').setAttribute('aria-pressed','true');$('practiceFeedback').textContent='Listening… Read the scene aloud.';
+  recordTimer=setTimeout(()=>finishRecording(),30000);
+ }catch(error){if(session!==recordSession)return;finishRecording(true);$('practiceFeedback').textContent=error.name==='NotAllowedError'?'Microphone access was not allowed. You can still practise aloud.':'The microphone could not start. Try again or practise aloud.';}
+}
+function openQuiz(index){stopReading();quizPanel=index;const panel=PANELS[index];$('question').textContent=panel.question;$('answers').replaceChildren();$('quizFeedback').textContent='';panel.answers.forEach((text,value)=>{const button=document.createElement('button');button.type='button';button.className='option';button.dataset.answer=String(value);button.textContent=text;$('answers').append(button);});showDialog('quiz');}
+$('buttons').addEventListener('click',event=>{
+ const button=event.target.closest('button[data-action]');if(!button)return;const {action,value}=button.dataset;
+ if(action==='voice'){stopReading();voice=value;saveSettings();updateSelection();say(VOICES.find(v=>v[0]===voice)[1]+' selected.',true);}
+ else if(action==='speed'){speed=value;reader.playbackRate=Number(speed);saveSettings();updateSelection();say(SPEEDS.find(s=>s[0]===speed)[1]+' selected.',true);}
+ else if(action==='read')readPanel(Number(value));
+ else if(action==='say')openPractice(Number(value));
+ else if(action==='quiz')openQuiz(Number(value));
+});
+$('practiceListen').onclick=()=>{finishRecording();readPanel(practicePanel);};
+$('record').onclick=recordPractice;
+$('practiceDone').onclick=()=>{closeDialog('practice');say('Practice complete ✓',true);};
+$('answers').onclick=event=>{const button=event.target.closest('[data-answer]');if(!button||button.disabled)return;const correct=Number(button.dataset.answer)===PANELS[quizPanel].correct;button.classList.add(correct?'correct':'wrong');$('quizFeedback').textContent=correct?'Correct! ✓':'Read the picture and try again.';if(correct)$('answers').querySelectorAll('button').forEach(b=>b.disabled=true);else button.disabled=true;};
+document.querySelectorAll('[data-close]').forEach(button=>button.onclick=()=>closeDialog(button.dataset.close));
+['practice','quiz'].forEach(id=>{const dialog=$(id);dialog.addEventListener('cancel',()=>{stopReading();if(id==='practice')clearRecording();});dialog.addEventListener('close',()=>{stopReading();if(id==='practice')clearRecording();});dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)closeDialog(id);}});});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stopReading();finishRecording(true);}});
+window.addEventListener('pagehide',()=>{stopReading();clearRecording();});
+updateSelection();
+</script>
+</body>
+</html>
