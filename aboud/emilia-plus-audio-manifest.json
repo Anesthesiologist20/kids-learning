@@ -1,0 +1,91 @@
+{
+  "description": "Separate Emilia Reading Plus recordings: exact sentence highlighting and four vocabulary words.",
+  "voices": {
+    "bella": "af_bella",
+    "heart": "af_heart",
+    "sarah": "af_sarah"
+  },
+  "speed": 1,
+  "lines": [
+    {
+      "id": "sentence-00",
+      "text": "Emilia is sitting on the sofa."
+    },
+    {
+      "id": "sentence-01",
+      "text": "She’s looking out the window."
+    },
+    {
+      "id": "sentence-02",
+      "text": "“I’m so bored!” she thinks."
+    },
+    {
+      "id": "sentence-03",
+      "text": "It’s her parents’ New Year’s Eve party."
+    },
+    {
+      "id": "sentence-04",
+      "text": "“How’s second grade?” asks a neighbor."
+    },
+    {
+      "id": "sentence-05",
+      "text": "“Any mysteries?” asks another."
+    },
+    {
+      "id": "sentence-06",
+      "text": "Emilia loves detective games."
+    },
+    {
+      "id": "sentence-07",
+      "text": "She likes reading detective stories, too."
+    },
+    {
+      "id": "sentence-08",
+      "text": "She wants to be a famous detective!"
+    },
+    {
+      "id": "sentence-09",
+      "text": "“Why don’t you try out your new binoculars?” asks Mom."
+    },
+    {
+      "id": "sentence-10",
+      "text": "“What a great idea!"
+    },
+    {
+      "id": "sentence-11",
+      "text": "I have them in my room,” Emilia answers."
+    },
+    {
+      "id": "sentence-12",
+      "text": "She gets her binoculars and goes outside."
+    },
+    {
+      "id": "sentence-13",
+      "text": "She’s very excited."
+    },
+    {
+      "id": "title",
+      "text": "Emilia’s New Year’s Adventure. By Kim Milne."
+    },
+    {
+      "id": "think",
+      "text": "Why do you think Emilia is bored?"
+    },
+    {
+      "id": "word-bored",
+      "text": "bored"
+    },
+    {
+      "id": "word-detective",
+      "text": "detective"
+    },
+    {
+      "id": "word-binoculars",
+      "text": "binoculars"
+    },
+    {
+      "id": "word-excited",
+      "text": "excited"
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "title": "Emilia’s New Year’s Adventure",
+  "author": "By Kim Milne",
+  "think": "Why do you think Emilia is bored?",
+  "scenes": [
+    {
+      "text": "Emilia is sitting on the sofa. She’s looking out the window.",
+      "sentences": [
+        0,
+        1
+      ],
+      "crop": [
+        12,
+        171,
+        390,
+        166
+      ],
+      "question": "Where is Emilia sitting?",
+      "answers": [
+        "On the sofa",
+        "At school"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "“I’m so bored!” she thinks. It’s her parents’ New Year’s Eve party.",
+      "sentences": [
+        2,
+        3
+      ],
+      "crop": [
+        415,
+        171,
+        327,
+        150
+      ],
+      "question": "How does Emilia feel?",
+      "answers": [
+        "Excited",
+        "Bored"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "“How’s second grade?” asks a neighbor.",
+      "sentences": [
+        4
+      ],
+      "crop": [
+        12,
+        460,
+        390,
+        161
+      ],
+      "question": "Which grade is Emilia in?",
+      "answers": [
+        "Second grade",
+        "Fourth grade"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "“Any mysteries?” asks another.",
+      "sentences": [
+        5
+      ],
+      "crop": [
+        415,
+        461,
+        327,
+        161
+      ],
+      "question": "What does the guest ask about?",
+      "answers": [
+        "Birthdays",
+        "Mysteries"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Emilia loves detective games. She likes reading detective stories, too.",
+      "sentences": [
+        6,
+        7
+      ],
+      "crop": [
+        12,
+        740,
+        390,
+        116
+      ],
+      "question": "What does Emilia like reading?",
+      "answers": [
+        "Detective stories",
+        "Recipes"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "She wants to be a famous detective!",
+      "sentences": [
+        8
+      ],
+      "crop": [
+        415,
+        740,
+        327,
+        116
+      ],
+      "question": "What does Emilia want to be?",
+      "answers": [
+        "A singer",
+        "A detective"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "“Why don’t you try out your new binoculars?” asks Mom.",
+      "sentences": [
+        9
+      ],
+      "crop": [
+        415,
+        740,
+        327,
+        116
+      ],
+      "question": "Who suggests trying the binoculars?",
+      "answers": [
+        "Mom",
+        "A neighbor"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "“What a great idea! I have them in my room,” Emilia answers. She gets her binoculars and goes outside. She’s very excited.",
+      "sentences": [
+        10,
+        11,
+        12,
+        13
+      ],
+      "crop": [
+        777,
+        94,
+        357,
+        178
+      ],
+      "question": "What does Emilia do with her binoculars?",
+      "answers": [
+        "She leaves them in her room.",
+        "She goes outside."
+      ],
+      "correct": 1
+    }
+  ],
+  "sentences": [
+    {
+      "id": "sentence-00",
+      "text": "Emilia is sitting on the sofa.",
+      "scene": 0
+    },
+    {
+      "id": "sentence-01",
+      "text": "She’s looking out the window.",
+      "scene": 0
+    },
+    {
+      "id": "sentence-02",
+      "text": "“I’m so bored!” she thinks.",
+      "scene": 1
+    },
+    {
+      "id": "sentence-03",
+      "text": "It’s her parents’ New Year’s Eve party.",
+      "scene": 1
+    },
+    {
+      "id": "sentence-04",
+      "text": "“How’s second grade?” asks a neighbor.",
+      "scene": 2
+    },
+    {
+      "id": "sentence-05",
+      "text": "“Any mysteries?” asks another.",
+      "scene": 3
+    },
+    {
+      "id": "sentence-06",
+      "text": "Emilia loves detective games.",
+      "scene": 4
+    },
+    {
+      "id": "sentence-07",
+      "text": "She likes reading detective stories, too.",
+      "scene": 4
+    },
+    {
+      "id": "sentence-08",
+      "text": "She wants to be a famous detective!",
+      "scene": 5
+    },
+    {
+      "id": "sentence-09",
+      "text": "“Why don’t you try out your new binoculars?” asks Mom.",
+      "scene": 6
+    },
+    {
+      "id": "sentence-10",
+      "text": "“What a great idea!",
+      "scene": 7
+    },
+    {
+      "id": "sentence-11",
+      "text": "I have them in my room,” Emilia answers.",
+      "scene": 7
+    },
+    {
+      "id": "sentence-12",
+      "text": "She gets her binoculars and goes outside.",
+      "scene": 7
+    },
+    {
+      "id": "sentence-13",
+      "text": "She’s very excited.",
+      "scene": 7
+    }
+  ],
+  "words": [
+    {
+      "word": "bored",
+      "meaning": "You do not feel interested.",
+      "crop": [
+        415,
+        171,
+        327,
+        150
+      ]
+    },
+    {
+      "word": "detective",
+      "meaning": "Someone who solves mysteries.",
+      "crop": [
+        12,
+        740,
+        390,
+        116
+      ]
+    },
+    {
+      "word": "binoculars",
+      "meaning": "You look through them to see far away.",
+      "crop": [
+        415,
+        740,
+        327,
+        116
+      ]
+    },
+    {
+      "word": "excited",
+      "meaning": "You feel very happy about something.",
+      "crop": [
+        777,
+        94,
+        357,
+        178
+      ]
+    }
+  ]
+}
