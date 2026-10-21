@@ -1,0 +1,299 @@
+{
+  "title": "Emilia’s New Year’s Adventure",
+  "author": "By Kim Milne",
+  "think": "Why doesn’t Emilia’s father pay attention to her?",
+  "scenes": [
+    {
+      "text": "Emilia is outside looking through the binoculars.",
+      "sentences": [
+        0
+      ],
+      "crop": [
+        777,
+        94,
+        357,
+        178
+      ],
+      "question": "What is Emilia looking through?",
+      "answers": [
+        "Binoculars",
+        "A window"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Suddenly, she hears a noise! She’s scared.",
+      "sentences": [
+        1,
+        2
+      ],
+      "crop": [
+        1148,
+        142,
+        370,
+        178
+      ],
+      "question": "How does Emilia feel when she hears a noise?",
+      "answers": [
+        "Bored",
+        "Scared"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Then, the garden shed door opens. “Who’s there?” she shouts.",
+      "sentences": [
+        3,
+        4
+      ],
+      "crop": [
+        777,
+        385,
+        357,
+        161
+      ],
+      "question": "What opens in the garden?",
+      "answers": [
+        "The shed door",
+        "A book"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Emilia runs into the house. “Dad!” she says. “There’s someone in the yard!”",
+      "sentences": [
+        5,
+        6,
+        7
+      ],
+      "crop": [
+        1148,
+        385,
+        370,
+        161
+      ],
+      "question": "Who does Emilia call?",
+      "answers": [
+        "Mom",
+        "Dad"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "“Not now, Emilia. It’s almost midnight,” he says.",
+      "sentences": [
+        8,
+        9
+      ],
+      "crop": [
+        777,
+        660,
+        166,
+        177
+      ],
+      "question": "What time is it almost?",
+      "answers": [
+        "Midnight",
+        "Noon"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Emilia looks around. Everyone is standing in a circle holding hands. It’s almost midnight.",
+      "sentences": [
+        10,
+        11,
+        12
+      ],
+      "crop": [
+        953,
+        660,
+        338,
+        177
+      ],
+      "question": "What is everyone doing?",
+      "answers": [
+        "Sitting on the sofa",
+        "Standing in a circle holding hands"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "“The new year is coming! Ten, nine, eight, seven …,” they shout.",
+      "sentences": [
+        13,
+        14
+      ],
+      "crop": [
+        953,
+        660,
+        338,
+        177
+      ],
+      "question": "What are the guests counting down to?",
+      "answers": [
+        "The new year",
+        "The start of school"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "“Oh, no! I have to do something,” she thinks.",
+      "sentences": [
+        15,
+        16
+      ],
+      "crop": [
+        1310,
+        660,
+        209,
+        177
+      ],
+      "question": "What does Emilia think?",
+      "answers": [
+        "She wants to sleep.",
+        "She has to do something."
+      ],
+      "correct": 1
+    }
+  ],
+  "sentences": [
+    {
+      "id": "p41-sentence-00",
+      "text": "Emilia is outside looking through the binoculars.",
+      "scene": 0
+    },
+    {
+      "id": "p41-sentence-01",
+      "text": "Suddenly, she hears a noise!",
+      "scene": 1
+    },
+    {
+      "id": "p41-sentence-02",
+      "text": "She’s scared.",
+      "scene": 1
+    },
+    {
+      "id": "p41-sentence-03",
+      "text": "Then, the garden shed door opens.",
+      "scene": 2
+    },
+    {
+      "id": "p41-sentence-04",
+      "text": "“Who’s there?” she shouts.",
+      "scene": 2
+    },
+    {
+      "id": "p41-sentence-05",
+      "text": "Emilia runs into the house.",
+      "scene": 3
+    },
+    {
+      "id": "p41-sentence-06",
+      "text": "“Dad!” she says.",
+      "scene": 3
+    },
+    {
+      "id": "p41-sentence-07",
+      "text": "“There’s someone in the yard!”",
+      "scene": 3
+    },
+    {
+      "id": "p41-sentence-08",
+      "text": "“Not now, Emilia.",
+      "scene": 4
+    },
+    {
+      "id": "p41-sentence-09",
+      "text": "It’s almost midnight,” he says.",
+      "scene": 4
+    },
+    {
+      "id": "p41-sentence-10",
+      "text": "Emilia looks around.",
+      "scene": 5
+    },
+    {
+      "id": "p41-sentence-11",
+      "text": "Everyone is standing in a circle holding hands.",
+      "scene": 5
+    },
+    {
+      "id": "p41-sentence-12",
+      "text": "It’s almost midnight.",
+      "scene": 5
+    },
+    {
+      "id": "p41-sentence-13",
+      "text": "“The new year is coming!",
+      "scene": 6
+    },
+    {
+      "id": "p41-sentence-14",
+      "text": "Ten, nine, eight, seven …,” they shout.",
+      "scene": 6
+    },
+    {
+      "id": "p41-sentence-15",
+      "text": "“Oh, no!",
+      "scene": 7
+    },
+    {
+      "id": "p41-sentence-16",
+      "text": "I have to do something,” she thinks.",
+      "scene": 7
+    }
+  ],
+  "words": [
+    {
+      "word": "scared",
+      "meaning": "You feel afraid.",
+      "crop": [
+        1148,
+        142,
+        370,
+        178
+      ]
+    },
+    {
+      "word": "shed",
+      "meaning": "A small building in a garden for storing things.",
+      "crop": [
+        777,
+        385,
+        357,
+        161
+      ]
+    },
+    {
+      "word": "yard",
+      "meaning": "An outdoor area beside a house.",
+      "crop": [
+        777,
+        94,
+        357,
+        178
+      ]
+    },
+    {
+      "word": "midnight",
+      "meaning": "Twelve o’clock at night.",
+      "crop": [
+        953,
+        660,
+        95,
+        100
+      ]
+    },
+    {
+      "word": "circle",
+      "meaning": "A round shape with no corners.",
+      "crop": [
+        953,
+        660,
+        338,
+        177
+      ]
+    }
+  ]
+}
