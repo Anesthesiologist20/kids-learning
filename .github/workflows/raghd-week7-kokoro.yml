@@ -1,0 +1,71 @@
+name: Raghd Week 7 Free Kokoro Voice Recordings
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/raghd-week7-kokoro.yml'
+      - 'scripts/generate_raghd_week7_audio.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: raghd-week7-kokoro-mp3
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Kokoro audio engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Render 3 teachers and all Week 7 clips
+        run: python scripts/generate_raghd_week7_audio.py
+      - name: Verify MP3 files before publication
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.generate_raghd_week7_audio import CLIPS, VOICES
+          folder=Path('raghd/week7/audio/kokoro')
+          files=[folder / voice / (clip+'.mp3') for voice in VOICES for clip in CLIPS]
+          missing=[str(p) for p in files if not p.exists() or p.stat().st_size < 300]
+          print('Expected:',len(files),'missing:',len(missing))
+          if missing: raise SystemExit('Missing clips: '+', '.join(missing))
+          PY
+      - name: Commit and safely publish rendered MP3 clips
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add raghd/week7/audio/kokoro/
+          if git diff --cached --quiet; then
+            echo 'No new recordings'
+            exit 0
+          fi
+          git commit -m 'audio(raghd): publish Week 7 Bella Heart Sarah Kokoro recordings'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            echo "Publish attempt $attempt"
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then
+              echo 'Audio MP3 files published'
+              exit 0
+            fi
+            sleep 4
+          done
+          echo 'Unable to publish audio after 8 retries' >&2
+          exit 1
