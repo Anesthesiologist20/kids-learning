@@ -8,6 +8,11 @@ dialog{border:0;border-radius:23px;padding:24px;width:min(94vw,580px);max-height
 @media(max-width:660px){main{padding:10px}.hero{grid-template-columns:1fr;gap:12px;margin-top:8px}.title{padding:17px 19px}.title h1{font-size:28px}.reader-settings{display:flex;align-items:center;gap:9px}.voices{flex:1;gap:5px}.voice svg{height:53px}.voice{font-size:13px;padding:3px 3px 5px;border-radius:15px}.speeds{flex:1;flex-direction:column;margin:0;gap:4px}.speed{min-height:32px;padding:3px 5px;font-size:12px}.story-grid{grid-template-columns:1fr;gap:15px}.story-text{font-size:21px;padding:13px 16px 8px}.reading-bar{padding:9px 10px;border-radius:15px}.transport{gap:6px}.transport button{font-size:13px;padding:7px 9px}.progress-row{gap:6px 10px;font-size:12px}.progress-row button{font-size:12px}.play-status{font-size:12px}.stats{white-space:nowrap}.panel{scroll-margin-top:180px}.think{padding:14px}.think p{font-size:18px}.think button{padding:8px 10px}.footer{font-size:12px}.welcome-back{font-size:13px;padding:9px 11px}.welcome-back button{font-size:13px;padding:7px 10px}dialog{padding:18px}.dialog-text{font-size:21px}.actions button{font-size:14px;padding:8px 10px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media print{body{background:white}main{max-width:none}.reading-bar,.reader-settings,.panel-actions,.scene-status,.hint,.welcome-back,.footer,.word-shelf,.art-button .zoom-badge,.byline button,dialog,.topline a{display:none!important}.hero{display:block}.title{background:#eee;color:#222}.story-grid{grid-template-columns:1fr 1fr}.panel{break-inside:avoid}.story-text{font-size:16px}.word{border:0;background:none}}
+
+/* Small, independent Listen button for every original sentence. */
+.sentence-listen{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:36px;min-height:36px;margin:2px 9px 2px 3px;padding:4px 7px;border:1px solid #bcd5ed;border-radius:10px;background:#e9f5ff;color:#185a91;font-size:16px;line-height:1}
+.sentence-listen[aria-pressed=true]{background:#dfd0ff;border-color:#775baf;box-shadow:0 0 0 2px #cab4f4}
+@media print{.sentence-listen{display:none!important}}
 </style></head>
 <body><main>
 <nav class="topline" aria-label="Lesson navigation"><a href="./">← Aboud’s corner</a><a href="emilia-reading-plus.html?v=page41-nav-20261021">← Page 40</a><span class="tag">Page 41</span></nav>
@@ -134,6 +139,29 @@ function renderSettings() {
   $('teacherName').textContent = state.voice[0].toUpperCase() + state.voice.slice(1);
 }
 function sentenceItem(index) { return {id:CONTENT.sentences[index].id, sentence:index, scene:CONTENT.sentences[index].scene}; }
+function installSentenceListenButtons() {
+  document.querySelectorAll('.story-text .sentence[data-sentence]').forEach(span => {
+    if (span.nextElementSibling?.matches('[data-read-sentence]')) return;
+    const index = Number(span.dataset.sentence);
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'sentence-listen';
+    button.dataset.readSentence = String(index);
+    button.setAttribute('aria-label', 'Listen to sentence ' + (index + 1));
+    button.setAttribute('aria-pressed', 'false');
+    button.textContent = '🔊';
+    span.after(button);
+  });
+}
+function readSentence(index) {
+  const current = playback && playback.items[playback.index];
+  if (current && current.sentence === index && playback.items.length === 1) {
+    stopAudio('Sentence stopped.');
+    return;
+  }
+  startAudio([sentenceItem(index)], 'sentence');
+}
+
 function sceneItems(index) { return CONTENT.scenes[index].sentences.map(sentenceItem); }
 function pageItems(start = 0) {
   return [...(start === 0 ? [{id:'title'}] : []), ...CONTENT.sentences.slice(start).map((_, i) => sentenceItem(i + start)), {id:'think'}];
@@ -146,6 +174,11 @@ function renderPlayback() {
     el.classList.toggle('current', current);
     el.classList.toggle('paused', current && playback.status !== 'playing');
     if (current) el.setAttribute('aria-current','true'); else el.removeAttribute('aria-current');
+  });
+  document.querySelectorAll('[data-read-sentence]').forEach(button => {
+    const selected = !!(active && item && item.sentence === Number(button.dataset.readSentence));
+    button.setAttribute('aria-pressed', String(selected));
+    button.textContent = selected ? '■' : '🔊';
   });
   document.querySelectorAll('.panel').forEach((panel, i) => panel.classList.toggle('is-reading', !!(active && item && item.scene === i)));
   document.querySelectorAll('[data-read-scene]').forEach(button => {
@@ -436,6 +469,7 @@ document.addEventListener('click', event => {
     if (item && !item.user) audio.playbackRate = state.speed;
     renderSettings(); save();
   } else if (button.dataset.word) openWord(button.dataset.word);
+  else if (button.dataset.readSentence !== undefined) readSentence(Number(button.dataset.readSentence));
   else if (button.dataset.readScene !== undefined) readScene(Number(button.dataset.readScene));
   else if (button.dataset.sayScene !== undefined) openPractice(Number(button.dataset.sayScene));
   else if (button.dataset.quizScene !== undefined) openQuiz(Number(button.dataset.quizScene));
@@ -506,5 +540,5 @@ window.addEventListener('pagehide', () => {stopAudio(); practiceToken++; finishR
 if ('serviceWorker' in navigator) window.addEventListener('load', () => {
   navigator.serviceWorker.register('/kids-learning/sw.js', {scope:'/kids-learning/'}).catch(() => {});
 });
-renderSettings(); renderProgress(); renderPlayback();
+installSentenceListenButtons(); renderSettings(); renderProgress(); renderPlayback();
 </script></body></html>
