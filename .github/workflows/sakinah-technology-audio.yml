@@ -1,0 +1,30 @@
+name: Generate Sakinah technology Kokoro recordings
+on:
+  push:
+    paths:
+      - 'scripts/generate_sakinah_technology_audio.py'
+      - '.github/workflows/sakinah-technology-audio.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get update && sudo apt-get install -y espeak-ng ffmpeg
+      - run: pip install 'kokoro>=0.9.4' soundfile numpy
+      - run: python scripts/generate_sakinah_technology_audio.py
+      - name: Publish recordings
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sakinah/audio/kokoro
+          if ! git diff --cached --quiet; then
+            git commit -m "audio(sakinah): publish 57 Kokoro technology email recordings"
+            git push
+          fi
