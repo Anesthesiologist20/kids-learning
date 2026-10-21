@@ -1,12 +1,12 @@
 "use strict";
 const $=id=>document.getElementById(id);
 const WORDS=[
-{id:"cat",name:"Cat",emoji:"🐱",sentence:"C is for Cat."},
-{id:"cup",name:"Cup",emoji:"☕",sentence:"C is for Cup."},
-{id:"candle",name:"Candle",emoji:"🕯️",sentence:"C is for Candle."},
-{id:"cow",name:"Cow",emoji:"🐄",sentence:"C is for Cow."},
-{id:"clock",name:"Clock",emoji:"⏰",sentence:"C is for Clock."},
-{id:"crown",name:"Crown",emoji:"👑",sentence:"C is for Crown."}
+{id:"cat",name:"Cat",emoji:"🐱",sentence:"Listen and repeat."},
+{id:"cup",name:"Cup",emoji:"☕",sentence:"Listen and repeat."},
+{id:"candle",name:"Candle",emoji:"🕯️",sentence:"Listen and repeat."},
+{id:"cow",name:"Cow",emoji:"🐄",sentence:"Listen and repeat."},
+{id:"clock",name:"Clock",emoji:"⏰",sentence:"Listen and repeat."},
+{id:"crown",name:"Crown",emoji:"👑",sentence:"Listen and repeat."}
 ];
 const COVERS=[
 {animal:"Turtle",emoji:"🐢",cover:"Shell",desc:"A turtle has a hard shell.",audio:"turtle-shell"},
@@ -58,11 +58,11 @@ $("speed").onchange=()=>{if(activeAudio)activeAudio.playbackRate=Number($("speed
 window.addEventListener("pagehide",stopAudio);
 function renderWords(){
 $("wordTiles").innerHTML="";
-WORDS.forEach((w,i)=>{const b=document.createElement("button");b.innerHTML="<span aria-hidden='true'>"+w.emoji+"</span>"+w.name+(state.learned.includes(w.id)?" ✓":"");b.classList.toggle("selected",i===currentWord);b.setAttribute("aria-pressed",String(i===currentWord));b.onclick=()=>pickWord(i);$("wordTiles").appendChild(b)});
+WORDS.forEach((w,i)=>{const b=document.createElement("button");b.innerHTML="<span aria-hidden='true'>"+w.emoji+"</span>"+w.name+(state.learned.includes(w.id)?" ✓":"");b.classList.toggle("selected",i===currentWord);b.setAttribute("aria-pressed",String(i===currentWord));b.onclick=()=>{pickWord(i);say("vocab-"+w.id)};$("wordTiles").appendChild(b)});
 const w=WORDS[currentWord];$("wordEmoji").textContent=w.emoji;$("wordTitle").textContent=w.name;$("wordSentence").textContent=w.sentence;$("wordPosition").textContent="WORD "+(currentWord+1)+" / 6";
 }
 function pickWord(i){currentWord=(i+WORDS.length)%WORDS.length;let w=WORDS[currentWord];if(!state.learned.includes(w.id)){state.learned.push(w.id);save();if(state.learned.length===6)win("🏆 You found all six C words!")}renderWords()}
-$("wordListen").onclick=()=>say(WORDS[currentWord].id);
+$("wordListen").onclick=()=>say("vocab-"+WORDS[currentWord].id);
 $("wordNext").onclick=()=>pickWord(currentWord+1);
 let canvas=$("writeCanvas"),ctx=canvas.getContext("2d"),drawing=false,last=null;
 function syncTraceButtons(){[["traceCapital","C"],["traceSmall","c"],["traceSeven","7"]].forEach(([id,s])=>$(id).classList.toggle("active",traceSymbol===s))}
@@ -79,9 +79,9 @@ window.addEventListener("resize",()=>{if(!$("letter").hidden)resizeCanvas()});
 function renderChicks(){$("chicks").innerHTML="";for(let i=0;i<7;i++){const b=document.createElement("button");b.className="chick"+(state.chicks.includes(i)?" tapped":"");b.textContent="🐥";b.setAttribute("aria-label","Chick "+(i+1));b.setAttribute("aria-pressed",String(state.chicks.includes(i)));b.onclick=()=>{if(state.chicks.includes(i))return;state.chicks.push(i);save();renderChicks();if(state.chicks.length===7)win("🐥 1, 2, 3, 4, 5, 6, 7! Great counting!")};$("chicks").appendChild(b)}$("chickProgress").textContent=state.chicks.length+" of 7"}
 $("resetChicks").onclick=()=>{state.chicks=[];save();renderChicks();toast("Let's count again!")};
 function renderNumberChoices(){$("numberChoices").innerHTML="";[5,6,7,8].forEach(n=>{let b=document.createElement("button");b.className="number-pick"+(state.numberDone&&n===7?" good":"");b.textContent=n;b.onclick=()=>{if(state.numberDone)return;if(n===7){state.numberDone=true;save();renderNumberChoices();$("numberFeedback").innerHTML='<div class="feedback">🌟 Seven! You got it!</div>';win("🎉 Seven is correct!")}else{$("numberFeedback").innerHTML='<div class="feedback bad">Try again. Count the chicks slowly! 🐣</div>';b.classList.add("bad")}};$("numberChoices").appendChild(b)})}
-function renderCovers(){$("coverTiles").innerHTML="";COVERS.forEach(c=>{let b=document.createElement("button"),revealed=state.covers.includes(c.animal);b.className="cover-tile"+(revealed?" revealed":"");b.innerHTML='<span class="icon" aria-hidden="true">'+c.emoji+'</span><b>'+c.animal+'</b><small>'+(revealed?c.cover:"Tap to discover ✨")+"</small>";b.onclick=()=>{if(!state.covers.includes(c.animal)){state.covers.push(c.animal);save();if(state.covers.length===4)win("🌱 Animal coverings explorer!")}renderCovers();say(c.audio)};$("coverTiles").appendChild(b)})}
+function renderCovers(){$("coverTiles").innerHTML="";COVERS.forEach(c=>{let b=document.createElement("button"),revealed=state.covers.includes(c.animal);b.className="cover-tile"+(revealed?" revealed":"");b.innerHTML='<span class="icon" aria-hidden="true">'+c.emoji+'</span><b>'+c.animal+'</b><small>'+(revealed?c.cover:"Tap to discover ✨")+"</small>";b.onclick=()=>{if(!state.covers.includes(c.animal)){state.covers.push(c.animal);save();if(state.covers.length===4)win("🌱 Animal coverings explorer!")}renderCovers();say("vocab-"+c.cover.toLowerCase())};$("coverTiles").appendChild(b)})}
 const PET_OPTIONS=[["🥣","Food",true],["💧","Water",true],["🏠","A home",true],["🍭","Candy",false],["🥤","Soda",false]];
-function renderPets(){$("petChoices").innerHTML="";PET_OPTIONS.forEach(([emoji,label])=>{let b=document.createElement("button");b.className="option"+(petSelections.has(label)?" selected":"");b.textContent=emoji+" "+label;b.setAttribute("aria-pressed",String(petSelections.has(label)));b.onclick=()=>{if(petSelections.has(label))petSelections.delete(label);else petSelections.add(label);renderPets()};$("petChoices").appendChild(b)})}
+function renderPets(){$("petChoices").innerHTML="";PET_OPTIONS.forEach(([emoji,label])=>{let b=document.createElement("button");b.className="option"+(petSelections.has(label)?" selected":"");b.textContent=emoji+" "+label;b.setAttribute("aria-pressed",String(petSelections.has(label)));b.onclick=()=>{if(petSelections.has(label))petSelections.delete(label);else petSelections.add(label);say("vocab-"+(label==="A home"?"home":label.toLowerCase()));renderPets()};$("petChoices").appendChild(b)})}
 $("checkPet").onclick=()=>{const good=["Food","Water","A home"];let okay=petSelections.size===3&&good.every(x=>petSelections.has(x));if(okay){state.petDone=true;save();$("petFeedback").innerHTML='<div class="feedback">🐶 Thank you! Food, water and a safe home keep the pet happy.</div>';win("💗 You're a wonderful pet helper!")}else{$("petFeedback").innerHTML='<div class="feedback bad">Try again! A pet needs food, water and a safe home.</div>'}};
 $("resetPet").onclick=()=>{petSelections.clear();$("petFeedback").innerHTML="";renderPets()};
 function renderQuiz(){
