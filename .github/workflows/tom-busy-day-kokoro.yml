@@ -1,0 +1,71 @@
+name: Tom Busy Day • Five Free Kokoro AI Voices
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/tom-busy-day-kokoro.yml'
+      - 'scripts/generate_tom_busy_day_audio.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: tom-busy-day-kokoro
+  cancel-in-progress: false
+jobs:
+  make-audio:
+    name: Create and publish 60 MP3 recordings
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout Kids Learning
+        uses: actions/checkout@v4
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Kokoro dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Generate five real neural voices
+        run: python scripts/generate_tom_busy_day_audio.py
+      - name: Verify that all audio exists
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('experimental/audio/tom')
+          names=[f'scene-{i:02}.mp3' for i in range(1,9)]+[f'word-{x}.mp3' for x in ('always','usually','sometimes','never')]
+          voices=('bella','heart','sarah','nicole','sky')
+          files=[root/v/n for v in voices for n in names]
+          assert len(files)==60
+          assert all(p.exists() and p.stat().st_size>800 for p in files), 'Missing/empty audio recordings'
+          print('All 60 audio recordings validated.')
+          PY
+      - name: Publish MP3s to GitHub Pages safely
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experimental/audio/tom/
+          if git diff --cached --quiet; then
+            echo 'Audio files already in repository'
+            exit 0
+          fi
+          git commit -m 'audio(tom): publish 5 voice sets and 60 MP3 recordings'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || {
+              git rebase --abort || true
+              echo 'Concurrent update conflict; preserving existing history'
+              exit 1
+            }
+            if git push origin HEAD:main; then
+              echo 'Successfully published all Tom MP3 files'
+              exit 0
+            fi
+            sleep 4
+          done
+          echo 'Push retries exhausted; no force push attempted'
+          exit 1
