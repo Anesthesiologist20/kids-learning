@@ -91,6 +91,7 @@ function achievedBadges(){
   {id:"reader",icon:"⭐",name:"Star Reader",hint:"Practice all 8 scenes",earned:state.done.length>=8},
   {id:"words",icon:"🎯",name:"Word Wizard",hint:"Win all 4 scene challenges",earned:challengesComplete()},
   {id:"sound",icon:"🎧",name:"Sound Detective",hint:"Score 3/4 in Listening Game",earned:state.listeningBest>=3},
+  {id:"adventure",icon:"🚀",name:"Adventure Explorer",hint:"Finish all 8 scenes in Auto Adventure",earned:Boolean(state.autoAdventureCompleted)},
   {id:"champion",icon:"🏆",name:"Story Champion",hint:"Finish the story, challenges and listening",earned:state.done.length>=8&&challengesComplete()&&state.listeningBest>=3}
  ];
 }
