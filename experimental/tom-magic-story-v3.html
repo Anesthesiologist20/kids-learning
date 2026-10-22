@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#245cc3">
+<title>Tom's Magic Story V3 • Immersive Reading</title>
+<style>
+:root{--blue:#2469d4;--ink:#17305b;--bg:#eaf4ff;--gold:#fff05a;--violet:#6845b8;--mint:#ddfbee;--border:#c9dcf6}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#e3f8ff,#f3eaff 58%,#fff8e5);color:var(--ink);font:600 17px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.35;cursor:not-allowed}button:focus-visible,select:focus-visible{outline:3px solid #f5a400;outline-offset:3px}
+.shell{max-width:1120px;margin:auto;padding:14px 14px 90px}.hero{background:linear-gradient(105deg,#255dbf,#7455bb);border-radius:24px;padding:14px 20px 19px;color:white;box-shadow:0 10px 24px #3157a72b}
+.back{color:#e2f3ff;text-decoration:none;font-size:14px}.hero h1{font-size:clamp(25px,4.5vw,39px);margin:5px 0 0;line-height:1.15}.hero p{margin:5px 0 0;font-size:15px;font-weight:550;color:#e8eeff}
+.tools{display:flex;align-items:end;gap:9px;flex-wrap:wrap;background:#fff;border:2px solid #d7e7fa;border-radius:18px;padding:10px 12px;margin:12px 0;box-shadow:0 4px 14px #1e47740d}
+.tools label{display:grid;gap:3px;font-size:12px;font-weight:800;color:#40618d}.tools select{border:1px solid #c6d9f6;border-radius:11px;background:#f9fcff;padding:9px;color:#193862;min-height:43px}
+.btn{border:0;border-radius:13px;min-height:44px;padding:9px 15px;color:white;background:var(--blue);font-weight:850;box-shadow:0 3px 0 #194488}.btn.secondary{background:#ecedff;color:#3b49a2;box-shadow:0 3px 0 #d1d4f0}.btn.green{background:#18835e;box-shadow:0 3px 0 #0c5940}.btn.pink{background:#e44986;box-shadow:0 3px 0 #a72e61}.btn.ghost{background:#f1f6fc;color:#31598e;box-shadow:none;border:1px solid #cfe0fa}
+#status{font-size:13px;min-height:21px;color:#4f6688;flex:1 1 210px;align-self:center}
+.stage{background:white;border:2px solid #d4e4fb;border-radius:24px;padding:12px;box-shadow:0 10px 28px #2956a617}
+.stage-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:1px 4px 10px}.stage-head strong{font-size:15px}.stage-head .hint{font-size:13px;color:#687b97}
+.art{border:3px solid #bad8ff;border-radius:20px;overflow:hidden;background:#f2f8ff;position:relative;max-width:900px;margin:auto;display:flex;align-items:center;justify-content:center}
+.art img{display:block;width:100%;height:auto;max-height:58dvh;object-fit:contain}.art img.vocab-image{max-height:42dvh}.art .zoom{position:absolute;top:12px;right:12px;min-height:42px;border:0;border-radius:20px;background:#fffffff0;color:#224d90;padding:8px 12px;font-weight:800}
+.story-text{text-align:center;font-size:clamp(21px,3.2vw,32px);font-weight:850;line-height:1.6;max-width:910px;margin:11px auto 6px;min-height:46px}
+.word{background:var(--gold);color:#17243e;border:0;border-radius:11px;padding:1px 7px;margin:0 2px;font-weight:900;box-shadow:0 2px 0 #e7c72b}
+.story-text .word{font-size:inherit}.word:focus-visible{outline:3px solid #e26d00}
+.subline{text-align:center;color:#687a94;font-size:13px;margin:0 0 8px}
+.nav{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:8px;max-width:900px;margin:10px auto 0}.nav .btn{min-width:0;padding:10px 4px;font-size:clamp(13px,2.5vw,17px)}
+.dots{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:12px auto 0}.dot{min-width:37px;height:37px;border:2px solid #b6cbea;border-radius:12px;background:#f1f7ff;color:#366097;font-weight:900}.dot.active{background:#326cdb;color:white;border-color:#326cdb}.dot.done{background:#d9f9e5;color:#126f48;border-color:#81caa4}
+.foot-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:11px}
+.vocab-strip{padding:16px;background:#fff;border:2px solid #eed9f4;border-radius:22px;margin-top:16px}
+.section-title{margin:0 0 9px;font-size:21px}.vocab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.vocab-card{background:#f8f5ff;border:2px solid #e7d9fa;color:#302157;border-radius:15px;padding:12px 7px;min-height:83px;text-align:center;font-weight:850}.vocab-card b{display:block;font-size:clamp(17px,2.2vw,24px);background:#fff071;border-radius:10px;padding:3px 4px}.vocab-card small{display:block;color:#67528b;margin-top:7px}
+.quiz{padding:16px;background:white;border:2px solid #d4e4fb;border-radius:20px;margin-top:16px}.quiz p{margin:6px 0 12px}.quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.quiz-options button{border:2px solid #bcd3f2;background:#f2f8ff;color:#1c477d;border-radius:13px;padding:12px 8px;font-size:18px;font-weight:800}.quiz-options button.correct{background:#d8ffe9;border-color:#13a55f}.quiz-options button.wrong{background:#ffe5e7;border-color:#df4457}.quiz-options button:disabled{opacity:1}.quiz-response{font-size:17px;font-weight:900;min-height:25px;margin-top:12px}.quiz-end{font-size:25px;color:#116a4e;font-weight:900}.quiet{color:#71809c;font-size:12px;font-weight:600}
+.dialog-bg{position:fixed;inset:0;background:#0e1b42d9;display:none;align-items:center;justify-content:center;padding:14px;z-index:80}.dialog-bg.show{display:flex}
+.dialog{max-height:94dvh;overflow:auto;width:min(100%,620px);padding:19px;background:#fff;border-radius:22px;box-shadow:0 16px 50px #0d153e70;text-align:center;position:relative}
+.dialog h2{font-size:clamp(28px,5vw,43px);margin:6px 0 12px}.dialog .arabic{font-size:26px;font-weight:850;color:#3552a0;direction:rtl}.dialog .sample{font-size:20px;margin:14px 0}.dialog .word{font-size:inherit}
+.dialog .close{position:absolute;top:8px;right:9px;padding:8px 13px}
+.zoom-dialog{width:min(100%,1100px);height:95dvh;max-height:950px;min-height:0;overflow:hidden;padding:10px;display:flex;flex-direction:column;gap:8px}
+.zoom-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 3px;flex:0 0 auto}
+.zoom-head strong{font-size:15px}.zoom-dialog .close{position:static;min-height:42px}
+.zoom-media{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:14px;background:#f0f7ff}
+.zoom-dialog img{display:block;max-width:100%;width:auto;height:100%;max-height:100%;object-fit:contain;border-radius:12px}
+.zoom-caption{font-size:clamp(18px,3vw,29px);font-weight:850;line-height:1.35;flex:0 0 auto;margin:0;min-height:1.4em}
+.zoom-nav{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:7px;flex:0 0 auto}
+.zoom-nav .btn{font-size:clamp(13px,2.6vw,19px);min-width:0;padding:10px 5px}
+.zoom-status{min-height:22px;color:#4f6688;font-size:13px;font-weight:700;flex:0 0 auto}
+#word-dialog{z-index:95}
+@media(max-width:650px){.shell{padding:9px 8px 70px}.hero{padding:13px}.tools{gap:7px}.tools label{flex:1 1 115px}.tools select{width:100%}.tools .btn{flex:1 1 auto}.stage{padding:8px}.art img{max-height:51dvh}.vocab-grid{grid-template-columns:repeat(2,1fr)}.quiz-options{grid-template-columns:repeat(2,1fr)}.stage-head .hint{display:none}}
+@media(prefers-reduced-motion:no-preference){.btn:active,.vocab-card:active{transform:scale(.97)}} 
+
+/* Magic Story V3 — independent immersive experiment */
+[hidden]{display:none!important}
+body.magic-v3{background:linear-gradient(145deg,#d3ecff,#f5ddff 60%,#fff7df)}
+.magic-v3 .hero{background:linear-gradient(125deg,#2256bb,#744ec5 60%,#c14a9c)}
+.magic-v3 .art{background:#d8eaf9}
+.magic-v3 .dot.flagged{border:3px solid #ff5b65;background:#ffe8e8;color:#97162e;box-shadow:0 0 0 2px #fff inset}
+.magic-v3 .dot.flagged.active{background:#d32b54;color:#fff}
+.magic-v3 .zoom-dialog{width:100vw;max-width:none;height:100dvh;max-height:none;min-height:0;border-radius:0;background:#10213b;color:#fff;padding:calc(env(safe-area-inset-top) + 6px) 10px calc(env(safe-area-inset-bottom) + 8px);overflow:hidden;gap:5px}
+#zoom-dialog.show{padding:0;background:#10213b}
+.magic-v3 .zoom-head{flex:0 0 auto;min-height:40px;display:flex;gap:8px;align-items:center}
+.magic-v3 .zoom-head strong{font-size:clamp(14px,2.2vw,22px);white-space:nowrap}
+.magic-v3 .zoom-dialog .close{background:#284266;color:white;border:1px solid #6085b9;box-shadow:none}
+.magic-v3 .zoom-media{position:relative;isolation:isolate;overflow:hidden;flex:1 1 auto;min-height:90px;background:#172849;border:1px solid #46618b}
+.magic-v3 .zoom-media::before{content:"";position:absolute;inset:-35px;background-image:var(--scene-image);background-repeat:no-repeat;background-size:cover;background-position:center;filter:blur(23px) saturate(.95) brightness(.65);opacity:.93;z-index:-1;transition:background-image .3s}
+.magic-v3 .zoom-media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#091c2b38,transparent 30%,transparent 70%,#091c2b38);z-index:-1;pointer-events:none}
+.magic-v3 .zoom-media img{position:relative;z-index:1;width:auto;height:100%;max-height:100%;max-width:100%;object-fit:contain;box-shadow:0 6px 28px #050c1855}
+.magic-v3 .zoom-caption{margin:0;line-height:1.4;font-size:clamp(18px,2.8vw,29px);font-weight:900;color:#fff;text-align:center}
+.magic-v3 .zoom-caption .word{color:#1d2c47;box-shadow:0 3px 0 #d8bb00}
+.magic-v3 .follow-token{transition:background .12s;padding:1px 2px;border-radius:6px}
+.magic-v3 .follow-token.now{background:#63edc8;color:#122e38;box-shadow:0 0 0 2px #63edc8}
+.magic-v3 .zoom-nav .btn{min-height:48px;font-size:clamp(14px,2.3vw,20px)}
+.magic-v3 .zoom-status{color:#c5e4ff;text-align:center;min-height:18px}
+.magic-v3 .magic-progress{display:flex;align-items:center;gap:8px;font-size:clamp(11px,1.8vw,14px);font-weight:850;flex:0 0 auto}
+.magic-v3 .magic-progress-meter{flex:1;height:9px;border-radius:30px;overflow:hidden;background:#47627b}
+.magic-v3 .magic-progress-fill{display:block;background:linear-gradient(90deg,#7af1b7,#ffe16f);height:100%;width:0;transition:width .35s}
+.magic-v3 .magic-bar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;padding:2px 0;flex:0 0 auto}
+.magic-v3 .magic-bar label{display:flex;align-items:center;gap:4px}
+.magic-v3 .magic-bar select{border:1px solid #86bde5;background:#193453;color:#fff;border-radius:10px;padding:5px;max-width:130px;min-height:34px}
+.magic-v3 .magic-actions{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:5px;flex:0 0 auto}
+.magic-v3 .magic-actions .btn{padding:7px 3px;min-height:44px;font-size:clamp(10px,1.65vw,16px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.magic-v3 .magic-mini{border:0;border-radius:12px;background:#2a537e;color:#fff;font-size:13px;min-height:35px;padding:4px 9px}
+.magic-v3 .magic-mini.active{background:#a63051}
+.magic-v3 .challenge-card{position:absolute;z-index:6;left:50%;bottom:12px;transform:translateX(-50%);width:min(96%,460px);border-radius:18px;background:#fffffff5;padding:14px;color:#173056;box-shadow:0 8px 30px #0008;text-align:center}
+.magic-v3 .challenge-card strong{display:block;font-size:clamp(16px,2.4vw,22px);margin-bottom:9px}
+.magic-v3 .challenge-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.magic-v3 .challenge-options button{border:2px solid #b9c8fa;border-radius:12px;background:#eff5ff;color:#234077;padding:9px;font-size:17px;font-weight:900}
+.magic-v3 .challenge-options button.correct{background:#d3ffe2;border-color:#10a360}
+.magic-v3 .challenge-options button.wrong{background:#ffe5e8;border-color:#f14b60}
+.magic-v3 .turtle-tip{position:absolute;z-index:5;left:12px;top:12px;padding:4px 10px;border-radius:40px;background:#e9fff5e8;color:#164c3e;font-weight:850;font-size:clamp(11px,1.5vw,14px);max-width:48%;pointer-events:none}
+.magic-v3 .magic-float{position:absolute;z-index:10;left:48%;top:48%;font-size:36px;animation:magic-fly 900ms ease-out forwards;pointer-events:none}
+@keyframes magic-fly{0%{transform:translate(-50%,-50%) scale(.5);opacity:0}30%{opacity:1;transform:translate(-50%,-75%) scale(1.4)}100%{transform:translate(100px,-240px) scale(.55);opacity:0}}
+.magic-v3 .review-pane{position:absolute;z-index:12;inset:65px 12px 12px;background:#f7fbfff9;color:#213459;border-radius:20px;padding:18px;overflow:auto;box-shadow:0 10px 28px #0008}
+.magic-v3 .review-pane h2{margin:2px 0 11px;color:#293b63}
+.magic-v3 .review-list{display:flex;flex-direction:column;gap:9px}
+.magic-v3 .review-list button{border:2px solid #e8b7bf;background:#fff1f2;color:#70304b;padding:13px;text-align:left;border-radius:12px;font-weight:850}
+.magic-v3 .final-magic{position:absolute;z-index:15;left:50%;top:50%;transform:translate(-50%,-50%);width:min(92%,430px);padding:24px;border:3px solid #ffe38a;border-radius:25px;background:linear-gradient(135deg,#fffce8,#dfffea);color:#23426c;text-align:center;box-shadow:0 10px 55px #000a}
+.magic-v3 .final-magic h2{font-size:clamp(25px,4vw,43px);margin:5px 0}
+.magic-v3 .focus-mode .magic-bar,.magic-v3 .focus-mode .magic-progress,.magic-v3 .focus-mode .zoom-caption,.magic-v3 .focus-mode .zoom-nav,.magic-v3 .focus-mode .magic-actions,.magic-v3 .focus-mode .zoom-status,.magic-v3 .focus-mode .turtle-tip{display:none}
+.magic-v3 .focus-mode .zoom-head{opacity:.75}
+.magic-v3 .focus-mode .zoom-media{flex:1}
+.magic-v3 .magic-staging-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
+.magic-v3 .magic-staging-buttons button{font-size:clamp(13px,2vw,16px)}
+@media(max-width:680px){.magic-v3 .zoom-dialog{padding:calc(env(safe-area-inset-top) + 3px) 5px calc(env(safe-area-inset-bottom) + 5px);gap:3px}.magic-v3 .zoom-caption{font-size:clamp(17px,4vw,22px)}.magic-v3 .magic-bar{gap:4px}.magic-v3 .magic-bar select{max-width:105px}.magic-v3 .magic-actions{grid-template-columns:repeat(4,minmax(0,1fr));gap:3px}.magic-v3 .magic-actions .btn{min-height:40px;font-size:11px}.magic-v3 .zoom-nav .btn{min-height:42px}}
+@media(max-height:650px) and (orientation:landscape){.magic-v3 .zoom-dialog{gap:2px;padding:3px 8px}.magic-v3 .zoom-head{min-height:30px}.magic-v3 .magic-bar{padding:0}.magic-v3 .zoom-caption{font-size:clamp(15px,2.3vw,21px)}.magic-v3 .zoom-nav .btn,.magic-v3 .magic-actions .btn{min-height:34px;padding:4px 3px}.magic-v3 .magic-progress{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.magic-v3 *, .magic-v3 *::before{animation:none!important;transition:none!important}}
+
+</style>
+</head>
+<body class="magic-v3">
+<main class="shell">
+<header class="hero"><a href="./" class="back">← Experimental Lab</a><h1>✨ Tom's Magic Story V3</h1><p>Immersive Reading • Magic Stars • Red Flags • 5 AI Voices ⭐</p></header>
+<div class="tools">
+<label>🎤 Teacher's voice<select id="voice"><option value="bella">Bella</option><option value="heart">Heart</option><option value="sarah">Sarah</option><option value="nicole">Nicole</option><option value="sky">Sky</option></select></label>
+<label>🐢 Reading speed<select id="speed"><option value="0.75">Slow</option><option value="1" selected>Normal</option><option value="1.15">Fast</option></select></label>
+<button class="btn secondary" id="test">🔊 Test voice</button>
+<button class="btn ghost" id="fullscreen">⛶ Story Full Screen</button>
+<div id="status" role="status" aria-live="polite"></div>
+</div>
+<section class="stage" aria-label="Illustrated English reading story">
+ <div class="stage-head"><strong id="slide-title">Scene 1 of 9</strong><span class="hint">Tap a yellow word to learn it ✨</span><strong id="stars">⭐ 0 / 8</strong></div>
+ <div class="art"><img id="scene-img" src="01_Tom_Wakes_Up.png" alt="Tom wakes up early"><button class="zoom" id="zoom" aria-label="Zoom picture">✨ Magic Full Screen</button></div>
+ <div class="story-text" id="line"></div>
+ <p class="subline" id="instruction">Tap a yellow word for meaning and pronunciation</p>
+ <div class="nav"><button class="btn secondary" id="prev">⬅ Previous</button><button class="btn" id="read">🔊 Read to me</button><button class="btn secondary" id="next">Next ➡</button></div>
+ <div class="foot-actions"><button class="btn green" id="mark">☆ I Practiced</button><button class="btn ghost" id="repeat">🔁 Repeat</button><button class="btn pink" id="main-flag">🚩 Red Flag</button><button class="btn secondary" id="main-quick">🎯 Quick Challenge</button><button class="btn ghost" id="main-review">🚩 Review Flags</button></div>
+ <div class="dots" id="dots" aria-label="Jump to a story slide"></div>
+</section>
+<section class="vocab-strip"><h2 class="section-title">🌟 Key Words — Tap to Learn</h2><div class="vocab-grid" id="vocab"></div></section>
+<section class="quiz" id="quiz"><h2 class="section-title">🏆 Mini Challenge</h2><div id="quiz-content"></div></section>
+<p class="quiet">Audio: free Kokoro AI MP3 recordings. No paid ElevenLabs service or browser-generated speech. Progress is saved on this device.</p>
+</main>
+<div class="dialog-bg" id="word-dialog" role="dialog" aria-modal="true" aria-labelledby="word-title">
+ <div class="dialog"><button class="btn ghost close" id="close-word">✕</button><h2 id="word-title"></h2><div class="arabic" id="word-meaning" lang="ar"></div><p class="sample" id="word-example"></p><button class="btn" id="speak-word">🔊 Listen</button><p class="quiet">Listen, say it, and remember! ⭐</p></div>
+</div>
+<div class="dialog-bg" id="zoom-dialog" role="dialog" aria-modal="true" aria-label="Zoomed picture">
+ <div class="dialog zoom-dialog">
+  <div class="zoom-head"><strong id="zoom-count">Scene 1 / 9</strong><button class="magic-mini" id="magic-focus" aria-pressed="false">👁 Hide Tools</button><button class="btn ghost close" id="close-zoom" aria-label="Close zoom">✕ Close</button></div>
+  <div class="magic-progress"><span id="magic-percent">0% done</span><div class="magic-progress-meter" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="8" aria-valuenow="0" id="magic-progressbar"><span class="magic-progress-fill" id="magic-progress-fill"></span></div><span id="magic-stars">⭐ 0</span></div>
+  <div class="zoom-media"><img id="zoom-img" alt="Full size story picture"><div class="turtle-tip" id="magic-turtle">🐢 You've got this!</div>
+  <div class="challenge-card" id="magic-challenge" hidden><strong id="magic-question"></strong><div class="challenge-options" id="magic-options"></div><p id="magic-answer" role="status" aria-live="polite"></p><button class="magic-mini" id="magic-challenge-close">✕ Close</button></div></div>
+  <p class="zoom-caption" id="zoom-line"></p>
+  <div class="zoom-nav" aria-label="Zoom reading controls">
+    <button class="btn secondary" id="zoom-prev">⬅ Previous</button>
+    <button class="btn" id="zoom-read">🔊 Read</button>
+    <button class="btn secondary" id="zoom-next">Next ➡</button>
+  </div>
+  <div class="magic-actions">
+   <button class="btn green" id="magic-practiced">🌟 I Practiced</button>
+   <button class="btn pink" id="magic-flag">🚩 Red Flag</button>
+   <button class="btn secondary" id="magic-quick">🎯 Challenge</button>
+   <button class="btn secondary" id="magic-review">📌 Review</button>
+  </div>
+  <div class="magic-bar"><label>🎤 <select id="magic-voice" aria-label="Teacher voice"><option value="bella">Bella</option><option value="heart">Heart</option><option value="sarah">Sarah</option><option value="nicole">Nicole</option><option value="sky">Sky</option></select></label>
+  <label>🐢 <select id="magic-speed" aria-label="Reading speed"><option value="0.75">Slow</option><option value="1">Normal</option><option value="1.15">Fast</option></select></label>
+  <button class="magic-mini" id="magic-repeat">🔁 Repeat</button><button class="magic-mini" id="magic-sound" aria-pressed="true">🔔 On</button></div>
+  <div class="zoom-status" id="zoom-status" role="status" aria-live="polite"></div>
+  <div class="review-pane" id="magic-review-pane" hidden><button class="magic-mini" id="magic-review-close">✕ Close Review</button><h2>🚩 My Red Flags</h2><div class="review-list" id="magic-review-list"></div></div>
+  <div class="final-magic" id="magic-finale" hidden><div style="font-size:58px">🏆✨</div><h2>Super Reader!</h2><p>8 scenes finished. Great reading!</p><button class="btn green" id="magic-finale-close">Keep Exploring ⭐</button></div>
+ </div>
+</div>
+<script>
+"use strict";
+const slides=[
+ {image:"01_Tom_Wakes_Up.png",text:"Tom always wakes up early.",alt:"Tom wakes up at six in the morning."},
+ {image:"02_Brushes_Teeth.png",text:"He always brushes his teeth.",alt:"Tom brushes his teeth."},
+ {image:"03_Goes_to_School.png",text:"He usually goes to school with his dad.",alt:"Tom and his father at school."},
+ {image:"04_In_Class.png",text:"Tom usually listens in class.",alt:"Tom enjoys learning in his classroom."},
+ {image:"05_School_Lunch.png",text:"He sometimes eats fruit at school.",alt:"Tom eats an apple at school."},
+ {image:"06_Homework.png",text:"After school, he usually does his homework.",alt:"Tom does his homework at home."},
+ {image:"07_Football.png",text:"He sometimes plays football with his friends.",alt:"Tom plays football with his friends."},
+ {image:"08_Bedtime.png",text:"Tom never watches TV at night. He sleeps early and feels good.",alt:"Tom sleeps at night; TV is off."},
+ {image:"09_Key_Words.png",text:"",alt:"Illustrated vocabulary chart: always, usually, sometimes, never."}
+];
+const dictionary={
+ always:{meaning:"دائمًا",example:"I always brush my teeth.",meaningEn:"Every time"},
+ usually:{meaning:"عادةً",example:"I usually go to school.",meaningEn:"Most of the time"},
+ sometimes:{meaning:"أحيانًا",example:"I sometimes play football.",meaningEn:"On some days"},
+ never:{meaning:"أبدًا",example:"I never watch TV at night.",meaningEn:"Not at any time"}
+};
+const questions=[
+ {q:"I brush my teeth every day. I ____ brush my teeth.",a:"always",options:["never","always","sometimes","usually"]},
+ {q:"I go to school on most days. I ____ go to school.",a:"usually",options:["never","sometimes","usually","always"]},
+ {q:"I play football on some days. I ____ play football.",a:"sometimes",options:["always","never","usually","sometimes"]},
+ {q:"I do not watch TV at night. I ____ watch TV at night.",a:"never",options:["usually","never","always","sometimes"]},
+ {q:"Tom ____ wakes up early.",a:"always",options:["sometimes","never","always","usually"]},
+ {q:"Tom ____ plays football with his friends.",a:"sometimes",options:["usually","always","never","sometimes"]}
+];
+const $=id=>document.getElementById(id);
+const saveKey="kids-learning-tom-magic-story-v3";
+let state={done:[],quiz:{},voice:"bella",speed:"1"};
+try{const stored=JSON.parse(localStorage.getItem(saveKey));if(stored&&typeof stored==="object"){state={...state,...stored};}}catch{}
+if(!Array.isArray(state.done))state.done=[];
+if(!state.quiz||typeof state.quiz!=="object")state.quiz={};
+if(!["bella","heart","sarah","nicole","sky"].includes(state.voice))state.voice="bella";
+if(!["0.75","1","1.15"].includes(state.speed))state.speed="1";
+$("voice").value=state.voice;$("speed").value=state.speed;
+let current=0,playing=null,activeWord=null;
+function save(){try{localStorage.setItem(saveKey,JSON.stringify(state))}catch{}}
+function status(message){$("status").textContent=message;if($("zoom-dialog").classList.contains("show"))$("zoom-status").textContent=message}
+function stop(){if(playing){playing.pause();playing.currentTime=0;playing=null}}
+function audioFile(name){return "audio/tom/"+state.voice+"/"+name+".mp3"}
+function play(name){stop();const item=new Audio(audioFile(name));playing=item;item.playbackRate=Number(state.speed);status("🔄 Loading "+state.voice+"…");item.onplaying=()=>status("🔊 Listen and repeat!");item.onended=()=>{if(playing===item){playing=null;status("⭐ Your turn to read!")}};item.onerror=()=>{if(playing===item){playing=null;status("Audio recording is not available yet. Try again later.")}};item.play().catch(()=>{if(playing===item){playing=null;status("Can't play this recording yet.")}})}
+function textWithWords(target,text){target.replaceChildren();const bits=text.split(/\b(always|usually|sometimes|never)\b/gi);bits.forEach(bit=>{const key=bit.toLowerCase();if(dictionary[key]){const b=document.createElement("button");b.className="word";b.type="button";b.textContent=bit;b.title="Learn the word "+bit;b.onclick=()=>showWord(key);target.append(b)}else{target.append(document.createTextNode(bit))}})}
+function slide(n){stop();current=Math.max(0,Math.min(8,n));const scene=slides[current];$("scene-img").src=scene.image;$("scene-img").alt=scene.alt;$("scene-img").classList.toggle("vocab-image",current===8);$("slide-title").textContent=current===8?"⭐ Key Words — Slide 9 of 9":"📖 Scene "+(current+1)+" of 9";$("prev").disabled=current===0;$("next").disabled=current===8;$("read").textContent=current===8?"🔊 Listen to words":"🔊 Read to me";$("mark").hidden=current===8;$("repeat").hidden=current===8;$("instruction").hidden=current===8;
+ if(current===8){$("line").innerHTML="";const p=document.createElement("p");p.textContent="Always • Usually • Sometimes • Never";p.style.margin="6px 0";$("line").append(p)}
+ else textWithWords($("line"),scene.text);
+ $("stars").textContent="⭐ "+state.done.length+" / 8";
+ const dots=$("dots");dots.replaceChildren();slides.forEach((s,i)=>{const b=document.createElement("button");b.className="dot"+(i===current?" active":"")+(state.done.includes(i)?" done":"");b.textContent=String(i+1);b.title="Go to scene "+(i+1);b.setAttribute("aria-label","Open slide "+(i+1));b.setAttribute("aria-current",i===current?"step":"false");b.onclick=()=>slide(i);dots.append(b)});
+ $("mark").textContent=state.done.includes(current)?"✅ Practiced!":"☆ I practiced";status("");if($("zoom-dialog").classList.contains("show"))renderZoom();
+}
+function showWord(word){activeWord=word;const entry=dictionary[word];$("word-title").textContent=word[0].toUpperCase()+word.slice(1);$("word-meaning").textContent=entry.meaning+" — "+entry.meaningEn;textWithWords($("word-example"),entry.example);$("word-dialog").classList.add("show");$("close-word").focus()}
+function closeWord(){stop();$("word-dialog").classList.remove("show")}
+function closeZoom(){stop();$("zoom-dialog").classList.remove("show")}
+function closeDialogs(){closeWord();closeZoom()}
+function renderZoom(){
+ const scene=slides[current];
+ $("zoom-img").src=scene.image;$("zoom-img").alt=scene.alt;
+ $("zoom-count").textContent=current===8?"⭐ Key Words • 9 / 9":"📖 Scene "+(current+1)+" / 9";
+ if(current===8)textWithWords($("zoom-line"),"Always • Usually • Sometimes • Never");
+ else textWithWords($("zoom-line"),scene.text);
+ $("zoom-prev").disabled=current===0;$("zoom-next").disabled=current===8;
+ $("zoom-read").textContent=current===8?"🔊 Read words":"🔊 Read";
+ $("zoom-status").textContent="";
+}
+function showZoom(){$("zoom-dialog").classList.add("show");renderZoom();$("close-zoom").focus()}
+$("close-word").onclick=closeWord;$("close-zoom").onclick=closeZoom;
+$("word-dialog").onclick=e=>{if(e.target===$("word-dialog"))closeWord()};
+$("zoom-dialog").onclick=e=>{if(e.target===$("zoom-dialog"))closeZoom()};
+$("zoom-prev").onclick=()=>slide(current-1);
+$("zoom-next").onclick=()=>slide(current+1);
+$("zoom-read").onclick=()=>$("read").click();
+$("speak-word").onclick=()=>{if(activeWord)play("word-"+activeWord)};
+$("prev").onclick=()=>slide(current-1);
+$("next").onclick=()=>slide(current+1);
+function playAllWords(){const words=["always","usually","sometimes","never"];let at=0;function nextWord(){stop();if(at>=words.length){status("⭐ All four words completed!");return}const key=words[at++];const a=new Audio(audioFile("word-"+key));playing=a;a.playbackRate=Number(state.speed);status("🔊 "+key+" — listen and repeat");a.onended=()=>{if(playing===a)nextWord()};a.onerror=()=>{if(playing===a){playing=null;status("Word recording not available yet.")}};a.play().catch(()=>status("Recording not available yet."))}nextWord()}
+$("read").onclick=()=>{if(current===8)playAllWords();else play("scene-"+String(current+1).padStart(2,"0"))};
+$("repeat").onclick=()=>$("read").click();
+$("mark").onclick=()=>{if(current>=8)return;state.done=[...new Set([...state.done,current])].sort((a,b)=>a-b);save();slide(current);if(current<7)status("🌟 Great! Tap Next when ready.");else status("🏆 Story complete! Try the mini challenge!")};
+$("zoom").onclick=showZoom;
+$("voice").onchange=e=>{state.voice=e.target.value;save();stop();status("🎤 "+state.voice+" selected. Tap Test voice.")};
+$("speed").onchange=e=>{state.speed=e.target.value;save();stop();status("🐢 Reading speed updated.")};
+$("test").onclick=()=>play("scene-01");
+$("fullscreen").onclick=()=>{if(document.fullscreenElement){document.exitFullscreen().catch(()=>{});}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>status("Full-screen mode is not available on this device."))}else status("Try Add to Home Screen for a bigger view.")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("word-dialog").classList.contains("show"))closeWord();else if($("zoom-dialog").classList.contains("show"))closeZoom();return}if($("word-dialog").classList.contains("show"))return;if(e.key==="ArrowRight")slide(current+1);if(e.key==="ArrowLeft")slide(current-1)});
+let touchX=null;const art=document.querySelector(".art");art.addEventListener("touchstart",e=>{touchX=e.touches[0].clientX},{passive:true});art.addEventListener("touchend",e=>{if(touchX===null)return;const diff=e.changedTouches[0].clientX-touchX;if(Math.abs(diff)>65)slide(current+(diff<0?1:-1));touchX=null},{passive:true});
+Object.entries(dictionary).forEach(([word,entry])=>{const b=document.createElement("button");b.className="vocab-card";b.innerHTML="<b>"+word+"</b><small>"+entry.meaningEn+" • 🔊</small>";b.onclick=()=>showWord(word);$("vocab").append(b)});
+let qi=0;function renderQuiz(){const holder=$("quiz-content");holder.replaceChildren();if(qi>=questions.length){const score=questions.filter((q,i)=>state.quiz[i]===q.a).length;const p=document.createElement("div");p.className="quiz-end";p.textContent=(score===questions.length?"🏆 Perfect! ":"🌟 Well done! ")+score+" / "+questions.length;const prompt=document.createElement("p");prompt.textContent=score===questions.length?"You are a Word Star! ⭐":"Try again to earn all your stars!";const restart=document.createElement("button");restart.className="btn pink";restart.textContent="↻ Play again";restart.onclick=()=>{qi=0;state.quiz={};save();renderQuiz()};holder.append(p,prompt,restart);return}
+const q=questions[qi];const tag=document.createElement("div");tag.className="quiet";tag.textContent="Question "+(qi+1)+" of "+questions.length;const p=document.createElement("p");p.style.fontSize="clamp(19px,3vw,24px)";p.style.fontWeight="850";p.textContent=q.q;const opts=document.createElement("div");opts.className="quiz-options";const feedback=document.createElement("div");feedback.className="quiz-response";const next=document.createElement("button");next.className="btn green";next.textContent=qi===questions.length-1?"See my score ➡":"Next question ➡";next.hidden=true;next.onclick=()=>{qi++;renderQuiz()};q.options.forEach(opt=>{const b=document.createElement("button");b.textContent=opt;b.onclick=()=>{if(state.quiz[qi]!==undefined)return;state.quiz[qi]=opt;save();[...opts.children].forEach(btn=>{btn.disabled=true;if(btn.textContent===q.a)btn.classList.add("correct");if(btn===b&&opt!==q.a)btn.classList.add("wrong")});feedback.textContent=opt===q.a?"✅ Correct! Great reading!":"💡 The answer is: "+q.a;next.hidden=false};opts.append(b)});holder.append(tag,p,opts,feedback,next);
+ if(state.quiz[qi]!==undefined){[...opts.children].forEach(btn=>{btn.disabled=true;if(btn.textContent===q.a)btn.classList.add("correct");if(btn.textContent===state.quiz[qi]&&btn.textContent!==q.a)btn.classList.add("wrong")});feedback.textContent=state.quiz[qi]===q.a?"✅ Correct!":"💡 The answer is: "+q.a;next.hidden=false}}
+renderQuiz();slide(0);
+</script>
+<script>
+
+/* Magic Story V3 enhancements — independent of original */
+if(!Array.isArray(state.flags)) state.flags=[];
+if(!state.challenges || typeof state.challenges!=="object")state.challenges={};
+if(typeof state.current!=="number")state.current=0;
+if(typeof state.muteCelebration!=="boolean")state.muteCelebration=false;
+let magicChallengeScene=-1;
+let magicFollowListener=null;
+const magicQuestions={
+ 1:{q:"Tom brushes his teeth every day. Which word?",a:"always"},
+ 3:{q:"Tom listens on most school days. Which word?",a:"usually"},
+ 5:{q:"Tom plays on some days. Which word?",a:"sometimes"},
+ 7:{q:"Tom does not watch TV at night. Which word?",a:"never"}
+};
+const magicWords=["always","usually","sometimes","never"];
+function magicChime(){
+ if(state.muteCelebration)return;
+ try{const Ctx=window.AudioContext||window.webkitAudioContext;if(!Ctx)return;
+ const ctx=new Ctx();[660,880,1100].forEach((freq,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.type="sine";o.frequency.value=freq;g.gain.setValueAtTime(.0001,ctx.currentTime+i*.105);g.gain.exponentialRampToValueAtTime(.11,ctx.currentTime+i*.105+.012);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+i*.105+.18);o.connect(g);g.connect(ctx.destination);o.start(ctx.currentTime+i*.105);o.stop(ctx.currentTime+i*.105+.2)});setTimeout(()=>ctx.close().catch(()=>{}),850)}catch{}
+}
+function magicBurst(symbol){
+ const target=$("zoom-dialog").classList.contains("show")?document.querySelector(".zoom-dialog"):document.querySelector(".stage");
+ const el=document.createElement("span");el.className="magic-float";el.textContent=symbol||"⭐";
+ target.style.position="relative";target.append(el);setTimeout(()=>el.remove(),950);magicChime();
+}
+function magicFlagged(){return state.flags.includes(current)}
+function magicToggleFlag(){
+ if(current===8)return;
+ state.flags=magicFlagged()?state.flags.filter(i=>i!==current):[...state.flags,current].sort((a,b)=>a-b);
+ save();magicSync();status(magicFlagged()?"🚩 Saved for review.":"✅ Flag removed.");
+}
+function magicSetTip(s){$("magic-turtle").textContent="🐢 "+s}
+function magicSync(){
+ const inVocab=current===8,flag=magicFlagged(),done=state.done.includes(current);
+ $("magic-flag").hidden=inVocab;$("main-flag").hidden=inVocab;$("magic-practiced").hidden=inVocab;
+ $("magic-flag").textContent=flag?"✅ Flagged":"🚩 Red Flag";
+ $("main-flag").textContent=flag?"✅ Flagged":"🚩 Red Flag";
+ $("magic-practiced").textContent=done?"✅ Practiced!":"🌟 I Practiced";
+ $("magic-quick").hidden=!magicQuestions[current];
+ $("main-quick").hidden=!magicQuestions[current];
+ const count=state.done.length,bonus=Object.keys(state.challenges).filter(key=>state.challenges[key]===true).length;
+ $("magic-percent").textContent=Math.round(count/8*100)+"% done";
+ $("magic-progress-fill").style.width=(count/8*100)+"%";
+ $("magic-progressbar").setAttribute("aria-valuenow",count);
+ $("magic-stars").textContent="⭐ "+count+" + "+bonus+" bonus";
+ $("magic-voice").value=state.voice;$("magic-speed").value=state.speed;
+ $("magic-sound").textContent=state.muteCelebration?"🔕 Off":"🔔 On";
+ $("magic-sound").setAttribute("aria-pressed",String(!state.muteCelebration));
+ document.querySelectorAll(".dot").forEach((dot,i)=>{dot.classList.toggle("flagged",state.flags.includes(i));if(state.flags.includes(i))dot.title="🚩 Review slide "+(i+1)});
+ $("zoom-dialog").style.setProperty("--scene-image",'url("'+slides[current].image+'")');
+ magicSetTip(inVocab?"Review all four words!":done?"Great work!":"Read, practice, earn stars!");
+ if(inVocab&&count===8&&!state.celebrated){$("magic-finale").hidden=false;state.celebrated=true;save();magicChime()}
+}
+function magicReview(){
+ const pane=$("magic-review-pane");pane.hidden=false;
+ const items=$("magic-review-list");items.replaceChildren();
+ if(!state.flags.length){const p=document.createElement("p");p.textContent="No flags yet. Use 🚩 on a tricky scene.";items.append(p);return}
+ state.flags.forEach(i=>{const b=document.createElement("button");b.textContent="🚩 Scene "+(i+1)+" — "+slides[i].text;b.onclick=()=>{pane.hidden=true;slide(i)};items.append(b)})
+}
+function magicChallenge(){
+ const q=magicQuestions[current];if(!q){status("Practice your words on this slide!");return}
+ magicChallengeScene=current;$("magic-challenge").hidden=false;$("magic-review-pane").hidden=true;
+ $("magic-question").textContent="🎯 "+q.q;
+ $("magic-answer").textContent=state.challenges[current]?"⭐ Bonus star earned!":"";
+ const holder=$("magic-options");holder.replaceChildren();
+ magicWords.forEach(word=>{
+  const b=document.createElement("button");b.textContent=word;
+  if(state.challenges[current]){b.disabled=true;if(word===q.a)b.classList.add("correct")}
+  b.onclick=()=>{
+   if(state.challenges[magicChallengeScene])return;
+   if(word===q.a){state.challenges[magicChallengeScene]=true;save();b.classList.add("correct");$("magic-answer").textContent="✅ Brilliant! Bonus ⭐";
+    [...holder.children].forEach(x=>x.disabled=true);magicBurst("🌟");magicSetTip("You're a Word Star!");
+    magicSync();setTimeout(()=>{$("magic-challenge").hidden=true},1250);
+   }else{b.classList.add("wrong");$("magic-answer").textContent="Try again! You can do it. 🐢"}
+  };holder.append(b)
+ })
+}
+function magicFollow(){
+ for(const id of ["zoom-line","line"]){
+  const el=$(id),text=slides[current].text;if(!text)continue;
+  el.replaceChildren();
+  const tokens=text.split(/(\s+)/);let k=0;
+  tokens.forEach(piece=>{
+   if(!piece.trim()){el.append(document.createTextNode(piece));return}
+   const clean=piece.replace(/[^a-z]/gi,"").toLowerCase();
+   if(dictionary[clean]){
+    const b=document.createElement("button");b.className="word follow-token";b.type="button";b.textContent=piece;
+    b.dataset.wordIndex=String(k++);b.onclick=()=>showWord(clean);el.append(b);
+   }else{const s=document.createElement("span");s.className="follow-token";s.dataset.wordIndex=String(k++);s.textContent=piece;el.append(s)}
+  })
+ }
+}
+const magicOriginalSlide=slide;
+slide=function(n){magicOriginalSlide(n);state.current=current;save();$("magic-challenge").hidden=true;$("magic-finale").hidden=true;magicSync();if($("zoom-dialog").classList.contains("show"))magicFollow();};
+const magicOriginalZoom=renderZoom;
+renderZoom=function(){magicOriginalZoom();magicSync();if(current!==8)magicFollow()};
+const magicOriginalShow=showZoom;
+showZoom=function(){magicOriginalShow();document.querySelector(".zoom-dialog").classList.remove("focus-mode");$("magic-focus").textContent="👁 Hide Tools";$("magic-focus").setAttribute("aria-pressed","false");magicSync()};
+const magicOriginalMark=$("mark").onclick;
+$("mark").onclick=function(){
+ const already=state.done.includes(current),was=current;
+ magicOriginalMark();
+ if(!already&&was<8){magicBurst("⭐");magicSetTip("Great job!");
+  if(state.done.length===8)status("🏆 You completed all eight scenes! Open the last slide.");
+ }
+ magicSync();
+};
+$("magic-practiced").onclick=()=>$("mark").click();
+$("magic-flag").onclick=magicToggleFlag;
+$("main-flag").onclick=magicToggleFlag;
+$("magic-quick").onclick=magicChallenge;
+$("main-quick").onclick=()=>{showZoom();magicChallenge()};
+$("magic-review").onclick=magicReview;
+$("main-review").onclick=()=>{showZoom();magicReview()};
+$("magic-review-close").onclick=()=>{$("magic-review-pane").hidden=true};
+$("magic-challenge-close").onclick=()=>{$("magic-challenge").hidden=true};
+$("magic-finale-close").onclick=()=>{$("magic-finale").hidden=true};
+$("magic-focus").onclick=()=>{
+ const dialog=document.querySelector(".zoom-dialog");const hide=dialog.classList.toggle("focus-mode");
+ $("magic-focus").textContent=hide?"👁 Show Tools":"👁 Hide Tools";
+ $("magic-focus").setAttribute("aria-pressed",String(hide));
+};
+$("magic-repeat").onclick=()=>$("read").click();
+$("magic-sound").onclick=()=>{state.muteCelebration=!state.muteCelebration;save();magicSync()};
+$("magic-voice").onchange=e=>{$("voice").value=e.target.value;$("voice").dispatchEvent(new Event("change"));magicSync()};
+$("magic-speed").onchange=e=>{$("speed").value=e.target.value;$("speed").dispatchEvent(new Event("change"));magicSync()};
+$("fullscreen").onclick=showZoom;
+let magicTouch=null;
+$("zoom-img").addEventListener("touchstart",e=>{if(e.touches.length===1)magicTouch=e.touches[0].clientX},{passive:true});
+$("zoom-img").addEventListener("touchend",e=>{if(magicTouch===null)return;const delta=e.changedTouches[0].clientX-magicTouch;magicTouch=null;if(Math.abs(delta)>70)slide(current+(delta<0?1:-1))},{passive:true});
+/* approximate reading-follow mode: one token at a time over recording duration, not phoneme timestamps */
+const magicOriginalPlay=play;
+play=function(name){
+ magicOriginalPlay(name);
+ if(!name.startsWith("scene-")||!playing)return;
+ const audio=playing,sceneIndex=current;
+ const update=()=>{
+  if(current!==sceneIndex)return;
+  const dur=audio.duration;
+  if(!Number.isFinite(dur)||dur<=0)return;
+  const items=[...$("zoom-line").querySelectorAll(".follow-token")];
+  const position=Math.min(items.length-1,Math.floor(audio.currentTime/dur*items.length));
+  items.forEach((item,i)=>item.classList.toggle("now",i===position));
+  const more=[...$("line").querySelectorAll(".follow-token")];more.forEach((item,i)=>item.classList.toggle("now",i===position));
+ };
+ audio.addEventListener("timeupdate",update);audio.addEventListener("ended",()=>{document.querySelectorAll(".follow-token.now").forEach(x=>x.classList.remove("now"))});
+};
+$("zoom-read").onclick=()=>$("read").click();
+$("read").addEventListener("click",()=>{if(current!==8)magicFollow()});
+$("zoom-dialog").addEventListener("click",e=>{if(e.target===$("zoom-dialog"))$("magic-review-pane").hidden=true});
+slide(Math.max(0,Math.min(8,state.current)));
+
+</script>
+</body>
+</html>
