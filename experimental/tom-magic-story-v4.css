@@ -66,3 +66,20 @@ button:disabled{opacity:.35;cursor:not-allowed}
 @media(max-width:750px){.home{padding:9px 9px 50px}.intro{padding:20px}.start-card{grid-template-columns:1fr}.cover{min-height:180px;max-height:270px}.cover img{max-height:260px}.start-info{padding:3px}.mode{min-height:80px}.guide-grid>div{padding:9px 3px}.topbar{padding-left:7px;padding-right:7px;gap:6px}.topbar .round{min-width:38px;height:38px;border-radius:12px;font-size:18px}.dots{gap:3px}.stars{font-size:12px}.bottom-hud{padding-left:6px;padding-right:6px}.caption{font-size:clamp(18px,5vw,26px);padding:9px 10px}}
 @media(max-height:520px) and (orientation:landscape){.topbar{padding-top:4px}.topbar .round{height:34px;min-width:36px}.scene-progress{font-size:10px}.bottom-hud{padding-bottom:3px}.caption{font-size:clamp(17px,2.5vw,23px);padding:6px 11px}.status{font-size:10px}.sheet{max-height:88dvh}.quiz-inner{padding:9px}.quiz-inner h2{font-size:18px;margin:6px 0}.answers button{min-height:36px;font-size:17px;padding:4px}.complete-inner{padding:8px}.complete-inner .trophy{font-size:36px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* V4: original illustrated scenes are displayed from a clean cropped viewport.
+   The source PNGs are intentionally unchanged. */
+.vocab-stage{position:absolute;z-index:6;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(75px,10dvh,110px) 20px 85px;text-align:center;pointer-events:none}
+.vocab-stage h2{font-size:clamp(28px,5vw,56px);color:#fffce0;margin:0;text-shadow:0 4px 16px #000e;line-height:1.1}
+.vocab-stage p{margin:0;font-weight:900;color:#f0f8ff;font-size:clamp(12px,2vw,18px);text-shadow:0 2px 8px #000c}
+.vocab-four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(6px,1.6vw,16px);width:min(97%,1000px);pointer-events:auto}
+.vocab-tile{border:3px solid #ffffffaa;border-radius:clamp(14px,2vw,24px);padding:clamp(9px,2.3vw,27px) 4px;background:linear-gradient(145deg,#fff9ca,#ffde77);color:#25395c;display:flex;flex-direction:column;align-items:center;gap:clamp(6px,1.5vw,16px);box-shadow:0 8px 22px #081329aa}
+.vocab-tile:nth-child(2){background:linear-gradient(145deg,#d7f7ff,#9ce5ff)}
+.vocab-tile:nth-child(3){background:linear-gradient(145deg,#e1ffd8,#aff0af)}
+.vocab-tile:nth-child(4){background:linear-gradient(145deg,#ffe1ed,#ffbcd6)}
+.vocab-tile b{font-size:clamp(17px,2.8vw,31px)}
+.vocab-tile span{font-size:clamp(15px,2.6vw,27px)}
+.vocab-tile small{font-size:clamp(10px,1.5vw,14px);font-weight:850}
+.vocab-tile:active{transform:scale(.97)}
+@media(max-width:700px){.vocab-four{grid-template-columns:repeat(2,minmax(0,1fr));max-width:520px}.vocab-stage{padding:72px 8px 70px;gap:8px}.vocab-stage h2{font-size:clamp(22px,6vw,38px)}.vocab-tile{min-height:75px;padding:6px 2px;gap:3px}.vocab-tile b{font-size:clamp(16px,4.5vw,23px)}.vocab-tile span{font-size:clamp(14px,3.8vw,21px)}}
+@media(max-height:480px) and (orientation:landscape){.vocab-stage{padding:36px 7px 37px;gap:3px}.vocab-stage h2{font-size:21px}.vocab-tile{padding:4px;gap:1px}.vocab-tile b{font-size:17px}.vocab-tile span{font-size:14px}.vocab-tile small{font-size:10px}}
