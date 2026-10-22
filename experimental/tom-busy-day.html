@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#245cc3">
+<title>Tom's Busy Day • Kids Reading Adventure</title>
+<style>
+:root{--blue:#2469d4;--ink:#17305b;--bg:#eaf4ff;--gold:#fff05a;--violet:#6845b8;--mint:#ddfbee;--border:#c9dcf6}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#e3f8ff,#f3eaff 58%,#fff8e5);color:var(--ink);font:600 17px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,select{font:inherit}button{cursor:pointer;touch-action:manipulation}button:disabled{opacity:.35;cursor:not-allowed}button:focus-visible,select:focus-visible{outline:3px solid #f5a400;outline-offset:3px}
+.shell{max-width:1120px;margin:auto;padding:14px 14px 90px}.hero{background:linear-gradient(105deg,#255dbf,#7455bb);border-radius:24px;padding:14px 20px 19px;color:white;box-shadow:0 10px 24px #3157a72b}
+.back{color:#e2f3ff;text-decoration:none;font-size:14px}.hero h1{font-size:clamp(25px,4.5vw,39px);margin:5px 0 0;line-height:1.15}.hero p{margin:5px 0 0;font-size:15px;font-weight:550;color:#e8eeff}
+.tools{display:flex;align-items:end;gap:9px;flex-wrap:wrap;background:#fff;border:2px solid #d7e7fa;border-radius:18px;padding:10px 12px;margin:12px 0;box-shadow:0 4px 14px #1e47740d}
+.tools label{display:grid;gap:3px;font-size:12px;font-weight:800;color:#40618d}.tools select{border:1px solid #c6d9f6;border-radius:11px;background:#f9fcff;padding:9px;color:#193862;min-height:43px}
+.btn{border:0;border-radius:13px;min-height:44px;padding:9px 15px;color:white;background:var(--blue);font-weight:850;box-shadow:0 3px 0 #194488}.btn.secondary{background:#ecedff;color:#3b49a2;box-shadow:0 3px 0 #d1d4f0}.btn.green{background:#18835e;box-shadow:0 3px 0 #0c5940}.btn.pink{background:#e44986;box-shadow:0 3px 0 #a72e61}.btn.ghost{background:#f1f6fc;color:#31598e;box-shadow:none;border:1px solid #cfe0fa}
+#status{font-size:13px;min-height:21px;color:#4f6688;flex:1 1 210px;align-self:center}
+.stage{background:white;border:2px solid #d4e4fb;border-radius:24px;padding:12px;box-shadow:0 10px 28px #2956a617}
+.stage-head{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:1px 4px 10px}.stage-head strong{font-size:15px}.stage-head .hint{font-size:13px;color:#687b97}
+.art{border:3px solid #bad8ff;border-radius:20px;overflow:hidden;background:#f2f8ff;position:relative;max-width:900px;margin:auto;display:flex;align-items:center;justify-content:center}
+.art img{display:block;width:100%;height:auto;max-height:58dvh;object-fit:contain}.art img.vocab-image{max-height:42dvh}.art .zoom{position:absolute;top:12px;right:12px;min-height:42px;border:0;border-radius:20px;background:#fffffff0;color:#224d90;padding:8px 12px;font-weight:800}
+.story-text{text-align:center;font-size:clamp(21px,3.2vw,32px);font-weight:850;line-height:1.6;max-width:910px;margin:11px auto 6px;min-height:46px}
+.word{background:var(--gold);color:#17243e;border:0;border-radius:11px;padding:1px 7px;margin:0 2px;font-weight:900;box-shadow:0 2px 0 #e7c72b}
+.story-text .word{font-size:inherit}.word:focus-visible{outline:3px solid #e26d00}
+.subline{text-align:center;color:#687a94;font-size:13px;margin:0 0 8px}
+.nav{display:grid;grid-template-columns:1fr 1.18fr 1fr;gap:8px;max-width:900px;margin:10px auto 0}.nav .btn{min-width:0;padding:10px 4px;font-size:clamp(13px,2.5vw,17px)}
+.dots{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:12px auto 0}.dot{min-width:37px;height:37px;border:2px solid #b6cbea;border-radius:12px;background:#f1f7ff;color:#366097;font-weight:900}.dot.active{background:#326cdb;color:white;border-color:#326cdb}.dot.done{background:#d9f9e5;color:#126f48;border-color:#81caa4}
+.foot-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:11px}
+.vocab-strip{padding:16px;background:#fff;border:2px solid #eed9f4;border-radius:22px;margin-top:16px}
+.section-title{margin:0 0 9px;font-size:21px}.vocab-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.vocab-card{background:#f8f5ff;border:2px solid #e7d9fa;color:#302157;border-radius:15px;padding:12px 7px;min-height:83px;text-align:center;font-weight:850}.vocab-card b{display:block;font-size:clamp(17px,2.2vw,24px);background:#fff071;border-radius:10px;padding:3px 4px}.vocab-card small{display:block;color:#67528b;margin-top:7px}
+.quiz{padding:16px;background:white;border:2px solid #d4e4fb;border-radius:20px;margin-top:16px}.quiz p{margin:6px 0 12px}.quiz-options{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.quiz-options button{border:2px solid #bcd3f2;background:#f2f8ff;color:#1c477d;border-radius:13px;padding:12px 8px;font-size:18px;font-weight:800}.quiz-options button.correct{background:#d8ffe9;border-color:#13a55f}.quiz-options button.wrong{background:#ffe5e7;border-color:#df4457}.quiz-options button:disabled{opacity:1}.quiz-response{font-size:17px;font-weight:900;min-height:25px;margin-top:12px}.quiz-end{font-size:25px;color:#116a4e;font-weight:900}.quiet{color:#71809c;font-size:12px;font-weight:600}
+.dialog-bg{position:fixed;inset:0;background:#0e1b42d9;display:none;align-items:center;justify-content:center;padding:14px;z-index:80}.dialog-bg.show{display:flex}
+.dialog{max-height:94dvh;overflow:auto;width:min(100%,620px);padding:19px;background:#fff;border-radius:22px;box-shadow:0 16px 50px #0d153e70;text-align:center;position:relative}
+.dialog h2{font-size:clamp(28px,5vw,43px);margin:6px 0 12px}.dialog .arabic{font-size:26px;font-weight:850;color:#3552a0;direction:rtl}.dialog .sample{font-size:20px;margin:14px 0}.dialog .word{font-size:inherit}
+.dialog .close{position:absolute;top:8px;right:9px;padding:8px 13px}
+.zoom-dialog{width:min(100%,1100px);padding:12px}.zoom-dialog img{width:100%;max-height:82dvh;object-fit:contain;border-radius:12px}
+@media(max-width:650px){.shell{padding:9px 8px 70px}.hero{padding:13px}.tools{gap:7px}.tools label{flex:1 1 115px}.tools select{width:100%}.tools .btn{flex:1 1 auto}.stage{padding:8px}.art img{max-height:51dvh}.vocab-grid{grid-template-columns:repeat(2,1fr)}.quiz-options{grid-template-columns:repeat(2,1fr)}.stage-head .hint{display:none}}
+@media(prefers-reduced-motion:no-preference){.btn:active,.vocab-card:active{transform:scale(.97)}} 
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="hero"><a href="./" class="back">← Experimental Lab</a><h1>🌞 Tom's Busy Day</h1><p>9 picture slides • Listen • Read • Play • Learn ⭐</p></header>
+<div class="tools">
+<label>🎤 Teacher's voice<select id="voice"><option value="bella">Bella</option><option value="heart">Heart</option><option value="sarah">Sarah</option><option value="nicole">Nicole</option><option value="sky">Sky</option></select></label>
+<label>🐢 Reading speed<select id="speed"><option value="0.75">Slow</option><option value="1" selected>Normal</option><option value="1.15">Fast</option></select></label>
+<button class="btn secondary" id="test">🔊 Test voice</button>
+<button class="btn ghost" id="fullscreen">⛶ Full screen</button>
+<div id="status" role="status" aria-live="polite"></div>
+</div>
+<section class="stage" aria-label="Illustrated English reading story">
+ <div class="stage-head"><strong id="slide-title">Scene 1 of 9</strong><span class="hint">Tap a yellow word to learn it ✨</span><strong id="stars">⭐ 0 / 8</strong></div>
+ <div class="art"><img id="scene-img" src="01_Tom_Wakes_Up.png" alt="Tom wakes up early"><button class="zoom" id="zoom" aria-label="Zoom picture">🔎 Zoom</button></div>
+ <div class="story-text" id="line"></div>
+ <p class="subline" id="instruction">Tap a yellow word for meaning and pronunciation</p>
+ <div class="nav"><button class="btn secondary" id="prev">⬅ Previous</button><button class="btn" id="read">🔊 Read to me</button><button class="btn secondary" id="next">Next ➡</button></div>
+ <div class="foot-actions"><button class="btn green" id="mark">☆ I practiced</button><button class="btn ghost" id="repeat">🔁 Repeat</button></div>
+ <div class="dots" id="dots" aria-label="Jump to a story slide"></div>
+</section>
+<section class="vocab-strip"><h2 class="section-title">🌟 Key Words — Tap to Learn</h2><div class="vocab-grid" id="vocab"></div></section>
+<section class="quiz" id="quiz"><h2 class="section-title">🏆 Mini Challenge</h2><div id="quiz-content"></div></section>
+<p class="quiet">Audio: free Kokoro AI MP3 recordings. No paid ElevenLabs service or browser-generated speech. Progress is saved on this device.</p>
+</main>
+<div class="dialog-bg" id="word-dialog" role="dialog" aria-modal="true" aria-labelledby="word-title">
+ <div class="dialog"><button class="btn ghost close" id="close-word">✕</button><h2 id="word-title"></h2><div class="arabic" id="word-meaning" lang="ar"></div><p class="sample" id="word-example"></p><button class="btn" id="speak-word">🔊 Listen</button><p class="quiet">Listen, say it, and remember! ⭐</p></div>
+</div>
+<div class="dialog-bg" id="zoom-dialog" role="dialog" aria-modal="true" aria-label="Zoomed picture">
+ <div class="dialog zoom-dialog"><button class="btn ghost close" id="close-zoom">✕</button><img id="zoom-img" alt="Full size story picture"></div>
+</div>
+<script>
+"use strict";
+const slides=[
+ {image:"01_Tom_Wakes_Up.png",text:"Tom always wakes up early.",alt:"Tom wakes up at six in the morning."},
+ {image:"02_Brushes_Teeth.png",text:"He always brushes his teeth.",alt:"Tom brushes his teeth."},
+ {image:"03_Goes_to_School.png",text:"He usually goes to school with his dad.",alt:"Tom and his father at school."},
+ {image:"04_In_Class.png",text:"Tom usually listens in class.",alt:"Tom enjoys learning in his classroom."},
+ {image:"05_School_Lunch.png",text:"He sometimes eats fruit at school.",alt:"Tom eats an apple at school."},
+ {image:"06_Homework.png",text:"After school, he usually does his homework.",alt:"Tom does his homework at home."},
+ {image:"07_Football.png",text:"He sometimes plays football with his friends.",alt:"Tom plays football with his friends."},
+ {image:"08_Bedtime.png",text:"Tom never watches TV at night. He sleeps early and feels good.",alt:"Tom sleeps at night; TV is off."},
+ {image:"09_Key_Words.png",text:"",alt:"Illustrated vocabulary chart: always, usually, sometimes, never."}
+];
+const dictionary={
+ always:{meaning:"دائمًا",example:"I always brush my teeth.",meaningEn:"Every time"},
+ usually:{meaning:"عادةً",example:"I usually go to school.",meaningEn:"Most of the time"},
+ sometimes:{meaning:"أحيانًا",example:"I sometimes play football.",meaningEn:"On some days"},
+ never:{meaning:"أبدًا",example:"I never watch TV at night.",meaningEn:"Not at any time"}
+};
+const questions=[
+ {q:"I brush my teeth every day. I ____ brush my teeth.",a:"always",options:["never","always","sometimes","usually"]},
+ {q:"I go to school on most days. I ____ go to school.",a:"usually",options:["never","sometimes","usually","always"]},
+ {q:"I play football on some days. I ____ play football.",a:"sometimes",options:["always","never","usually","sometimes"]},
+ {q:"I do not watch TV at night. I ____ watch TV at night.",a:"never",options:["usually","never","always","sometimes"]},
+ {q:"Tom ____ wakes up early.",a:"always",options:["sometimes","never","always","usually"]},
+ {q:"Tom ____ plays football with his friends.",a:"sometimes",options:["usually","always","never","sometimes"]}
+];
+const $=id=>document.getElementById(id);
+const saveKey="kids-learning-tom-busy-day-v1";
+let state={done:[],quiz:{},voice:"bella",speed:"1"};
+try{const stored=JSON.parse(localStorage.getItem(saveKey));if(stored&&typeof stored==="object"){state={...state,...stored};}}catch{}
+if(!Array.isArray(state.done))state.done=[];
+if(!state.quiz||typeof state.quiz!=="object")state.quiz={};
+if(!["bella","heart","sarah","nicole","sky"].includes(state.voice))state.voice="bella";
+if(!["0.75","1","1.15"].includes(state.speed))state.speed="1";
+$("voice").value=state.voice;$("speed").value=state.speed;
+let current=0,playing=null,activeWord=null;
+function save(){try{localStorage.setItem(saveKey,JSON.stringify(state))}catch{}}
+function status(message){$("status").textContent=message}
+function stop(){if(playing){playing.pause();playing.currentTime=0;playing=null}}
+function audioFile(name){return "audio/tom/"+state.voice+"/"+name+".mp3"}
+function play(name){stop();const item=new Audio(audioFile(name));playing=item;item.playbackRate=Number(state.speed);status("🔄 Loading "+state.voice+"…");item.onplaying=()=>status("🔊 Listen and repeat!");item.onended=()=>{if(playing===item){playing=null;status("⭐ Your turn to read!")}};item.onerror=()=>{if(playing===item){playing=null;status("Audio recording is not available yet. Try again later.")}};item.play().catch(()=>{if(playing===item){playing=null;status("Can't play this recording yet.")}})}
+function textWithWords(target,text){target.replaceChildren();const bits=text.split(/\b(always|usually|sometimes|never)\b/gi);bits.forEach(bit=>{const key=bit.toLowerCase();if(dictionary[key]){const b=document.createElement("button");b.className="word";b.type="button";b.textContent=bit;b.title="Learn the word "+bit;b.onclick=()=>showWord(key);target.append(b)}else{target.append(document.createTextNode(bit))}})}
+function slide(n){stop();current=Math.max(0,Math.min(8,n));const scene=slides[current];$("scene-img").src=scene.image;$("scene-img").alt=scene.alt;$("scene-img").classList.toggle("vocab-image",current===8);$("slide-title").textContent=current===8?"⭐ Key Words — Slide 9 of 9":"📖 Scene "+(current+1)+" of 9";$("prev").disabled=current===0;$("next").disabled=current===8;$("read").textContent=current===8?"🔊 Listen to words":"🔊 Read to me";$("mark").hidden=current===8;$("repeat").hidden=current===8;$("instruction").hidden=current===8;
+ if(current===8){$("line").innerHTML="";const p=document.createElement("p");p.textContent="Always • Usually • Sometimes • Never";p.style.margin="6px 0";$("line").append(p)}
+ else textWithWords($("line"),scene.text);
+ $("stars").textContent="⭐ "+state.done.length+" / 8";
+ const dots=$("dots");dots.replaceChildren();slides.forEach((s,i)=>{const b=document.createElement("button");b.className="dot"+(i===current?" active":"")+(state.done.includes(i)?" done":"");b.textContent=String(i+1);b.title="Go to scene "+(i+1);b.setAttribute("aria-label","Open slide "+(i+1));b.setAttribute("aria-current",i===current?"step":"false");b.onclick=()=>slide(i);dots.append(b)});
+ $("mark").textContent=state.done.includes(current)?"✅ Practiced!":"☆ I practiced";status("");
+}
+function showWord(word){activeWord=word;const entry=dictionary[word];$("word-title").textContent=word[0].toUpperCase()+word.slice(1);$("word-meaning").textContent=entry.meaning+" — "+entry.meaningEn;textWithWords($("word-example"),entry.example);$("word-dialog").classList.add("show");$("close-word").focus()}
+function closeDialogs(){stop();$("word-dialog").classList.remove("show");$("zoom-dialog").classList.remove("show")}
+function showZoom(){$("zoom-img").src=slides[current].image;$("zoom-img").alt=slides[current].alt;$("zoom-dialog").classList.add("show");$("close-zoom").focus()}
+$("close-word").onclick=closeDialogs;$("close-zoom").onclick=closeDialogs;
+$("word-dialog").onclick=e=>{if(e.target===$("word-dialog"))closeDialogs()};
+$("zoom-dialog").onclick=e=>{if(e.target===$("zoom-dialog"))closeDialogs()};
+$("speak-word").onclick=()=>{if(activeWord)play("word-"+activeWord)};
+$("prev").onclick=()=>slide(current-1);
+$("next").onclick=()=>slide(current+1);
+$("read").onclick=()=>{if(current===8){showWord("always");play("word-always")}else play("scene-"+String(current+1).padStart(2,"0"))};
+$("repeat").onclick=()=>$("read").click();
+$("mark").onclick=()=>{if(current>=8)return;state.done=[...new Set([...state.done,current])].sort((a,b)=>a-b);save();slide(current);if(current<7)status("🌟 Great! Tap Next when ready.");else status("🏆 Story complete! Try the mini challenge!")};
+$("zoom").onclick=showZoom;
+$("voice").onchange=e=>{state.voice=e.target.value;save();stop();status("🎤 "+state.voice+" selected. Tap Test voice.")};
+$("speed").onchange=e=>{state.speed=e.target.value;save();stop();status("🐢 Reading speed updated.")};
+$("test").onclick=()=>play("scene-01");
+$("fullscreen").onclick=()=>{if(document.fullscreenElement){document.exitFullscreen().catch(()=>{});}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>status("Full-screen mode is not available on this device."))}else status("Try Add to Home Screen for a bigger view.")};
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDialogs();if($("word-dialog").classList.contains("show")||$("zoom-dialog").classList.contains("show"))return;if(e.key==="ArrowRight")slide(current+1);if(e.key==="ArrowLeft")slide(current-1)});
+let touchX=null;const art=document.querySelector(".art");art.addEventListener("touchstart",e=>{touchX=e.touches[0].clientX},{passive:true});art.addEventListener("touchend",e=>{if(touchX===null)return;const diff=e.changedTouches[0].clientX-touchX;if(Math.abs(diff)>65)slide(current+(diff<0?1:-1));touchX=null},{passive:true});
+Object.entries(dictionary).forEach(([word,entry])=>{const b=document.createElement("button");b.className="vocab-card";b.innerHTML="<b>"+word+"</b><small>"+entry.meaningEn+" • 🔊</small>";b.onclick=()=>showWord(word);$("vocab").append(b)});
+let qi=0;function renderQuiz(){const holder=$("quiz-content");holder.replaceChildren();if(qi>=questions.length){const score=questions.filter((q,i)=>state.quiz[i]===q.a).length;const p=document.createElement("div");p.className="quiz-end";p.textContent=(score===questions.length?"🏆 Perfect! ":"🌟 Well done! ")+score+" / "+questions.length;const prompt=document.createElement("p");prompt.textContent=score===questions.length?"You are a Word Star! ⭐":"Try again to earn all your stars!";const restart=document.createElement("button");restart.className="btn pink";restart.textContent="↻ Play again";restart.onclick=()=>{qi=0;state.quiz={};save();renderQuiz()};holder.append(p,prompt,restart);return}
+const q=questions[qi];const tag=document.createElement("div");tag.className="quiet";tag.textContent="Question "+(qi+1)+" of "+questions.length;const p=document.createElement("p");p.style.fontSize="clamp(19px,3vw,24px)";p.style.fontWeight="850";p.textContent=q.q;const opts=document.createElement("div");opts.className="quiz-options";const feedback=document.createElement("div");feedback.className="quiz-response";const next=document.createElement("button");next.className="btn green";next.textContent=qi===questions.length-1?"See my score ➡":"Next question ➡";next.hidden=true;next.onclick=()=>{qi++;renderQuiz()};q.options.forEach(opt=>{const b=document.createElement("button");b.textContent=opt;b.onclick=()=>{if(state.quiz[qi]!==undefined)return;state.quiz[qi]=opt;save();[...opts.children].forEach(btn=>{btn.disabled=true;if(btn.textContent===q.a)btn.classList.add("correct");if(btn===b&&opt!==q.a)btn.classList.add("wrong")});feedback.textContent=opt===q.a?"✅ Correct! Great reading!":"💡 The answer is: "+q.a;next.hidden=false};opts.append(b)});holder.append(tag,p,opts,feedback,next);
+ if(state.quiz[qi]!==undefined){[...opts.children].forEach(btn=>{btn.disabled=true;if(btn.textContent===q.a)btn.classList.add("correct");if(btn.textContent===state.quiz[qi]&&btn.textContent!==q.a)btn.classList.add("wrong")});feedback.textContent=state.quiz[qi]===q.a?"✅ Correct!":"💡 The answer is: "+q.a;next.hidden=false}}
+renderQuiz();slide(0);
+</script>
+</body>
+</html>
