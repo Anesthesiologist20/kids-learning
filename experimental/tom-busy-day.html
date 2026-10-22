@@ -126,7 +126,8 @@ $("zoom-dialog").onclick=e=>{if(e.target===$("zoom-dialog"))closeDialogs()};
 $("speak-word").onclick=()=>{if(activeWord)play("word-"+activeWord)};
 $("prev").onclick=()=>slide(current-1);
 $("next").onclick=()=>slide(current+1);
-$("read").onclick=()=>{if(current===8){showWord("always");play("word-always")}else play("scene-"+String(current+1).padStart(2,"0"))};
+function playAllWords(){const words=["always","usually","sometimes","never"];let at=0;function nextWord(){stop();if(at>=words.length){status("⭐ All four words completed!");return}const key=words[at++];const a=new Audio(audioFile("word-"+key));playing=a;a.playbackRate=Number(state.speed);status("🔊 "+key+" — listen and repeat");a.onended=()=>{if(playing===a)nextWord()};a.onerror=()=>{if(playing===a){playing=null;status("Word recording not available yet.")}};a.play().catch(()=>status("Recording not available yet."))}nextWord()}
+$("read").onclick=()=>{if(current===8)playAllWords();else play("scene-"+String(current+1).padStart(2,"0"))};
 $("repeat").onclick=()=>$("read").click();
 $("mark").onclick=()=>{if(current>=8)return;state.done=[...new Set([...state.done,current])].sort((a,b)=>a-b);save();slide(current);if(current<7)status("🌟 Great! Tap Next when ready.");else status("🏆 Story complete! Try the mini challenge!")};
 $("zoom").onclick=showZoom;
