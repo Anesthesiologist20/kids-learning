@@ -113,6 +113,11 @@ function renderCaption(){
 function capitalizeWord(w){return w.charAt(0).toUpperCase()+w.slice(1);}
 let pictureTicket=0;
 function cleanPicture(index){return Promise.resolve(scenes[index].img);}
+function illustrationFallback(sc){
+ const safe=sc.name.replace(/[&<>"]/g,"");
+ const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 990"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#bfeeff"/><stop offset="1" stop-color="#ffe5aa"/></linearGradient></defs><rect width="1120" height="990" fill="url(#g)"/><circle cx="965" cy="138" r="85" fill="#fff6ad"/><circle cx="175" cy="210" r="80" fill="#ffffff65"/><text x="560" y="490" font-size="260" dominant-baseline="middle" text-anchor="middle">'+sc.emoji+'</text><text x="560" y="725" font-size="65" font-family="Arial,sans-serif" font-weight="bold" fill="#25466a" text-anchor="middle">'+safe+'</text></svg>';
+ return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+}
 
 function draw(){
  const sc=scenes[scene],ticket=++pictureTicket;
@@ -127,6 +132,8 @@ function draw(){
   art.alt=sc.name+" illustration without the printed sentence banner";
   cleanPicture(scene).then(url=>{
    if(ticket!==pictureTicket)return;
+   art.onerror=()=>{art.onerror=null;const fallback=illustrationFallback(sc);art.src=fallback;bg.src=fallback;status("📸 Upload the 12 pictures to see the full story.");};
+   bg.onerror=()=>{bg.onerror=null;bg.src=illustrationFallback(sc);};
    art.src=url;bg.src=url;art.style.opacity="1";
   });
  }
@@ -395,6 +402,8 @@ function showSheet(kind="more",detail){
  }
 }
 
+const coverPhoto=document.querySelector(".cover img");
+coverPhoto.addEventListener("error",()=>{coverPhoto.onerror=null;coverPhoto.src=illustrationFallback(scenes[0]);});
 $("home-voice").value=s.voice;$("home-speed").value=s.speed;
 $("home-voice").addEventListener("change",e=>{s.voice=e.target.value;store()});
 $("home-speed").addEventListener("change",e=>{s.speed=e.target.value;store()});
