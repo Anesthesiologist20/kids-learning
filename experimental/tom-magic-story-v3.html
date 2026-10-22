@@ -374,7 +374,26 @@ $("magic-repeat").onclick=()=>$("read").click();
 $("magic-sound").onclick=()=>{state.muteCelebration=!state.muteCelebration;save();magicSync()};
 $("magic-voice").onchange=e=>{$("voice").value=e.target.value;$("voice").dispatchEvent(new Event("change"));magicSync()};
 $("magic-speed").onchange=e=>{$("speed").value=e.target.value;$("speed").dispatchEvent(new Event("change"));magicSync()};
-$("fullscreen").onclick=showZoom;
+let magicNativeFullscreen=false;
+function magicImmersive(){
+ showZoom();
+ const host=$("zoom-dialog");
+ if(host.requestFullscreen && !document.fullscreenElement){
+  host.requestFullscreen().then(()=>{magicNativeFullscreen=true}).catch(()=>{});
+ }
+}
+$("fullscreen").onclick=magicImmersive;
+$("zoom").onclick=magicImmersive;
+$("close-zoom").addEventListener("click",()=>{
+ if(document.fullscreenElement=== $("zoom-dialog"))document.exitFullscreen().catch(()=>{});
+ magicNativeFullscreen=false;
+});
+document.addEventListener("fullscreenchange",()=>{
+ if(!document.fullscreenElement && magicNativeFullscreen){
+  magicNativeFullscreen=false;
+  if($("zoom-dialog").classList.contains("show"))closeZoom();
+ }
+});
 let magicTouch=null;
 $("zoom-img").addEventListener("touchstart",e=>{if(e.touches.length===1)magicTouch=e.touches[0].clientX},{passive:true});
 $("zoom-img").addEventListener("touchend",e=>{if(magicTouch===null)return;const delta=e.changedTouches[0].clientX-magicTouch;magicTouch=null;if(Math.abs(delta)>70)slide(current+(delta<0?1:-1))},{passive:true});
