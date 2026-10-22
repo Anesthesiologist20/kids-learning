@@ -1,0 +1,14 @@
+/* Tom's Happy Weekend — independent scene-specific style */
+.intro{background:linear-gradient(105deg,#095b82,#328f9a 50%,#e0a358)}
+.mode.selected{background:#dff9ec;border-color:#57b990;box-shadow:0 0 0 2px #baf0d4 inset}
+.start-card{border-color:#c7ead7}
+.cover{background:linear-gradient(130deg,#dff4fd,#fff3c7)}
+.scene-art{object-fit:contain}
+.reader{background:#07283c}
+.scene-backdrop{filter:blur(30px) brightness(.62) saturate(1.1)}
+.caption{background:#062e42c7}
+.caption .key-word{background:#ffe18b}
+.quiz-inner{background:linear-gradient(130deg,#fffdf4,#dffbf0)}
+.sheet{background:#f4fffbf7}
+.guide{border-color:#bde5d2}
+@media(max-height:520px) and (orientation:landscape){.scene-art{max-height:100%}}
