@@ -56,7 +56,7 @@ finalActions.append(
  btn("btn secondary","📚 Review Words",()=>{stopAdventure(true);}),
  btn("btn secondary","🏅 My Badges",()=>{
   stopAdventure(true);
-  const b=$id("extra-main-map");if(b)b.scrollIntoView({block:"start",behavior:"smooth"});
+  const badgesButton=document.querySelector(".journey-header .btn.secondary");if(badgesButton)badgesButton.click();
  }));
 finale.append(trophy,finalTitle,finalMessage,finalActions);media.append(finale);
 let active=false,phase="off",resumePhase="reading",token=0,timeout=null,internalNavigation=false;
@@ -98,7 +98,7 @@ function startAdventure(startAt){
  if(!zoom.classList.contains("show"))magicImmersive();
  else frame.classList.remove("focus-mode");
  hideOverlays();
- const scene=Number.isInteger(startAt)?startAt:(current===8?0:current);
+ const scene=Number.isInteger(startAt)?startAt:0;
  runStartedAt=scene;runAnswered=0;runFirstTry=0;incorrectScenes=new Set();
  active=true;phase="reading";resumePhase="reading";
  navigate(Math.max(0,Math.min(7,scene)));updateUi();
@@ -140,7 +140,7 @@ function shuffle(array){
 function presentQuestion(){
  if(!active||current>7||phase==="finished")return;
  cancelPending();phase="question";resumePhase="question";
- card.hidden=false;finale.hidden=true;updateUi();
+ card.hidden=false;card.classList.remove("auto-question-paused");finale.hidden=true;updateUi();
  setMessage("🎯 Choose the correct answer to win your star!");
  const prompt=prompts[current];
  question.textContent=prompt.q;feedback.textContent="";
