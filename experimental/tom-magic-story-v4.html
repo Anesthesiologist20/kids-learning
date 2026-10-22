@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#0c1932">
+<meta name="description" content="Tom’s Magic Story V4, a cinematic English reading adventure for grade 2.">
+<title>Tom's Magic Story V4 · Cinema Reader</title>
+<link rel="stylesheet" href="tom-magic-story-v4.css?v=1">
+<script src="tom-magic-story-v4.js?v=1" defer></script>
+</head>
+<body>
+<main class="home">
+  <header class="intro">
+    <a class="back" href="./">← Experimental Lab</a>
+    <span class="tag">NEW EXPERIMENT · V4 · GRADE 2</span>
+    <h1>✨ Tom’s Magic Story</h1>
+    <p>A big-picture adventure. Listen, explore and collect stars.</p>
+  </header>
+  <section class="start-card">
+    <div class="cover"><img src="01_Tom_Wakes_Up.png" alt="Tom starting his day"></div>
+    <div class="start-info">
+      <h2>🎬 Cinema Reading</h2>
+      <p>9 illustrated slides · 5 AI teachers · 3 speeds</p>
+      <div class="mode-grid" role="group" aria-label="Choose reading mode">
+        <button class="mode selected" data-start="manual">📖 Explore Myself <small>Tap to read and navigate</small></button>
+        <button class="mode" data-start="auto">🚀 Auto Adventure <small>Listen · Answer · Next</small></button>
+        <button class="mode" data-start="listen">🎧 Listen Only <small>Relax and hear the story</small></button>
+        <button class="mode" data-start="self">🌱 Read Myself <small>Read without auto audio</small></button>
+      </div>
+      <div class="settings">
+        <label>🎤 Teacher <select id="home-voice"><option value="bella">Bella</option><option value="heart">Heart</option><option value="sarah">Sarah</option><option value="nicole">Nicole</option><option value="sky">Sky</option></select></label>
+        <label>🐢 Speed <select id="home-speed"><option value="0.75">Slow</option><option value="1">Normal</option><option value="1.15">Fast</option></select></label>
+      </div>
+      <div class="start-bottom"><button class="primary" id="start-btn">▶ Start Reading</button><span id="home-progress">⭐ 0/8 practiced</span></div>
+      <p class="micro">The original story and V3 are untouched. Progress in V4 saves on this device.</p>
+    </div>
+  </section>
+  <section class="guide">
+    <h2>🪄 Touch controls</h2>
+    <div class="guide-grid"><div>⬅ <strong>Left</strong><small>Previous</small></div><div>🔊 <strong>Middle</strong><small>Read / Pause</small></div><div>➡ <strong>Right</strong><small>Next</small></div></div>
+    <p>Tap <strong>Aa</strong> to change between hidden words, full sentences and key words.</p>
+  </section>
+</main>
+<section id="reader" class="reader" hidden aria-label="Immersive story reader" aria-modal="true" role="dialog">
+  <div class="canvas" id="canvas">
+    <img class="scene-backdrop" id="scene-bg" alt="" aria-hidden="true">
+    <img class="scene-art" id="scene-art" alt="Story picture">
+    <div class="touch-areas" aria-label="Picture touch controls">
+      <button class="touch touch-left" id="touch-left" aria-label="Previous scene"></button>
+      <button class="touch touch-middle" id="touch-middle" aria-label="Play or pause reading"></button>
+      <button class="touch touch-right" id="touch-right" aria-label="Next scene"></button>
+    </div>
+    <div class="tap-echo" id="tap-echo" aria-hidden="true"></div>
+    <div class="celebrate" id="celebrate" aria-hidden="true"></div>
+  </div>
+  <header class="topbar">
+    <button class="round" id="close" aria-label="Close reader">✕</button>
+    <button class="round" id="text-mode" aria-label="Change text visibility">Aa</button>
+    <button class="round" id="voice-toggle" aria-label="Choose a teacher's voice">🎤</button>
+    <div class="scene-progress" aria-label="Story progress"><span id="scene-number">1 / 9</span><div id="dots" class="dots"></div></div>
+    <span class="stars" id="stars" aria-label="Earned stars">⭐ 0</span>
+    <button class="round" id="more" aria-label="More controls">⋯</button>
+  </header>
+  <div class="bottom-hud">
+    <div id="caption" class="caption" hidden></div>
+    <p id="status" class="status" role="status" aria-live="polite">Tap the middle to listen.</p>
+  </div>
+  <div id="message" class="message" aria-live="polite" hidden></div>
+  <div id="sheet" class="sheet" hidden aria-label="Reader options">
+    <div class="sheet-top"><h2 id="sheet-title">Options</h2><button class="round" id="sheet-close" aria-label="Close options">✕</button></div>
+    <div id="sheet-content"></div>
+  </div>
+  <section id="quiz" class="quiz-overlay" hidden aria-label="Quick challenge">
+    <div class="quiz-inner">
+      <span class="eyebrow">🎯 QUICK CHALLENGE</span>
+      <h2 id="question"></h2>
+      <div class="answers" id="answers"></div>
+      <p id="feedback" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+  <section id="complete" class="complete" hidden aria-label="Adventure completed">
+    <div class="complete-inner"><div class="trophy">🏆✨</div><h2>Super Reader!</h2><p id="summary"></p>
+      <div class="complete-buttons"><button class="primary" id="again">↻ Play Again</button><button class="secondary" id="review">🚩 Review Flags</button><button class="secondary" id="done">Close</button></div>
+    </div>
+  </section>
+</section>
+</body>
+</html>
