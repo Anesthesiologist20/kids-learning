@@ -95,10 +95,42 @@ function renderCaption(){
  for(const bit of bits){if(vocab[bit.toLowerCase()])cap.append(keywordButton(bit));else cap.append(document.createTextNode(bit));}
 }
 function capitalizeWord(w){return w.charAt(0).toUpperCase()+w.slice(1);}
+const cropCache=new Map();
+let pictureTicket=0;
+function cleanPicture(index){
+ if(cropCache.has(index))return cropCache.get(index);
+ const promise=new Promise((resolve)=>{
+  const src=new Image();src.decoding="async";
+  src.onload=()=>{
+   try{
+    const canvas=document.createElement("canvas");
+    canvas.width=src.naturalWidth;canvas.height=Math.round(src.naturalHeight*0.75);
+    const ctx=canvas.getContext("2d");
+    ctx.drawImage(src,0,0,src.naturalWidth,canvas.height,0,0,canvas.width,canvas.height);
+    resolve(canvas.toDataURL("image/webp",.90));
+   }catch{resolve(scenes[index].img);}
+  };
+  src.onerror=()=>resolve(scenes[index].img);
+  src.src=scenes[index].img;
+ });
+ cropCache.set(index,promise);return promise;
+}
 function draw(){
- const sc=scenes[scene];
- $("scene-art").src=sc.img;$("scene-art").alt=sc.name+" illustration";
- $("scene-bg").src=sc.img;
+ const sc=scenes[scene],ticket=++pictureTicket;
+ const art=$("scene-art"),bg=$("scene-bg"),wordPanel=$("vocab-stage");
+ wordPanel.hidden=scene!==8;
+ art.hidden=scene===8;
+ if(scene===8){
+  art.src="";
+  cleanPicture(0).then(url=>{if(ticket===pictureTicket)bg.src=url});
+ }else{
+  art.style.opacity="0";
+  art.alt=sc.name+" illustration without the printed sentence banner";
+  cleanPicture(scene).then(url=>{
+   if(ticket!==pictureTicket)return;
+   art.src=url;bg.src=url;art.style.opacity="1";
+  });
+ }
  $("scene-number").textContent=(scene+1)+" / 9";
  $("touch-left").disabled=scene===0;
  $("touch-right").disabled=scene===8;
@@ -363,6 +395,16 @@ function showSheet(kind="more",detail){
   });root.append(grid);
  }
 }
+const vocabCards=$("vocab-four");
+["always","usually","sometimes","never"].forEach(key=>{
+ const b=document.createElement("button");b.type="button";b.className="vocab-tile";
+ const english=document.createElement("b");english.textContent=cap(key);
+ const arabic=document.createElement("span");arabic.lang="ar";arabic.textContent=vocab[key].arabic;
+ const play=document.createElement("small");play.textContent="🔊 Listen & Learn";
+ b.append(english,arabic,play);
+ b.addEventListener("click",()=>{showSheet("word",key);playAudio("word-"+key)});
+ vocabCards.append(b);
+});
 $("home-voice").value=s.voice;$("home-speed").value=s.speed;
 $("home-voice").addEventListener("change",e=>{s.voice=e.target.value;store()});
 $("home-speed").addEventListener("change",e=>{s.speed=e.target.value;store()});
