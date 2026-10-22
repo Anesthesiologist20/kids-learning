@@ -33,7 +33,16 @@ button,select{font:inherit}button{cursor:pointer;touch-action:manipulation}butto
 .dialog{max-height:94dvh;overflow:auto;width:min(100%,620px);padding:19px;background:#fff;border-radius:22px;box-shadow:0 16px 50px #0d153e70;text-align:center;position:relative}
 .dialog h2{font-size:clamp(28px,5vw,43px);margin:6px 0 12px}.dialog .arabic{font-size:26px;font-weight:850;color:#3552a0;direction:rtl}.dialog .sample{font-size:20px;margin:14px 0}.dialog .word{font-size:inherit}
 .dialog .close{position:absolute;top:8px;right:9px;padding:8px 13px}
-.zoom-dialog{width:min(100%,1100px);padding:12px}.zoom-dialog img{width:100%;max-height:82dvh;object-fit:contain;border-radius:12px}
+.zoom-dialog{width:min(100%,1100px);height:95dvh;max-height:950px;min-height:0;overflow:hidden;padding:10px;display:flex;flex-direction:column;gap:8px}
+.zoom-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 3px;flex:0 0 auto}
+.zoom-head strong{font-size:15px}.zoom-dialog .close{position:static;min-height:42px}
+.zoom-media{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border-radius:14px;background:#f0f7ff}
+.zoom-dialog img{display:block;max-width:100%;width:auto;height:100%;max-height:100%;object-fit:contain;border-radius:12px}
+.zoom-caption{font-size:clamp(18px,3vw,29px);font-weight:850;line-height:1.35;flex:0 0 auto;margin:0;min-height:1.4em}
+.zoom-nav{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:7px;flex:0 0 auto}
+.zoom-nav .btn{font-size:clamp(13px,2.6vw,19px);min-width:0;padding:10px 5px}
+.zoom-status{min-height:22px;color:#4f6688;font-size:13px;font-weight:700;flex:0 0 auto}
+#word-dialog{z-index:95}
 @media(max-width:650px){.shell{padding:9px 8px 70px}.hero{padding:13px}.tools{gap:7px}.tools label{flex:1 1 115px}.tools select{width:100%}.tools .btn{flex:1 1 auto}.stage{padding:8px}.art img{max-height:51dvh}.vocab-grid{grid-template-columns:repeat(2,1fr)}.quiz-options{grid-template-columns:repeat(2,1fr)}.stage-head .hint{display:none}}
 @media(prefers-reduced-motion:no-preference){.btn:active,.vocab-card:active{transform:scale(.97)}} 
 </style>
@@ -65,7 +74,17 @@ button,select{font:inherit}button{cursor:pointer;touch-action:manipulation}butto
  <div class="dialog"><button class="btn ghost close" id="close-word">✕</button><h2 id="word-title"></h2><div class="arabic" id="word-meaning" lang="ar"></div><p class="sample" id="word-example"></p><button class="btn" id="speak-word">🔊 Listen</button><p class="quiet">Listen, say it, and remember! ⭐</p></div>
 </div>
 <div class="dialog-bg" id="zoom-dialog" role="dialog" aria-modal="true" aria-label="Zoomed picture">
- <div class="dialog zoom-dialog"><button class="btn ghost close" id="close-zoom">✕</button><img id="zoom-img" alt="Full size story picture"></div>
+ <div class="dialog zoom-dialog">
+  <div class="zoom-head"><strong id="zoom-count">Scene 1 / 9</strong><button class="btn ghost close" id="close-zoom" aria-label="Close zoom">✕ Close</button></div>
+  <div class="zoom-media"><img id="zoom-img" alt="Full size story picture"></div>
+  <p class="zoom-caption" id="zoom-line"></p>
+  <div class="zoom-nav" aria-label="Zoom reading controls">
+    <button class="btn secondary" id="zoom-prev">⬅ Previous</button>
+    <button class="btn" id="zoom-read">🔊 Read</button>
+    <button class="btn secondary" id="zoom-next">Next ➡</button>
+  </div>
+  <div class="zoom-status" id="zoom-status" role="status" aria-live="polite"></div>
+ </div>
 </div>
 <script>
 "use strict";
@@ -105,7 +124,7 @@ if(!["0.75","1","1.15"].includes(state.speed))state.speed="1";
 $("voice").value=state.voice;$("speed").value=state.speed;
 let current=0,playing=null,activeWord=null;
 function save(){try{localStorage.setItem(saveKey,JSON.stringify(state))}catch{}}
-function status(message){$("status").textContent=message}
+function status(message){$("status").textContent=message;if($("zoom-dialog").classList.contains("show"))$("zoom-status").textContent=message}
 function stop(){if(playing){playing.pause();playing.currentTime=0;playing=null}}
 function audioFile(name){return "audio/tom/"+state.voice+"/"+name+".mp3"}
 function play(name){stop();const item=new Audio(audioFile(name));playing=item;item.playbackRate=Number(state.speed);status("🔄 Loading "+state.voice+"…");item.onplaying=()=>status("🔊 Listen and repeat!");item.onended=()=>{if(playing===item){playing=null;status("⭐ Your turn to read!")}};item.onerror=()=>{if(playing===item){playing=null;status("Audio recording is not available yet. Try again later.")}};item.play().catch(()=>{if(playing===item){playing=null;status("Can't play this recording yet.")}})}
@@ -115,14 +134,29 @@ function slide(n){stop();current=Math.max(0,Math.min(8,n));const scene=slides[cu
  else textWithWords($("line"),scene.text);
  $("stars").textContent="⭐ "+state.done.length+" / 8";
  const dots=$("dots");dots.replaceChildren();slides.forEach((s,i)=>{const b=document.createElement("button");b.className="dot"+(i===current?" active":"")+(state.done.includes(i)?" done":"");b.textContent=String(i+1);b.title="Go to scene "+(i+1);b.setAttribute("aria-label","Open slide "+(i+1));b.setAttribute("aria-current",i===current?"step":"false");b.onclick=()=>slide(i);dots.append(b)});
- $("mark").textContent=state.done.includes(current)?"✅ Practiced!":"☆ I practiced";status("");
+ $("mark").textContent=state.done.includes(current)?"✅ Practiced!":"☆ I practiced";status("");if($("zoom-dialog").classList.contains("show"))renderZoom();
 }
 function showWord(word){activeWord=word;const entry=dictionary[word];$("word-title").textContent=word[0].toUpperCase()+word.slice(1);$("word-meaning").textContent=entry.meaning+" — "+entry.meaningEn;textWithWords($("word-example"),entry.example);$("word-dialog").classList.add("show");$("close-word").focus()}
-function closeDialogs(){stop();$("word-dialog").classList.remove("show");$("zoom-dialog").classList.remove("show")}
-function showZoom(){$("zoom-img").src=slides[current].image;$("zoom-img").alt=slides[current].alt;$("zoom-dialog").classList.add("show");$("close-zoom").focus()}
-$("close-word").onclick=closeDialogs;$("close-zoom").onclick=closeDialogs;
-$("word-dialog").onclick=e=>{if(e.target===$("word-dialog"))closeDialogs()};
-$("zoom-dialog").onclick=e=>{if(e.target===$("zoom-dialog"))closeDialogs()};
+function closeWord(){stop();$("word-dialog").classList.remove("show")}
+function closeZoom(){stop();$("zoom-dialog").classList.remove("show")}
+function closeDialogs(){closeWord();closeZoom()}
+function renderZoom(){
+ const scene=slides[current];
+ $("zoom-img").src=scene.image;$("zoom-img").alt=scene.alt;
+ $("zoom-count").textContent=current===8?"⭐ Key Words • 9 / 9":"📖 Scene "+(current+1)+" / 9";
+ if(current===8)textWithWords($("zoom-line"),"Always • Usually • Sometimes • Never");
+ else textWithWords($("zoom-line"),scene.text);
+ $("zoom-prev").disabled=current===0;$("zoom-next").disabled=current===8;
+ $("zoom-read").textContent=current===8?"🔊 Read words":"🔊 Read";
+ $("zoom-status").textContent="";
+}
+function showZoom(){$("zoom-dialog").classList.add("show");renderZoom();$("close-zoom").focus()}
+$("close-word").onclick=closeWord;$("close-zoom").onclick=closeZoom;
+$("word-dialog").onclick=e=>{if(e.target===$("word-dialog"))closeWord()};
+$("zoom-dialog").onclick=e=>{if(e.target===$("zoom-dialog"))closeZoom()};
+$("zoom-prev").onclick=()=>slide(current-1);
+$("zoom-next").onclick=()=>slide(current+1);
+$("zoom-read").onclick=()=>$("read").click();
 $("speak-word").onclick=()=>{if(activeWord)play("word-"+activeWord)};
 $("prev").onclick=()=>slide(current-1);
 $("next").onclick=()=>slide(current+1);
@@ -135,7 +169,7 @@ $("voice").onchange=e=>{state.voice=e.target.value;save();stop();status("🎤 "+
 $("speed").onchange=e=>{state.speed=e.target.value;save();stop();status("🐢 Reading speed updated.")};
 $("test").onclick=()=>play("scene-01");
 $("fullscreen").onclick=()=>{if(document.fullscreenElement){document.exitFullscreen().catch(()=>{});}else if(document.documentElement.requestFullscreen){document.documentElement.requestFullscreen().catch(()=>status("Full-screen mode is not available on this device."))}else status("Try Add to Home Screen for a bigger view.")};
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDialogs();if($("word-dialog").classList.contains("show")||$("zoom-dialog").classList.contains("show"))return;if(e.key==="ArrowRight")slide(current+1);if(e.key==="ArrowLeft")slide(current-1)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){if($("word-dialog").classList.contains("show"))closeWord();else if($("zoom-dialog").classList.contains("show"))closeZoom();return}if($("word-dialog").classList.contains("show"))return;if(e.key==="ArrowRight")slide(current+1);if(e.key==="ArrowLeft")slide(current-1)});
 let touchX=null;const art=document.querySelector(".art");art.addEventListener("touchstart",e=>{touchX=e.touches[0].clientX},{passive:true});art.addEventListener("touchend",e=>{if(touchX===null)return;const diff=e.changedTouches[0].clientX-touchX;if(Math.abs(diff)>65)slide(current+(diff<0?1:-1));touchX=null},{passive:true});
 Object.entries(dictionary).forEach(([word,entry])=>{const b=document.createElement("button");b.className="vocab-card";b.innerHTML="<b>"+word+"</b><small>"+entry.meaningEn+" • 🔊</small>";b.onclick=()=>showWord(word);$("vocab").append(b)});
 let qi=0;function renderQuiz(){const holder=$("quiz-content");holder.replaceChildren();if(qi>=questions.length){const score=questions.filter((q,i)=>state.quiz[i]===q.a).length;const p=document.createElement("div");p.className="quiz-end";p.textContent=(score===questions.length?"🏆 Perfect! ":"🌟 Well done! ")+score+" / "+questions.length;const prompt=document.createElement("p");prompt.textContent=score===questions.length?"You are a Word Star! ⭐":"Try again to earn all your stars!";const restart=document.createElement("button");restart.className="btn pink";restart.textContent="↻ Play again";restart.onclick=()=>{qi=0;state.quiz={};save();renderQuiz()};holder.append(p,prompt,restart);return}
