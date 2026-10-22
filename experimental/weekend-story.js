@@ -117,8 +117,8 @@ function cleanPicture(index){return Promise.resolve(scenes[index].img);}
 function draw(){
  const sc=scenes[scene],ticket=++pictureTicket;
  const art=$("scene-art"),bg=$("scene-bg"),wordPanel=$("vocab-stage");
- wordPanel.hidden=scene!==8;
- art.hidden=scene===12;
+ wordPanel.hidden=true;
+ art.hidden=false;
  if(scene===12){
   art.src="";
   cleanPicture(0).then(url=>{if(ticket===pictureTicket)bg.src=url});
@@ -130,9 +130,9 @@ function draw(){
    art.src=url;bg.src=url;art.style.opacity="1";
   });
  }
- $("scene-number").textContent=(scene+1)+" / 9";
+ $("scene-number").textContent=(scene+1)+" / 12";
  $("touch-left").disabled=scene===0;
- $("touch-right").disabled=scene===12;
+ $("touch-right").disabled=scene===11;
  s.last=scene;store();progress();renderCaption();
 }
 function goto(n,autoplay=false){
@@ -195,7 +195,7 @@ function leftTap(){
 }
 function rightTap(){
  if(mode==="auto"||mode==="listen"){mode="manual";msg("📖 Manual reading");}
- if(scene<12){goto(scene+1);glyph("➡");}
+ if(scene<11){goto(scene+1);glyph("➡");}
 }
 function afterSceneAudio(){if(mode!=="auto"||scene>11)return;schedule(()=>ask(),580);}
 function listenNext(){if(mode!=="listen")return;schedule(()=>{if(scene<11)goto(scene+1,true);else endAdventure()},750);}
