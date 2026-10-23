@@ -2,16 +2,16 @@
 "use strict";
 const $=id=>document.getElementById(id);
 const scenes=[
-{"img":"images/01.webp","line":"Raghd sees many animals at the park. What a lovely day!","name":"A New Adventure","emoji":"🌿"},
-{"img":"images/02.webp","line":"The rabbit can hop on the grass. It has soft fur.","name":"The Hopping Rabbit","emoji":"🐰"},
-{"img":"images/03.webp","line":"The fish can swim in the pond. It has shiny scales.","name":"The Swimming Fish","emoji":"🐟"},
-{"img":"images/04.webp","line":"The blue bird can fly in the sky. It has beautiful feathers.","name":"The Flying Bird","emoji":"🐦"},
-{"img":"images/05.webp","line":"The snake can slither on the sand. It has smooth scales.","name":"The Slithering Snake","emoji":"🐍"},
-{"img":"images/06.webp","line":"The horse can run fast. Raghd watches it run!","name":"The Running Horse","emoji":"🐎"},
-{"img":"images/07.webp","line":"The sheep has soft wool. Raghd says, It is fluffy!","name":"Soft Wool","emoji":"🐑"},
-{"img":"images/08.webp","line":"The bird has colorful feathers. Raghd sees a blue feather.","name":"Colorful Feathers","emoji":"🪶"},
-{"img":"images/09.webp","line":"The turtle has a hard shell. The fish have shiny scales.","name":"Shells and Scales","emoji":"🐢"},
-{"img":"images/10.webp","line":"Raghd smiles at all the animals. They move in different ways!","name":"Animal Friends","emoji":"🌟"}
+{"img":"images/01_a-new-adventure.png","line":"Raghd sees many animals at the park. What a lovely day!","name":"A New Adventure","emoji":"🌿"},
+{"img":"images/02_the-hopping-rabbit.png","line":"The rabbit can hop on the grass. It has soft fur.","name":"The Hopping Rabbit","emoji":"🐰"},
+{"img":"images/03_the-swimming-fish.png","line":"The fish can swim in the pond. It has shiny scales.","name":"The Swimming Fish","emoji":"🐟"},
+{"img":"images/04_the-flying-bird.png","line":"The blue bird can fly in the sky. It has beautiful feathers.","name":"The Flying Bird","emoji":"🐦"},
+{"img":"images/05_the-slithering-snake.png","line":"The snake can slither on the sand. It has smooth scales.","name":"The Slithering Snake","emoji":"🐍"},
+{"img":"images/06_the-running-horse.png","line":"The horse can run fast. Raghd watches it run!","name":"The Running Horse","emoji":"🐎"},
+{"img":"images/07_soft-wool.png","line":"The sheep has soft wool. Raghd says, It is fluffy!","name":"Soft Wool","emoji":"🐑"},
+{"img":"images/08_colorful-feathers.png","line":"The bird has colorful feathers. Raghd sees a blue feather.","name":"Colorful Feathers","emoji":"🪶"},
+{"img":"images/09_shells-and-scales.png","line":"The turtle has a hard shell. The fish have shiny scales.","name":"Shells and Scales","emoji":"🐢"},
+{"img":"images/10_animal-friends.png","line":"Raghd smiles at all the animals. They move in different ways!","name":"Animal Friends","emoji":"🌟"}
 ];
 const vocab={
 animals:{"arabic":"حيوانات","english":"Living creatures like rabbits and birds","example":"I love animals."},
@@ -142,7 +142,7 @@ function draw(){
   art.alt=sc.name+" illustration without the printed sentence banner";
   cleanPicture(scene).then(url=>{
    if(ticket!==pictureTicket)return;
-   art.onerror=()=>{art.onerror=null;const fallback=illustrationFallback(sc);art.src=fallback;bg.src=fallback;status("📸 Upload the 12 pictures to see the full story.");};
+   art.onerror=()=>{art.onerror=null;const fallback=illustrationFallback(sc);art.src=fallback;bg.src=fallback;status("📸 Unable to load this picture.");};
    bg.onerror=()=>{bg.onerror=null;bg.src=illustrationFallback(sc);};
    art.src=url;bg.src=url;art.style.opacity="1";
   });
@@ -157,7 +157,7 @@ function goto(n,autoplay=false){
  cancel();
  scene=target;draw();
  if(target===10){status("⭐ Magic words! Tap Aa or 🎤 to review.");if(mode==="auto"){endAdventure()}else if(mode==="listen"){endAdventure()}return;}
- status("Scene "+(target+1)+" of 12");
+ status("Scene "+(target+1)+" of 10");
  if(autoplay&&mode==="auto")startSceneAudio(()=>afterSceneAudio());
  else if(autoplay&&mode==="listen")startSceneAudio(()=>listenNext());
 }
@@ -208,7 +208,7 @@ function playWordSequence(){
  const list=["animals","park","rabbit","hop","fur","fish","swim","scales","bird","fly","feathers","snake","slither","horse","run","sheep","wool","fluffy","turtle","shell"];
  let idx=0;
  const step=()=>{
-  if(idx>=list.length){status("⭐ All four words!");return;}
+  if(idx>=list.length){status("⭐ All animal words!");return;}
   const w=list[idx++];playAudio("word-"+w,step);
  };
  step();
@@ -232,7 +232,7 @@ function rightTap(){
  if(mode==="auto"||mode==="listen"){mode="manual";msg("📖 Manual reading");}
  if(scene<9){goto(scene+1);glyph("➡");}
 }
-function afterSceneAudio(){if(mode!=="auto"||scene>11)return;schedule(()=>ask(),580);}
+function afterSceneAudio(){if(mode!=="auto"||scene>9)return;schedule(()=>ask(),580);}
 function listenNext(){if(mode!=="listen")return;schedule(()=>{if(scene<9)goto(scene+1,true);else endAdventure()},750);}
 function earn(){
  if(scene===10)return;
@@ -291,7 +291,7 @@ function endAdventure(){
  $("quiz").hidden=true;$("complete").hidden=false;
  $("summary").textContent=mode==="auto"
   ?"⭐ "+runCorrect+" scenes answered · 🎯 "+firstTry+" correct on the first try. Your progress is saved!"
-  :"You listened to all 12 story scenes. Wonderful work!";
+  :"You listened to all 10 story scenes. Wonderful work!";
  status("🏆 Adventure complete!");
  glyph("🏆","celebrate");
 }
@@ -391,9 +391,9 @@ function showSheet(kind="more",detail){
   select.addEventListener("change",()=>{s.voice=select.value;store();msg("🎤 "+cap(s.voice)+" selected")});
   root.append(select);
   para("Reading speed");
-  buttonRow(speeds.map((v,i)=>[["🐢 Slow","▶ Normal","🐇 Fast"][i],()=>{s.speed=v;store();showSheet("voice")},s.speed===v]));
+  buttonRow(speeds.map((v,i)=>[["🐢 Slow","▶ Normal"][i],()=>{s.speed=v;store();showSheet("voice")},s.speed===v]));
   const test=document.createElement("button");test.className="primary";test.textContent="🔊 Test Voice";test.style.marginTop="12px";
-  test.addEventListener("click",()=>{closeSheet();playAudio("scene-01")});root.append(test);
+  test.addEventListener("click",()=>{closeSheet();playAudio("preview")});root.append(test);
  }else if(kind==="word"&&vocab[detail]){
   h.textContent="🌟 Learn a Word";
   const obj=vocab[detail];
@@ -429,7 +429,7 @@ function showSheet(kind="more",detail){
   h.textContent="🏅 My Magic Badges";
   const badges=[
    ["🌱","First Step",s.done.length>=1,"Practice a scene"],
-   ["⭐","Star Reader",s.done.length===10,"Practice 8 scenes"],
+   ["⭐","Star Reader",s.done.length===10,"Practice all 10 scenes"],
    ["🚩","Brave Learner",s.flags.length>0,"Mark a hard scene"],
    ["🎯","Word Wizard",s.passed.length>=4,"Answer 4 challenges"],
    ["🚀","Adventure Explorer",s.completed,"Complete Auto Adventure"],
