@@ -12,3 +12,65 @@
 .sheet{background:#f4fffbf7}
 .guide{border-color:#bde5d2}
 @media(max-height:520px) and (orientation:landscape){.scene-art{max-height:100%}}
+
+
+/* Weekend Cinema 2.0 — intentionally scoped to Weekend, NOT Tom V4 */
+.reader {--scene-focus-y:42%;--scene-focus-x:50%;--subtitle-shade:#031524d8}
+.reader .scene-art{object-position:var(--scene-focus-x) var(--scene-focus-y);transition:opacity .16s ease}
+.reader.fit-whole .scene-art{object-fit:contain!important;object-position:center center!important}
+@media (orientation:landscape) and (min-aspect-ratio:3/2) {
+  .reader:not(.fit-whole) .scene-art{
+    object-fit:cover;
+    width:100%;height:100%;max-height:none;max-width:none;
+  }
+  .reader .scene-backdrop{filter:blur(25px) brightness(.55) saturate(1.05)}
+}
+/* Film-like subtitle strip: the photo keeps full screen, caption floats unobtrusively. */
+.reader .bottom-hud{
+  z-index:7;
+  bottom:0;left:0;right:0;
+  padding:clamp(8px,1.8vh,14px) max(8px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 5px);
+  background:linear-gradient(to top,#041321aa 0%,#0413218a 44%,transparent 100%);
+  pointer-events:none;
+}
+.reader .caption{
+  width:fit-content;max-width:min(98%,1360px);
+  padding:1px 8px;margin:0 auto;
+  background:transparent;border:0;box-shadow:none;
+  backdrop-filter:none;-webkit-backdrop-filter:none;
+  color:#fff;font-size:clamp(16px,2.25vw,25px);
+  font-weight:850;line-height:1.45;
+  letter-spacing:.1px;text-align:center;
+  text-shadow:0 2px 7px #000e,0 0 13px #000b;
+  pointer-events:auto;
+}
+.reader .caption .key-word{
+  display:inline-block;
+  border:0;border-radius:7px;
+  padding:1px 5px;margin:0 2px;
+  background:#ffe17e;color:#17253d;
+  text-shadow:none;
+  box-shadow:0 2px 0 #d6a92f;
+  font-weight:950;
+  min-height:30px;
+}
+.reader .caption[hidden] {display:none!important}
+.reader .status{
+  font-size:11px;
+  min-height:0;
+  margin:2px 0 0;
+  opacity:.83;
+}
+.reader .topbar{background:linear-gradient(to bottom,#071b30c7,transparent);}
+.reader #text-mode.mode-always{box-shadow:0 0 0 2px #ffe586 inset}
+.reader #text-mode.mode-during{box-shadow:0 0 0 2px #7ceac1 inset}
+@media (orientation:landscape) and (max-height:650px) {
+  .reader .bottom-hud {padding:5px max(8px,env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 2px)}
+  .reader .caption {font-size:clamp(16px,1.8vw,23px);line-height:1.36;padding:0 5px}
+  .reader .caption .key-word{min-height:27px;padding:0 5px}
+  .reader .status{font-size:10px}
+}
+@media (max-width:600px) and (orientation:portrait) {
+  .reader .caption{font-size:clamp(16px,4.1vw,22px)}
+}
+@media (prefers-reduced-motion:reduce){.reader .scene-art{transition:none}}
