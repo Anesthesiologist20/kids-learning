@@ -1,6 +1,6 @@
 # Sakinah's Journey to Space — 10 independent images
 
-This is the image folder for the **Sakinah** story. Upload the **PNG files** from `Sakinah_Space_10_PNG_Upload.zip` here, with the following exact filenames:
+This is the image folder for the **Sakinah** story. The ten PNG scene images have been uploaded to this folder. The reader uses these exact filenames:
 
 `01.png` — Starry Night (rooftop)
 `02.png` — Getting Ready (bedroom)
