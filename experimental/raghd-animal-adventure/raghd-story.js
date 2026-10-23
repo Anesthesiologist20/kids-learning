@@ -214,7 +214,7 @@ function playWordSequence(){
  step();
 }
 function centerTap(){
- if(mode==="self"){msg("🌱 Read aloud yourself! Tap Aa to see the words.");return;}
+ if(mode==="self")msg("🌱 Listen and practice reading!");
  if(audio){
    if(playing){audio.pause();playing=false;status("⏸ Paused");glyph("⏸");}
    else{audio.play().then(()=>{playing=true;status("▶ Reading")}).catch(soundError);glyph("▶");}
