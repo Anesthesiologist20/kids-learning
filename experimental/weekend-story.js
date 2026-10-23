@@ -47,7 +47,7 @@ const questions=[
 const voices=["bella","heart","sarah","nicole","sky"];
 const speeds=["0.75","1","1.15"];
 const storageKey="kids-learning-weekend-12-2026";
-const initial={done:[],flags:[],passed:[],last:0,voice:"bella",speed:"1",mute:false,completed:false,listenCompleted:false};
+const initial={done:[],flags:[],passed:[],last:0,voice:"bella",speed:"1",mute:false,completed:false,listenCompleted:false,textPreference:"during",fitWhole:false};
 let saved={};
 try{saved=JSON.parse(localStorage.getItem(storageKey))||{}}catch{}
 const s={...initial,...saved};
@@ -55,7 +55,10 @@ for(const key of ["done","flags","passed"])s[key]=[...new Set(Array.isArray(s[ke
 if(!voices.includes(s.voice))s.voice="bella";
 if(!speeds.includes(String(s.speed)))s.speed="1";
 let scene=Number.isInteger(s.last)?Math.max(0,Math.min(11,s.last)):0;
-let mode="manual",textMode="hidden",selectedMode="manual";
+if(!["during","full","hidden","keywords"].includes(s.textPreference))s.textPreference="during";
+let mode="manual",textMode=s.textPreference,selectedMode="manual";
+let textDuringVisible=false,captionHideTimer=null;
+const sceneFocusY=[37,45,51,35,53,44,40,45,45,42,45,38];
 let audio=null,playing=false,sequence=0,pending=null,toastTimeout=null,readerOpen=false,showingSheet=false;
 let currentQuestionWrong=false,firstTry=0,runCorrect=0,runStart=0;
 let lastSwipe=0,gestureX=null,gestureY=null,allowAuto=true;
@@ -73,8 +76,10 @@ const glyph=(symbol,node="tap-echo")=>{
 function cancel(){
  sequence++;
  if(pending!==null){clearTimeout(pending);pending=null;}
+ if(captionHideTimer!==null){clearTimeout(captionHideTimer);captionHideTimer=null;}
  if(audio){audio.pause();audio.onended=null;audio.onerror=null;audio=null;}
- playing=false;
+ playing=false;textDuringVisible=false;
+ if(readerOpen)renderCaption();
 }
 function schedule(fn,ms){
  const ticket=sequence;
@@ -100,7 +105,7 @@ function keywordButton(word){
 }
 function renderCaption(){
  const cap=$("caption");cap.replaceChildren();
- if(textMode==="hidden"){cap.hidden=true;return;}
+ if(textMode==="hidden"||(textMode==="during"&&!textDuringVisible)){cap.hidden=true;return;}
  cap.hidden=false;
  if(textMode==="keywords"){
   const keys=[...new Set((scenes[scene].line.toLowerCase().match(/\b(friday|saturday|weekend|breakfast|wash|bike|football|pizza|movie|book|cookies|grandparents|kite)\b/g)||[]))];
@@ -121,6 +126,8 @@ function illustrationFallback(sc){
 
 function draw(){
  const sc=scenes[scene],ticket=++pictureTicket;
+ $("reader").style.setProperty("--scene-focus-y",sceneFocusY[scene]+"%");
+ $("reader").classList.toggle("fit-whole",Boolean(s.fitWhole));
  const art=$("scene-art"),bg=$("scene-bg"),wordPanel=$("vocab-stage");
  wordPanel.hidden=true;
  art.hidden=false;
@@ -152,7 +159,7 @@ function goto(n,autoplay=false){
  else if(autoplay&&mode==="listen")startSceneAudio(()=>listenNext());
 }
 function soundError(){
- playing=false;
+ playing=false;textDuringVisible=false;renderCaption();
  status("🔊 Can't play this voice. Tap the middle to retry.");
  if(mode==="auto"&&scene<12){
   msg("Audio unavailable — choose a word with More → Question",2300);
@@ -165,8 +172,26 @@ function playAudio(key,onFinish){
   audio=new Audio(audioFile(s.voice,key));
   audio.preload="auto";
   audio.playbackRate=Number(s.speed);
-  audio.onplaying=()=>{if(sequence===ticket){playing=true;status("🔊 "+cap(s.voice)+" is reading…")}};
-  audio.onended=()=>{if(ticket!==sequence)return;audio=null;playing=false;status("🌟 Your turn!");if(onFinish)onFinish();};
+  audio.onplaying=()=>{
+    if(sequence!==ticket)return;
+    playing=true;
+    if(key.startsWith("scene-")){
+      if(captionHideTimer!==null){clearTimeout(captionHideTimer);captionHideTimer=null;}
+      textDuringVisible=true;renderCaption();
+    }
+    status("🔊 "+cap(s.voice)+" is reading…");
+  };
+  audio.onended=()=>{
+    if(ticket!==sequence)return;
+    audio=null;playing=false;status("🌟 Your turn!");
+    if(key.startsWith("scene-")){
+      captionHideTimer=setTimeout(()=>{
+        captionHideTimer=null;textDuringVisible=false;
+        if(readerOpen)renderCaption();
+      },1550);
+    }
+    if(onFinish)onFinish();
+  };
   audio.onerror=()=>{if(ticket===sequence)soundError()};
   const promise=audio.play();
   if(promise&&promise.catch)promise.catch(()=>{if(ticket===sequence)soundError()});
@@ -272,7 +297,8 @@ function start(choice){
  selectedMode=choice;mode=choice;
  $("reader").hidden=false;readerOpen=true;$("sheet").hidden=true;showingSheet=false;
  $("quiz").hidden=true;$("complete").hidden=true;
- textMode=choice==="self"?"full":"hidden";
+ textMode=choice==="self"?"full":s.textPreference;
+ textDuringVisible=false;
  firstTry=0;runCorrect=0;runStart=0;
  document.body.style.overflow="hidden";
  goto(choice==="auto"||choice==="listen"?0:scene,false);
@@ -289,10 +315,18 @@ function closeReader(){
  if(document.fullscreenElement){document.exitFullscreen().catch(()=>{})}
  store();progress();
 }
-function textCycle(){
- textMode=textMode==="hidden"?"full":textMode==="full"?"keywords":"hidden";
+function setTextMode(next){
+ textMode=next;
+ s.textPreference=next;store();
  renderCaption();
- msg(textMode==="hidden"?"🙈 Text hidden":textMode==="full"?"📖 Full sentence":"✨ Key words");
+ $("text-mode").classList.toggle("mode-always",next==="full");
+ $("text-mode").classList.toggle("mode-during",next==="during");
+ $("text-mode").setAttribute("aria-label",next==="during"?"Text shown during reading; tap for always visible":next==="full"?"Text always visible; tap to hide":"Text hidden; tap for during-reading subtitles");
+ msg(next==="hidden"?"🙈 Text hidden":next==="full"?"📖 Text always visible":next==="during"?"🎬 Subtitles while reading":"✨ Key words");
+}
+function textCycle(){
+ const next=textMode==="during"?"full":textMode==="full"?"hidden":"during";
+ setTextMode(next);
 }
 function closeSheet(){$("sheet").hidden=true;showingSheet=false}
 function cell(label,fn,chosen=false){
@@ -325,17 +359,24 @@ function showSheet(kind="more",detail){
    ["🏅 My Badges",()=>showSheet("badges")],
    ["🎤 Voice & Speed",()=>showSheet("voice")],
    ["📖 Text Settings",()=>showSheet("text")],
+   [s.fitWhole?"🎬 Fill the Screen":"🖼 Show Full Image",()=>{
+     s.fitWhole=!s.fitWhole;store();
+     $("reader").classList.toggle("fit-whole",Boolean(s.fitWhole));
+     msg(s.fitWhole?"🖼 Whole picture, no cropping":"🎬 Picture fills the screen");
+     closeSheet();
+   }],
    ["🚀 Auto Adventure",()=>{closeSheet();mode="auto";firstTry=0;runCorrect=0;goto(0,true)}],
    ["🎧 Listen Only",()=>{closeSheet();mode="listen";goto(0,true)}],
    ["🌱 Read Myself",()=>{closeSheet();mode="self";textMode="full";renderCaption();status("Read it aloud!") }]
   ]);
  }else if(kind==="text"){
   h.textContent="Aa Text Display";
-  para("The picture always stays large. Choose what appears over it.");
+  para("Like movie subtitles: appear while the teacher reads, then fade out. Tap Aa to cycle between these three modes.");
   buttonRow([
-   ["🙈 Hidden",()=>{textMode="hidden";renderCaption();closeSheet();}],
-   ["📖 Full Sentence",()=>{textMode="full";renderCaption();closeSheet();}],
-   ["✨ Key Words",()=>{textMode="keywords";renderCaption();closeSheet();}]
+   ["🎬 During Reading",()=>{setTextMode("during");closeSheet();},textMode==="during"],
+   ["📖 Always Visible",()=>{setTextMode("full");closeSheet();},textMode==="full"],
+   ["🙈 Hidden",()=>{setTextMode("hidden");closeSheet();},textMode==="hidden"],
+   ["✨ Key Words Only",()=>{setTextMode("keywords");closeSheet();},textMode==="keywords"]
   ]);
  }else if(kind==="voice"){
   h.textContent="🎤 Choose Your Teacher";
@@ -442,7 +483,7 @@ document.addEventListener("keydown",e=>{
  if(e.key==="ArrowLeft")leftTap();else if(e.key==="ArrowRight")rightTap();
  else if(e.key===" "){e.preventDefault();centerTap();}
 });
-document.addEventListener("visibilitychange",()=>{if(document.hidden&&audio&&playing){audio.pause();playing=false;status("⏸ Paused while away.")}});
+document.addEventListener("visibilitychange",()=>{if(document.hidden&&audio&&playing){audio.pause();playing=false;status("⏸ Paused while away.");}});
 document.addEventListener("fullscreenchange",()=>{if(readerOpen&&!document.fullscreenElement){}});
 progress();draw();
 })();
