@@ -3,61 +3,61 @@
 const $=id=>document.getElementById(id);
 const scenes=[
   {
-    "img": "images/01.webp",
+    "img": "images/01.png",
     "line": "Sakinah looks through her telescope at the stars. She dreams of a journey into space.",
     "name": "Starry Night",
     "emoji": "🌠"
   },
   {
-    "img": "images/02.webp",
+    "img": "images/02.png",
     "line": "She packs her space book and a small rocket toy. Her adventure is about to begin.",
     "name": "Getting Ready",
     "emoji": "🎒"
   },
   {
-    "img": "images/03.webp",
+    "img": "images/03.png",
     "line": "At the space center, Sakinah meets a friendly robot. She puts on her astronaut suit.",
     "name": "Space Center",
     "emoji": "🚀"
   },
   {
-    "img": "images/04.webp",
+    "img": "images/04.png",
     "line": "The rocket engines roar as the countdown ends. Sakinah blasts off into space!",
     "name": "Rocket Launch",
     "emoji": "🔥"
   },
   {
-    "img": "images/05.webp",
+    "img": "images/05.png",
     "line": "Inside the spacecraft, everything begins to float. Sakinah laughs in microgravity.",
     "name": "Zero Gravity",
     "emoji": "✨"
   },
   {
-    "img": "images/06.webp",
+    "img": "images/06.png",
     "line": "Sakinah sees Earth through the window. Our blue planet looks beautiful from orbit.",
     "name": "Beautiful Earth",
     "emoji": "🌎"
   },
   {
-    "img": "images/07.webp",
+    "img": "images/07.png",
     "line": "On the Moon, Sakinah takes gentle bouncing steps. She explores a dusty crater.",
     "name": "Moon Walk",
     "emoji": "🌙"
   },
   {
-    "img": "images/08.webp",
+    "img": "images/08.png",
     "line": "The spacecraft passes Saturn and its amazing rings. Sakinah spots a field of asteroids.",
     "name": "Saturn's Rings",
     "emoji": "🪐"
   },
   {
-    "img": "images/09.webp",
+    "img": "images/09.png",
     "line": "In her imaginary space garden, Sakinah meets a kind alien. She learns that friendship can begin with a smile.",
     "name": "An Imaginary Friend",
     "emoji": "👾"
   },
   {
-    "img": "images/10.webp",
+    "img": "images/10.png",
     "line": "Back at home, Sakinah draws her space adventure. She hopes to become a scientist one day.",
     "name": "Home Again",
     "emoji": "🏡"
