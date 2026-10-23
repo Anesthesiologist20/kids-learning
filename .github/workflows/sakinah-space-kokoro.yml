@@ -1,0 +1,60 @@
+name: Sakinah Space Journey - 3 Free Kokoro AI Teachers
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sakinah-space-kokoro.yml'
+      - 'scripts/generate_sakinah_space_audio.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sakinah-space-kokoro
+  cancel-in-progress: false
+jobs:
+  space-voice:
+    name: Make and publish 171 MP3 files
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install open source voice engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Generate neural recordings
+        run: python scripts/generate_sakinah_space_audio.py
+      - name: Verify every voice, scene, word, and question
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          root=Path('experimental/sakinah-space-journey/audio')
+          words='stars telescope dream space journey rocket planet robot astronaut launch countdown gravity float earth orbit moon crater explore saturn rings asteroids alien imaginary scientist adventure friendship'.split()
+          names=[f'scene-{i:02d}-{j:02d}.mp3' for i in range(1,11) for j in (1,2)]
+          names += [f'word-{w}.mp3' for w in words]
+          names += [f'question-{i:02d}.mp3' for i in range(1,11)]+['preview.mp3']
+          files=[root/v/n for v in ('bella','heart','sarah') for n in names]
+          assert len(files)==171
+          assert all(x.exists() and x.stat().st_size>800 for x in files), 'Missing or empty MP3'
+          print('171/171 verified')
+          PY
+      - name: Commit voice files without overwriting other stories
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experimental/sakinah-space-journey/audio/
+          if git diff --cached --quiet; then echo 'Already published'; exit 0; fi
+          git commit -m 'audio(sakinah): publish 171 Kokoro clips'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then echo 'Published 171 MP3 clips'; exit 0; fi
+            sleep 5
+          done
+          exit 1
