@@ -211,7 +211,7 @@ function ask(){
  currentQuestionWrong=false;
  $("quiz").hidden=false;
  $("question").textContent=questions[scene].q;
- $("feedback").textContent="Choose the best word.";
+ $("feedback").textContent="Choose the best answer.";
  const opts=$("answers");opts.replaceChildren();
  const choices=questions[scene].choices.slice();
  for(let i=choices.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[choices[i],choices[j]]=[choices[j],choices[i]];}
@@ -397,7 +397,7 @@ function showSheet(kind="more",detail){
   h.textContent="🏅 My Magic Badges";
   const badges=[
    ["🌱","First Step",s.done.length>=1,"Practice a scene"],
-   ["⭐","Hobby Explorer",s.done.length===8,"Practice all 10 scenes"],
+   ["⭐","Hobby Explorer",s.done.length===8,"Practice all 8 scenes"],
    ["🚩","Brave Learner",s.flags.length>0,"Mark a hard scene"],
    ["🎯","Word Wizard",s.passed.length>=4,"Answer 4 challenges"],
    ["🚀","Adventure Explorer",s.completed,"Complete Auto Adventure"],
