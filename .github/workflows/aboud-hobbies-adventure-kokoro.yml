@@ -1,0 +1,43 @@
+name: Aboud Hobbies Adventure v2 Kokoro
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/aboud-hobbies-adventure-kokoro.yml','scripts/generate_aboud_hobbies_adventure_audio.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: aboud-hobbies-adventure-v2
+  cancel-in-progress: false
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Kokoro
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Generate and verify all clips
+        run: python scripts/generate_aboud_hobbies_adventure_audio.py
+      - name: Publish audio only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experimental/aboud-hobbies-adventure/audio/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'audio(aboud): add 150 MP3 hobby story clips'
+          for n in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
