@@ -1,0 +1,59 @@
+name: Validate and package Aboud's eight pictures
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'experimental/aboud-hobbies-adventure/images/*.webp'
+      - '.github/workflows/verify-aboud-hobbies.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  check-and-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check JavaScript syntax
+        run: node --check experimental/aboud-hobbies-adventure/hobbies-story.js
+      - name: Check and package 8 separate pictures
+        run: |
+          python -m pip install 'Pillow>=10,<12'
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          from zipfile import ZipFile,ZIP_DEFLATED
+          directory=Path('experimental/aboud-hobbies-adventure/images')
+          imgs=[directory/f'{i:02}.webp' for i in range(1,9)]
+          assert len(imgs)==8 and all(p.exists() and p.stat().st_size>30_000 for p in imgs)
+          for f in imgs:
+            with Image.open(f) as im:
+              im.verify()
+            with Image.open(f) as im:
+              assert im.width>=1280 and im.height>=700
+              assert 1.7<im.width/im.height<1.85
+              print('PASS',f.name,im.size)
+          dest=Path('experimental/aboud-hobbies-adventure/Aboud_8_Independent_Scenes.zip')
+          with ZipFile(dest,'w',compression=ZIP_DEFLATED) as z:
+            for img in imgs:z.write(img,img.name)
+          print('ZIP',dest, dest.stat().st_size)
+          PY
+      - name: Publish verified ZIP
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experimental/aboud-hobbies-adventure/Aboud_8_Independent_Scenes.zip
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'pack(aboud): archive 8 independent scenes for download'
+          for n in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            git push origin HEAD:main && exit 0
+            sleep 4
+          done
+          exit 1
