@@ -38,7 +38,7 @@ h1{font-size:clamp(1.7rem,4.1vw,2.9rem);margin:10px 0}h2{font-size:clamp(1.3rem,
 .lessonBox{background:#f9faff;border:1px solid var(--line);padding:17px;border-radius:15px}
 .lessonBox h3{color:var(--purple);margin:0 0 9px}
 .lessonBox p{line-height:1.9;margin:0}
-.en{direction:ltr;text-align:left;unicode-bidi:plaintext;font-family:system-ui,-apple-system,Arial,sans-serif}
+.lessonBox .en,.lessonBox .example-line{display:block;direction:ltr;text-align:left;unicode-bidi:isolate;line-height:1.65;margin:9px 0;overflow-wrap:break-word}.lessonBox .en:first-child{margin-top:12px}.lessonBox p>.en + .en{margin-top:12px}.lessonBox p{overflow-wrap:break-word}.en{direction:ltr;text-align:left;unicode-bidi:plaintext;font-family:system-ui,-apple-system,Arial,sans-serif}
 .examples{border-collapse:collapse;width:100%;min-width:540px;direction:ltr;text-align:left}
 .examples th,.examples td{padding:11px;border-bottom:1px solid var(--line)}
 .examples th{background:#f2f0ff;color:#463b8c;font-size:.88rem}
@@ -103,14 +103,14 @@ footer{text-align:center;color:var(--sub);font-size:.82rem;padding:25px 0}
 <section id="lesson" class="panel hide">
 <h2>الشرح السريع: شيئين أم مجموعة كاملة؟</h2>
 <div class="lessonGrid">
-<div class="lessonBox"><h3>Comparative — المقارنة بين اثنين</h3><p>عندما نقارن شخصين أو شيئين، نستخدم غالبًا <b>than</b>.<br><span class="en">Ali is <span class="mark">taller than</span> Omar.</span><span class="en">A car is <span class="mark">more expensive than</span> a bike.</span></p></div>
-<div class="lessonBox"><h3>Superlative — الأفضل أو الأكثر بين مجموعة</h3><p>عندما نقارن واحدًا بكل المجموعة، نستخدم غالبًا <b>the</b> قبل الصفة العليا.<br><span class="en">Ali is <span class="mark">the tallest</span> in class.</span><span class="en">This is <span class="mark">the most expensive</span> bag.</span></p></div>
-<div class="lessonBox"><h3>الصفات القصيرة</h3><p><span class="en">tall → taller → tallest</span><span class="en">fast → faster → fastest</span><span class="en">small → smaller → smallest</span>نضيف غالبًا <b>-er</b> للمقارنة و<b>-est</b> للتفضيل.</p></div>
-<div class="lessonBox"><h3>الصفات الطويلة</h3><p><span class="en">expensive → more expensive → most expensive</span><span class="en">interesting → more interesting → most interesting</span>لا نضيف <b>-er</b> مع <b>more</b>، ولا <b>-est</b> مع <b>most</b>.</p></div>
-<div class="lessonBox"><h3>إذا انتهت الصفة بـ y</h3><p>نحوّل <b>y</b> إلى <b>i</b> ثم نضيف <b>-er / -est</b> (إذا سبقتها حرف ساكن).<span class="en">easy → easier → easiest</span><span class="en">happy → happier → happiest</span></p></div>
-<div class="lessonBox"><h3>التضعيف ونهاية e</h3><p>أحيانًا نكرر الحرف الأخير:<span class="en">big → bigger → biggest</span><span class="en">hot → hotter → hottest</span>وإذا انتهت بـ <b>e</b> نضيف فقط <b>-r / -st</b>:<span class="en">nice → nicer → nicest</span></p></div>
-<div class="lessonBox"><h3>احفظي هذه الثلاثة</h3><p><span class="en">good → better → best</span><span class="en">bad → worse → worst</span><span class="en">far → farther / further → farthest / furthest</span>هي صيغ شاذة ولا تتبع قاعدة الإضافة.</p></div>
-<div class="lessonBox"><h3>أخطاء شائعة جدًا</h3><p><span class="en">✗ more taller → ✓ taller</span><span class="en">✗ the goodest → ✓ the best</span><span class="en">✗ more cheaper → ✓ cheaper</span><span class="en">✗ the most fastest → ✓ the fastest</span></p></div>
+<div class="lessonBox"><h3>Comparative — المقارنة بين اثنين</h3><p>عندما نقارن شخصين أو شيئين، نستخدم غالبًا <b>than</b>.</p><p class="example-line en">Ali is <span class="mark">taller than</span> Omar.</span></p><p class="example-line en"><span class="en" dir="ltr">A car is <span class="mark">more expensive than</span> a bike.</span></p></div>
+<div class="lessonBox"><h3>Superlative — الأفضل أو الأكثر بين مجموعة</h3><p>عندما نقارن واحدًا بكل المجموعة، نستخدم غالبًا <b>the</b> قبل الصفة العليا.</p><p class="example-line en">Ali is <span class="mark">the tallest</span> in class.</span></p><p class="example-line en"><span class="en" dir="ltr">This is <span class="mark">the most expensive</span> bag.</span></p></div>
+<div class="lessonBox"><h3>الصفات القصيرة</h3><p><span class="en" dir="ltr">tall → taller → tallest</span></p><p class="example-line en"><span class="en" dir="ltr">fast → faster → fastest</span></p><p class="example-line en"><span class="en" dir="ltr">small → smaller → smallest</span>نضيف غالبًا <b>-er</b> للمقارنة و<b>-est</b> للتفضيل.</p></div>
+<div class="lessonBox"><h3>الصفات الطويلة</h3><p><span class="en" dir="ltr">expensive → more expensive → most expensive</span></p><p class="example-line en"><span class="en" dir="ltr">interesting → more interesting → most interesting</span>لا نضيف <b>-er</b> مع <b>more</b>، ولا <b>-est</b> مع <b>most</b>.</p></div>
+<div class="lessonBox"><h3>إذا انتهت الصفة بـ y</h3><p>نحوّل <b>y</b> إلى <b>i</b> ثم نضيف <b>-er / -est</b> (إذا سبقتها حرف ساكن).<span class="en" dir="ltr">easy → easier → easiest</span></p><p class="example-line en"><span class="en" dir="ltr">happy → happier → happiest</span></p></div>
+<div class="lessonBox"><h3>التضعيف ونهاية e</h3><p>أحيانًا نكرر الحرف الأخير:<span class="en" dir="ltr">big → bigger → biggest</span></p><p class="example-line en"><span class="en" dir="ltr">hot → hotter → hottest</span>وإذا انتهت بـ <b>e</b> نضيف فقط <b>-r / -st</b>:<span class="en" dir="ltr">nice → nicer → nicest</span></p></div>
+<div class="lessonBox"><h3>احفظي هذه الثلاثة</h3><p><span class="en" dir="ltr">good → better → best</span></p><p class="example-line en"><span class="en" dir="ltr">bad → worse → worst</span></p><p class="example-line en"><span class="en" dir="ltr">far → farther / further → farthest / furthest</span>هي صيغ شاذة ولا تتبع قاعدة الإضافة.</p></div>
+<div class="lessonBox"><h3>أخطاء شائعة جدًا</h3><p><span class="en" dir="ltr">✗ more taller → ✓ taller</span></p><p class="example-line en"><span class="en" dir="ltr">✗ the goodest → ✓ the best</span></p><p class="example-line en"><span class="en" dir="ltr">✗ more cheaper → ✓ cheaper</span></p><p class="example-line en"><span class="en" dir="ltr">✗ the most fastest → ✓ the fastest</span></p></div>
 </div>
 <h2 style="margin-top:26px">جدول كامل للحفظ والمقارنة</h2>
 <p>انتبهي: التفضيل في الجملة يحتاج عادةً <b>the</b> قبل الصيغة المكتوبة بالجدول.</p>
