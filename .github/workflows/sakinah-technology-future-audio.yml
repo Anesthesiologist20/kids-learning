@@ -28,7 +28,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y espeak-ng ffmpeg
           python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
-      - name: Make and verify all 27 sentence recordings
+      - name: Make and verify all 27 exact textbook recordings
         run: python scripts/generate_sakinah_future_audio.py ${{ matrix.voice }}
       - name: Commit optimized MP3 recordings
         env:
@@ -36,7 +36,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "sakinah/audio/kokoro/$VOICE"/future-s*.mp3
+          git add "sakinah/audio/kokoro/$VOICE"/future-book-v2-s*.mp3
           if git diff --cached --quiet; then
             echo "All recordings already published for $VOICE"
             exit 0
