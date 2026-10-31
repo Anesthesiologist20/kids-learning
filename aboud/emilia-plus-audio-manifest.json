@@ -1,5 +1,5 @@
 {
-  "description": "Separate Emilia Reading Plus recordings: exact sentence highlighting and four vocabulary words.",
+  "description": "Recorded free Kokoro voices for Emilia Reading Plus, including pages 40, 41, 42 and 43; each page's unique sentence IDs and vocabulary.",
   "voices": {
     "bella": "af_bella",
     "heart": "af_heart",
@@ -182,6 +182,142 @@
     {
       "id": "p41-word-circle",
       "text": "circle"
+    },
+    {
+      "id": "p42-sentence-00",
+      "text": "Emilia gets her flashlight and runs back into the yard."
+    },
+    {
+      "id": "p42-sentence-01",
+      "text": "She turns on the flashlight."
+    },
+    {
+      "id": "p42-sentence-02",
+      "text": "There are shoes, garden gloves, and clothes all over."
+    },
+    {
+      "id": "p42-sentence-03",
+      "text": "Suddenly, she hears another noise."
+    },
+    {
+      "id": "p42-sentence-04",
+      "text": "She shines the flashlight and two red eyes look at her."
+    },
+    {
+      "id": "p42-sentence-05",
+      "text": "She turns off her flashlight, runs into the house, and calls the police."
+    },
+    {
+      "id": "p42-sentence-06",
+      "text": "Ten minutes later, a police officer knocks on the door."
+    },
+    {
+      "id": "p42-sentence-07",
+      "text": "Emilia’s father opens the door."
+    },
+    {
+      "id": "p42-sentence-08",
+      "text": "“What’s the problem, sir?” the police officer asks."
+    },
+    {
+      "id": "p42-sentence-09",
+      "text": "“Emilia!” calls her father."
+    },
+    {
+      "id": "p43-sentence-10",
+      "text": "Emilia takes the police officer to the yard."
+    },
+    {
+      "id": "p43-sentence-11",
+      "text": "The guests follow them."
+    },
+    {
+      "id": "p43-sentence-12",
+      "text": "“That’s my shoe,” shouts a neighbor."
+    },
+    {
+      "id": "p43-sentence-13",
+      "text": "“And those gloves are mine!” says another."
+    },
+    {
+      "id": "p43-sentence-14",
+      "text": "The police officer looks at Emilia and says, “People call me every day."
+    },
+    {
+      "id": "p43-sentence-15",
+      "text": "They say things disappear from their yards.”"
+    },
+    {
+      "id": "p43-sentence-16",
+      "text": "Then, Emilia points at the holes in the yard."
+    },
+    {
+      "id": "p43-sentence-17",
+      "text": "“Look at those holes!"
+    },
+    {
+      "id": "p43-sentence-18",
+      "text": "The thieves are foxes!” exclaims Emilia."
+    },
+    {
+      "id": "p43-sentence-19",
+      "text": "“That’s right,” says the police officer with a smile."
+    },
+    {
+      "id": "p43-sentence-20",
+      "text": "Emilia smiles, too."
+    },
+    {
+      "id": "p43-sentence-21",
+      "text": "She’s very happy."
+    },
+    {
+      "id": "p43-sentence-22",
+      "text": "She helped to solve a real mystery in her own backyard!"
+    },
+    {
+      "id": "p42-title",
+      "text": "Emilia’s New Year’s Adventure. By Kim Milne. Pages forty two and forty three."
+    },
+    {
+      "id": "p42-think",
+      "text": "Why is Emilia’s father angry?"
+    },
+    {
+      "id": "p43-think",
+      "text": "Why do you think the foxes take the clothes?"
+    },
+    {
+      "id": "p42-word-flashlight",
+      "text": "flashlight"
+    },
+    {
+      "id": "p42-word-gloves",
+      "text": "gloves"
+    },
+    {
+      "id": "p42-word-police",
+      "text": "police"
+    },
+    {
+      "id": "p42-word-officer",
+      "text": "officer"
+    },
+    {
+      "id": "p43-word-holes",
+      "text": "holes"
+    },
+    {
+      "id": "p43-word-thieves",
+      "text": "thieves"
+    },
+    {
+      "id": "p43-word-foxes",
+      "text": "foxes"
+    },
+    {
+      "id": "p43-word-mystery",
+      "text": "mystery"
     }
   ]
 }
