@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6548a8"><meta name="description" content="Sakinah Grade 4 reading: How Can Technology Change My Life? Short sentence reading with Kokoro voices, microphone practice and review flags.">
+<title>Sakinah · How Can Technology Change My Life?</title><link rel="icon" href="../icons/icon-192.png">
+<style>
+:root{--ink:#25324a;--muted:#69758d;--purple:#6548a8;--pink:#dc396c;--blue:#187fbc;--green:#397a44;--line:#e4dfed;--bg:#f5f3fc}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}[hidden]{display:none!important}
+button,a{touch-action:manipulation;-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;border:1px solid var(--line);border-radius:12px;min-height:44px;padding:9px 13px;background:white;color:var(--ink);font-weight:750}button:disabled{opacity:.35;cursor:default}button:focus-visible,a:focus-visible{outline:3px solid #e0a420;outline-offset:3px}
+main{width:min(100%,980px);margin:auto;padding:12px 14px 25px}a{color:var(--purple);text-decoration:none}.top{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px;font-weight:750}.top a{padding:8px;background:white;border-radius:12px}
+.hero{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(250px,1fr);gap:13px;margin:10px 0 13px}.title{background:var(--purple);color:#fff;border-radius:20px;padding:17px 20px}.title small{font-weight:850;letter-spacing:.04em;color:#ece4ff}.title h1{font:850 clamp(23px,3.2vw,33px)/1.18 ui-rounded,system-ui,sans-serif;margin:8px 0}.title p{font-size:13px;margin:0;color:#eee7ff}.settings{background:white;border:1px solid var(--line);border-radius:18px;padding:12px}.setting-title{font-size:12px;color:var(--muted);font-weight:850;margin:1px 0 6px}.toggles{display:flex;gap:6px;margin-bottom:8px}.toggles button{flex:1;min-width:0;font-size:13px;min-height:38px;padding:5px 3px;background:#f4f0f9}.toggles button[aria-pressed=true]{background:#f8d6e7;color:#802751;border:2px solid #d8568c}.speed button[aria-pressed=true]{background:#dff0fd;color:#12619a;border-color:#3a9ede}
+.bar{position:sticky;top:0;z-index:4;background:#fffffff6;border:1px solid #e3dced;border-radius:16px;padding:9px 11px;box-shadow:0 5px 18px #3e337014}.transport{display:flex;align-items:center;flex-wrap:wrap;gap:7px}.primary{background:var(--purple);color:white;border-color:var(--purple)}.stop{background:#fff1f4;color:#a02b52}.counter{font-weight:850;font-size:13px;color:#76589e;margin-left:auto}.status{font-size:13px;min-height:20px;margin:5px 0 0;color:#586784}.progress{height:5px;border-radius:8px;background:#eeeaf4;overflow:hidden;margin-top:7px}.fill{background:#78b879;height:100%;width:0}
+.book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:15px;margin-top:13px}.picture{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden;align-self:start}.picture svg{width:100%;height:auto;display:block;aspect-ratio:900/530}.caption{font-size:13px;color:#55637f;padding:9px 13px;border-top:1px solid var(--line)}.picture-buttons{display:flex;gap:7px;margin:0 10px 11px}.picture-buttons button{flex:1;font-size:13px}.reading{background:white;border:1px solid var(--line);border-radius:17px;padding:16px}.chapter{display:flex;align-items:center;gap:9px;margin-bottom:10px}.chapter h2{font:850 clamp(20px,3vw,28px)/1.2 ui-rounded,system-ui,sans-serif;margin:0;color:var(--purple)}.page{background:#ffed9f;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:850;white-space:nowrap}.line{border:1px solid #e9e5ed;border-radius:14px;padding:11px;margin-top:10px;background:#fff;scroll-margin-top:130px}.line.playing{border-color:#a98cdb;background:#f8f2ff}.line.good{border-left:5px solid #48a867}.line.flag{border-left:5px solid #dc5c6a}.sentence{font-size:clamp(18px,2.4vw,23px);line-height:1.45;margin:0 0 9px;font-weight:700}.sentence .n{color:#9378b6;font-size:12px;margin-right:6px}.line-actions{display:flex;gap:6px;flex-wrap:wrap}.line-actions button{font-size:12px;padding:6px 9px;min-height:40px}.listen{background:#e8f5fd;color:#156c9e}.mic{background:#ffeff6;color:#b13461}.mic.active{background:#d82f61;color:white}.replay{background:#f0edfb;color:#6856a4}.perfect{background:#edfaef;color:#27733e}.red{background:#fff0f0;color:#a53442}.line .review{font-size:12px;margin-top:5px;color:var(--muted);min-height:18px}.line .review strong{color:#347b49}.line.flag .review strong{color:#b5424f}
+.words{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 0}.words b{font-size:13px;flex-basis:100%;color:#70558b}.words button{background:#fff6d7;color:#6b5429;border-color:#e8d99f;font-size:13px;min-height:36px}.word-meaning{font-size:13px;min-height:20px;color:#4a6080;margin-top:7px}
+.bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.bottom button{min-width:95px}.dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;flex:1}.dots button{width:29px;min-width:29px;height:29px;min-height:29px;padding:0;font-size:11px;border-radius:50%;color:#6f6482}.dots button.active{background:var(--purple);border-color:var(--purple);color:#fff}.dots button.hasflag{border:2px solid #e4535e}
+.summary{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 16px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.summary p{margin:2px 0;font-size:13px;color:var(--muted)}.small{font-size:12px;color:var(--muted);margin:11px 0;line-height:1.65}#finish{font-size:13px;color:#346f49;font-weight:750}.bottom button:last-child{background:var(--purple);color:white}
+@media(max-width:720px){main{padding:8px 9px}.hero,.book{grid-template-columns:1fr}.hero{gap:8px}.title{padding:13px 16px}.book{gap:9px;margin-top:9px}.picture svg{max-height:270px}.reading{padding:11px}.sentence{font-size:20px}.line{padding:9px}.line-actions button{flex:1;min-width:79px}.bottom button{min-width:62px;padding:6px}.dots{gap:3px}.dots button{width:26px;min-width:26px;height:26px;min-height:26px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style></head><body><main>
+<nav class="top"><span>🌷 Sakinah’s Reading Corner</span><a href="index.html">← Sakinah Home</a></nav>
+<header class="hero"><div class="title"><small>GRADE 4 · READING · PAGE 53</small><h1>How Can Technology Change My Life?</h1><p>Easy reading from your schoolbook · Listen → Record → Read with confidence</p></div>
+<div class="settings"><div class="setting-title">🎧 Choose your free Kokoro teacher voice</div><div class="toggles" id="voices">
+<button data-voice="heart" aria-pressed="true">💜 Heart</button><button data-voice="bella" aria-pressed="false">🌸 Bella</button><button data-voice="sarah" aria-pressed="false">🌷 Sarah</button></div>
+<div class="setting-title">Reading speed</div><div class="toggles speed" id="speeds">
+<button data-speed="0.75" aria-pressed="false">🐢 Slow</button><button data-speed="0.9" aria-pressed="true">🌿 Easy</button><button data-speed="1" aria-pressed="false">▶ Normal</button></div></div></header>
+<div class="bar"><div class="transport"><button id="readAll" class="primary">🔊 Read this picture</button><button id="stop" class="stop">■ Stop</button><span id="counter" class="counter">Picture 1 / 9</span></div>
+<p id="status" class="status" role="status" aria-live="polite">Choose a sentence to listen to. Then tap its microphone.</p><div class="progress"><div class="fill" id="fill"></div></div></div>
+<div class="book"><div class="picture"><div id="art"></div><div id="caption" class="caption"></div><div class="picture-buttons"><button id="picturePrev">← Previous picture</button><button id="pictureNext">Next picture →</button></div></div>
+<section class="reading"><div class="chapter"><span class="page" id="page">Scene 1</span><h2 id="chapterTitle"></h2></div><div id="sentences"></div><div id="words" class="words"></div><div id="meaning" class="word-meaning" aria-live="polite"></div></section></div>
+<div class="bottom"><button id="prev">← Previous</button><div class="dots" id="dots"></div><button id="next">Next →</button></div>
+<div class="summary"><div><strong>⭐ My Reading Stars</strong><p id="progressText">0 Perfect · 0 Red Flags</p></div><button id="reviewFlags">🚩 Review Red Flags</button><span id="finish"></span></div>
+<p class="small">🎤 Microphone: Record your reading, then tap “My Voice” to hear it. “Perfect” and “Red Flag” are your own review choices after listening, not an automatic pronunciation score. Recordings stay on this page and are cleared when you leave; only your stars and red flags are saved on this device. English text is simplified for reading practice, based on page 53.</p>
+</main>
+<script type="application/json" id="story-data">[{"title":"Technology is Everywhere","note":"Look at the technology we use.","words":["smartphone","tablet","Wi-Fi"],"lines":["We use smartphones, tablets, and Wi-Fi.","Technology helps us every day.","Can you imagine life without technology?"]},{"title":"Shopping Online","note":"How does a package come home?","words":["online","truck"],"lines":["We can buy things online.","A truck can bring our shopping.","This can take two or three days."]},{"title":"Meet the Drone","note":"A small robot can fly.","words":["drone","deliver"],"lines":["A drone is a small flying robot.","It can carry a box to your home.","Some drones can carry two kilograms."]},{"title":"A Fast Delivery","note":"What could happen in the future?","words":["deliver","drone"],"lines":["One day, drones may deliver our shopping.","A small order could arrive in 30 minutes.","But strong wind can be a problem."]},{"title":"Cars Without Drivers","note":"Sit back and enjoy the ride.","words":["driverless","car"],"lines":["Some cars can drive themselves.","These cars do not need a driver.","You can sit back and enjoy the ride!"]},{"title":"Smart Sensors","note":"How can a car see the road?","words":["sensor","decision"],"lines":["Driverless cars have special sensors.","Sensors can detect other cars.","The car uses this information to make decisions."]},{"title":"Welcome to Mcity","note":"A special place to test cars.","words":["Mcity","traffic light"],"lines":["Mcity is a test city in the USA.","It has fake roads and traffic lights.","People test driverless cars there."]},{"title":"Cars Can Communicate","note":"Technology may make roads safer.","words":["software","traffic light"],"lines":["Car software can share information.","Cars can communicate with traffic lights.","This could help prevent accidents."]},{"title":"Your Big Idea!","note":"Think, read, and speak.","words":["invention","drone"],"lines":["What problems can a drone have?","Would you ride in a car with no driver?","What new invention would you like to see?"]}]</script>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const story=JSON.parse($('story-data').textContent);
+const meanings={"smartphone":"a phone that can use the internet","tablet":"a small flat computer","Wi-Fi":"a wireless internet connection","online":"using the internet","truck":"a big vehicle that carries things","drone":"a small flying robot","deliver":"to bring something to someone","driverless":"without a person driving","car":"a vehicle for people","sensor":"a device that notices what is around it","decision":"a choice","Mcity":"a test city for driverless cars in the USA","traffic light":"a light that tells cars when to stop or go","software":"computer programs","invention":"a new thing or idea"};
+const STORE='sakinah-future-reading-v1';
+let marks={};try{marks=JSON.parse(localStorage.getItem(STORE)||'{}')}catch(e){}
+let scene=0,voice='heart',speed=.9,playToken=0,player=null,playResolve=null;
+let recorder=null,micStream=null,micTarget='',chunks=[],audioURLs={};
+function say(t){$('status').textContent=t}
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(marks))}catch(e){}}
+function key(pi,i){return pi+'-'+i}
+function stopAudio(){playToken++;if(player){player.pause();player.onended=null;player.onerror=null;player=null}if(playResolve){const done=playResolve;playResolve=null;done(false)}document.querySelectorAll('.line.playing').forEach(e=>e.classList.remove('playing'))}
+function filename(pi,i){return 'audio/kokoro/'+voice+'/future-s'+(pi+1)+'-'+String(i+1).padStart(2,'0')+'.mp3'}
+function playClip(pi,i,token){return new Promise(resolve=>{
+ if(token!==playToken){resolve(false);return}
+ let done=false;
+ const finish=ok=>{if(done)return;done=true;if(player===a)player=null;if(playResolve===finish)playResolve=null;const line=$('line-'+i);if(scene===pi&&line)line.classList.remove('playing');resolve(ok)};
+ const a=new Audio(filename(pi,i));player=a;playResolve=finish;a.preload='none';a.playbackRate=speed;
+ if(scene===pi){const el=$('line-'+i);if(el)el.classList.add('playing')}
+ a.onended=()=>finish(true);a.onerror=()=>{say('The voice recording is not available yet. Please try again later.');finish(false)};
+ say('🔊 Reading sentence '+(i+1)+' · '+voice+' · '+speed+'×');
+ a.play().catch(()=>{say('Audio could not start. Check your connection or tap Listen again.');finish(false)});
+})}
+function listen(i){stopAudio();playClip(scene,i,playToken)}
+async function playAll(){stopAudio();const token=playToken,pi=scene;for(let i=0;i<story[pi].lines.length;i++){if(token!==playToken)break;const ok=await playClip(pi,i,token);if(!ok)break}if(token===playToken)say('Read the sentences aloud and record your voice!')}
+function stopMic(){if(recorder&&recorder.state!=='inactive'){recorder.stop()}else if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}}
+async function toggleRecord(i){
+ const target=key(scene,i);
+ if(recorder&&recorder.state!=='inactive'){stopMic();return}
+ if(!window.MediaRecorder||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){say('Microphone recording is not supported here. Open this page in Safari over HTTPS.');return}
+ stopAudio();try{
+ const stream=await navigator.mediaDevices.getUserMedia({audio:true});micStream=stream;micTarget=target;chunks=[];
+ const opts=['audio/mp4','audio/webm;codecs=opus','audio/webm'].find(t=>MediaRecorder.isTypeSupported(t));
+ recorder=new MediaRecorder(stream,opts?{mimeType:opts}:undefined);
+ recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+ recorder.onstop=()=>{
+ const blob=new Blob(chunks,{type:recorder.mimeType||'audio/mp4'});
+ if(blob.size>200){if(audioURLs[target])URL.revokeObjectURL(audioURLs[target]);audioURLs[target]=URL.createObjectURL(blob);say('🎧 Recording ready. Tap My Voice, then choose Perfect or Red Flag.')}else say('No voice was recorded. Try again.');
+ stream.getTracks().forEach(t=>t.stop());micStream=null;recorder=null;renderLines();
+ };
+ recorder.start();say('🔴 Recording sentence '+(i+1)+'. Tap the microphone again to stop.');renderLines();
+ }catch(e){say('Microphone access was not granted. Check Safari permissions.');if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}recorder=null}
+}
+function replay(i){const url=audioURLs[key(scene,i)];if(!url){say('Record your voice first.');return}stopAudio();const a=new Audio(url);player=a;a.onended=()=>{if(player===a)player=null};a.play().catch(()=>say('Could not play your recording.'))}
+function setMark(i,value){marks[key(scene,i)]=value;persist();renderLines();progress();say(value==='perfect'?'⭐ Perfect! Great reading!':'🚩 Red Flag saved. Practice this sentence again.')}
+function renderLines(){
+ const holder=$('sentences');holder.replaceChildren();
+ story[scene].lines.forEach((sentence,i)=>{
+ const row=document.createElement('div');row.className='line';row.id='line-'+i;
+ const score=marks[key(scene,i)];
+ if(score)row.classList.add(score==='perfect'?'good':'flag');
+ const p=document.createElement('p');p.className='sentence';p.textContent=(i+1)+'. '+sentence;row.appendChild(p);
+ const actions=document.createElement('div');actions.className='line-actions';
+ const buttons=[
+ ['🔊 Listen','listen',()=>listen(i)],
+ [recorder&&micTarget===key(scene,i)?'⏹ Stop Mic':'🎤 Mic','mic'+(recorder&&micTarget===key(scene,i)?' active':''),()=>toggleRecord(i)],
+ ['▶ My Voice','replay',()=>replay(i)],
+ ['⭐ Perfect','perfect',()=>setMark(i,'perfect')],
+ ['🚩 Red Flag','red',()=>setMark(i,'flag')]];
+ buttons.forEach((b,j)=>{const bt=document.createElement('button');bt.type='button';bt.textContent=b[0];bt.className=b[1];bt.onclick=b[2];if(j===2&&!audioURLs[key(scene,i)])bt.disabled=true;actions.appendChild(bt)});
+ row.appendChild(actions);
+ const label=document.createElement('div');label.className='review';
+ if(score){const bold=document.createElement('strong');bold.textContent=score==='perfect'?'✓ Perfect':'⚑ Red Flag — practice again';label.appendChild(bold)}else label.textContent='Listen → Mic → My Voice → Choose your reading flag';
+ row.appendChild(label);holder.appendChild(row);
+ });
+}
+function renderArt(i){
+ const sky='<rect width="900" height="530" fill="#e8f4ff"/><circle cx="737" cy="90" r="47" fill="#ffe69b"/><g fill="#fff" opacity=".9"><ellipse cx="160" cy="95" rx="80" ry="26"/><ellipse cx="210" cy="78" rx="58" ry="29"/><ellipse cx="510" cy="112" rx="72" ry="24"/></g><rect y="398" width="900" height="132" fill="#b5dcae"/>';
+ const road='<rect y="402" width="900" height="128" fill="#79859e"/><path d="M35 470h140m65 0h140m65 0h140m65 0h140" stroke="#fff9c2" stroke-width="9" stroke-linecap="round"/>';
+ const car='<g transform="translate(245 280)"><rect x="0" y="62" width="422" height="103" rx="35" fill="#7159c7"/><path d="M82 67l58-90h157l73 90Z" fill="#735acb"/><path d="M147-5h137l49 68H103Z" fill="#d1efff"/><circle cx="92" cy="169" r="43" fill="#263d61"/><circle cx="330" cy="169" r="43" fill="#263d61"/><circle cx="92" cy="169" r="21" fill="#e0e8ef"/><circle cx="330" cy="169" r="21" fill="#e0e8ef"/><rect x="377" y="90" width="32" height="20" rx="8" fill="#fff1b3"/></g>';
+ const drone='<g transform="translate(300 132)"><path d="M135 80H0m134 0h140" stroke="#495573" stroke-width="13" stroke-linecap="round"/><rect x="92" y="46" width="90" height="64" rx="22" fill="#6c59be"/><circle cx="137" cy="81" r="17" fill="#dcf2fa"/><path d="M-27 44h80m192 0h80" stroke="#303e5f" stroke-width="12" stroke-linecap="round"/><path d="M40 106v42m192-42v42" stroke="#435176" stroke-width="8"/><path d="M98 112v71m80-71v71" stroke="#435176" stroke-width="4"/><rect x="73" y="180" width="131" height="92" rx="7" fill="#e5ab65"/><path d="M135 180v91" stroke="#b87e3f" stroke-width="8"/></g>';
+ const light='<g transform="translate(675 144)"><rect x="51" y="0" width="11" height="310" fill="#536480"/><rect width="108" height="208" rx="19" fill="#343d57"/><circle cx="54" cy="46" r="28" fill="#ec6568"/><circle cx="54" cy="104" r="28" fill="#f3bc58"/><circle cx="54" cy="162" r="28" fill="#67c988"/></g>';
+ const buildings='<g><rect x="90" y="144" width="181" height="270" fill="#e6b881"/><rect x="275" y="80" width="210" height="334" fill="#dcb7e8"/><rect x="490" y="164" width="155" height="250" fill="#92b9e5"/><g fill="#f7f4d3"><rect x="118" y="177" width="38" height="51"/><rect x="188" y="177" width="38" height="51"/><rect x="317" y="125" width="46" height="58"/><rect x="401" y="125" width="46" height="58"/><rect x="317" y="215" width="46" height="58"/><rect x="401" y="215" width="46" height="58"/><rect x="530" y="203" width="38" height="51"/></g></g>';
+ const sensor='<g fill="none" stroke="#37a4cc" stroke-width="7" opacity=".8"><circle cx="456" cy="339" r="200" stroke-dasharray="16 18"/><circle cx="456" cy="339" r="143" stroke-dasharray="11 13"/><circle cx="456" cy="339" r="90" stroke-dasharray="9 11"/></g>';
+ const pieces=[
+ '<rect x="155" y="115" width="350" height="280" rx="24" fill="#7770bd"/><rect x="179" y="140" width="301" height="227" rx="12" fill="#b9e5f3"/><rect x="575" y="154" width="137" height="247" rx="28" fill="#35466a"/><rect x="591" y="171" width="105" height="192" rx="13" fill="#efcee6"/><g fill="none" stroke="#8965b2" stroke-width="10"><path d="M625 106q35-30 72 0"/><path d="M638 88q25-17 47 0"/><path d="M648 70q15-9 27 0"/></g>',
+ '<rect y="402" width="900" height="128" fill="#bbc3d7"/><g transform="translate(90 195)"><rect x="0" y="80" width="320" height="146" rx="13" fill="#eabb7d"/><rect x="315" y="130" width="157" height="96" rx="13" fill="#8d80cd"/><rect x="350" y="145" width="68" height="45" fill="#d9f1fa"/><circle cx="96" cy="235" r="42" fill="#424e68"/><circle cx="381" cy="235" r="42" fill="#424e68"/></g><rect x="671" y="239" width="116" height="114" rx="15" fill="#efba7a"/><path d="M694 236q-7-66 36-66t36 66" fill="none" stroke="#b68552" stroke-width="14"/>',
+ drone,
+ '<circle cx="696" cy="233" r="122" fill="#fff" stroke="#ad9ed4" stroke-width="15"/><path d="M696 155v85l58 44" stroke="#6859aa" stroke-width="16" fill="none" stroke-linecap="round"/>'+drone.replace('translate(300 132)','translate(55 109) scale(.72)'),
+ road+car,
+ sensor+road+car,
+ buildings+road+'<text x="710" y="92" fill="#7157b5" font-family="system-ui" font-size="60" font-weight="850">Mcity</text>',
+ road+car+light+'<path d="M460 200Q560 75 730 110" stroke="#39a3c6" stroke-width="9" stroke-dasharray="15 13" fill="none"/>',
+ road+car+drone.replace('translate(300 132)','translate(0 35) scale(.65)')+'<text x="772" y="195" font-family="system-ui" font-size="100" font-weight="900" fill="#7757ac">?</text>'
+ ];
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 530" role="img" aria-label="Simple flat illustration for '+story[i].title+'">'+sky+pieces[i]+'</svg>';
+}
+function progress(){
+ let good=0,flags=0;Object.keys(marks).forEach(k=>{if(marks[k]==='perfect')good++;if(marks[k]==='flag')flags++});
+ $('progressText').textContent=good+' Perfect ⭐ · '+flags+' Red Flags 🚩 · '+(27-good-flags)+' to practice';
+ $('fill').style.width=Math.round(good/27*100)+'%';
+ $('finish').textContent=good===27?'🏆 All sentences Perfect!':'';
+}
+function renderDots(){
+ const wrap=$('dots');wrap.replaceChildren();story.forEach((x,i)=>{const b=document.createElement('button');b.textContent=i+1;b.type='button';b.className=(i===scene?'active ':'')+(x.lines.some((_,j)=>marks[key(i,j)]==='flag')?'hasflag':'');b.setAttribute('aria-label','Picture '+(i+1));b.setAttribute('aria-current',i===scene?'step':'false');b.onclick=()=>go(i);wrap.appendChild(b)});
+}
+function render(){
+ const s=story[scene];$('chapterTitle').textContent=s.title;$('page').textContent='Scene '+(scene+1);$('counter').textContent='Picture '+(scene+1)+' / '+story.length;
+ $('art').innerHTML=renderArt(scene);$('caption').textContent=s.note;
+ renderLines();
+ const words=$('words');words.replaceChildren();const title=document.createElement('b');title.textContent='📚 Tap a key word for its simple meaning:';words.appendChild(title);
+ s.words.forEach(w=>{const b=document.createElement('button');b.textContent=w;b.onclick=()=>{$('meaning').textContent=w+' = '+(meanings[w]||'a new word')};words.appendChild(b)});
+ $('meaning').textContent='';$('prev').disabled=scene===0;$('picturePrev').disabled=scene===0;$('next').disabled=scene===story.length-1;$('pictureNext').disabled=scene===story.length-1;
+ renderDots();progress();
+}
+function go(i){if(i<0||i>=story.length)return;stopAudio();stopMic();scene=i;render();say('Picture '+(i+1)+': '+story[i].title);window.scrollTo({top:0,behavior:'instant'})}
+$('prev').onclick=$('picturePrev').onclick=()=>go(scene-1);
+$('next').onclick=$('pictureNext').onclick=()=>go(scene+1);
+$('readAll').onclick=playAll;$('stop').onclick=()=>{stopAudio();say('Stopped.')};
+$('reviewFlags').onclick=()=>{const first=story.findIndex((x,i)=>x.lines.some((_,j)=>marks[key(i,j)]==='flag'));if(first<0)say('🌟 No Red Flags. Great work!');else go(first)};
+document.querySelectorAll('[data-voice]').forEach(b=>b.onclick=()=>{stopAudio();voice=b.dataset.voice;document.querySelectorAll('[data-voice]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));say('Voice: '+voice)});
+document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{stopAudio();speed=Number(b.dataset.speed);document.querySelectorAll('[data-speed]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));say('Speed: '+speed+'×')});
+document.addEventListener('keydown',e=>{if(document.activeElement&&document.activeElement.tagName==='BUTTON')return;if(e.key==='ArrowRight')go(scene+1);if(e.key==='ArrowLeft')go(scene-1)});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stopAudio();stopMic()}});
+window.addEventListener('pagehide',()=>{stopAudio();stopMic();Object.keys(audioURLs).forEach(k=>URL.revokeObjectURL(audioURLs[k]))});
+render();
+})();
+</script></body></html>
