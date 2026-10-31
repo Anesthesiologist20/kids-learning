@@ -1,0 +1,56 @@
+name: Sakinah Future Technology Reading - Free Kokoro Voices
+on:
+  push:
+    paths:
+      - 'scripts/generate_sakinah_future_audio.py'
+      - '.github/workflows/sakinah-technology-future-audio.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sakinah-future-reading-kokoro
+  cancel-in-progress: false
+jobs:
+  kokoro:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        voice: [heart, bella, sarah]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Kokoro dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y espeak-ng ffmpeg
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Make and verify all 27 sentence recordings
+        run: python scripts/generate_sakinah_future_audio.py ${{ matrix.voice }}
+      - name: Commit optimized MP3 recordings
+        env:
+          VOICE: ${{ matrix.voice }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "sakinah/audio/kokoro/$VOICE"/future-s*.mp3
+          if git diff --cached --quiet; then
+            echo "All recordings already published for $VOICE"
+            exit 0
+          fi
+          git commit -m "audio(sakinah): future technology reading ($VOICE)"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then
+              echo "Published 27 $VOICE audio clips"
+              exit 0
+            fi
+            echo "Concurrent update, retrying"
+            sleep 5
+          done
+          echo "Failed to publish recordings"
+          exit 1
