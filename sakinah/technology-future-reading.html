@@ -12,6 +12,7 @@ main{width:min(100%,980px);margin:auto;padding:12px 14px 25px}a{color:var(--purp
 .book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:15px;margin-top:13px}.picture{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden;align-self:start}.picture svg{width:100%;height:auto;display:block;aspect-ratio:900/530}.caption{font-size:13px;color:#55637f;padding:9px 13px;border-top:1px solid var(--line)}.picture-buttons{display:flex;gap:7px;margin:0 10px 11px}.picture-buttons button{flex:1;font-size:13px}.reading{background:white;border:1px solid var(--line);border-radius:17px;padding:16px}.chapter{display:flex;align-items:center;gap:9px;margin-bottom:10px}.chapter h2{font:850 clamp(20px,3vw,28px)/1.2 ui-rounded,system-ui,sans-serif;margin:0;color:var(--purple)}.page{background:#ffed9f;border-radius:20px;padding:4px 10px;font-size:12px;font-weight:850;white-space:nowrap}.line{border:1px solid #e9e5ed;border-radius:14px;padding:11px;margin-top:10px;background:#fff;scroll-margin-top:130px}.line.playing{border-color:#a98cdb;background:#f8f2ff}.line.good{border-left:5px solid #48a867}.line.flag{border-left:5px solid #dc5c6a}.sentence{font-size:clamp(18px,2.4vw,23px);line-height:1.45;margin:0 0 9px;font-weight:700}.sentence .n{color:#9378b6;font-size:12px;margin-right:6px}.line-actions{display:flex;gap:6px;flex-wrap:wrap}.line-actions button{font-size:12px;padding:6px 9px;min-height:40px}.listen{background:#e8f5fd;color:#156c9e}.mic{background:#ffeff6;color:#b13461}.mic.active{background:#d82f61;color:white}.replay{background:#f0edfb;color:#6856a4}.perfect{background:#edfaef;color:#27733e}.red{background:#fff0f0;color:#a53442}.line .review{font-size:12px;margin-top:5px;color:var(--muted);min-height:18px}.line .review strong{color:#347b49}.line.flag .review strong{color:#b5424f}
 .words{display:flex;gap:7px;flex-wrap:wrap;margin:13px 0 0}.words b{font-size:13px;flex-basis:100%;color:#70558b}.words button{background:#fff6d7;color:#6b5429;border-color:#e8d99f;font-size:13px;min-height:36px}.word-meaning{font-size:13px;min-height:20px;color:#4a6080;margin-top:7px}
 .bottom{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:12px 0}.bottom button{min-width:95px}.dots{display:flex;gap:5px;justify-content:center;flex-wrap:wrap;flex:1}.dots button{width:29px;min-width:29px;height:29px;min-height:29px;padding:0;font-size:11px;border-radius:50%;color:#6f6482}.dots button.active{background:var(--purple);border-color:var(--purple);color:#fff}.dots button.hasflag{border:2px solid #e4535e}
+.book.all-mode{grid-template-columns:1fr}.reading-group{margin:13px 0 23px}.reading-group h3{background:#eee9fb;border-left:5px solid var(--purple);padding:10px 12px;border-radius:10px;color:#5d478e;margin:8px 0 11px;font-size:18px}.dots button.all-dot{width:auto;min-width:78px;border-radius:13px;padding:3px 8px;font-weight:850}.top-view{background:#fff0c7;color:#6d4d11;border:1px solid #e4ce88}
 .summary{background:#fff;border:1px solid var(--line);border-radius:15px;padding:13px 16px;margin-top:10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.summary p{margin:2px 0;font-size:13px;color:var(--muted)}.small{font-size:12px;color:var(--muted);margin:11px 0;line-height:1.65}#finish{font-size:13px;color:#346f49;font-weight:750}.bottom button:last-child{background:var(--purple);color:white}
 @media(max-width:720px){main{padding:8px 9px}.hero,.book{grid-template-columns:1fr}.hero{gap:8px}.title{padding:13px 16px}.book{gap:9px;margin-top:9px}.picture svg{max-height:270px}.reading{padding:11px}.sentence{font-size:20px}.line{padding:9px}.line-actions button{flex:1;min-width:79px}.bottom button{min-width:62px;padding:6px}.dots{gap:3px}.dots button{width:26px;min-width:26px;height:26px;min-height:26px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
@@ -22,9 +23,9 @@ main{width:min(100%,980px);margin:auto;padding:12px 14px 25px}a{color:var(--purp
 <button data-voice="heart" aria-pressed="true">💜 Heart</button><button data-voice="bella" aria-pressed="false">🌸 Bella</button><button data-voice="sarah" aria-pressed="false">🌷 Sarah</button></div>
 <div class="setting-title">Reading speed</div><div class="toggles speed" id="speeds">
 <button data-speed="0.75" aria-pressed="false">🐢 Slow</button><button data-speed="0.9" aria-pressed="true">🌿 Easy</button><button data-speed="1" aria-pressed="false">▶ Normal</button></div></div></header>
-<div class="bar"><div class="transport"><button id="readAll" class="primary">🔊 Read this picture</button><button id="stop" class="stop">■ Stop</button><span id="counter" class="counter">Picture 1 / 9</span></div>
+<div class="bar"><div class="transport"><button id="readAll" class="primary">🔊 Read this picture</button><button id="stop" class="stop">■ Stop</button><button id="allText" class="top-view">📖 All Text · Page 10</button><span id="counter" class="counter">Picture 1 / 9</span></div>
 <p id="status" class="status" role="status" aria-live="polite">Choose a sentence to listen to. Then tap its microphone.</p><div class="progress"><div class="fill" id="fill"></div></div></div>
-<div class="book"><div class="picture"><div id="art"></div><div id="caption" class="caption"></div><div class="picture-buttons"><button id="picturePrev">← Previous picture</button><button id="pictureNext">Next picture →</button></div></div>
+<div class="book" id="book"><div class="picture" id="picturePanel"><div id="art"></div><div id="caption" class="caption"></div><div class="picture-buttons"><button id="picturePrev">← Previous picture</button><button id="pictureNext">Next picture →</button></div></div>
 <section class="reading"><div class="chapter"><span class="page" id="page">Scene 1</span><h2 id="chapterTitle"></h2></div><div id="sentences"></div><div id="words" class="words"></div><div id="meaning" class="word-meaning" aria-live="polite"></div></section></div>
 <div class="bottom"><button id="prev">← Previous</button><div class="dots" id="dots"></div><button id="next">Next →</button></div>
 <div class="summary"><div><strong>⭐ My Reading Stars</strong><p id="progressText">0 Perfect · 0 Red Flags</p></div><button id="reviewFlags">🚩 Review Red Flags</button><span id="finish"></span></div>
@@ -49,18 +50,26 @@ function filename(pi,i){return 'audio/kokoro/'+voice+'/future-s'+(pi+1)+'-'+Stri
 function playClip(pi,i,token){return new Promise(resolve=>{
  if(token!==playToken){resolve(false);return}
  let done=false;
- const finish=ok=>{if(done)return;done=true;if(player===a)player=null;if(playResolve===finish)playResolve=null;const line=$('line-'+i);if(scene===pi&&line)line.classList.remove('playing');resolve(ok)};
+ const lineId='line-'+pi+'-'+i;
+ const finish=ok=>{if(done)return;done=true;if(player===a)player=null;if(playResolve===finish)playResolve=null;const line=$(lineId);if(line)line.classList.remove('playing');resolve(ok)};
  const a=new Audio(filename(pi,i));player=a;playResolve=finish;a.preload='none';a.playbackRate=speed;
- if(scene===pi){const el=$('line-'+i);if(el)el.classList.add('playing')}
- a.onended=()=>finish(true);a.onerror=()=>{say('The voice recording is not available yet. Please try again later.');finish(false)};
- say('🔊 Reading sentence '+(i+1)+' · '+voice+' · '+speed+'×');
+ const el=$(lineId);if(el){el.classList.add('playing');if(scene===story.length)el.scrollIntoView({block:'center',behavior:'smooth'})}
+ a.onended=()=>finish(true);a.onerror=()=>{say('Voice recording not available yet. Please try again later.');finish(false)};
+ say('🔊 Reading sentence '+(i+1)+' of '+story[pi].title+' · '+voice+' · '+speed+'×');
  a.play().catch(()=>{say('Audio could not start. Check your connection or tap Listen again.');finish(false)});
 })}
-function listen(i){stopAudio();playClip(scene,i,playToken)}
-async function playAll(){stopAudio();const token=playToken,pi=scene;for(let i=0;i<story[pi].lines.length;i++){if(token!==playToken)break;const ok=await playClip(pi,i,token);if(!ok)break}if(token===playToken)say('Read the sentences aloud and record your voice!')}
+function listen(pi,i){stopAudio();playClip(pi,i,playToken)}
+async function playAll(){
+ stopAudio();const token=playToken;
+ const pairs=scene===story.length
+   ?story.flatMap((group,pi)=>group.lines.map((_,i)=>[pi,i]))
+   :story[scene].lines.map((_,i)=>[scene,i]);
+ for(const [pi,i] of pairs){if(token!==playToken)break;const ok=await playClip(pi,i,token);if(!ok)break}
+ if(token===playToken)say('Read the sentences aloud and record your voice!');
+}
 function stopMic(){if(recorder&&recorder.state!=='inactive'){recorder.stop()}else if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}}
-async function toggleRecord(i){
- const target=key(scene,i);
+async function toggleRecord(pi,i){
+ const target=key(pi,i);
  if(recorder&&recorder.state!=='inactive'){stopMic();return}
  if(!window.MediaRecorder||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){say('Microphone recording is not supported here. Open this page in Safari over HTTPS.');return}
  stopAudio();try{
@@ -76,28 +85,41 @@ async function toggleRecord(i){
  recorder.start();say('🔴 Recording sentence '+(i+1)+'. Tap the microphone again to stop.');renderLines();
  }catch(e){say('Microphone access was not granted. Check Safari permissions.');if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}recorder=null}
 }
-function replay(i){const url=audioURLs[key(scene,i)];if(!url){say('Record your voice first.');return}stopAudio();const a=new Audio(url);player=a;a.onended=()=>{if(player===a)player=null};a.play().catch(()=>say('Could not play your recording.'))}
-function setMark(i,value){marks[key(scene,i)]=value;persist();renderLines();progress();say(value==='perfect'?'⭐ Perfect! Great reading!':'🚩 Red Flag saved. Practice this sentence again.')}
+function replay(pi,i){const url=audioURLs[key(pi,i)];if(!url){say('Record your voice first.');return}stopAudio();const a=new Audio(url);player=a;a.onended=()=>{if(player===a)player=null};a.play().catch(()=>say('Could not play your recording.'))}
+function setMark(pi,i,value){marks[key(pi,i)]=value;persist();renderLines();progress();say(value==='perfect'?'⭐ Perfect! Great reading!':'🚩 Red Flag saved. Practice this sentence again.')}
 function renderLines(){
  const holder=$('sentences');holder.replaceChildren();
- story[scene].lines.forEach((sentence,i)=>{
- const row=document.createElement('div');row.className='line';row.id='line-'+i;
- const score=marks[key(scene,i)];
- if(score)row.classList.add(score==='perfect'?'good':'flag');
+ const appendGroup=pi=>{
+   if(scene===story.length){
+     const group=document.createElement('div');group.className='reading-group';
+     const heading=document.createElement('h3');heading.textContent=(pi+1)+'. '+story[pi].title;
+     group.appendChild(heading);
+     story[pi].lines.forEach((sentence,i)=>group.appendChild(makeRow(pi,i,sentence)));
+     holder.appendChild(group);
+   }else{
+     story[pi].lines.forEach((sentence,i)=>holder.appendChild(makeRow(pi,i,sentence)));
+   }
+ };
+ if(scene===story.length)story.forEach((_,pi)=>appendGroup(pi));else appendGroup(scene);
+}
+function makeRow(pi,i,sentence){
+ const row=document.createElement('div');row.className='line';row.id='line-'+pi+'-'+i;
+ const score=marks[key(pi,i)];if(score)row.classList.add(score==='perfect'?'good':'flag');
  const p=document.createElement('p');p.className='sentence';p.textContent=(i+1)+'. '+sentence;row.appendChild(p);
  const actions=document.createElement('div');actions.className='line-actions';
+ const recording=recorder&&micTarget===key(pi,i)&&recorder.state!=='inactive';
  const buttons=[
- ['🔊 Listen','listen',()=>listen(i)],
- [recorder&&micTarget===key(scene,i)?'⏹ Stop Mic':'🎤 Mic','mic'+(recorder&&micTarget===key(scene,i)?' active':''),()=>toggleRecord(i)],
- ['▶ My Voice','replay',()=>replay(i)],
- ['⭐ Perfect','perfect',()=>setMark(i,'perfect')],
- ['🚩 Red Flag','red',()=>setMark(i,'flag')]];
- buttons.forEach((b,j)=>{const bt=document.createElement('button');bt.type='button';bt.textContent=b[0];bt.className=b[1];bt.onclick=b[2];if(j===2&&!audioURLs[key(scene,i)])bt.disabled=true;actions.appendChild(bt)});
+ ['🔊 Listen','listen',()=>listen(pi,i)],
+ [recording?'⏹ Stop Mic':'🎤 Mic','mic'+(recording?' active':''),()=>toggleRecord(pi,i)],
+ ['▶ My Voice','replay',()=>replay(pi,i)],
+ ['⭐ Perfect','perfect',()=>setMark(pi,i,'perfect')],
+ ['🚩 Red Flag','red',()=>setMark(pi,i,'flag')]];
+ buttons.forEach((b,j)=>{const bt=document.createElement('button');bt.type='button';bt.textContent=b[0];bt.className=b[1];bt.onclick=b[2];if(j===2&&!audioURLs[key(pi,i)])bt.disabled=true;actions.appendChild(bt)});
  row.appendChild(actions);
  const label=document.createElement('div');label.className='review';
- if(score){const bold=document.createElement('strong');bold.textContent=score==='perfect'?'✓ Perfect':'⚑ Red Flag — practice again';label.appendChild(bold)}else label.textContent='Listen → Mic → My Voice → Choose your reading flag';
- row.appendChild(label);holder.appendChild(row);
- });
+ if(score){const bold=document.createElement('strong');bold.textContent=score==='perfect'?'✓ Perfect':'⚑ Red Flag — practice again';label.appendChild(bold)}
+ else label.textContent='Listen → Mic → My Voice → Choose your reading flag';
+ row.appendChild(label);return row;
 }
 function renderArt(i){
  const sky='<rect width="900" height="530" fill="#e8f4ff"/><circle cx="737" cy="90" r="47" fill="#ffe69b"/><g fill="#fff" opacity=".9"><ellipse cx="160" cy="95" rx="80" ry="26"/><ellipse cx="210" cy="78" rx="58" ry="29"/><ellipse cx="510" cy="112" rx="72" ry="24"/></g><rect y="398" width="900" height="132" fill="#b5dcae"/>';
@@ -127,21 +149,42 @@ function progress(){
  $('finish').textContent=good===27?'🏆 All sentences Perfect!':'';
 }
 function renderDots(){
- const wrap=$('dots');wrap.replaceChildren();story.forEach((x,i)=>{const b=document.createElement('button');b.textContent=i+1;b.type='button';b.className=(i===scene?'active ':'')+(x.lines.some((_,j)=>marks[key(i,j)]==='flag')?'hasflag':'');b.setAttribute('aria-label','Picture '+(i+1));b.setAttribute('aria-current',i===scene?'step':'false');b.onclick=()=>go(i);wrap.appendChild(b)});
+ const wrap=$('dots');wrap.replaceChildren();
+ story.forEach((x,i)=>{
+   const b=document.createElement('button');b.textContent=i+1;b.type='button';
+   b.className=(i===scene?'active ':'')+(x.lines.some((_,j)=>marks[key(i,j)]==='flag')?'hasflag':'');
+   b.setAttribute('aria-label','Picture '+(i+1));b.setAttribute('aria-current',i===scene?'step':'false');
+   b.onclick=()=>go(i);wrap.appendChild(b);
+ });
+ const full=document.createElement('button');full.type='button';full.textContent='📖 TEXT';
+ full.className='all-dot'+(scene===story.length?' active':'');
+ full.setAttribute('aria-label','Page 10 — all text, all 27 sentences');
+ full.setAttribute('aria-current',scene===story.length?'step':'false');
+ full.onclick=()=>go(story.length);wrap.appendChild(full);
 }
 function render(){
- const s=story[scene];$('chapterTitle').textContent=s.title;$('page').textContent='Scene '+(scene+1);$('counter').textContent='Picture '+(scene+1)+' / '+story.length;
- $('art').innerHTML=renderArt(scene);$('caption').textContent=s.note;
+ const all=scene===story.length;
+ $('book').classList.toggle('all-mode',all);$('picturePanel').hidden=all;
+ $('chapterTitle').textContent=all?'All Reading Text · 27 Sentences':story[scene].title;
+ $('page').textContent=all?'Page 10':'Scene '+(scene+1);
+ $('counter').textContent=all?'All Text · 27 sentences':'Picture '+(scene+1)+' / '+story.length;
+ $('readAll').textContent=all?'🔊 Read all 27 sentences':'🔊 Read this picture';
+ $('allText').textContent=all?'↩️ Picture 1':'📖 All Text · Page 10';
+ if(!all){$('art').innerHTML=renderArt(scene);$('caption').textContent=story[scene].note}
  renderLines();
- const words=$('words');words.replaceChildren();const title=document.createElement('b');title.textContent='📚 Tap a key word for its simple meaning:';words.appendChild(title);
- s.words.forEach(w=>{const b=document.createElement('button');b.textContent=w;b.onclick=()=>{$('meaning').textContent=w+' = '+(meanings[w]||'a new word')};words.appendChild(b)});
- $('meaning').textContent='';$('prev').disabled=scene===0;$('picturePrev').disabled=scene===0;$('next').disabled=scene===story.length-1;$('pictureNext').disabled=scene===story.length-1;
+ const words=$('words');words.replaceChildren();const title=document.createElement('b');
+ title.textContent='📚 Tap a key word for its simple meaning:';words.appendChild(title);
+ const list=all?[...new Set(story.flatMap(x=>x.words))]:story[scene].words;
+ list.forEach(w=>{const b=document.createElement('button');b.textContent=w;b.onclick=()=>{$('meaning').textContent=w+' = '+(meanings[w]||'a new word')};words.appendChild(b)});
+ $('meaning').textContent='';
+ $('prev').disabled=scene===0;$('picturePrev').disabled=scene===0;
+ $('next').disabled=all;$('pictureNext').disabled=scene>=story.length-1;
  renderDots();progress();
 }
-function go(i){if(i<0||i>=story.length)return;stopAudio();stopMic();scene=i;render();say('Picture '+(i+1)+': '+story[i].title);window.scrollTo({top:0,behavior:'instant'})}
+function go(i){if(i<0||i>story.length)return;stopAudio();stopMic();scene=i;render();say(i===story.length?'📖 All 27 sentences on one page.':'Picture '+(i+1)+': '+story[i].title);window.scrollTo({top:0,behavior:'instant'})}
 $('prev').onclick=$('picturePrev').onclick=()=>go(scene-1);
 $('next').onclick=$('pictureNext').onclick=()=>go(scene+1);
-$('readAll').onclick=playAll;$('stop').onclick=()=>{stopAudio();say('Stopped.')};
+$('readAll').onclick=playAll;$('stop').onclick=()=>{stopAudio();say('Stopped.')};$('allText').onclick=()=>go(scene===story.length?0:story.length);
 $('reviewFlags').onclick=()=>{const first=story.findIndex((x,i)=>x.lines.some((_,j)=>marks[key(i,j)]==='flag'));if(first<0)say('🌟 No Red Flags. Great work!');else go(first)};
 document.querySelectorAll('[data-voice]').forEach(b=>b.onclick=()=>{stopAudio();voice=b.dataset.voice;document.querySelectorAll('[data-voice]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));say('Voice: '+voice)});
 document.querySelectorAll('[data-speed]').forEach(b=>b.onclick=()=>{stopAudio();speed=Number(b.dataset.speed);document.querySelectorAll('[data-speed]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));say('Speed: '+speed+'×')});
