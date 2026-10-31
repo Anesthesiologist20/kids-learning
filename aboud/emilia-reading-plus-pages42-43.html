@@ -13,7 +13,7 @@ dialog{border:0;border-radius:23px;padding:24px;width:min(94vw,580px);max-height
 .sentence-listen{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;min-width:36px;min-height:36px;margin:2px 9px 2px 3px;padding:4px 7px;border:1px solid #bcd5ed;border-radius:10px;background:#e9f5ff;color:#185a91;font-size:16px;line-height:1}
 .sentence-listen[aria-pressed=true]{background:#dfd0ff;border-color:#775baf;box-shadow:0 0 0 2px #cab4f4}
 @media print{.sentence-listen{display:none!important}}
-.page-label{font-weight:900;background:#e9e1fb;border:1px solid #d7c7ec;color:#6548a8;border-radius:13px;padding:11px 15px;margin:21px 0 12px;scroll-margin-top:165px}#page43{background:#e6f4fc;border-color:#b5d8ed;color:#126a9b}</style></head>
+.page-label{font-weight:900;background:#e9e1fb;border:1px solid #d7c7ec;color:#6548a8;border-radius:13px;padding:11px 15px;margin:21px 0 12px;scroll-margin-top:165px}#page43{background:#e6f4fc;border-color:#b5d8ed;color:#126a9b}.scene-art{aspect-ratio:420/272}.zoom-scene svg,.word-picture svg{aspect-ratio:420/272}</style></head>
 <body><main>
 <nav class="topline" aria-label="Lesson navigation"><a href="./">← Aboud's Corner</a><a href="emilia-reading-plus-page41.html">← Page 41</a><span class="tag">Pages 42–43</span></nav>
 <header class="hero"><div class="title"><div class="kicker">Reading Plus</div><h1>Emilia’s New Year’s Adventure</h1><div class="byline"><span>By Kim Milne</span><button type="button" id="readTitle" aria-label="Read the title and author">🔊</button></div></div>
@@ -48,7 +48,7 @@ try {
     if (VOICES.includes(saved.voice)) state.voice = saved.voice;
     if (SPEEDS.includes(Number(saved.speed))) state.speed = Number(saved.speed);
     for (const key of ['heard', 'practiced', 'mastered', 'mistakes']) {
-      if (Array.isArray(saved[key])) state[key] = [...new Set(saved[key].filter(n => Number.isInteger(n) && n >= 0 && n < (key === 'heard' ? 17 : 8)))];
+      if (Array.isArray(saved[key])) state[key] = [...new Set(saved[key].filter(n => Number.isInteger(n) && n >= 0 && n < (key === 'heard' ? 23 : 8)))];
     }
     if (Number.isInteger(saved.lastScene) && saved.lastScene >= 0 && saved.lastScene < 8) state.lastScene = saved.lastScene;
     state.mastered = state.mastered.filter(n => !state.mistakes.includes(n));
