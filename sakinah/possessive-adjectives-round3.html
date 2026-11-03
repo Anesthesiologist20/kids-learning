@@ -306,7 +306,7 @@ return '<div class="review-row"><strong class="'+(correct?"label-ok":answered?"l
 function again(){var s=state.session;if(s)start(s.mode);else home();}
 load();renderHome();
 if(state.session&&state.session.finished){renderResult();setScreen("result");}
-else if(state.session){renderQuiz();setScreen("quiz");}else setScreen("home");
+else if(state.session){if(state.session.deadline&&Date.now()>=state.session.deadline){finish(true);}else{renderQuiz();setScreen("quiz");}}else setScreen("home");
 window.App={home:home,learn:learn,start:start,resume:resume,answer:answer,checkTyped:checkTyped,move:move,jump:jump,flag:flag,finish:function(){finish(false);},again:again};
 el("qInput").addEventListener("keydown",function(e){if(e.key==="Enter")checkTyped();});
 timerId=setInterval(function(){if(state.screen==="quiz")updateTimer();},1000);
