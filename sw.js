@@ -1,6 +1,9 @@
 /* Kids Learning PWA: version 1, network-first updates and offline practice */
-const CACHE = 'kids-learning-pwa-v43';
+const CACHE = 'kids-learning-pwa-v44';
 const SHELL = [
+ '/kids-learning/raghd/letter-n.html',
+ '/kids-learning/raghd/letter-n/style.css',
+ '/kids-learning/raghd/letter-n/app.js',
  '/kids-learning/sakinah/adjective-adventure.html',
  '/kids-learning/sakinah/verb-adventure.html',
  '/kids-learning/raghd/teacher-slides.js',
