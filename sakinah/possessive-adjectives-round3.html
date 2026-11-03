@@ -136,9 +136,22 @@ function fill(text,word,why){var id="p"+(++number);BANK[id]={id:id,mode:"fill",t
 ["The puppy plays with ___ little ball.","its"],["I left ___ jacket on the chair.","my"],
 ["The visitors parked ___ cars outside.","their"],["Huda is reading ___ storybook.","her"],
 ["Are these ___ crayons, Sara?","your"],["The boys finished ___ homework early.","their"],
-["The doctor washed ___ hands before the examination.","their","A doctor can be any gender. In this sentence, singular they is a possible gender-neutral reference, so their is appropriate."]
+["The doctors washed ___ hands before the examination.","their","The doctors are a group: they → their."]
 ].forEach(function(x){fill(x[0],x[1],x[2]);});
-function fixing(bad,good,wrong2,wrong3,why){add("fix","Choose the only correct sentence:",good,why,[bad,good,wrong2,wrong3]);}
+function fixing(bad,good,wrong2,wrong3,why){
+var clues={
+"Sara loves his rabbit.":"The rabbit belongs to Sara.",
+"The elephant moved their trunk.":"The trunk belongs to one elephant.",
+"My sisters and I finished their cake.":"The cake belongs to me and my sisters.",
+"Those players forgot his shoes.":"The shoes belong to those players.",
+"Ali opened her schoolbag.":"The schoolbag belongs to Ali (a boy).",
+"Sakinah, did you bring her book?":"You are speaking directly to Sakinah about Sakinah's own book.",
+"I cleaned your room.":"I am talking about the room that belongs to me.",
+"We showed them their classroom.":"The classroom belongs to us, not them.",
+"The robot changed her batteries.":"The batteries belong to a robot.",
+"Maha found his scarf.":"The scarf belongs to Maha (a girl)."
+};
+add("fix","Choose the sentence that matches the clue:\n"+clues[bad],good,why,shuffle([bad,good,wrong2,wrong3]));}
 fixing("Sara loves his rabbit.","Sara loves her rabbit.","Sara loves our rabbit.","Sara loves their rabbit.","Sara is a girl, so she → her.");
 fixing("The elephant moved their trunk.","The elephant moved its trunk.","The elephant moved his trunk.","The elephant moved our trunk.","One elephant is an animal: it → its.");
 fixing("My sisters and I finished their cake.","My sisters and I finished our cake.","My sisters and I finished her cake.","My sisters and I finished its cake.","My sisters and I means we → our.");
@@ -180,13 +193,13 @@ batch("mock",[
 ["The princess waved ........ hand to the crowd.","her"],
 ["The children and their teacher planned ........ performance.","their"],
 ["We invited our neighbors to ........ party.","our"],
-["The astronaut checked ........ helmet before takeoff.","their","We are not told the astronaut's gender; gender-neutral their is appropriate here."],
+["The astronauts checked ........ helmets before takeoff.","their","The astronauts are a group: they → their."],
 ["I cannot find ........ yellow eraser.","my"],
 ["The horse moved ........ tail to chase away flies.","its"],
 ["Ali and Omar brought ........ own notebooks.","their"],
 ["Mom, is this ........ cup?","your"],
 ["Sakinah worked hard on ........ English project.","her"],
-["The team celebrated ........ victory.","its","A team considered as one group can take its."],
+["The team (acting as one group) celebrated ........ victory.","its","The team is one unit here: it → its."],
 ["My father repaired ........ old radio.","his"],
 ["My sister and I love ........ school library.","our"],
 ["The baby bird fell out of ........ nest.","its"],
