@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f9c6da">
+<meta name="description" content="Raghd’s Letter Cc: Cat, Cow, Crown, Candle, Clock and Cup. Kokoro recordings, listening, picture quiz, writing and stars.">
+<link rel="manifest" href="/kids-learning/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/kids-learning/icons/icon-192.png">
+<title>Raghd's Letter C Garden 🌸</title>
+<link rel="stylesheet" href="letter-c/style.css?v=1">
+<script src="letter-c/app.js?v=1" defer></script>
+</head>
+<body>
+<div class="shell">
+<nav class="top"><a href="./" class="home">🌷 Raghd's Home</a><span class="tag">MY ENGLISH GARDEN • LETTER N</span><button class="iconbtn" id="fullscreen" type="button" aria-label="Fullscreen">⛶</button></nav>
+<header class="hero">
+ <div class="hero-copy"><div class="eyebrow">🌟 A NEW LITTLE ADVENTURE</div><h1>Hi, Raghd! <span>Let's learn <em>C c</em></span></h1><p>Six words from your book. Two teachers. Listen, look, play and collect your stars!</p>
+ <div class="hero-actions"><button class="primary" type="button" data-go="learn">🌼 Learn my words</button><button class="whitebtn" type="button" data-go="listen">🔊 Let's play!</button></div></div>
+ <div class="hero-letters"><span class="big-n">C</span><span class="little-n">c</span><span class="hero-flower">🌸 ✨ 🌼</span></div>
+</header>
+<section class="stats" aria-label="Learning progress"><div><span>🌻</span><b id="learnedStat">0 / 6</b><small>Words learned</small></div><div><span>⭐</span><b id="starStat">0</b><small>My stars</small></div><div><span>🏆</span><b id="bestStat">—</b><small>Best score</small></div></section>
+<section class="teachers" aria-label="Teacher voice settings"><div class="teacher-title"><span class="teacher-emoji">🎧</span><div><strong>Choose your teacher</strong><small>Kokoro recordings • two speaking speeds</small></div></div><label>Voice <select id="voiceSelect"><option value="bella">🌸 Bella</option><option value="heart">💜 Heart</option></select></label><label>Speed <select id="speedSelect"><option value="0.78">🐢 Slow</option><option value="1">🐰 Normal</option></select></label><button type="button" class="softbtn" id="testVoice">▶ Try voice</button><span class="audio-status" id="audioStatus" aria-live="polite"></span></section>
+<nav class="tabs" aria-label="Choose an activity">
+<button type="button" data-tab="learn" class="tab selected">📖 <span>Learn</span></button>
+<button type="button" data-tab="listen" class="tab">🔊 <span>Hear & Pick</span></button>
+<button type="button" data-tab="picture" class="tab">🖼️ <span>Look & Pick</span></button>
+<button type="button" data-tab="write" class="tab">✏️ <span>Write C c</span></button>
+<button type="button" data-tab="prizes" class="tab">🏅 <span>My Stars</span></button>
+</nav>
+<main>
+<section id="learn" class="view">
+ <div class="section-intro"><span class="pill">01 • DISCOVER</span><h2>Six words from your book 🌷</h2><p>Tap each picture to hear the word. Then listen to the little sentence!</p></div>
+ <div class="words" id="words"></div><div class="next-mission"><b>Ready for a challenge?</b><button class="primary" type="button" data-go="listen">🔊 Hear & Pick →</button><button class="outline" type="button" data-go="picture">🖼️ Look & Pick →</button></div>
+</section>
+<section id="games" class="view" hidden>
+ <div class="section-intro"><span class="pill" id="gameBadge">02 • HEAR & PICK</span><h2 id="gameHeading">Listen carefully! 🎧</h2><p id="gameInstruction">Tap the speaker, then choose the word you heard.</p></div>
+ <div class="gameboard">
+   <div class="row between"><strong id="gameCount">Question 1 of 12</strong><strong class="score-label" id="gameScore">⭐ 0 correct</strong></div><div class="progress"><div id="progressFill"></div></div>
+   <div class="question-map" id="questionMap" aria-label="Questions"></div>
+   <div id="questionArea"></div>
+   <div class="answer-list" id="choices"></div>
+   <p class="feedback" id="feedback" aria-live="polite"></p>
+   <div class="game-actions"><button type="button" class="outline" id="prevQuestion">← Previous</button><button type="button" class="primary" id="nextQuestion">Next →</button><button type="button" class="softbtn" id="finishGame">🏁 My result</button></div>
+   <div class="results" id="results" hidden></div>
+ </div>
+ <div class="extra-tip"><span>💗</span> One tap, one answer! Choose carefully. Your answer is saved.</div>
+</section>
+<section id="write" class="view" hidden>
+ <div class="section-intro"><span class="pill">04 • WRITE</span><h2>My little handwriting book ✍️</h2><p>Follow the dotted letter with your finger or stylus. Then write it again!</p></div>
+ <div class="writing-wrap"><article class="writing-box"><h3>Big letter <span>C</span></h3><div class="paper"><svg viewBox="0 0 300 240" class="trace" aria-hidden="true"><text x="150" y="185">C</text></svg><canvas id="canvasBig" aria-label="Trace the capital letter C"></canvas></div><p>Start at the top right. Curve around to the left!</p></article><article class="writing-box"><h3>Small letter <span>c</span></h3><div class="paper"><svg viewBox="0 0 300 240" class="trace" aria-hidden="true"><text x="150" y="185">c</text></svg><canvas id="canvasSmall" aria-label="Trace the small letter c"></canvas></div><p>Make a little curve, like a small C!</p></article></div>
+ <div class="row centered"><button class="outline" type="button" id="erase">🧽 Erase & try again</button><button class="primary" type="button" id="soundC">🔊 Hear C</button><button class="softbtn" type="button" id="soundCc">🔊 /k/ sound</button></div>
+</section>
+<section id="prizes" class="view" hidden><div class="section-intro"><span class="pill">05 • MY GARDEN</span><h2>Raghd's star garden ✨</h2><p>Every little step makes your garden bloom!</p></div>
+ <div class="reward-box"><div class="trophy">🏆</div><h2 id="awardHeading">Keep growing, Raghd!</h2><p id="awardMessage"></p><div class="badges" id="badges"></div><div class="row centered"><button type="button" class="primary" data-go="listen">🎧 Play a listening game</button><button type="button" class="outline" data-go="picture">🌼 Play a picture game</button></div></div>
+</section>
+</main><footer>🌸 Made for Raghd • C is for Cat, Cow, Crown, Candle, Clock & Cup</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+</div>
+<script>if("serviceWorker"in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("/kids-learning/sw.js",{scope:"/kids-learning/"}).catch(()=>{}));</script>
+</body></html>
