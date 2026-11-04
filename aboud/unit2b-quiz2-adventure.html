@@ -88,7 +88,7 @@ const $=id=>document.getElementById(id);
 const screens=['Learn','Choose','Quiz','Result','Write'];
 let active=null;
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(data));}catch(_){}}
-function selectScreen(name){const target=$('screen'+name);const changed=target.hidden;screens.forEach(s=>{const el=$('screen'+s);el.hidden=(s.toLowerCase()!==name.toLowerCase());});document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===name.toLowerCase()||(name==='result'&&b.dataset.tab==='choose')||(name==='quiz'&&b.dataset.tab==='choose')));if(changed)target.scrollIntoView({behavior:'instant',block:'start'});}
+function selectScreen(name){const normalized=String(name).toLowerCase();const id=screens.find(s=>s.toLowerCase()===normalized);if(!id)return;const target=$('screen'+id);const changed=target.hidden;screens.forEach(s=>{$('screen'+s).hidden=(s!==id);});document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===normalized||(normalized==='result'&&b.dataset.tab==='choose')||(normalized==='quiz'&&b.dataset.tab==='choose')));if(changed)requestAnimationFrame(()=>target.scrollIntoView({behavior:'instant',block:'start'}));}
 function showQuestionInView(){requestAnimationFrame(()=>{$('qCategory').scrollIntoView({behavior:'instant',block:'start'});});}
 function modelById(id){return MODELS.find(m=>m.id===id);}
 function session(id){const m=modelById(id);let s=data.sessions[id];if(!s||!Array.isArray(s.answers)||s.answers.length!==m.items.length){s={answers:Array(m.items.length).fill(null),flags:[],pos:0,started:Date.now(),ended:0};data.sessions[id]=s;persist();}return s;}
