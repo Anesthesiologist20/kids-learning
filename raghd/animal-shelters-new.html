@@ -98,12 +98,12 @@ function matchChooseHouse(id){
 function resetMatch(){S.matches=[];S.matchOrder=shuffle(DATA.map(d=>d.id));selection="";save();matchView()}
 function makeQuiz(){
  const q=[];
- DATA.forEach(d=>{
+ DATA.forEach((d,i)=>{
   const different=DATA.find(x=>x.id!==d.id);
   q.push({mode:"home",id:d.id,options:shuffle(DATA.map(x=>x.id))});
   q.push({mode:"animal",id:d.id,options:shuffle(DATA.map(x=>x.id))});
   q.push({mode:"picture",id:d.id,options:shuffle(DATA.map(x=>x.id))});
-  q.push({mode:"truefalse",id:d.id,truth:false,shownHome:different.id,options:["true","false"]});
+  q.push({mode:"truefalse",id:d.id,truth:i%2===0,shownHome:i%2===0?d.id:different.id,options:["true","false"]});
  });
  return{questions:shuffle(q),answers:{},index:0,finished:false};
 }
