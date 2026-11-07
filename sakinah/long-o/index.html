@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f6ef">
+  <meta name="description" content="Practice the long o sound with Sakinah. Listen to Bella or Heart, record each line, and get ready to read in class.">
+  <title>The Long O Sound · Sakinah’s Reading Corner</title>
+  <link rel="icon" href="../../icons/icon-192.png">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+  <script src="lesson.js" defer></script>
+  <script src="media.js" defer></script>
+  <script src="reader.js" defer></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4.8c3.5-1.2 6.6-.6 9 1.5 2.4-2.1 5.5-2.7 9-1.5v14.1c-3.8-1-6.8-.5-9 1.4-2.2-1.9-5.2-2.4-9-1.4zM12 6.3v14"/></symbol>
+    <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 5-7 7 7 7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="m9.5 5 7 7-7 7"/></symbol>
+    <symbol id="i-class" viewBox="0 0 24 24"><path d="M8.5 4H4v4.5M15.5 4H20v4.5M4 15.5V20h4.5M20 15.5V20h-4.5"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M11 5 6 9H3v6h3l5 4zM15 8.5a5 5 0 0 1 0 7M18 5.5a9 9 0 0 1 0 13"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="8.6" y="2.8" width="6.8" height="12" rx="3.4"/><path d="M5.5 10.8a6.5 6.5 0 0 0 13 0M12 17.5v3.7M8.5 21.2h7"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="m7 4.5 12 7.5-12 7.5z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="5.5" y="5.5" width="13" height="13" rx="2"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4m0 1c4-3 8 2 14-1v10c-6 3-10-2-14 1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12 5 5 10-11"/></symbol>
+    <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 17V5l11-2v12M9 8l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2.4"/><ellipse cx="17" cy="16" rx="3" ry="2.4"/></symbol>
+    <symbol id="i-lines" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="m4 16.5 12-12a2.3 2.3 0 0 1 3.5 3.5l-12 12-4.5 1zm10-10 3.5 3.5"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20S3 14 3 8.7C3 4.5 8.6 2.5 12 7c3.4-4.5 9-2.5 9 1.7C21 14 12 20 12 20z"/></symbol>
+    <symbol id="i-flower" viewBox="0 0 24 24"><path d="M9.4 7.4c-1.8-5.7 6.9-5.7 5.2 0 4.6-3.7 9 3.9 3.1 5.1 5 3.2-1.4 9.4-4.7 4.4-1.1 5.8-9.3 2.6-6.7-2.4-5.8 1.1-5.3-7.3.6-6.4z"/><circle cx="12" cy="12" r="2.2"/></symbol>
+  </svg>
+  <a class="skip" href="#practice">Skip to reading</a>
+  <div class="page">
+    <nav class="topbar" aria-label="Lesson navigation">
+      <a class="home" href="../"><span class="book-icon"><svg class="icon"><use href="#i-book"/></svg></span><span>Sakinah’s corner</span></a>
+      <button type="button" id="class-view" class="class-button" aria-pressed="false"><svg class="icon"><use href="#i-class"/></svg><span>Class view</span></button>
+    </nav>
+    <header class="lesson-head">
+      <div class="heading">
+        <p class="eyebrow"><span class="unit">3A</span> Spelling patterns &amp; word study <span class="divider">/</span> <span class="page-label">Page 57</span></p>
+        <h1>The long <em>o</em> sound</h1>
+        <p class="spell-tip">One sound, three spellings. <span>ow</span> <span>oa</span> <span>oe</span></p>
+      </div>
+      <div class="settings" aria-label="Listening settings">
+        <div class="setting"><span id="voice-label" class="setting-label">Reader</span><div class="segmented" role="group" aria-labelledby="voice-label">
+          <button data-voice="bella" aria-pressed="true"><svg class="icon"><use href="#i-flower"/></svg> Bella</button><button data-voice="heart" aria-pressed="false"><svg class="icon"><use href="#i-heart"/></svg> Heart</button>
+        </div></div>
+        <div class="setting"><span id="speed-label" class="setting-label">Speed</span><div class="segmented" role="group" aria-labelledby="speed-label">
+          <button data-speed="extra" aria-pressed="true">Extra slow</button><button data-speed="slow" aria-pressed="false">Slow</button>
+        </div></div>
+      </div>
+    </header>
+    <main id="practice" tabindex="-1">
+      <nav class="stage-nav" aria-label="Practice sections">
+        <button data-stage="words" aria-pressed="true"><svg class="icon"><use href="#i-book"/></svg>Words</button>
+        <button data-stage="sentences" aria-pressed="false"><svg class="icon"><use href="#i-lines"/></svg>Sentences</button>
+        <button data-stage="songs" aria-pressed="false"><svg class="icon"><use href="#i-note"/></svg>Song lines</button>
+        <button data-stage="make" aria-pressed="false"><svg class="icon"><use href="#i-pencil"/></svg>Make a sentence</button>
+      </nav>
+      <div class="workspace">
+        <section class="reader" aria-labelledby="section-title">
+          <div class="card-head">
+            <h2 id="section-title">Listen and repeat</h2>
+            <button id="ready" class="ready" aria-pressed="false" title="Mark this reading as ready for class"><svg class="icon"><use href="#i-flag"/></svg><span>Mark ready</span></button>
+          </div>
+          <div id="builder" class="builder" hidden>
+            <label>What?<select id="object-word"><option value="oboe">the oboe</option><option value="soap">the soap</option><option value="coat">the coat</option></select></label>
+            <label>Where?<select id="place-word"><option value="snow">in the snow</option><option value="boat">in the boat</option><option value="goal">in the goal</option></select></label>
+          </div>
+          <div id="reading-body" class="reading-body with-picture">
+            <figure id="picture-frame"><img id="picture" src="images/blow.webp" alt="A boy blowing out birthday candles" width="256" height="157"></figure>
+            <div class="prompt">
+              <p id="item-counter" class="item-counter">Word 1 of 3</p>
+              <div id="reading-line" class="reading-line is-word" dir="ltr">bl<mark>ow</mark></div>
+              <div id="gap-line" class="gap-line" hidden></div>
+              <button type="button" id="spelling-mode" class="text-button" hidden>Try the spelling</button>
+              <div id="gap-actions" hidden><button id="check-gaps" class="small-button">Check spelling</button><span id="gap-message" role="status"></span></div>
+            </div>
+          </div>
+          <div class="media-block">
+            <div class="media-buttons">
+              <button id="listen" class="listen"><svg class="icon"><use href="#i-speaker"/></svg><span>Listen</span></button>
+              <button id="record" class="record"><svg class="icon"><use href="#i-mic"/></svg><span>Record</span></button>
+              <button id="replay" class="replay" disabled><svg class="icon"><use href="#i-play"/></svg><span>My voice</span></button>
+            </div>
+            <p id="media-status" class="media-status" role="status" aria-live="polite">Listen first, then record your turn.</p>
+          </div>
+          <div id="matching" class="matching" hidden>
+            <h3>Match the line to a picture</h3><div id="match-options"></div><p id="match-message" role="status"></p>
+          </div>
+          <div class="turn-page">
+            <button id="previous" class="previous" disabled><svg class="icon"><use href="#i-left"/></svg>Previous</button>
+            <button id="next" class="next"><span>Next word</span><svg class="icon"><use href="#i-right"/></svg></button>
+          </div>
+        </section>
+        <aside class="rail" aria-label="Practice tools">
+          <section class="list-card"><div class="list-top"><h2 id="list-title">Word list</h2><span class="list-count" id="list-count">0/3 ready</span></div><div id="item-list" aria-label="Choose a reading"></div></section>
+          <section class="sound-card"><h2 id="sound-title">Spelling tip</h2><p id="sound-tip">Tap a word to hear its long o.</p><div id="word-bank" aria-label="Hear individual words"></div></section>
+        </aside>
+      </div>
+    </main>
+    <footer><svg class="icon"><use href="#i-book"/></svg> English reading practice <span>·</span> Page 57</footer>
+  </div>
+  <noscript>Enable JavaScript to listen to the readers and record your voice.</noscript>
+</body>
+</html>
