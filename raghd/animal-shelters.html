@@ -35,7 +35,7 @@ footer{padding:25px;text-align:center;font-size:13px;color:#819481}#toast{positi
 <nav class="top"><a href="./" class="home">🌷 Raghd's Home</a><span class="tag">MY LITTLE SCIENCE WORLD</span><button type="button" id="full" class="full" aria-label="Fullscreen">⛶</button></nav>
 <header class="hero"><div class="hero-copy"><div class="eyebrow">🌿 RAGHD'S SCIENCE SAFARI</div><h1>Animals and <span>Their Shelters</span></h1><p>Who lives where? Let's discover four animal homes, listen, match and win shiny stars!</p><div class="hero-actions"><button type="button" class="primary" data-go="learn">🌼 Let's learn!</button><button type="button" class="white" data-go="match">🧩 Let's match!</button></div></div><div class="hero-animals" aria-hidden="true"><span>🐭</span><span>🐱</span><span>🐶</span><span>🐦</span></div></header>
 <section class="stats" aria-label="Learning progress"><div><span class="emoji">🌱</span><div><b id="learnCount">0 / 4</b><small>Homes learned</small></div></div><div><span class="emoji">⭐</span><div><b id="starsCount">0</b><small>My stars</small></div></div><div><span class="emoji">🏆</span><div><b id="bestCount">—</b><small>Best challenge</small></div></div></section>
-<section class="voicebar"><strong>🎧 Choose your Kokoro teacher <small>Bella &amp; Heart (Kokoro recordings) • Instant MP3 playback • No device voices</small></strong><label>Voice <select id="voiceSelect" aria-label="Teacher voice"><option value="af_bella">🌸 Bella</option><option value="af_heart">💜 Heart</option></select></label><label>Speed <select id="speedSelect"><option value="0.65">🐢 Very Slow</option><option value="0.82">🌷 Slow</option><option value="1">🐰 Normal</option></select></label><button type="button" id="testVoice" class="soft">▶ Try voice</button><audio id="voicePlayer" controls preload="none" hidden style="max-width:210px;width:100%;height:40px"></audio><span id="audioStatus" class="audionote" aria-live="polite">Tap any speaker to hear Bella or Heart.</span></section>
+<section class="voicebar"><strong>🎧 Choose your Kokoro teacher <small>Bella &amp; Heart (Kokoro recordings) • Instant MP3 playback • No device voices</small></strong><label>Voice <select id="voiceSelect" aria-label="Teacher voice"><option value="af_bella">🌸 Bella</option><option value="af_heart">💜 Heart</option></select></label><label>Speed <select id="speedSelect"><option value="0.65">🐢 Very Slow</option><option value="0.82">🌷 Slow</option><option value="1">🐰 Normal</option></select></label><button type="button" id="testVoice" class="soft">▶ Try voice</button><audio id="voicePlayer" controls preload="none" hidden style="max-width:210px;width:100%;height:40px"></audio><span id="audioStatus" class="audionote" aria-live="polite">Tap Try Voice to hear an existing recording. Sentence recordings need their own MP3 files.</span></section>
 <nav class="tabs" aria-label="Activities"><button class="tab active" type="button" data-tab="learn" aria-selected="true">📖 Learn</button><button class="tab" type="button" data-tab="match" aria-selected="false">🧩 Match Homes</button><button class="tab" type="button" data-tab="quiz" aria-selected="false">🎯 Big Quiz</button><button class="tab" type="button" data-tab="rewards" aria-selected="false">🏅 My Stars</button></nav>
 <main>
 <section class="view" id="learn"><div class="intro"><span class="pill">01 • DISCOVER</span><h2>Four lovely animal homes 🌸</h2><p>Tap 🔊, say the sentence, then collect a star!</p></div><div id="lessons" class="lesson-grid"></div><div class="mission"><b>🎉 Ready to help the animals find their homes?</b><button class="primary" data-go="match" type="button">🧩 Start matching →</button></div></section>
@@ -88,39 +88,44 @@ function keyFor(text){
 }
 function speak(text){
  const key=keyFor(text),voice=state.voice==="af_heart"?"heart":"bella";
- const id=++clipRequest,player=$("voicePlayer");
- if(!key){$("audioStatus").textContent="Recording not found for this sentence.";return}
+ const player=$("voicePlayer"),id=++clipRequest;
+ if(!key){$("audioStatus").textContent="Recording not available for that phrase.";return}
  if(activePlayer){activePlayer.pause();activePlayer.removeAttribute("src");activePlayer.load()}
  activePlayer=player;
- const src=(key==="try-voice"||key==="voice-change")?"week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2":audioDir+voice+"/"+key+".mp3?v=1";
- player.hidden=true;player.preload="auto";player.playbackRate=Number(state.speed)||.82;player.preservesPitch=true;
- $("audioStatus").textContent="🎧 Loading "+(voice==="heart"?"Heart":"Bella")+" recording...";
- let done=false,timeout=setTimeout(()=>handleError(),8500);
- function stopHandlers(){clearTimeout(timeout);player.removeEventListener("canplay",onReady);player.removeEventListener("error",handleError)}
- function onReady(){
-  if(id!==clipRequest||done)return;
-  done=true;stopHandlers();player.hidden=false;player.playbackRate=Number(state.speed)||.82;
-  $("audioStatus").textContent="🔊 "+(voice==="heart"?"Heart":"Bella")+" • Listen and repeat!";
-  player.play().catch(()=>{$("audioStatus").textContent="🎧 Tap ▶ below to play the recording.";player.hidden=false})
- }
- function handleError(){
-  if(id!==clipRequest||done)return;
-  done=true;stopHandlers();
-  if(key==="try-voice"||key==="voice-change"){
-   // The older pre-recorded Kokoro intro is confirmed published in the lesson.
-   const fallback="week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2";
-   player.src=fallback;player.hidden=false;player.playbackRate=Number(state.speed)||.82;
-   $("audioStatus").textContent="🎧 Using "+(voice==="heart"?"Heart":"Bella")+" recorded intro. Tap ▶ if it does not start.";
-   player.play().catch(()=>{$("audioStatus").textContent="Tap ▶ to hear "+(voice==="heart"?"Heart":"Bella")+". No browser voice is used."});
-  } else {
-   player.hidden=true;
-   $("audioStatus").textContent="🔈 This recorded lesson audio is not published yet. Please retry later. No browser voice is used.";
-  }
- }
- player.addEventListener("canplay",onReady,{once:true});
- player.addEventListener("error",handleError,{once:true});
+ const isDemo=(key==="try-voice"||key==="voice-change");
+ // This confirmed existing MP3 really is Kokoro Bella/Heart; lesson-specific files are separate.
+ const src=isDemo
+   ? "week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2"
+   : audioDir+voice+"/"+key+".mp3?v=2";
+ player.hidden=false;
+ player.preload="auto";
+ player.src=src;
+ player.playbackRate=Number(state.speed)||0.82;
+ player.preservesPitch=true;
+ $("audioStatus").textContent=isDemo
+   ? "🎧 Playing an existing "+(voice==="heart"?"Heart":"Bella")+" voice sample..."
+   : "🎧 Playing "+(voice==="heart"?"Heart":"Bella")+" lesson recording...";
+ let finished=false;
+ player.onplaying=()=>{if(id!==clipRequest)return;finished=true;clearTimeout(stuck);$("audioStatus").textContent="🔊 "+(voice==="heart"?"Heart":"Bella")+" • Listen and repeat!"};
  player.onended=()=>{if(id===clipRequest)$("audioStatus").textContent="🌷 Your turn, Raghd!"};
- player.src=src;player.load();
+ player.onerror=()=>{
+  if(id!==clipRequest)return;finished=true;clearTimeout(stuck);
+  $("audioStatus").textContent=isDemo
+    ? "🔈 Couldn't play the recorded voice. Try opening the MP3 link below."
+    : "🔈 This sentence's Bella / Heart MP3 has not been uploaded yet. The lesson and quiz still work.";
+ };
+ const stuck=setTimeout(()=>{if(id!==clipRequest||finished)return;$("audioStatus").textContent="🔈 Audio is taking too long. Use the player or try again.";},8500);
+ // Crucial on iPhone: invoke play synchronously inside the child's tap, not in canplay/async callbacks.
+ player.play().catch(error=>{
+  if(id!==clipRequest)return;
+  if(error.name==="NotAllowedError"){
+   $("audioStatus").textContent="🎧 Tap ▶ on the audio player to start Bella / Heart.";
+  }else if(error.name!=="AbortError"){
+   clearTimeout(stuck);$("audioStatus").textContent=isDemo
+     ? "🔈 Voice sample could not load. Check the MP3 link below."
+     : "🔈 This recorded sentence is not online yet. You can still do the matching and picture quiz.";
+  }
+ });
 }
 function showTab(t){tab=t;document.querySelectorAll("[data-tab]").forEach(b=>{b.classList.toggle("active",b.dataset.tab===t);b.setAttribute("aria-selected",b.dataset.tab===t?"true":"false")});document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!==t);if(t==="learn")renderLearn();if(t==="match")renderMatch();if(t==="quiz")renderQuiz();if(t==="rewards")renderRewards();document.querySelector(".tabs").scrollIntoView({block:"start",behavior:"smooth"})}
 function scene(emoji,caption,bg){return '<div class="scene" style="--bg:'+bg+'"><div class="pic" aria-hidden="true">'+emoji+'</div><span class="caption">'+caption+'</span></div>'}
