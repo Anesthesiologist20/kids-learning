@@ -199,7 +199,7 @@ $("resetMatch").onclick=resetMatch;
 $("previous").onclick=()=>{let q=quiz();if(q.index>0){q.index--;store();renderQuiz()}};
 $("next").onclick=()=>{let q=quiz();if(q.index<11){q.index++;store();renderQuiz()}};
 $("finish").onclick=finish;
-$("voiceSelect").onchange=e=>{state.voice=e.target.value;store();speak("Hello, Raghd! Let's learn animal homes.")};
+$("voiceSelect").onchange=e=>{state.voice=e.target.value;store();checkLessonRecordings();speak("Hello, Raghd! A mouse lives in a hole.")};
 $("speedSelect").onchange=e=>{state.speed=e.target.value;store();const p=$("voicePlayer");if(p.src&&!p.error)p.playbackRate=Number(state.speed)||.82;$("audioStatus").textContent="🌷 Speed changed. Tap Try voice to listen.";};
 $("testVoice").onclick=()=>speak("Hello, Raghd! A mouse lives in a hole.");
 $("full").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen&&document.exitFullscreen();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{})};
