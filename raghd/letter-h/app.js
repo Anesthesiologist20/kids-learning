@@ -47,20 +47,20 @@ function play(key){
  function failed(){
   if(id!==clipTicket||done)return;
   done=true;clear();
-  if(key==="letter-name"||key==="letter-sound"){
+  if(key==="try-voice"){
    player.src="week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2";
    player.hidden=false;player.playbackRate=Number(state.speed)||.82;
-   $("audioStatus").textContent="🌸 Playing an existing "+(voice==="heart"?"Heart":"Bella")+" recording while this lesson's audio is prepared.";
-   player.play().catch(()=>{$("audioStatus").textContent="🎧 Tap ▶ to play. No browser voice."});
+   $("audioStatus").textContent="🎧 Bella / Heart original introduction. Tap ▶ to play.";
+   player.play().catch(()=>{$("audioStatus").textContent="🎧 Tap ▶ to hear the recorded teacher voice."});
   }else{
    player.hidden=true;
-   $("audioStatus").textContent="🔈 Audio recording not yet published. Please try again later. No browser voice is used.";
+   $("audioStatus").textContent="🔈 This word recording is not published yet. No browser voice is used.";
   }
  }
  player.addEventListener("canplay",ready,{once:true});
  player.addEventListener("error",failed,{once:true});
  player.onended=()=>{if(id===clipTicket)$("audioStatus").textContent="🌸 Your turn, Raghd!"};
- player.src="letter-h/audio/"+voice+"/"+key+".mp3?v=1";
+ player.src=(key==="try-voice"?"week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2":"letter-h/audio/"+voice+"/"+key+".mp3?v=1");
  player.load();
 }
 function wordsView(){$("words").innerHTML=WORDS.map(w=>'<article class="word-card '+(state.learned.includes(w.id)?"learned":"")+'"><span class="sticker">'+(state.learned.includes(w.id)?"⭐":"🌷")+'</span><div class="illustration" style="--tile:'+w.color+'" data-word="'+w.id+'">'+art(w.id)+'</div><div class="word-body"><strong>'+w.name+'</strong><small>'+w.sentence+'</small><div class="word-actions"><button type="button" class="primary" data-hear="'+w.id+'">🔊 Word</button><button type="button" class="softbtn" data-sentence="'+w.id+'">🎧 Sentence</button></div></div></article>').join("");
@@ -103,7 +103,7 @@ document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()
 $("voiceSelect").value=state.voice;$("speedSelect").value=state.speed;
 $("voiceSelect").onchange=e=>{state.voice=e.target.value;store();play("letter-name")};
 $("speedSelect").onchange=e=>{state.speed=e.target.value;store();play("letter-name")};
-$("testVoice").onclick=()=>play("letter-name");
+$("testVoice").onclick=()=>play("try-voice");
 $("prevQuestion").onclick=()=>{let s=session();if(s.index>0){s.index--;store();renderQuiz()}};
 $("nextQuestion").onclick=()=>{let s=session();if(s.index<11){s.index++;store();renderQuiz();if(mode==="listen"&&!picked(s,s.index))play("word-"+s.questions[s.index].id)}};
 $("finishGame").onclick=()=>finish(true);
