@@ -141,7 +141,7 @@ function renderMatch(){
  if(done.length===4){$("matchHint").textContent="🏆 Perfect! Every animal has a home.";selected=""}
 }
 function chooseAnimal(id){if((state.matches||[]).includes(id))return;selected=id;$("matchHint").textContent="Now tap the "+pair(id).home+"!";renderMatch()}
-function chooseHome(id){if((state.matches||[]).includes(id))return;if(!selected){$("matchHint").textContent="🌸 First, choose an animal on the left.";return}if(id===selected){state.matches.push(id);selected="";store();renderMatch();$("matchHint").textContent="🌟 Correct! "+pair(id).sentence;speak(pair(id).sentence);sparkle();if(state.matches.length===4)toast("🏆 All four animal homes!")}else{$("matchHint").textContent="💗 Try another home, Raghd!";toast("Good try! Look carefully 🌷")}}
+function chooseHome(id){if((state.matches||[]).includes(id))return;if(!selected){$("matchHint").textContent="🌸 First, choose an animal on the left.";return}if(id===selected){state.matches.push(id);selected="";store();renderMatch();$("matchHint").textContent="🌟 Correct! "+pair(id).sentence;sparkle();if(state.matches.length===4)toast("🏆 All four animal homes!")}else{$("matchHint").textContent="💗 Try another home, Raghd!";toast("Good try! Look carefully 🌷")}}
 function resetMatch(){state.matches=[];state.matchOrder=shuffle(PAIRS.map(p=>p.id));selected="";store();$("matchHint").textContent="Tap an animal, then tap its home.";renderMatch()}
 function questions(){let questions=[];for(const p of PAIRS){questions.push({id:p.id,kind:"picture",options:shuffle(PAIRS.map(x=>x.id))});questions.push({id:p.id,kind:"reverse",options:shuffle(PAIRS.map(x=>x.id))});questions.push({id:p.id,kind:"listen",options:shuffle(PAIRS.map(x=>x.id))})}return {questions:shuffle(questions),answers:{},index:0,finished:false}}
 function quiz(){let q=state.quiz;if(!q||!Array.isArray(q.questions)||q.questions.length!==12){state.quiz=questions();store()}return state.quiz}
@@ -187,7 +187,7 @@ $("previous").onclick=()=>{let q=quiz();if(q.index>0){q.index--;store();renderQu
 $("next").onclick=()=>{let q=quiz();if(q.index<11){q.index++;store();renderQuiz()}};
 $("finish").onclick=finish;
 $("voiceSelect").onchange=e=>{state.voice=e.target.value;store();speak("Hello, Raghd! Let's learn animal homes.")};
-$("speedSelect").onchange=e=>{state.speed=e.target.value;store();speak("A bird lives in a nest.")};
+$("speedSelect").onchange=e=>{state.speed=e.target.value;store();const p=$("voicePlayer");if(p.src&&!p.error)p.playbackRate=Number(state.speed)||.82;$("audioStatus").textContent="🌷 Speed changed. Tap Try voice to listen.";};
 $("testVoice").onclick=()=>speak("Hello, Raghd! A mouse lives in a hole.");
 $("full").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen&&document.exitFullscreen();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{})};
 $("voiceSelect").value=state.voice;
