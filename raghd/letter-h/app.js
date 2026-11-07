@@ -20,6 +20,7 @@ const KEY="raghd-letter-h-garden-v1";
 const blank=()=>({learned:[],best:{listen:0,picture:0},voice:"bella",speed:"0.82",sessions:{listen:null,picture:null}});
 function load(){try{const p=JSON.parse(localStorage.getItem(KEY)||"null");if(!p||typeof p!=="object")return blank();return {...blank(),...p,best:{...blank().best,...p.best},sessions:{...blank().sessions,...p.sessions},learned:Array.isArray(p.learned)?p.learned:[]}}catch{return blank()}}
 let state=load(),mode="listen",tab="learn",audio=null,toastTimer=null;
+let audioReady=false,audioRequest=0;
 if(!["bella","heart"].includes(state.voice))state.voice="bella";
 if(!["0.65","0.82","1"].includes(String(state.speed)))state.speed="0.82";
 const lookup=id=>WORDS.find(w=>w.id===id);
@@ -56,9 +57,18 @@ function play(key){
   $("audioStatus").textContent=error.name==="NotAllowedError"?"🎧 Tap ▶ in the audio player.":isDemo?"🔈 Could not load the sample recording.":"🔈 This word MP3 is not online yet.";
  });
 }
-function wordsView(){$("words").innerHTML=WORDS.map(w=>'<article class="word-card '+(state.learned.includes(w.id)?"learned":"")+'"><span class="sticker">'+(state.learned.includes(w.id)?"⭐":"🌷")+'</span><div class="illustration" style="--tile:'+w.color+'" data-word="'+w.id+'">'+art(w.id)+'</div><div class="word-body"><strong>'+w.name+'</strong><small>'+w.sentence+'</small><div class="word-actions"><button type="button" class="primary" data-hear="'+w.id+'">🔊 Word</button><button type="button" class="softbtn" data-sentence="'+w.id+'">🎧 Sentence</button></div></div></article>').join("");
- $("words").querySelectorAll("[data-word],[data-hear]").forEach(e=>e.addEventListener("click",()=>{const id=e.dataset.word||e.dataset.hear;play("word-"+id);learn(id)}));
- $("words").querySelectorAll("[data-sentence]").forEach(e=>e.addEventListener("click",()=>{const id=e.dataset.sentence;play("sentence-"+id);learn(id)}))}
+async function checkHRecordings(){
+ const request=++audioRequest;
+ let available=false;
+ try{const reply=await fetch("letter-h/audio/"+(state.voice==="heart"?"heart":"bella")+"/word-hat.mp3?check=20261107",{method:"HEAD",cache:"no-store"});available=reply.ok}catch(e){}
+ if(request!==audioRequest)return;
+ audioReady=available;
+ const note=$("hAudioNotice");if(note)note.textContent=available?"✅ Lesson audio ready.":"🎧 Bella and Heart samples are available. H word recordings are not published yet.";
+ wordsView();if(tab==="listen"||tab==="picture")renderQuiz();
+}
+function wordsView(){$("words").innerHTML=WORDS.map(w=>'<article class="word-card '+(state.learned.includes(w.id)?"learned":"")+'"><span class="sticker">'+(state.learned.includes(w.id)?"⭐":"🌷")+'</span><div class="illustration" style="--tile:'+w.color+'" data-word="'+w.id+'">'+art(w.id)+'</div><div class="word-body"><strong>'+w.name+'</strong><small>'+w.sentence+'</small><div class="word-actions"><button type="button" class="primary" data-hear="'+w.id+'" '+(audioReady?"":"disabled")+'>'+(audioReady?"🔊 Word":"🔈 Pending")+'</button><button type="button" class="softbtn" data-sentence="'+w.id+'" '+(audioReady?"":"disabled")+'>'+(audioReady?"🎧 Sentence":"🎧 Pending")+'</button></div></div></article>').join("");
+ $("words").querySelectorAll("[data-word],[data-hear]").forEach(e=>e.addEventListener("click",()=>{const id=e.dataset.word||e.dataset.hear;if(audioReady)play("word-"+id);learn(id)}));
+ $("words").querySelectorAll("[data-sentence]").forEach(e=>e.addEventListener("click",()=>{const id=e.dataset.sentence;if(audioReady)play("sentence-"+id);learn(id)}))}
 function learn(id){if(!state.learned.includes(id)){state.learned.push(id);store();toast("⭐ New word! Well done, Raghd!");wordsView()}}
 function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function makeSession(){return{questions:shuffle([...WORDS.map(w=>w.id),...WORDS.map(w=>w.id)]).map(id=>({id,options:shuffle([id,...shuffle(WORDS.filter(w=>w.id!==id).map(w=>w.id)).slice(0,2)])})),answers:{},index:0,finished:false}}
@@ -68,7 +78,7 @@ function picked(s,i){return Object.prototype.hasOwnProperty.call(s.answers,Strin
 function score(s){return s.questions.filter((q,i)=>s.answers[i]===q.id).length}
 function answered(s){return s.questions.filter((q,i)=>picked(s,i)).length}
 function showTab(name){tab=name;document.querySelectorAll("[data-tab]").forEach(b=>{b.classList.toggle("selected",b.dataset.tab===name);b.setAttribute("aria-current",b.dataset.tab===name?"page":"false")});for(const id of ["learn","games","write","prizes"])$(id).hidden=!(id===(name==="listen"||name==="picture"?"games":name));if(name==="listen"||name==="picture"){mode=name;renderQuiz()}if(name==="prizes")renderRewards();window.scrollTo({top:Math.max(0,document.querySelector(".tabs").getBoundingClientRect().top+window.scrollY-12),behavior:"smooth"})}
-function renderQuiz(){const s=session(),q=s.questions[s.index],w=lookup(q.id),done=picked(s,s.index),gameIsListen=mode==="listen";$("gameBadge").textContent=gameIsListen?"02 • HEAR & PICK":"03 • LOOK & PICK";$("gameHeading").textContent=gameIsListen?"Listen carefully! 🎧":"Look at the picture! 🌼";$("gameInstruction").textContent=gameIsListen?"Tap the sound. Which word do you hear?":"Look at the picture. Which word matches?";$("gameCount").textContent="Question "+(s.index+1)+" of 12";$("gameScore").textContent="⭐ "+score(s)+" correct";$("progressFill").style.width=(answered(s)*100/12)+"%";
+function renderQuiz(){const s=session(),q=s.questions[s.index],w=lookup(q.id),done=picked(s,s.index),gameIsListen=mode==="listen"&&audioReady;$("gameBadge").textContent=gameIsListen?"02 • HEAR & PICK":"03 • LOOK & PICK";$("gameHeading").textContent=gameIsListen?"Listen carefully! 🎧":"Look at the picture! 🌼";$("gameInstruction").textContent=gameIsListen?"Tap the sound. Which word do you hear?":"Look at the picture. Which word matches?";$("gameCount").textContent="Question "+(s.index+1)+" of 12";$("gameScore").textContent="⭐ "+score(s)+" correct";$("progressFill").style.width=(answered(s)*100/12)+"%";
  $("questionMap").innerHTML=s.questions.map((item,i)=>'<button type="button" data-map="'+i+'" aria-label="Question '+(i+1)+'" class="'+(i===s.index?"here ":"")+(picked(s,i)?s.answers[i]===item.id?"good":"bad":"")+'">'+(i+1)+'</button>').join("");
  $("questionMap").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{s.index=Number(b.dataset.map);store();renderQuiz()}));
  $("questionArea").innerHTML=gameIsListen?'<div class="prompt"><div class="prompt-title">What word do you hear?</div><div class="sound-object" aria-hidden="true">🔊</div><button type="button" class="primary listen-btn" id="playPrompt">🔊 Listen again</button></div>':'<div class="prompt"><div class="prompt-title">What is in the picture?</div><div class="picture-object" style="--tile:'+w.color+'">'+art(w.id)+'</div></div>';
@@ -94,12 +104,12 @@ $("soundH").onclick=()=>play("letter-name");$("soundHh").onclick=()=>play("lette
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.go)));
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
 $("voiceSelect").value=state.voice;$("speedSelect").value=state.speed;
-$("voiceSelect").onchange=e=>{state.voice=e.target.value;store();play("letter-name")};
-$("speedSelect").onchange=e=>{state.speed=e.target.value;store();play("letter-name")};
+$("voiceSelect").onchange=e=>{state.voice=e.target.value;store();checkHRecordings();play("try-voice")};
+$("speedSelect").onchange=e=>{state.speed=e.target.value;store();const p=$("voicePlayer");if(p.src&&!p.error)p.playbackRate=Number(state.speed)||.82;$("audioStatus").textContent="🌸 Speed saved. Tap Try voice to listen."};
 $("testVoice").onclick=()=>play("try-voice");
 $("prevQuestion").onclick=()=>{let s=session();if(s.index>0){s.index--;store();renderQuiz()}};
-$("nextQuestion").onclick=()=>{let s=session();if(s.index<11){s.index++;store();renderQuiz();if(mode==="listen"&&!picked(s,s.index))play("word-"+s.questions[s.index].id)}};
+$("nextQuestion").onclick=()=>{let s=session();if(s.index<11){s.index++;store();renderQuiz();if(mode==="listen"&&audioReady&&!picked(s,s.index))play("word-"+s.questions[s.index].id)}};
 $("finishGame").onclick=()=>finish(true);
 $("fullscreen").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen?.();else document.documentElement.requestFullscreen?.().catch(()=>{})};
-wordsView();updateStats();
+wordsView();updateStats();checkHRecordings();
 if(state.sessions?.listen?.finished&&state.sessions?.picture?.finished)renderRewards();
