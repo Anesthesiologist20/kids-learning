@@ -98,5 +98,6 @@ jobs:
           git add raghd/animal-shelters/audio/ raghd/letter-h/audio/
           if git diff --cached --quiet; then echo "Audio already built"; else
             git commit -m "Add pre-recorded Kokoro Bella and Heart MP3s for Raghd"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
