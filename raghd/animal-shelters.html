@@ -35,7 +35,7 @@ footer{padding:25px;text-align:center;font-size:13px;color:#819481}#toast{positi
 <nav class="top"><a href="./" class="home">🌷 Raghd's Home</a><span class="tag">MY LITTLE SCIENCE WORLD</span><button type="button" id="full" class="full" aria-label="Fullscreen">⛶</button></nav>
 <header class="hero"><div class="hero-copy"><div class="eyebrow">🌿 RAGHD'S SCIENCE SAFARI</div><h1>Animals and <span>Their Shelters</span></h1><p>Who lives where? Let's discover four animal homes, listen, match and win shiny stars!</p><div class="hero-actions"><button type="button" class="primary" data-go="learn">🌼 Let's learn!</button><button type="button" class="white" data-go="match">🧩 Let's match!</button></div></div><div class="hero-animals" aria-hidden="true"><span>🐭</span><span>🐱</span><span>🐶</span><span>🐦</span></div></header>
 <section class="stats" aria-label="Learning progress"><div><span class="emoji">🌱</span><div><b id="learnCount">0 / 4</b><small>Homes learned</small></div></div><div><span class="emoji">⭐</span><div><b id="starsCount">0</b><small>My stars</small></div></div><div><span class="emoji">🏆</span><div><b id="bestCount">—</b><small>Best challenge</small></div></div></section>
-<section class="voicebar"><strong>🎧 Listen with your device's free English voice <small>Choose any available English voice and speaking speed</small></strong><label>Voice <select id="voiceSelect" aria-label="English voice"><option value="">🌷 Device English</option></select></label><label>Speed <select id="speedSelect"><option value="0.65">🐢 Slow</option><option value="0.78">🌷 Gentle</option><option value="1">🐰 Normal</option></select></label><button type="button" id="testVoice" class="soft">▶ Test sound</button><span id="audioStatus" class="audionote" aria-live="polite"></span></section>
+<section class="voicebar"><strong>🎧 Choose your Kokoro teacher <small>Bella &amp; Heart (Kokoro AI) • No device voices • First use loads the free voice model</small></strong><label>Voice <select id="voiceSelect" aria-label="Teacher voice"><option value="af_bella">🌸 Bella</option><option value="af_heart">💜 Heart</option></select></label><label>Speed <select id="speedSelect"><option value="0.65">🐢 Very Slow</option><option value="0.82">🌷 Slow</option><option value="1">🐰 Normal</option></select></label><button type="button" id="testVoice" class="soft">▶ Try voice</button><audio id="voicePlayer" controls preload="none" hidden style="max-width:210px;width:100%;height:40px"></audio><span id="audioStatus" class="audionote" aria-live="polite">Tap any speaker to hear Bella or Heart.</span></section>
 <nav class="tabs" aria-label="Activities"><button class="tab active" type="button" data-tab="learn" aria-selected="true">📖 Learn</button><button class="tab" type="button" data-tab="match" aria-selected="false">🧩 Match Homes</button><button class="tab" type="button" data-tab="quiz" aria-selected="false">🎯 Big Quiz</button><button class="tab" type="button" data-tab="rewards" aria-selected="false">🏅 My Stars</button></nav>
 <main>
 <section class="view" id="learn"><div class="intro"><span class="pill">01 • DISCOVER</span><h2>Four lovely animal homes 🌸</h2><p>Tap 🔊, say the sentence, then collect a star!</p></div><div id="lessons" class="lesson-grid"></div><div class="mission"><b>🎉 Ready to help the animals find their homes?</b><button class="primary" data-go="match" type="button">🧩 Start matching →</button></div></section>
@@ -55,9 +55,11 @@ const PAIRS=[
 ];
 const $=id=>document.getElementById(id);
 const KEY="raghd-animals-shelters-v1";
-const fresh=()=>({learned:[],matches:[],matchOrder:[],quiz:null,best:0,voice:"",speed:"0.78"});
+const fresh=()=>({learned:[],matches:[],matchOrder:[],quiz:null,best:0,voice:"af_bella",speed:"0.82"});
 function load(){try{let s=JSON.parse(localStorage.getItem(KEY)||"null");if(!s||typeof s!=="object")return fresh();return Object.assign(fresh(),s)}catch(e){return fresh()}}
-let state=load(),tab="learn",selected="",toastTimer=0,voices=[];
+let state=load(),tab="learn",selected="",toastTimer=0;
+if(!["af_bella","af_heart"].includes(state.voice))state.voice="af_bella";
+if(!["0.65","0.82","1"].includes(String(state.speed)))state.speed="0.82";
 const pair=id=>PAIRS.find(p=>p.id===id);
 function store(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}stats()}
 function stars(){return state.learned.length+state.matches.length*2+state.best}
@@ -65,10 +67,62 @@ function stats(){$("learnCount").textContent=state.learned.length+" / 4";$("star
 function toast(msg){let t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2300)}
 function sparkle(){if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)return;for(let i=0;i<11;i++){let e=document.createElement("span");e.className="starfall";e.textContent=["🌸","⭐","✨","🍀"][i%4];e.style.setProperty("--x",Math.round(Math.random()*100)+"vw");e.style.setProperty("--d",(2+Math.random()*1.4)+"s");document.body.append(e);setTimeout(()=>e.remove(),3700)}}
 function shuffle(xs){let a=xs.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function refreshVoices(){if(!("speechSynthesis" in window))return;voices=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));let s=$("voiceSelect");const prev=state.voice;s.innerHTML='<option value="">🌷 Device English</option>'+voices.map(v=>'<option value="'+escapeAttr(v.name)+'">'+escapeHTML(v.name)+'</option>').join("");s.value=voices.some(v=>v.name===prev)?prev:""}
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function escapeAttr(s){return escapeHTML(s)}
-function speak(text){if(!("speechSynthesis" in window)){$("audioStatus").textContent="🔈 Audio is unavailable on this device.";return}const synth=speechSynthesis;synth.cancel();let u=new SpeechSynthesisUtterance(text);u.lang="en-US";u.rate=Number(state.speed)||.78;u.pitch=1.02;let voice=voices.find(v=>v.name===state.voice);if(voice)u.voice=voice;$("audioStatus").textContent="🔊 Listen and repeat!";u.onend=()=>{$("audioStatus").textContent="🌷 Your turn! Say it aloud."};u.onerror=e=>{if(e.error!=="interrupted"&&e.error!=="canceled")$("audioStatus").textContent="Tap the speaker again to retry."};synth.speak(u)}
+// Kokoro Bella and Heart neural TTS: local AI model, no native system TTS.
+const KOKORO_CACHE="raghd-kokoro-clips-v1";
+let kokoroModel=null,modelLoading=null,currentAudio=null,activeUrl=null,voiceJob=0;
+async function getModel(){
+ if(kokoroModel)return kokoroModel;
+ if(!modelLoading){
+  modelLoading=(async()=>{
+   $("audioStatus").textContent="🌷 Downloading Bella / Heart model on first use (large download)...";
+   const lib=await import("https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm");
+   kokoroModel=await lib.KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX",{
+    dtype:"q8",device:"wasm",
+    progress_callback:p=>{
+     if(p&&p.status==="progress"&&Number.isFinite(p.progress))$("audioStatus").textContent="🌸 Preparing real Kokoro voices "+Math.round(p.progress)+"%";
+    }
+   });
+   return kokoroModel;
+  })().catch(e=>{modelLoading=null;throw e});
+ }
+ return modelLoading;
+}
+async function clipFor(text,voice){
+ const address=location.origin+"/kids-learning/raghd/kokoro-cache/v1/"+voice+"/"+encodeURIComponent(text)+".wav";
+ let cache=null,blob=null;
+ try{if("caches" in window){cache=await caches.open(KOKORO_CACHE);const old=await cache.match(address);if(old)blob=await old.blob()}}catch(e){}
+ if(!blob){
+  const model=await getModel();
+  $("audioStatus").textContent="🎧 Generating "+(voice==="af_bella"?"Bella":"Heart")+" audio...";
+  const generated=await model.generate(text,{voice,speed:1});
+  blob=generated.toBlob();
+  if(cache)try{await cache.put(address,new Response(blob,{headers:{"Content-Type":"audio/wav"}}))}catch(e){}
+ }
+ return blob;
+}
+async function speak(text){
+ const request=++voiceJob,voice=state.voice==="af_heart"?"af_heart":"af_bella";
+ const player=$("voicePlayer");
+ if(currentAudio){currentAudio.pause();currentAudio.currentTime=0}
+ $("audioStatus").textContent="🔊 Preparing "+(voice==="af_bella"?"Bella":"Heart")+"...";
+ try{
+  const blob=await clipFor(text,voice);
+  if(request!==voiceJob)return;
+  if(activeUrl)URL.revokeObjectURL(activeUrl);
+  activeUrl=URL.createObjectURL(blob);
+  currentAudio=player;player.src=activeUrl;
+  player.playbackRate=Number(state.speed)||0.82;
+  player.preservesPitch=true;player.hidden=false;
+  player.onended=()=>{if(request===voiceJob)$("audioStatus").textContent="🌷 Your turn! Repeat after Bella or Heart."};
+  $("audioStatus").textContent="🔊 "+(voice==="af_bella"?"Bella":"Heart")+" • "+($("speedSelect").selectedOptions[0]?.textContent||"Slow");
+  await player.play();
+ }catch(e){
+  if(request!==voiceJob)return;
+  const reason=String(e&&e.message||e);
+  $("audioStatus").textContent=/NotAllowedError|user gesture/i.test(reason)?"🎧 Your audio is ready. Tap ▶ on the player.":"🔈 Kokoro audio couldn't load. Check internet and try again. No system voice is used.";
+  console.warn("Kokoro",reason);
+ }
+}
 function showTab(t){tab=t;document.querySelectorAll("[data-tab]").forEach(b=>{b.classList.toggle("active",b.dataset.tab===t);b.setAttribute("aria-selected",b.dataset.tab===t?"true":"false")});document.querySelectorAll(".view").forEach(v=>v.hidden=v.id!==t);if(t==="learn")renderLearn();if(t==="match")renderMatch();if(t==="quiz")renderQuiz();if(t==="rewards")renderRewards();document.querySelector(".tabs").scrollIntoView({block:"start",behavior:"smooth"})}
 function scene(emoji,caption,bg){return '<div class="scene" style="--bg:'+bg+'"><div class="pic" aria-hidden="true">'+emoji+'</div><span class="caption">'+caption+'</span></div>'}
 function renderLearn(){$("lessons").innerHTML=PAIRS.map((p,i)=>'<article class="lesson '+(state.learned.includes(p.id)?"done":"")+'"><div class="lesson-top"><b>🌿 Animal Home '+(i+1)+'</b><span class="seed">'+(state.learned.includes(p.id)?"⭐":"🌸")+'</span></div><div class="lesson-scene">'+scene(p.animalEmoji,p.animal,"#f9f1e9")+'<div class="between">➜</div>'+scene(p.homeEmoji,p.home,p.shade)+'</div><div class="sentence">A <span class="animal">'+p.animal+'</span> lives in a <span class="shelter">'+p.home+'</span>.</div><div class="lesson-actions"><button class="primary" data-say="'+p.id+'">🔊 Read sentence</button><button class="soft" data-word="'+p.id+'">🎧 Two words</button><button class="outline donebutton" data-learn="'+p.id+'">'+(state.learned.includes(p.id)?"✓ I know it!":"⭐ I learned it!")+'</button></div></article>').join("")}
@@ -132,8 +186,8 @@ $("voiceSelect").onchange=e=>{state.voice=e.target.value;store();speak("Hello, R
 $("speedSelect").onchange=e=>{state.speed=e.target.value;store();speak("A bird lives in a nest.")};
 $("testVoice").onclick=()=>speak("Hello, Raghd! A mouse lives in a hole.");
 $("full").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen&&document.exitFullscreen();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{})};
+$("voiceSelect").value=state.voice;
 $("speedSelect").value=state.speed;
-if("speechSynthesis" in window){refreshVoices();speechSynthesis.addEventListener&&speechSynthesis.addEventListener("voiceschanged",refreshVoices)}
 renderLearn();stats();
 </script>
 <script>if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("/kids-learning/sw.js",{scope:"/kids-learning/"}).catch(()=>{}));</script></body></html>
