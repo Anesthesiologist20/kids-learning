@@ -92,7 +92,7 @@ function speak(text){
  if(!key){$("audioStatus").textContent="Recording not found for this sentence.";return}
  if(activePlayer){activePlayer.pause();activePlayer.removeAttribute("src");activePlayer.load()}
  activePlayer=player;
- const src=audioDir+voice+"/"+key+".mp3?v=1";
+ const src=(key==="try-voice"||key==="voice-change")?"week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2":audioDir+voice+"/"+key+".mp3?v=1";
  player.hidden=true;player.preload="auto";player.playbackRate=Number(state.speed)||.82;player.preservesPitch=true;
  $("audioStatus").textContent="🎧 Loading "+(voice==="heart"?"Heart":"Bella")+" recording...";
  let done=false,timeout=setTimeout(()=>handleError(),8500);
