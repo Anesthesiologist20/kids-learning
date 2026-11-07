@@ -33,35 +33,28 @@ function celebrate(){if(matchMedia("(prefers-reduced-motion: reduce)").matches)r
 let activePlayer=null,clipTicket=0;
 function play(key){
  const voice=state.voice==="heart"?"heart":"bella",id=++clipTicket;
- const player=$("voicePlayer");if(activePlayer){activePlayer.pause();activePlayer.removeAttribute("src");activePlayer.load()}activePlayer=player;
- player.hidden=true;player.preload="auto";
- $("audioStatus").textContent="🎧 Loading "+(voice==="heart"?"Heart":"Bella")+" recording...";
- let done=false,timer=setTimeout(failed,8500);
- function clear(){clearTimeout(timer);player.removeEventListener("canplay",ready);player.removeEventListener("error",failed)}
- function ready(){
-  if(id!==clipTicket||done)return;
-  done=true;clear();player.playbackRate=Number(state.speed)||.82;player.preservesPitch=true;player.hidden=false;
-  $("audioStatus").textContent="🔊 "+(voice==="heart"?"Heart":"Bella")+" • Repeat after me!";
-  player.play().catch(()=>{$("audioStatus").textContent="🎧 Tap ▶ below to hear the recording."});
- }
- function failed(){
-  if(id!==clipTicket||done)return;
-  done=true;clear();
-  if(key==="try-voice"){
-   player.src="week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2";
-   player.hidden=false;player.playbackRate=Number(state.speed)||.82;
-   $("audioStatus").textContent="🎧 Bella / Heart original introduction. Tap ▶ to play.";
-   player.play().catch(()=>{$("audioStatus").textContent="🎧 Tap ▶ to hear the recorded teacher voice."});
-  }else{
-   player.hidden=true;
-   $("audioStatus").textContent="🔈 This word recording is not published yet. No browser voice is used.";
-  }
- }
- player.addEventListener("canplay",ready,{once:true});
- player.addEventListener("error",failed,{once:true});
+ const player=$("voicePlayer"),isDemo=key==="try-voice";
+ if(activePlayer){activePlayer.pause();activePlayer.removeAttribute("src");activePlayer.load()}
+ activePlayer=player;
+ player.src=isDemo
+   ? "week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2"
+   : "letter-h/audio/"+voice+"/"+key+".mp3?v=2";
+ player.hidden=false;player.preload="auto";
+ player.playbackRate=Number(state.speed)||0.82;player.preservesPitch=true;
+ $("audioStatus").textContent=isDemo?"🎧 Playing "+voice+" voice sample...":"🎧 Loading "+voice+" word recording...";
+ let played=false;
+ player.onplaying=()=>{if(id!==clipTicket)return;played=true;clearTimeout(delay);$("audioStatus").textContent="🔊 "+voice+" • Listen and repeat!"};
  player.onended=()=>{if(id===clipTicket)$("audioStatus").textContent="🌸 Your turn, Raghd!"};
- player.src=(key==="try-voice"?"week7/audio/kokoro/"+voice+"/intro.mp3?v=20261021-2":"letter-h/audio/"+voice+"/"+key+".mp3?v=1");
- player.load();
+ player.onerror=()=>{
+  if(id!==clipTicket)return;clearTimeout(delay);
+  $("audioStatus").textContent=isDemo?"🔈 Could not load this recorded teacher sample.":"🔈 This Bella/Heart H word MP3 is not published yet. Writing and picture games still work.";
+ };
+ const delay=setTimeout(()=>{if(id===clipTicket&&!played)$("audioStatus").textContent="🔈 Audio is taking too long. Tap ▶ on the player.";},8500);
+ // iOS requires the actual audio.play() call within the click handler.
+ player.play().catch(error=>{
+  if(id!==clipTicket||error.name==="AbortError")return;
+  $("audioStatus").textContent=error.name==="NotAllowedError"?"🎧 Tap ▶ in the audio player.":isDemo?"🔈 Could not load the sample recording.":"🔈 This word MP3 is not online yet.";
+ });
 }
 function wordsView(){$("words").innerHTML=WORDS.map(w=>'<article class="word-card '+(state.learned.includes(w.id)?"learned":"")+'"><span class="sticker">'+(state.learned.includes(w.id)?"⭐":"🌷")+'</span><div class="illustration" style="--tile:'+w.color+'" data-word="'+w.id+'">'+art(w.id)+'</div><div class="word-body"><strong>'+w.name+'</strong><small>'+w.sentence+'</small><div class="word-actions"><button type="button" class="primary" data-hear="'+w.id+'">🔊 Word</button><button type="button" class="softbtn" data-sentence="'+w.id+'">🎧 Sentence</button></div></div></article>').join("");
  $("words").querySelectorAll("[data-word],[data-hear]").forEach(e=>e.addEventListener("click",()=>{const id=e.dataset.word||e.dataset.hear;play("word-"+id);learn(id)}));
