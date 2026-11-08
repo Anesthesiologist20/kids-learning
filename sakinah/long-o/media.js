@@ -1,4 +1,4 @@
-function createReadingPlayer(preferences, highlight) {
+function createReadingPlayer(preferences, highlight, options = {}) {
   const byId = id => document.getElementById(id);
   const listen = byId("listen");
   const record = byId("record");
@@ -13,12 +13,12 @@ function createReadingPlayer(preferences, highlight) {
   let take;
   let timings = {};
 
-  fetch("word-starts.json").then(response => response.ok ? response.json() : {}).then(data => { timings = data; }).catch(() => {});
+  if (options.timings !== false) fetch("word-starts.json").then(response => response.ok ? response.json() : {}).then(data => { timings = data; }).catch(() => {});
 
   function openDatabase() {
     if (!database) {
       database = new Promise((resolve, reject) => {
-        const request = indexedDB.open("sakinah-long-o-recordings-v1", 1);
+        const request = indexedDB.open(options.database || "sakinah-long-o-recordings-v1", 1);
         request.onupgradeneeded = () => request.result.createObjectStore("readings");
         request.onsuccess = () => resolve(request.result);
         request.onerror = () => reject(request.error);
@@ -86,7 +86,7 @@ function createReadingPlayer(preferences, highlight) {
     const audio = playback.audio;
     audio.preservesPitch = true;
     if ("webkitPreservesPitch" in audio) audio.webkitPreservesPitch = true;
-    audio.playbackRate = preferences.speed === "extra" ? .76 : 1;
+    audio.playbackRate = options.rates?.[preferences.speed] ?? (preferences.speed === "extra" ? .76 : 1);
   }
   function follow(p) {
     if (playback !== p || !p.tracking) return;
@@ -126,7 +126,7 @@ function createReadingPlayer(preferences, highlight) {
       cancelAnimationFrame(p.frame);
       follow(p);
     };
-    message.textContent = kind === "own" ? "Playing your reading." : (voice === "bella" ? "Bella" : "Heart") + " is reading" + (kind === "sample" ? " “" + id + "”." : ".");
+    message.textContent = kind === "own" ? "Playing your reading." : (voice === "bella" ? "Bella" : "Heart") + " is reading" + (kind === "sample" ? " “" + (options.sampleLabel?.(id) || id) + "”." : ".");
     syncButtons();
     audio.play().catch(() => finish(true));
   }
@@ -232,5 +232,5 @@ function createReadingPlayer(preferences, highlight) {
   function suspend() { stopAudio(); stopTake(true); }
   window.addEventListener("pagehide", suspend);
   document.addEventListener("visibilitychange", () => { if (document.hidden) suspend(); });
-  return { selectItem, sample: id => play(id, "sample"), changeVoice, changeRate };
+  return { selectItem, sample: id => play(id, "sample"), changeVoice, changeRate, suspend };
 }
