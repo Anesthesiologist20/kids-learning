@@ -1,0 +1,45 @@
+name: Record Sakinah's page 61
+on:
+  push:
+    paths:
+      - sakinah/sci-fi-reading/lesson.json
+      - scripts/generate_sakinah_page61_audio.py
+      - .github/workflows/sakinah-sci-fi-reading.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sakinah-page61-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install the free speech engine
+        shell: bash
+        run: |
+          command -v ffmpeg || { sudo apt-get update && sudo apt-get install -y ffmpeg; }
+          python -m pip install 'kokoro-onnx>=0.4.9,<0.7'
+          assets='https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0'
+          curl -fsSL --retry 3 "$assets/kokoro-v1.0.int8.onnx" -o "$RUNNER_TEMP/kokoro.onnx"
+          curl -fsSL --retry 3 "$assets/voices-v1.0.bin" -o "$RUNNER_TEMP/voices.bin"
+      - name: Record every sentence, short part and reading word
+        env:
+          OMP_NUM_THREADS: '2'
+          OPENBLAS_NUM_THREADS: '1'
+        run: python scripts/generate_sakinah_page61_audio.py "$RUNNER_TEMP/kokoro.onnx" "$RUNNER_TEMP/voices.bin"
+      - name: Save the verified recordings on the same branch
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- sakinah/sci-fi-reading/audio/
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Record page 61 in Kokoro Bella and Heart"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:refs/heads/$GITHUB_REF_NAME"

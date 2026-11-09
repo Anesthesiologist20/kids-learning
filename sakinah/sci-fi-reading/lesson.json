@@ -1,0 +1,500 @@
+{
+  "title": "Sci-fi: Inventing New Worlds!",
+  "sections": [
+    {
+      "id": "before",
+      "label": "Reading strategy",
+      "lines": [
+        {
+          "id": "strategy",
+          "parts": [
+            "Reading Strategy:",
+            "Identifying the Main Idea",
+            "and Details"
+          ]
+        },
+        {
+          "id": "read",
+          "parts": [
+            "Read and underline",
+            "the main idea",
+            "of each paragraph",
+            "in red."
+          ]
+        },
+        {
+          "id": "underline",
+          "parts": [
+            "Underline some details or examples",
+            "supporting the main idea",
+            "in black."
+          ]
+        },
+        {
+          "id": "title",
+          "parts": [
+            "Sci-fi:",
+            "Inventing New Worlds!"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p1",
+      "label": "Paragraph 1",
+      "lines": [
+        {
+          "id": "p1a",
+          "parts": [
+            "Science fiction (sci-fi)",
+            "is a type of literature",
+            "and film."
+          ]
+        },
+        {
+          "id": "p1b",
+          "parts": [
+            "These stories talk about",
+            "imaginary or future worlds,",
+            "where crazy things are possible."
+          ]
+        },
+        {
+          "id": "p1c",
+          "parts": [
+            "In sci-fi books,",
+            "you can read about time travel,",
+            "technology, space,",
+            "and other cool things."
+          ]
+        },
+        {
+          "id": "rocket",
+          "parts": [
+            "rocket"
+          ],
+          "kind": "caption",
+          "image": "rocket"
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "label": "Paragraph 2",
+      "lines": [
+        {
+          "id": "p2a",
+          "parts": [
+            "Sometimes, years later,",
+            "inventors make the ideas",
+            "from sci-fi real!"
+          ]
+        },
+        {
+          "id": "p2b",
+          "parts": [
+            "One of the most famous",
+            "sci-fi writers",
+            "is Jules Verne."
+          ]
+        },
+        {
+          "id": "p2c",
+          "parts": [
+            "He wrote more than 150 years ago,",
+            "before they used electricity",
+            "and gasoline for transportation."
+          ]
+        },
+        {
+          "id": "p2d",
+          "parts": [
+            "In his books,",
+            "he predicts submarines",
+            "and space rockets."
+          ]
+        },
+        {
+          "id": "p2e",
+          "parts": [
+            "What do you think",
+            "he would say",
+            "if he could see",
+            "these inventions now?"
+          ]
+        },
+        {
+          "id": "submarine",
+          "parts": [
+            "submarine"
+          ],
+          "kind": "caption",
+          "image": "submarine"
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "label": "Paragraph 3",
+      "lines": [
+        {
+          "id": "p3a",
+          "parts": [
+            "Many other writers",
+            "have included ideas",
+            "for futuristic inventions",
+            "in their stories."
+          ]
+        },
+        {
+          "id": "p3b",
+          "parts": [
+            "Look at these unusual inventions",
+            "from literature and movies."
+          ]
+        },
+        {
+          "id": "p3c",
+          "parts": [
+            "Which do you think",
+            "would be the most useful?"
+          ]
+        },
+        {
+          "id": "p3d",
+          "parts": [
+            "Which would be the most fun?"
+          ]
+        },
+        {
+          "id": "p3e",
+          "parts": [
+            "Something you wear",
+            "in your ear",
+            "that allows you understand",
+            "any language"
+          ],
+          "kind": "item"
+        },
+        {
+          "id": "p3f",
+          "parts": [
+            "Smart wallpaper",
+            "that makes the color",
+            "of the walls change",
+            "to reflect how you’re feeling"
+          ],
+          "kind": "item"
+        },
+        {
+          "id": "p3g",
+          "parts": [
+            "A drink that makes you smaller",
+            "and food that can make you",
+            "grow into a giant"
+          ],
+          "kind": "item"
+        },
+        {
+          "id": "wallpaper",
+          "parts": [
+            "wallpaper"
+          ],
+          "kind": "caption",
+          "image": "wallpaper"
+        }
+      ]
+    },
+    {
+      "id": "ideas",
+      "label": "Match the main ideas",
+      "lines": [
+        {
+          "id": "match",
+          "parts": [
+            "Write the paragraph number",
+            "next to each main idea."
+          ]
+        },
+        {
+          "id": "idea-a",
+          "parts": [
+            "Sometimes inventors later on",
+            "develop ideas",
+            "from science fiction!"
+          ],
+          "letter": "a",
+          "answer": 2
+        },
+        {
+          "id": "idea-b",
+          "parts": [
+            "“Sci-fi” refers to",
+            "literature and movies",
+            "about imaginary worlds",
+            "of the future."
+          ],
+          "letter": "b",
+          "answer": 1
+        },
+        {
+          "id": "idea-c",
+          "parts": [
+            "Lots of sci-fi writers",
+            "write about amazing inventions",
+            "of the future."
+          ],
+          "letter": "c",
+          "answer": 3
+        }
+      ]
+    },
+    {
+      "id": "questions",
+      "label": "Picture questions",
+      "lines": [
+        {
+          "id": "story",
+          "parts": [
+            "You are going to read",
+            "a sci-fi story."
+          ]
+        },
+        {
+          "id": "pictures",
+          "parts": [
+            "Look at the pictures",
+            "on pages 62–65",
+            "and answer the questions."
+          ]
+        },
+        {
+          "id": "what",
+          "parts": [
+            "What do you think",
+            "the story is about?"
+          ],
+          "letter": "a"
+        },
+        {
+          "id": "world",
+          "parts": [
+            "Do you think",
+            "the world in the story",
+            "is different from our world now?"
+          ],
+          "letter": "b"
+        },
+        {
+          "id": "how",
+          "parts": [
+            "How?"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "talk",
+      "label": "Time to Talk!",
+      "lines": [
+        {
+          "id": "talk-title",
+          "parts": [
+            "Time to Talk!"
+          ]
+        },
+        {
+          "id": "like",
+          "parts": [
+            "Do you like",
+            "science fiction books and movies?"
+          ]
+        },
+        {
+          "id": "why",
+          "parts": [
+            "Why or why not?"
+          ]
+        }
+      ]
+    }
+  ],
+  "readingWords": [
+    {
+      "term": "science fiction",
+      "en": "Stories that imagine new science, technology, or future worlds.",
+      "ar": "الخيال العلمي، مثل قصص السفر عبر الزمن.",
+      "forms": [
+        "sci-fi"
+      ]
+    },
+    {
+      "term": "literature",
+      "en": "Written works such as stories, poems, and plays.",
+      "ar": "الأدب، مثل القصص والقصائد والمسرحيات."
+    },
+    {
+      "term": "imaginary",
+      "en": "Made up in your mind.",
+      "ar": "خيالي، من نسج الخيال."
+    },
+    {
+      "term": "time travel",
+      "en": "Going to the past or the future in a story.",
+      "ar": "السفر عبر الزمن إلى الماضي أو المستقبل."
+    },
+    {
+      "term": "technology",
+      "en": "Tools and machines that help people do things.",
+      "ar": "التقنية، مثل الأدوات والأجهزة التي تساعدنا."
+    },
+    {
+      "term": "inventors",
+      "en": "People who think up and make new things.",
+      "ar": "مُخترعون، يبتكرون أشياء جديدة."
+    },
+    {
+      "term": "electricity",
+      "en": "The energy that makes lights and many machines work.",
+      "ar": "الكهرباء، وهي طاقة تُشغّل المصابيح وأجهزة كثيرة."
+    },
+    {
+      "term": "gasoline",
+      "en": "The fuel many cars use to run.",
+      "ar": "البنزين، وهو وقود يُستخدم في سيارات كثيرة."
+    },
+    {
+      "term": "transportation",
+      "en": "Moving people or things from one place to another.",
+      "ar": "النقل أو المواصلات بين الأماكن."
+    },
+    {
+      "term": "predicts",
+      "en": "Says what he or she thinks will happen later.",
+      "ar": "يتوقّع ما سيحدث في المستقبل."
+    },
+    {
+      "term": "submarine",
+      "en": "A vessel that can travel under water.",
+      "ar": "غوّاصة، وهي مركبة تسير تحت الماء.",
+      "forms": [
+        "submarines"
+      ]
+    },
+    {
+      "term": "rocket",
+      "en": "A vehicle with a powerful engine that can fly into space.",
+      "ar": "صاروخ يمكنه الانطلاق إلى الفضاء.",
+      "forms": [
+        "space rockets"
+      ]
+    },
+    {
+      "term": "inventions",
+      "en": "New things people have thought up and made.",
+      "ar": "اختراعات، وهي أشياء جديدة ابتكرها الناس."
+    },
+    {
+      "term": "futuristic",
+      "en": "Like something you imagine seeing in the future.",
+      "ar": "مُستقبلي، يشبه ما نتخيّل وجوده في المستقبل."
+    },
+    {
+      "term": "unusual",
+      "en": "Different from what you usually see.",
+      "ar": "غير مألوف أو غير معتاد."
+    },
+    {
+      "term": "useful",
+      "en": "Able to help you do something.",
+      "ar": "مُفيد."
+    },
+    {
+      "term": "wallpaper",
+      "en": "Paper used to decorate the walls of a room.",
+      "ar": "ورق الجدران الذي يُستخدم لتزيين الغرفة."
+    },
+    {
+      "term": "reflect",
+      "en": "Here, to show how someone feels.",
+      "ar": "يُظهر أو يَعكس الشعور في هذه الجملة."
+    },
+    {
+      "term": "giant",
+      "en": "A person in a story who is much bigger than other people.",
+      "ar": "عِملاق، شخص ضخم جدًا في القصص."
+    },
+    {
+      "term": "develop",
+      "en": "To work on an idea and turn it into something.",
+      "ar": "يطوّر فكرة ويعمل على تحقيقها."
+    },
+    {
+      "term": "main idea",
+      "en": "The most important thing a paragraph tells you.",
+      "ar": "الفكرة الرئيسة التي تتحدث عنها الفقرة."
+    },
+    {
+      "term": "details",
+      "en": "Small facts or examples that explain an idea.",
+      "ar": "التفاصيل التي توضّح الفكرة، مثل الحقائق والأمثلة."
+    },
+    {
+      "term": "language",
+      "en": "Words people use to speak or write to each other.",
+      "ar": "لغة يتواصل بها الناس."
+    }
+  ],
+  "unitWords": [
+    {
+      "term": "owner",
+      "en": "The person something belongs to.",
+      "ar": "المالك أو صاحب الشيء."
+    },
+    {
+      "term": "female",
+      "en": "A girl or woman, or an animal of the same sex.",
+      "ar": "أُنثى."
+    },
+    {
+      "term": "human being",
+      "en": "A person, such as you or me.",
+      "ar": "إنسان."
+    },
+    {
+      "term": "memory",
+      "en": "Something you remember, or a place where information is stored.",
+      "ar": "ذِكرى، أو ذاكرة تُحفَظ فيها المعلومات."
+    },
+    {
+      "term": "natural",
+      "en": "Made by nature or happening in nature.",
+      "ar": "طبيعي، موجود في الطبيعة."
+    },
+    {
+      "term": "eyebrow",
+      "en": "The line of hair above your eye.",
+      "ar": "الحاجب، وهو الشعر فوق العين."
+    },
+    {
+      "term": "facial expression",
+      "en": "A look on your face that shows how you feel.",
+      "ar": "تعبير الوجه الذي يُظهر شعورك."
+    },
+    {
+      "term": "react",
+      "en": "To do or say something in response to what happens.",
+      "ar": "يتفاعل أو يستجيب لما يحدث."
+    },
+    {
+      "term": "puzzled",
+      "en": "Unsure because something is hard to understand.",
+      "ar": "مُحتار أو مُتحيّر."
+    },
+    {
+      "term": "body language",
+      "en": "The way your face and body show what you mean without words.",
+      "ar": "لغة الجسد، مثل حركة اليد أو هزّ الرأس."
+    }
+  ]
+}
