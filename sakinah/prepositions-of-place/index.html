@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8f4e9">
+  <meta name="description" content="Learn seven prepositions of place, try the teacher’s five practice questions, and play two grammar competition rounds.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="../../manifest.webmanifest">
+  <link rel="icon" href="../../icons/icon-192.png">
+  <link rel="apple-touch-icon" href="../../icons/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Prepositions of Place · Sakinah’s English</title>
+  <script defer src="content.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <svg aria-hidden="true" focusable="false" class="symbol-bank" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="i-sound" viewBox="0 0 24 24"><path d="M3 9h4l5-4v14l-5-4H3zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M3 4.5c3.6-.8 6-.3 9 1.5 3-1.8 5.4-2.3 9-1.5v14c-3.6-.9-6.3-.3-9 1.5-2.7-1.8-5.4-2.4-9-1.5zM12 6v14"/></symbol>
+      <symbol id="i-pencil" viewBox="0 0 24 24"><path d="m4 15.5 11.8-12a2 2 0 0 1 2.8 0l2 2a2 2 0 0 1 0 2.8L8.5 20.2 3 21zM14.5 5l4.5 4.6M4.4 15.6l4.3 4.2"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 3h10v5c0 4.5-1.8 7-5 7s-5-2.5-5-7zM7 5H3v2c0 3 2 5 5.5 5M17 5h4v2c0 3-2 5-5.5 5M12 15v5m-4 1h8"/></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path d="m14 6-6 6 6 6"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4.5 4.5L19 7"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4c5-4 9 4 15 0v10c-6 4-10-4-15 0"/></symbol>
+      <symbol id="i-picture" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8" cy="9" r="1.5"/><path d="m4 18 5-5 3 2 4-5 5 6"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5.5 5.5"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M4 9V4h5m6 0h5v5m0 6v5h-5M9 20H4v-5"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14" stroke-width="3.6"/></symbol>
+      <symbol id="i-language" viewBox="0 0 24 24"><path d="M3 5h12M9 2v3m4 0c-.5 4-3.4 7.7-8.8 10M6 8c1.6 3.3 3.2 4.8 6.5 6.3M13 21l4-10 4 10m-6.5-3h5"/></symbol>
+    </defs>
+  </svg>
+  <a class="skip" href="#activity">Skip to activity</a>
+  <main class="wrap">
+    <header class="topbar">
+      <a href="../" class="back-link"><span class="back-icon"><svg class="icon"><use href="#i-left"/></svg></span>Sakinah’s corner</a>
+      <div class="top-actions">
+        <button id="open-sound" class="quiet-btn" type="button" aria-haspopup="dialog" aria-label="Sound settings"><svg class="icon"><use href="#i-sound"/></svg><span id="sound-label">Heart · Slow</span></button>
+        <button id="expand" class="icon-btn" type="button" aria-label="Full screen" title="Full screen" hidden><svg class="icon"><use href="#i-expand"/></svg></button>
+      </div>
+    </header>
+    <section class="hero" aria-labelledby="lesson-title">
+      <div class="hero-copy">
+        <div class="overline"><span class="small-line"></span> Grammar competition</div>
+        <h1 id="lesson-title">Prepositions <em>of place</em></h1>
+        <p>Where is the pencil? Where is the cat? <span>Use these seven words and phrases to tell where someone or something is.</span></p>
+      </div>
+      <div class="cover-art"><img src="pictures/cover.webp" alt="An orange cat sitting on a stack of books." width="720" height="450"></div>
+    </section>
+    <nav class="modes" aria-label="Lesson activities">
+      <a href="#learn" data-mode="learn"><svg class="icon"><use href="#i-book"/></svg><span>Learn</span></a>
+      <a href="#practice" data-mode="practice"><svg class="icon"><use href="#i-pencil"/></svg><span>Practice</span></a>
+      <a href="#competition" data-mode="competition"><svg class="icon"><use href="#i-trophy"/></svg><span>Competition</span></a>
+    </nav>
+    <div id="activity" tabindex="-1"></div>
+    <noscript>Turn on JavaScript to hear the words and answer the questions.</noscript>
+  </main>
+
+  <dialog id="sound-settings" aria-labelledby="sound-title">
+    <div class="dialog-top"><h2 id="sound-title">Sound settings</h2><button class="icon-btn" data-close type="button" aria-label="Close sound settings"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <fieldset><legend>Voice</legend><div class="settings-options">
+      <label><input type="radio" name="voice" value="heart"><span>Heart</span></label>
+      <label><input type="radio" name="voice" value="bella"><span>Bella</span></label>
+    </div></fieldset>
+    <fieldset><legend>Reading speed</legend><div class="settings-options">
+      <label><input type="radio" name="speed" value="extra"><span>Extra slow</span></label>
+      <label><input type="radio" name="speed" value="slow"><span>Slow</span></label>
+      <label><input type="radio" name="speed" value="normal"><span>Normal</span></label>
+    </div></fieldset>
+    <div class="dialog-actions"><button type="button" class="soft-btn audio-trigger" data-audio="pencil-box" aria-pressed="false"><svg class="icon"><use href="#i-sound"/></svg>Try voice</button><button type="button" class="primary" data-close>Done</button></div>
+  </dialog>
+  <dialog id="finish-dialog" aria-labelledby="finish-title">
+    <h2 id="finish-title">Finish this round?</h2><p id="finish-note"></p>
+    <div class="dialog-actions"><button type="button" data-close class="soft-btn">Keep working</button><button type="button" id="confirm-finish" class="primary">Show my score</button></div>
+  </dialog>
+  <div id="notice" class="notice" aria-live="polite"></div>
+  <audio id="player" preload="none"></audio>
+</body>
+</html>
