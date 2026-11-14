@@ -1,38 +1,46 @@
 name: ELSA Bella and Heart reading audio
 on:
   push:
+    branches: [main]
     paths:
-      - ".github/workflows/elsa-audio.yml"
-      - "sakinah/elsa-reading/lesson.json"
-      - "sakinah/elsa-reading/generate_audio.py"
+      - '.github/workflows/elsa-audio.yml'
+      - 'sakinah/elsa-reading/lesson.json'
+      - 'sakinah/elsa-reading/generate_audio.py'
   workflow_dispatch:
 permissions:
   contents: write
+concurrency:
+  group: sakinah-elsa-bella-heart
+  cancel-in-progress: false
 jobs:
   generate:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-      - name: Install free speech synthesis
+          python-version: '3.11'
+      - name: Install free Kokoro model, sound converter and phonemizer
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq espeak-ng ffmpeg
-          python -m pip install --upgrade pip
-          python -m pip install "kokoro>=0.9.4" soundfile numpy
-      - name: Generate both Kokoro voices for page 62
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install 'kokoro>=0.9.4,<1.0' numpy soundfile
+      - name: Render all Bella and Heart ELSA recordings
         run: python sakinah/elsa-reading/generate_audio.py
-      - name: Commit audio files
+      - name: Validate and publish to the live reading lesson
+        shell: bash
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add sakinah/elsa-reading/audio/
-          if ! git diff --cached --quiet; then
-            git commit -m "Generate ELSA page 62 Bella and Heart audio clips"
-            git push origin HEAD:main
-          fi
+          if git diff --cached --quiet; then echo 'All audio files already present'; exit 0; fi
+          git commit -m 'audio(sakinah): publish Bella and Heart ELSA page 62 recordings'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then echo 'ELSA recordings published'; exit 0; fi
+            sleep 4
+          done
+          exit 1
