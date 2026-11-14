@@ -26,11 +26,11 @@ nav{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-
 <header class="hero"><div><span class="chip">📚 READING QUEST · 24 QUESTIONS</span><h1>The Book of Adventures</h1><p>Read with Max and Ellie, meet magical aliens, practise your voice, and collect shining stars!</p></div><div class="hero-art" aria-hidden="true">📦📖🪐👽</div></header>
 <div class="statbar"><div class="stat">⭐ Stars: <b id="stars">0</b></div><div class="stat">📚 Pages read: <b id="readstat">0 / 4</b></div><div class="stat">🎯 Quiz: <b id="quizstat">0 / 24</b></div></div>
 <div class="tabs" role="tablist"><button class="active" data-tab="words">✨ 1. Words</button><button data-tab="story">📖 2. Story</button><button data-tab="practice">🎤 3. Speaking</button><button data-tab="test">🏆 4. Quiz</button></div>
-<section id="words" class="section active"><div class="panel"><h2 class="section-title">✨ First, learn the magic words!</h2><p class="hint" dir="rtl">اضغط على أي كلمة لتسمعها وتعرف معناها. بعد الكلمات ابدأ القصة.</p><div class="tools"><label>🎙️ Voice <select class="voice"><option value="af_bella">Bella</option><option value="af_heart">Heart</option></select></label><label>🐢 Speed <select class="speed"><option value=".68">Extra slow</option><option value=".82">Slow</option><option value="1">Normal</option></select></label><button class="btn" id="stop-voice">⏹ Stop audio</button></div><p class="notice voice-status" role="status">Kokoro voices load on first use with internet (no browser default voices).</p><div class="vocab-grid" id="vocab"></div><div style="margin-top:17px;text-align:center"><button class="btn primary large" id="go-story">📖 Start the Story →</button></div></div></section>
+<section id="words" class="section active"><div class="panel"><h2 class="section-title">✨ First, learn the magic words!</h2><p class="hint" dir="rtl">اضغط على أي كلمة لتسمعها وتعرف معناها. بعد الكلمات ابدأ القصة.</p><div class="tools"><label>🎙️ Voice <select class="voice"><option value="af_bella">Bella</option><option value="af_heart">Heart</option></select></label><label>🐢 Speed <select class="speed"><option value=".68">Extra slow</option><option value=".82">Slow</option><option value="1">Normal</option></select></label><button class="btn" id="stop-voice">⏹ Stop audio</button><button class="btn mint" id="test-voice">🔊 Test Audio</button></div><p class="notice voice-status" role="status">Bella & Heart recordings: tap a word or the Test Audio button.</p><div class="vocab-grid" id="vocab"></div><div style="margin-top:17px;text-align:center"><button class="btn primary large" id="go-story">📖 Start the Story →</button></div></div></section>
 <section id="story" class="section"><div class="panel reader"><div class="page-title"><h2 class="section-title">📖 Story Time</h2><span class="chip" id="page-number">Page 1 of 4</span></div><p class="hint" dir="rtl">كل جملة لها زر قراءة. الأصوات Bella وHeart، مع 3 سرعات. الصور رسوم مبسطة للقصة.</p><div class="tools"><label>Voice <select class="voice"><option value="af_bella">Bella</option><option value="af_heart">Heart</option></select></label><label>Speed <select class="speed"><option value=".68">Extra slow</option><option value=".82">Slow</option><option value="1">Normal</option></select></label><button class="btn" id="fullscreen">⛶ Fullscreen</button></div><p class="notice voice-status"></p><div class="progress-dots" id="page-dots"></div><div class="scene"><div class="scene-art" id="scene-art" role="img" aria-label="Cartoon illustration of current story scene"></div><div class="scene-text"><div class="scene-label" id="scene-label"></div><div id="sentences"></div></div></div><div class="wordlist" id="scene-words"></div><div class="scene-actions"><button class="btn" id="prev">◀ Previous</button><button class="btn primary" id="read-all">🔊 Read Page</button><button class="btn mint" id="mark-read">✓ I Read It! ⭐</button><button class="btn" id="next">Next ▶</button></div><p class="notice" id="story-help">Read each sentence, then earn a reading star.</p><div class="scene-actions"><button class="btn gold" id="to-practice">🎤 Speaking Practice →</button><button class="btn gold" id="to-quiz">🏆 Start Quiz →</button></div></div></section>
 <section id="practice" class="section"><div class="panel"><h2 class="section-title">🎤 Read like a star, Aboud!</h2><p class="hint" dir="rtl">اختر جملة، اسمعها، سجّل صوتك بالمايك، ثم استمع إلى تسجيلك. هذا تدريب نطق، وليس تقييمًا آليًا للفظ.</p><div class="tools"><label>Voice <select class="voice"><option value="af_bella">Bella</option><option value="af_heart">Heart</option></select></label><label>Speed <select class="speed"><option value=".68">Extra slow</option><option value=".82">Slow</option><option value="1">Normal</option></select></label></div><div class="micbox"><label for="practice-line"><strong>Choose a sentence:</strong></label><select id="practice-line" style="width:100%;min-height:48px;border-radius:11px;border:1px solid #bad1ec;margin:9px 0;padding:8px"></select><p id="practice-text"></p><div class="tools"><button class="btn primary" id="listen-practice">🔊 Listen</button><button class="btn red" id="record">🎙 Start recording</button><button class="btn" id="stop-record" disabled>⏹ Stop</button><button class="btn mint" id="practice-done">🌟 I Practised!</button></div><div id="rec-status" role="status">Tap the microphone to record your reading.</div><audio id="recorded-audio" controls hidden></audio></div><button class="btn gold large" id="go-quiz">🏆 Ready for the Quiz!</button></div></section>
 <section id="test" class="section"><div class="panel"><div class="quiz-top"><h2 class="section-title">🏆 Adventure Challenge</h2><span class="chip" id="qcount">Question 1 / 24</span></div><p class="hint">16 story questions + 8 bonus challenge questions · Pick one answer per question · Answers lock after selection</p><div class="qmap" id="qmap"></div><div id="question-screen"><div id="qprompt" class="question"></div><button class="btn" id="hear-question">🔊 Hear question</button><div id="choices" class="choices" style="margin-top:13px"></div><div id="feedback" class="feedback" role="status"></div><div class="scene-actions"><button class="btn" id="qprev">◀ Previous</button><button class="btn primary" id="qnext">Next ▶</button></div></div><div id="results" hidden><h2>🎉 Super Reader, Aboud!</h2><div class="score" id="score"></div><p id="result-text"></p><h3>🔎 Review your answers</h3><div id="review-list"></div><div class="scene-actions"><button class="btn gold" id="review-errors">🚩 Review mistakes</button><button class="btn red" id="new-exam">↻ New Quiz (reset answers)</button></div></div></div></section>
-<p class="footer-note">✨ Progress saves on this device. Bella &amp; Heart use the free Kokoro model, which may take time/data to download once. Photos are replaced here by custom illustrated scenes.</p></div>
+<p class="footer-note">✨ Progress saves on this device. Bella &amp; Heart use pre-recorded Kokoro MP3 files. No large model download is needed. Photos are replaced here by custom illustrated scenes.</p></div>
 <div id="toast" role="status" aria-live="polite"></div>
 <script>
 (function(){
@@ -88,12 +88,51 @@ document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.t
 $('go-story').onclick=()=>tab('story');$('to-practice').onclick=()=>tab('practice');$('to-quiz').onclick=()=>tab('test');$('go-quiz').onclick=()=>tab('test');
 let toastTimer;function toast(msg){let e=$('toast');e.textContent=msg;e.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.classList.remove('visible'),3000)}
 document.querySelectorAll('.voice').forEach(e=>{e.value=progress.voice;e.onchange=()=>{progress.voice=e.value;document.querySelectorAll('.voice').forEach(s=>s.value=e.value);save()}});document.querySelectorAll('.speed').forEach(e=>{e.value=progress.speed;e.onchange=()=>{progress.speed=e.value;document.querySelectorAll('.speed').forEach(s=>s.value=e.value);save()}});
-let model=null,modelPromise=null,player=null,objectUrl=null,audioSerial=0,readSerial=0;
-function stopAudio(){audioSerial++;readSerial++;if(player){player.pause();player.src='';player=null}if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null}document.querySelectorAll('.sentence').forEach(el=>el.classList.remove('playing'))}
-$('stop-voice').onclick=()=>{stopAudio();toast('Audio stopped ⏹')};
+let player=null,audioSerial=0,readSerial=0;
+function stopAudio(){audioSerial++;readSerial++;if(player){player.pause();player.removeAttribute('src');player.load();player=null}document.querySelectorAll('.sentence').forEach(el=>el.classList.remove('playing'))}
+$('stop-voice').onclick=()=>{stopAudio();voiceStatus('⏹ Stopped');toast('Audio stopped ⏹')};
 function voiceStatus(t){document.querySelectorAll('.voice-status').forEach(e=>e.textContent=t)}
-async function initModel(){if(model)return model;if(!modelPromise){modelPromise=(async()=>{voiceStatus('⏳ Loading Kokoro Bella / Heart model. First time needs internet and can be a large download.');const mod=await import('https://cdn.jsdelivr.net/npm/kokoro-js@1.2.1/+esm');const loaded=await mod.KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX',{dtype:'q8',device:'wasm'});model=loaded;voiceStatus('✅ Kokoro voice ready.');return loaded})().catch(e=>{modelPromise=null;voiceStatus('⚠️ Kokoro model could not load on this browser or connection. You can still read, record and answer questions.');throw e})}return modelPromise}
-async function say(text,mark){const serial=++audioSerial;if(player){player.pause();player=null}if(objectUrl){URL.revokeObjectURL(objectUrl);objectUrl=null}document.querySelectorAll('.sentence').forEach(e=>e.classList.remove('playing'));if(mark)mark.classList.add('playing');try{const tts=await initModel();if(serial!==audioSerial)return false;voiceStatus('🔊 Preparing speech…');const generated=await tts.generate(text,{voice:progress.voice,speed:1});if(serial!==audioSerial)return false;objectUrl=URL.createObjectURL(generated.toBlob());player=new Audio(objectUrl);player.playbackRate=Number(progress.speed);player.preservesPitch=true;const current=player;voiceStatus('🔊 '+(progress.voice==='af_bella'?'Bella':'Heart')+' reading…');await current.play();await new Promise(resolve=>{current.onended=resolve;current.onerror=resolve});if(mark)mark.classList.remove('playing');if(serial===audioSerial){voiceStatus('✅ Listening complete');return true}return false}catch(e){if(mark)mark.classList.remove('playing');toast('Voice unavailable. Reading and quizzes still work.');return false}}
+// These audio assets are pre-generated from Kokoro Bella/Heart, not browser speech synthesis.
+const audioIndex=new Map();
+vocabulary.forEach((v,i)=>audioIndex.set(v[0],'word-'+String(i+1).padStart(2,'0')+'.mp3'));
+pages.forEach((p,i)=>p.sentences.forEach((sentence,j)=>audioIndex.set(sentence,'sentence-'+String(i+1).padStart(2,'0')+'-'+String(j+1).padStart(2,'0')+'.mp3')));
+base.forEach((item,i)=>audioIndex.set(item.q,'question-'+String(i+1).padStart(2,'0')+'.mp3'));
+async function say(text,mark){
+  const serial=++audioSerial;
+  if(player){player.pause();player.removeAttribute('src');player.load();player=null}
+  document.querySelectorAll('.sentence').forEach(e=>e.classList.remove('playing'));
+  if(mark)mark.classList.add('playing');
+  const file=audioIndex.get(text);
+  if(!file){voiceStatus('⚠️ No recording for this phrase.');if(mark)mark.classList.remove('playing');return false}
+  const voice=progress.voice==='af_heart'?'af_heart':'af_bella';
+  const url='audio/'+voice+'/'+file;
+  const audio=new Audio();
+  player=audio;
+  audio.preload='auto';
+  audio.playbackRate=Number(progress.speed);
+  audio.preservesPitch=true;
+  voiceStatus('⏳ Opening '+(voice==='af_bella'?'Bella':'Heart')+' recording…');
+  try{
+    const ended=new Promise((resolve,reject)=>{audio.onended=resolve;audio.onerror=()=>reject(new Error('Audio file is missing or not readable'))});
+    audio.src=url;
+    await audio.play();
+    if(serial!==audioSerial)return false;
+    voiceStatus('🔊 '+(voice==='af_bella'?'Bella':'Heart')+' is reading');
+    await ended;
+    if(serial!==audioSerial)return false;
+    if(mark)mark.classList.remove('playing');
+    player=null;
+    voiceStatus('✅ Audio played successfully');
+    return true
+  }catch(err){
+    if(serial!==audioSerial)return false;
+    if(mark)mark.classList.remove('playing');
+    voiceStatus('⚠️ Recording is not available yet. Check your internet, then reload the page.');
+    toast('Audio could not play: '+(err?.message||'file unavailable'));
+    return false
+  }
+}
+$('test-voice').onclick=()=>say(vocabulary[0][0]);
 $('vocab').innerHTML=vocabulary.map((v,i)=>'<button class="vocab" data-word="'+i+'"><span class="emoji">'+v[2]+'</span><strong>'+v[0]+' 🔊</strong><small>'+v[1]+'</small><span style="font-size:12px;color:#7183a0">'+v[3]+'</span></button>').join('');
 $('vocab').onclick=e=>{let b=e.target.closest('[data-word]');if(!b)return;const v=vocabulary[+b.dataset.word];toast(v[0]+' — '+v[1]);say(v[0])};
 function art(i){const head='<svg viewBox="0 0 740 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+pages[i].title+'"><defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="'+(i<2?'#8bcbff':'#8877d7')+'"/><stop offset="1" stop-color="'+(i<2?'#ffe69e':'#f4b8df')+'"/></linearGradient><linearGradient id="ground" x2="0" y2="1"><stop stop-color="#83d6aa"/><stop offset="1" stop-color="#349c81"/></linearGradient></defs><rect width="740" height="500" fill="url(#sky)"/>';
