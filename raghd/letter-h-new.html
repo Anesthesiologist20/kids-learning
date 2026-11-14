@@ -16,16 +16,43 @@
 @media(max-width:730px){.huge{flex-basis:125px;min-height:130px}.huge .H{font-size:146px}.huge .h{font-size:91px}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.card .illustration{min-height:139px}.card .emoji{font-size:73px}.card h3{font-size:24px}.card p{font-size:12px}.stats .stat{gap:4px;padding:10px}.stat .icon{font-size:24px}.stat b{font-size:20px}.stat small{font-size:11px}.audio .desc{width:100%}.audio label{flex:1}.audio select{width:100%}.awards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:430px){.huge{display:none}.hero{min-height:0}.stat .icon{display:none}.writing{grid-template-columns:1fr}.choice{flex-direction:column;gap:1px}.map button{width:31px;height:33px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.listen-question{min-height:148px;background:linear-gradient(125deg,#e9fbf4,#fff3d8);border-radius:23px;text-align:center;padding:21px 14px;margin:13px 0}
+.listen-question .ear{font-size:65px;display:block;line-height:1.1;margin:4px auto 10px}
+.listen-question h3{font-size:23px;color:#795b4a;margin:8px 0}
+.listen-question .big-hear{font-size:22px;min-width:220px;padding:16px}
+.listen-help{font-size:13px;font-weight:850;color:#855e4a;margin:10px auto;text-align:center}
+.listen-type{background:#e9f8f1;border-radius:15px;padding:9px;text-align:center;font-weight:900;color:#417b5c}
+.listen-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}
+.listen-choices .choice{min-height:105px;font-size:23px}
+.listen-choices .choice .pic{font-size:54px}
+@media(max-width:430px){.listen-choices .choice{min-height:92px;font-size:19px}.listen-choices .choice .pic{font-size:44px}}
 </style></head><body>
 <div class="wrapper"><nav class="top"><a class="home" href="./">🌷 Raghd's Home</a><span class="subtitle">RAGHD'S LITTLE LETTER GARDEN</span><button type="button" class="fullscreen" id="full" aria-label="Full screen">⛶</button></nav>
 <header class="hero"><div><div class="eyebrow">🌼 A BRAND-NEW LITTLE ADVENTURE</div><h1>Hello, Raghd! <span>Let's learn H h</span></h1><p>Six lovely H words from your school book! Learn, look, spell, write and collect your stars.</p><div class="row" style="justify-content:flex-start"><button type="button" data-go="learn" class="btn main">🌸 Let's learn</button><button type="button" data-go="quiz" class="btn pale">🎯 Play a game</button></div></div><div class="huge"><div class="H">H</div><span class="h">h</span><span class="flower">🐝🌼</span></div></header>
 <div class="stats"><div class="stat"><span class="icon">🌷</span><div><b id="learnCount">0 / 6</b><small>Words learned</small></div></div><div class="stat"><span class="icon">⭐</span><div><b id="starCount">0</b><small>My stars</small></div></div><div class="stat"><span class="icon">🏆</span><div><b id="bestCount">—</b><small>Best quiz</small></div></div></div>
 <div class="audio"><div class="desc"><strong>🎧 Bella &amp; Heart's Voice Garden</strong><small>Real Bella &amp; Heart recordings for every H word and sentence. Tap 🔊 to hear and repeat. No browser voices.</small></div><label>Teacher<select id="voice"><option value="bella">🌸 Bella</option><option value="heart">💜 Heart</option></select></label><label>Speed<select id="speed"><option value="0.63">🐢 Very Slow</option><option value="0.8">🌷 Slow</option><option value="1">🐰 Normal</option></select></label><button type="button" id="testVoice" class="btn">▶ Try voice</button><button type="button" id="letterName" class="btn soundbtn">🔊 Letter H (aitch)</button><button type="button" id="letterSound" class="btn soundbtn">💨 H sound /h/</button><div class="letter-sound-hint">H = “aitch” (name) • /h/ = a gentle breath, as in Hat</div><div id="audioWrap" hidden style="flex-basis:100%"><audio id="audio" class="audioplayer" controls preload="none"></audio></div><span class="audioStatus" id="audioStatus" role="status">Tap 🔊 to hear the letter H or the H words. Select Bella or Heart and your speed.</span></div>
-<nav class="tabs"><button type="button" data-tab="learn" class="active" aria-selected="true">📖 Learn</button><button type="button" data-tab="quiz" aria-selected="false">🖼️ Look &amp; Pick</button><button type="button" data-tab="write" aria-selected="false">✏️ Write H h</button><button type="button" data-tab="rewards" aria-selected="false">🏅 My Stars</button></nav>
-<main><section id="learn" data-view><div class="intro"><span class="pill">01 • DISCOVER</span><h2>Six H words 🌼</h2><p>Tap 🔊 Word, listen, repeat, then tap 🎧 Sentence. Collect all six stars!</p></div><div id="wordCards" class="cards"></div><div class="banner">🌷 I can read my H words! <button class="btn main" type="button" data-go="quiz">🎯 Big word challenge ➜</button></div></section>
+<nav class="tabs"><button type="button" data-tab="learn" class="active" aria-selected="true">📖 Learn</button><button type="button" data-tab="listen" aria-selected="false">🔊 Hear &amp; Pick</button><button type="button" data-tab="quiz" aria-selected="false">🎯 Challenge</button><button type="button" data-tab="write" aria-selected="false">✏️ Write H h</button><button type="button" data-tab="rewards" aria-selected="false">🏅 My Stars</button></nav>
+<main><section id="learn" data-view><div class="intro"><span class="pill">01 • DISCOVER</span><h2>Six H words 🌼</h2><p>Tap 🔊 Word, listen, repeat, then tap 🎧 Sentence. Collect all six stars!</p></div><div id="wordCards" class="cards"></div><div class="banner">🌷 I can read my H words! <button class="btn main" type="button" data-go="listen">🔊 Hear &amp; Pick ➜</button><button class="btn pale" type="button" data-go="quiz">🎯 Big word challenge</button></div></section>
+<section id="listen" data-view hidden>
+  <div class="intro"><span class="pill">02 • HEAR &amp; PICK</span><h2>Listen &amp; Choose! 🎧</h2>
+  <p>Bella or Heart says an H word. Listen carefully and tap the right answer! First choose the written word, then its picture.</p></div>
+  <div class="quiz"><div class="meta"><span id="listenNumber">Question 1 / 12</span><span id="listenScore">⭐ 0 correct</span></div>
+  <div class="progress"><i id="listenFill"></i></div><div class="map" id="listenMap"></div>
+  <div class="listen-question"><span class="ear">👂</span><h3>Which word did you hear?</h3>
+  <button type="button" class="btn main big-hear" id="listenReplay">🔊 Listen again</button>
+  <div class="listen-help" id="listenPrompt">Listen, then choose the answer below.</div></div>
+  <div class="listen-type" id="listenType">ABC • Choose the word</div>
+  <div class="listen-choices" id="listenChoices"></div>
+  <div class="feedback" id="listenFeedback" role="status"></div>
+  <div class="row" style="justify-content:space-between">
+    <button class="btn pale" id="listenPrev" type="button">← Previous</button>
+    <button class="btn main" id="listenNext" type="button">Next ➜ 🔊</button>
+    <button class="btn" id="listenFinish" type="button">🏆 Results</button>
+  </div><div id="listenResult" class="results" hidden></div></div></section>
 <section id="quiz" data-view hidden><div class="intro"><span class="pill">02 • MY CHALLENGE</span><h2>H Word Superstar! 🏆</h2><p>18 questions: pictures, listening and missing letters. Answers lock after one tap.</p></div><div class="quiz"><div class="meta"><span id="qnum">Question 1 of 18</span><span id="qscore">⭐ 0 correct</span></div><div class="progress"><i id="fill"></i></div><div class="map" id="map"></div><div id="question" class="question"></div><div class="choicegrid" id="options"></div><div class="feedback" id="feedback" role="status"></div><div class="row" style="justify-content:space-between"><button id="prev" class="btn pale" type="button">← Previous</button><button id="next" class="btn main" type="button">Next ➜</button><button id="finish" class="btn" type="button">🏁 Results</button></div><div id="result" class="results" hidden></div></div></section>
 <section id="write" data-view hidden><div class="intro"><span class="pill">03 • HANDWRITING</span><h2>Trace H and h ✏️</h2><p>Use your finger or stylus to practise writing!</p></div><div class="writing"><div class="paper"><h3>Capital H</h3><div class="sheet"><svg viewBox="0 0 300 240" aria-hidden="true"><text x="150" y="184">H</text></svg><canvas id="capitalCanvas" aria-label="Draw capital H"></canvas></div><small>Down, down, and across!</small></div><div class="paper"><h3>Small h</h3><div class="sheet"><svg viewBox="0 0 300 240" aria-hidden="true"><text x="150" y="184">h</text></svg><canvas id="smallCanvas" aria-label="Draw lowercase h"></canvas></div><small>Go down, up halfway, over and down!</small></div></div><div class="row" style="margin:18px 0"><button type="button" class="btn main" id="clearWriting">🧽 Erase &amp; try again</button><button type="button" class="btn pale" data-go="quiz">🎯 Practice words</button></div></section>
-<section id="rewards" data-view hidden><div class="intro"><span class="pill">04 • REWARDS</span><h2>Raghd's Star Garden 🌟</h2><p>All your work is saved on this device.</p></div><div class="trophy"><div class="em">🌸🏆🌸</div><h2 id="prizeTitle">Keep growing, Raghd!</h2><p>You've earned <b id="finalStars">0</b> stars!</p></div><div class="awards" id="awards"></div><div class="banner"><button type="button" class="btn main" data-go="learn">📖 Learn again</button><button type="button" class="btn pale" data-go="quiz">🎯 Play again</button></div></section></main>
+<section id="rewards" data-view hidden><div class="intro"><span class="pill">04 • REWARDS</span><h2>Raghd's Star Garden 🌟</h2><p>All your work is saved on this device.</p></div><div class="trophy"><div class="em">🌸🏆🌸</div><h2 id="prizeTitle">Keep growing, Raghd!</h2><p>You've earned <b id="finalStars">0</b> stars!</p></div><div class="awards" id="awards"></div><div class="banner"><button type="button" class="btn main" data-go="learn">📖 Learn again</button><button type="button" class="btn pale" data-go="listen">🔊 Listening game</button><button type="button" class="btn pale" data-go="quiz">🎯 Play again</button></div></section></main>
 <footer>🌼 Made for Raghd • Hh words from her teacher's PDF • No browser speech • Your learning is saved locally</footer><div id="toast" role="status"></div></div>
 <script>
 "use strict";
@@ -38,12 +65,12 @@ const WORDS=[
 {id:"honey",name:"Honey",image:"🍯",vowel:"o",spell:"H _ ney",color:"#fff5df",sentence:"This is honey."}
 ];
 const $=id=>document.getElementById(id),KEY="raghd-h-from-scratch-2026";
-const defaults=()=>({learned:[],best:0,voice:"bella",rate:"0.8",quiz:null});
+const defaults=()=>({learned:[],best:0,listenBest:0,voice:"bella",rate:"0.8",quiz:null,listening:null});
 function load(){try{const p=JSON.parse(localStorage.getItem(KEY)||"null");return p&&Array.isArray(p.learned)?Object.assign(defaults(),p):defaults()}catch(e){return defaults()}}
 let state=load(),tab="learn",audio=null,playId=0;
 const find=id=>WORDS.find(w=>w.id===id);
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}stats()}
-function points(){return state.learned.length+state.best}
+function points(){return state.learned.length+state.best+(state.listenBest||0)}
 function stats(){$("learnCount").textContent=state.learned.length+" / 6";$("starCount").textContent=points();$("bestCount").textContent=state.best?state.best+" / 18":"—"}
 function toast(txt){const e=$("toast");e.textContent=txt;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("show"),2000)}
 function shuffle(xs){const a=[...xs];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[j],a[i]]=[a[i],a[j]]}return a}
@@ -53,18 +80,99 @@ function playClip(key){
  audio=p;p.src="letter-h/audio/"+voice+"/"+encodeURIComponent(key)+".mp3?v=20261114-h-audio";
  p.preload="auto";p.playbackRate=Number(state.rate)||.8;p.preservesPitch=true;
  $("audioWrap").hidden=false;
- $("audioStatus").textContent="🎧 Loading "+voice+" recording: "+key.replace(/-/g," ")+"…";
+ $("audioStatus").textContent=tab==="listen"?"🎧 Listen carefully and select your answer!":"🎧 Loading "+voice+" recording…";
  p.onplaying=()=>{if(playId===id)$("audioStatus").textContent="🔊 "+voice+" • Listen and repeat!"};
  p.onended=()=>{if(playId===id)$("audioStatus").textContent="🌷 Great! Your turn to say it, Raghd!"};
  p.onerror=()=>{if(playId===id)$("audioStatus").textContent="🔈 This recording is not available yet. Check internet and reopen the lesson."};
  const result=p.play();if(result?.catch)result.catch(e=>{if(playId!==id||e.name==="AbortError")return;$("audioStatus").textContent=e.name==="NotAllowedError"?"Tap ▶ on the player to listen.":"🔈 Unable to load audio on this device."});
 }
 function playDemo(){playClip("intro")}
-function go(name){tab=name;document.querySelectorAll("[data-tab]").forEach(b=>{b.classList.toggle("active",b.dataset.tab===name);b.setAttribute("aria-selected",b.dataset.tab===name?"true":"false")});document.querySelectorAll("[data-view]").forEach(e=>e.hidden=e.id!==name);if(name==="learn")renderWords();if(name==="quiz")renderQuiz();if(name==="rewards")renderStars();if(name==="write")repaint();document.querySelector(".tabs").scrollIntoView({block:"start",behavior:"smooth"})}
+function go(name){tab=name;document.querySelectorAll("[data-tab]").forEach(b=>{b.classList.toggle("active",b.dataset.tab===name);b.setAttribute("aria-selected",b.dataset.tab===name?"true":"false")});document.querySelectorAll("[data-view]").forEach(e=>e.hidden=e.id!==name);if(name==="learn")renderWords();if(name==="quiz")renderQuiz();if(name==="listen"){renderListening();playCurrentListening()}if(name==="rewards")renderStars();if(name==="write")repaint();document.querySelector(".tabs").scrollIntoView({block:"start",behavior:"smooth"})}
 function renderWords(){
  $("wordCards").innerHTML=WORDS.map(w=>'<article class="card '+(state.learned.includes(w.id)?"done":"")+'"><span class="sticker">'+(state.learned.includes(w.id)?"⭐":"🌸")+'</span><div class="illustration" style="--bg:'+w.color+'"><span class="emoji">'+w.image+'</span></div><h3><span class="letter">H</span>'+w.name.slice(1)+'</h3><p>H is for '+w.name+'!</p><div class="pronounce"><button type="button" class="btn sm soundbtn" data-hear="'+w.id+'">🔊 Word</button><button type="button" class="btn sm soundbtn sentence" data-sentence="'+w.id+'">🎧 Sentence</button></div><button type="button" class="btn sm '+(state.learned.includes(w.id)?"":"main")+'" data-learn="'+w.id+'">'+(state.learned.includes(w.id)?"✓ Learned!":"⭐ I know this!")+'</button></article>').join("");
 }
 function mark(id){if(!state.learned.includes(id)){state.learned.push(id);save();toast("🌟 Fantastic, Raghd!")}renderWords()}
+
+/* Dedicated true listening game: listen to recordings before choosing a word or picture. */
+function buildListening(){
+ const qs=WORDS.flatMap(w=>[
+   {id:w.id,mode:"hear-text",options:shuffle([w.id,...shuffle(WORDS.filter(x=>x.id!==w.id).map(x=>x.id)).slice(0,3)])},
+   {id:w.id,mode:"hear-picture",options:shuffle([w.id,...shuffle(WORDS.filter(x=>x.id!==w.id).map(x=>x.id)).slice(0,3)])}
+ ]);
+ return{questions:shuffle(qs),answers:{},index:0,finished:false};
+}
+function listening(){
+ const l=state.listening;
+ if(!l||!Array.isArray(l.questions)||l.questions.length!==12||!l.questions.every(q=>find(q.id)&&Array.isArray(q.options)&&q.options.includes(q.id))){
+   state.listening=buildListening();save();
+ }
+ return state.listening;
+}
+function lAnswered(l,i){return Object.prototype.hasOwnProperty.call(l.answers,String(i))}
+function lScore(l){return l.questions.reduce((n,q,i)=>n+(l.answers[i]===q.id?1:0),0)}
+function lCount(l){return l.questions.filter((_,i)=>lAnswered(l,i)).length}
+function renderListening(){
+ const l=listening(),q=l.questions[l.index],done=lAnswered(l,l.index);
+ $("listenNumber").textContent="Question "+(l.index+1)+" / 12";
+ $("listenScore").textContent="⭐ "+lScore(l)+" correct";
+ $("listenFill").style.width=(lCount(l)/12*100)+"%";
+ $("listenMap").innerHTML=l.questions.map((item,i)=>
+   '<button type="button" data-ljump="'+i+'" class="'+(i===l.index?"now ":"")+
+   (lAnswered(l,i)?l.answers[i]===item.id?"right":"wrong":"")+'">'+(i+1)+'</button>').join("");
+ $("listenType").textContent=q.mode==="hear-text"?"🔤 Hear the word → choose its NAME":"🖼️ Hear the word → choose its PICTURE";
+ $("listenPrompt").textContent="Listen to the word. Replay as many times as you like!";
+ $("listenChoices").innerHTML=q.options.map(id=>{
+   const w=find(id),chosen=l.answers[l.index]===id;
+   const className=done?(id===q.id?"good":chosen?"bad":""):"";
+   const label=q.mode==="hear-text"?w.name:'<span class="pic">'+w.image+'</span>';
+   return '<button type="button" class="choice '+className+'" data-lanswer="'+id+'" '+(done||l.finished?"disabled":"")+'>'+label+'</button>';
+ }).join("");
+ $("listenFeedback").textContent=done?
+   (l.answers[l.index]===q.id?"🌟 Great listening, Raghd!":"🌷 Good try! It was "+find(q.id).name+".") :
+   "🎧 Listen first. One tap saves your answer.";
+ $("listenPrev").disabled=l.index===0;
+ $("listenNext").disabled=l.index===11;
+ $("listenResult").hidden=!l.finished;
+ if(l.finished){
+   const n=lScore(l);
+   $("listenResult").innerHTML='<div class="big">'+(n===12?"👑":"🏆")+'</div><h2>'+ (n===12?"Perfect hearing!":"Great job, Raghd!")+'</h2><p>⭐ '+n+' / 12 correct</p><div class="row"><button type="button" class="btn main" data-lretry="1">🔄 New listening game</button><button type="button" class="btn pale" data-lreview="1">📚 Review answers</button></div>';
+ }
+}
+function playCurrentListening(){
+ if(tab!=="listen")return;
+ const l=listening();
+ if(l.finished)return;
+ playClip("word-"+l.questions[l.index].id);
+}
+function lJump(i){
+ const l=listening();if(i<0||i>11)return;
+ l.index=i;save();renderListening();playCurrentListening();
+}
+function lAnswer(id){
+ const l=listening(),i=l.index;
+ if(l.finished||lAnswered(l,i))return;
+ l.answers[i]=id;save();renderListening();
+ toast(id===l.questions[i].id?"⭐ Amazing listening!":"🌼 Nice try, Raghd!");
+}
+function lFinish(){
+ const l=listening();
+ if(lCount(l)<12){
+  l.index=l.questions.findIndex((_,i)=>!lAnswered(l,i));
+  save();renderListening();playCurrentListening();toast("🌸 Finish all 12 questions!");
+  return;
+ }
+ l.finished=true;
+ state.listenBest=Math.max(state.listenBest||0,lScore(l));
+ save();renderListening();
+}
+function lRetry(){
+ state.listening=buildListening();save();renderListening();playCurrentListening();
+}
+function lReview(){
+ const l=listening();
+ const wrong=l.questions.findIndex((q,i)=>l.answers[i]!==q.id);
+ l.index=wrong>=0?wrong:0;save();renderListening();playCurrentListening();
+}
 function buildQuestions(){
  let q=[];
  for(const w of WORDS){
@@ -141,13 +249,17 @@ document.addEventListener("click",e=>{
  t=e.target.closest("[data-sentence]");if(t)return playClip("sentence-"+t.dataset.sentence);
  t=e.target.closest("[data-quiz-hear]");if(t)return playClip("word-"+t.dataset.quizHear);
  t=e.target.closest("[data-learn]");if(t)return mark(t.dataset.learn);
+ t=e.target.closest("[data-lanswer]");if(t)return lAnswer(t.dataset.lanswer);
+ t=e.target.closest("[data-ljump]");if(t)return lJump(+t.dataset.ljump);
+ t=e.target.closest("[data-lretry]");if(t)return lRetry();
+ t=e.target.closest("[data-lreview]");if(t)return lReview();
  t=e.target.closest("[data-answer]");if(t)return answer(t.dataset.answer);
  t=e.target.closest("[data-jump]");if(t)return jump(+t.dataset.jump);
  t=e.target.closest("[data-retry]");if(t)return retry();
  t=e.target.closest("[data-review]");if(t)return review();
 });
 $("voice").value=state.voice;$("speed").value=state.rate;
-$("voice").onchange=e=>{state.voice=e.target.value;save();$("audioStatus").textContent="🌷 Teacher selected. Tap any 🔊 button to listen."};
+$("voice").onchange=e=>{state.voice=e.target.value;save();$("audioStatus").textContent="🌷 Teacher selected. Tap any 🔊 button to listen.";if(tab==="listen")playCurrentListening()};
 $("speed").onchange=e=>{state.rate=e.target.value;save();if(audio&&audio.src)audio.playbackRate=Number(state.rate);$("audioStatus").textContent="Speed updated. Tap a 🔊 button to listen."};
 $("testVoice").onclick=playDemo;
 $("letterName").onclick=()=>playClip("letter-name");
@@ -155,6 +267,10 @@ $("letterSound").onclick=()=>playClip("letter-sound");
 $("prev").onclick=()=>jump(current().index-1);
 $("next").onclick=()=>jump(current().index+1);
 $("finish").onclick=finish;
+$("listenReplay").onclick=playCurrentListening;
+$("listenPrev").onclick=()=>lJump(listening().index-1);
+$("listenNext").onclick=()=>lJump(listening().index+1);
+$("listenFinish").onclick=lFinish;
 $("clearWriting").onclick=()=>{painters.forEach(x=>x.clear());toast("🌸 Write again!")};
 $("full").onclick=()=>{if(document.fullscreenElement)document.exitFullscreen?.();else if(document.documentElement.requestFullscreen)document.documentElement.requestFullscreen().catch(()=>{})};
 window.addEventListener("resize",()=>{if(tab==="write")repaint()});
