@@ -1,0 +1,416 @@
+{
+  "title": "ELSA",
+  "author": "Ivor Williams",
+  "page": 62,
+  "unit": "Cambridge Primary Path 4 · Unit 3B",
+  "date": "Monday, February 16, 2036",
+  "words": [
+    {
+      "term": "owner",
+      "en": "The person who owns something.",
+      "ar": "المالك أو المالكة.",
+      "src": 1
+    },
+    {
+      "term": "female",
+      "en": "A girl, a woman, or an animal of the same sex.",
+      "ar": "أنثى.",
+      "src": 2
+    },
+    {
+      "term": "human being",
+      "en": "A person; a man, woman, or child.",
+      "ar": "إنسان.",
+      "src": 3
+    },
+    {
+      "term": "memory",
+      "en": "The ability to remember or store information.",
+      "ar": "ذاكرة؛ القدرة على حفظ المعلومات.",
+      "src": 4
+    },
+    {
+      "term": "natural",
+      "en": "Normal, not artificial; like a real person in this story.",
+      "ar": "طبيعي؛ مثل صوت الإنسان في هذه القصة.",
+      "src": 5
+    },
+    {
+      "term": "domestic robot",
+      "en": "A robot that helps with tasks in the home.",
+      "ar": "روبوت منزلي يساعد في الأعمال."
+    },
+    {
+      "term": "official",
+      "en": "Used formally or approved as a correct name.",
+      "ar": "رسمي."
+    },
+    {
+      "term": "apparatus",
+      "en": "A machine or equipment used for a special purpose.",
+      "ar": "جهاز أو معدّات لغرض معين."
+    },
+    {
+      "term": "modern",
+      "en": "New or from the present time.",
+      "ar": "حديث أو عصري."
+    },
+    {
+      "term": "computing power",
+      "en": "A computer's ability to process information.",
+      "ar": "قدرة الحاسوب على معالجة المعلومات."
+    },
+    {
+      "term": "complicated",
+      "en": "Not simple; difficult to understand or do.",
+      "ar": "معقّد أو صعب."
+    },
+    {
+      "term": "upgrade",
+      "en": "An improvement that makes a machine or program better.",
+      "ar": "ترقية أو تحديث.",
+      "forms": [
+        "upgrades"
+      ]
+    },
+    {
+      "term": "improve",
+      "en": "To make something better.",
+      "ar": "يُحسّن."
+    },
+    {
+      "term": "contractions",
+      "en": "Short forms of words, such as I'm, don't and they're.",
+      "ar": "اختصارات مثل I'm وdon't وthey're."
+    },
+    {
+      "term": "formal",
+      "en": "Following a serious, official way of speaking.",
+      "ar": "رسمي في طريقة الكلام."
+    },
+    {
+      "term": "natural voice",
+      "en": "A voice that sounds normal and human.",
+      "ar": "صوت طبيعي يشبه صوت الإنسان."
+    },
+    {
+      "term": "language",
+      "en": "Words and expressions people use to communicate.",
+      "ar": "لغة."
+    },
+    {
+      "term": "learn",
+      "en": "To gain a new skill or knowledge.",
+      "ar": "يتعلّم."
+    },
+    {
+      "term": "series",
+      "en": "A number of related things that come one after another.",
+      "ar": "سلسلة أو مجموعة متتابعة."
+    },
+    {
+      "term": "instead of",
+      "en": "In place of another thing.",
+      "ar": "بدلًا من."
+    },
+    {
+      "term": "allow",
+      "en": "To make something possible.",
+      "ar": "يسمح أو يُتيح.",
+      "forms": [
+        "allows"
+      ]
+    },
+    {
+      "term": "robot",
+      "en": "A machine made to carry out tasks.",
+      "ar": "إنسان آلي / روبوت."
+    }
+  ],
+  "sections": [
+    {
+      "id": "intro",
+      "label": "ELSA’s file",
+      "lines": [
+        {
+          "id": "date",
+          "parts": [
+            "Date: Monday,",
+            "February 16, 2036."
+          ]
+        },
+        {
+          "id": "location",
+          "parts": [
+            "Location: 37°25′45″N,",
+            "122°8′17″W."
+          ]
+        },
+        {
+          "id": "topic",
+          "parts": [
+            "Topic: File 36js-0027FW/91.",
+            "Developing language."
+          ]
+        },
+        {
+          "id": "time",
+          "parts": [
+            "Time: 04:53.",
+            "Status: At rest."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p1",
+      "label": "Paragraph 1 · Meet ELSA",
+      "lines": [
+        {
+          "id": "p1a",
+          "parts": [
+            "Hello.",
+            "I’m an ELSA."
+          ]
+        },
+        {
+          "id": "p1b",
+          "parts": [
+            "My full, official name is",
+            "Experimental Live-in",
+            "Service Apparatus."
+          ]
+        },
+        {
+          "id": "p1c",
+          "parts": [
+            "I am what people in the past",
+            "used to call",
+            "a domestic robot."
+          ]
+        },
+        {
+          "id": "p1d",
+          "parts": [
+            "My owner,",
+            "who is a female human,",
+            "calls me Elsa,",
+            "like the girl’s name."
+          ]
+        },
+        {
+          "id": "p1e",
+          "parts": [
+            "I’m a modern ELSA,",
+            "which means that a)",
+            "I look a lot like",
+            "a human being,"
+          ]
+        },
+        {
+          "id": "p1f",
+          "parts": [
+            "b) I have a very big memory",
+            "and a lot of computing power,",
+            "which allows me to do",
+            "a lot of very complicated jobs,"
+          ]
+        },
+        {
+          "id": "p1g",
+          "parts": [
+            "and c) my computer can “grow”",
+            "through a series of upgrades."
+          ]
+        },
+        {
+          "id": "p1h",
+          "parts": [
+            "To put it in other words,",
+            "I can learn how to do",
+            "new things."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "label": "Paragraph 2 · A new voice",
+      "lines": [
+        {
+          "id": "p2a",
+          "parts": [
+            "Recently, my owner paid for me",
+            "to have a language upgrade",
+            "to improve the way I speak."
+          ]
+        },
+        {
+          "id": "p2b",
+          "parts": [
+            "Now, I speak less like a robot",
+            "and more like a human."
+          ]
+        },
+        {
+          "id": "p2c",
+          "parts": [
+            "For example, I always used to say",
+            "“I do not” instead of “I don’t”",
+            "or “they are” instead of “they’re”."
+          ]
+        },
+        {
+          "id": "p2d",
+          "parts": [
+            "This made my voice sound",
+            "very formal",
+            "and kind of boring."
+          ]
+        },
+        {
+          "id": "p2e",
+          "parts": [
+            "Now I use contractions",
+            "all the time,",
+            "and the result is that my voice",
+            "now sounds more natural—",
+            "much more like a human voice."
+          ]
+        }
+      ]
+    }
+  ],
+  "quiz": [
+    {
+      "q": "What is ELSA?",
+      "a": [
+        "A domestic robot",
+        "A real girl",
+        "A spaceship"
+      ],
+      "c": 0,
+      "why": "ELSA is a domestic robot that helps at home."
+    },
+    {
+      "q": "Who is the owner?",
+      "a": [
+        "A female human",
+        "Another robot",
+        "A doctor"
+      ],
+      "c": 0,
+      "why": "Her owner is a woman."
+    },
+    {
+      "q": "What does ELSA look like?",
+      "a": [
+        "A human being",
+        "A dog",
+        "A plane"
+      ],
+      "c": 0,
+      "why": "The robot looks a lot like a human being."
+    },
+    {
+      "q": "What does 'memory' help ELSA do?",
+      "a": [
+        "Store information",
+        "Fly across space",
+        "Eat food"
+      ],
+      "c": 0,
+      "why": "Memory helps a computer store information."
+    },
+    {
+      "q": "What lets ELSA do complicated jobs?",
+      "a": [
+        "Computing power",
+        "A new car",
+        "A school"
+      ],
+      "c": 0,
+      "why": "ELSA has a lot of computing power."
+    },
+    {
+      "q": "What helps ELSA learn new things?",
+      "a": [
+        "Upgrades",
+        "Sleeping",
+        "Eating"
+      ],
+      "c": 0,
+      "why": "The computer can grow through upgrades."
+    },
+    {
+      "q": "Why did ELSA get a language upgrade?",
+      "a": [
+        "To improve the way it speaks",
+        "To cook dinner",
+        "To learn to swim"
+      ],
+      "c": 0,
+      "why": "The upgrade makes ELSA speak more naturally."
+    },
+    {
+      "q": "Which is a contraction of 'I do not'?",
+      "a": [
+        "I don't",
+        "They are",
+        "I did"
+      ],
+      "c": 0,
+      "why": "I do not becomes I don't."
+    },
+    {
+      "q": "Which is a contraction of 'they are'?",
+      "a": [
+        "They're",
+        "Their",
+        "There"
+      ],
+      "c": 0,
+      "why": "They are becomes they're."
+    },
+    {
+      "q": "How did ELSA's voice sound before?",
+      "a": [
+        "Formal and boring",
+        "Like a bird",
+        "Very musical"
+      ],
+      "c": 0,
+      "why": "The passage says formal and kind of boring."
+    },
+    {
+      "q": "How does ELSA's voice sound now?",
+      "a": [
+        "More natural",
+        "Less clear",
+        "More robotic"
+      ],
+      "c": 0,
+      "why": "Contractions make her sound more natural."
+    },
+    {
+      "q": "Who tells the story?",
+      "a": [
+        "ELSA the robot",
+        "The owner",
+        "A teacher"
+      ],
+      "c": 0,
+      "why": "ELSA tells the story using 'I'."
+    },
+    {
+      "q": "What is the main idea of paragraph 2?",
+      "a": [
+        "ELSA learns to speak more naturally",
+        "ELSA buys a car",
+        "The owner visits school"
+      ],
+      "c": 0,
+      "why": "The second paragraph explains a language upgrade."
+    }
+  ]
+}
