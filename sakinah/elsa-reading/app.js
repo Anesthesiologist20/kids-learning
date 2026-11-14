@@ -47,7 +47,7 @@ function listen(items, label, target) {
   $("now-text").textContent=state.voice.toUpperCase()+" · "+label+" · "+index+"/"+items.length;
   $$("#reading-sentence .chunk").forEach(e=>e.classList.remove("on"));
   if(item.line && lines[current] && lines[current].id===item.line.id && item.part!==undefined){
-   const span=$('#reading-sentence [data-part="'+item.part+'"]');
+   const span=document.querySelector('#reading-sentence [data-part="'+item.part+'"]');
    if(span) span.classList.add("on");
   }
   audio.src=src;
