@@ -1,0 +1,45 @@
+name: Raghd H • Bella Heart Word Audio
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/generate_raghd_h_audio.py'
+      - '.github/workflows/raghd-letter-h-kokoro.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: raghd-letter-h-audio
+  cancel-in-progress: false
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Kokoro voice generator
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install 'kokoro>=0.9.4,<1.0' numpy soundfile
+      - name: Render and validate each H recording
+        run: python scripts/generate_raghd_h_audio.py
+      - name: Safely publish audio
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add raghd/letter-h/audio/
+          if git diff --cached --quiet; then echo 'Audio files already exist'; exit 0; fi
+          git commit -m 'audio(raghd): publish Bella and Heart H letter and word recordings'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then echo 'H recordings published'; exit 0; fi
+            sleep 4
+          done
+          exit 1
