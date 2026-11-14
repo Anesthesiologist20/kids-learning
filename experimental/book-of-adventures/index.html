@@ -76,6 +76,10 @@ const key='aboud-adventures-20261114-v1';
 let progress={read:[],practiced:[],answers:{},voice:'af_bella',speed:'.82',page:0,question:0};
 try{Object.assign(progress,JSON.parse(localStorage.getItem(key)||'{}'))}catch(e){}
 if(!Array.isArray(progress.read))progress.read=[];if(!Array.isArray(progress.practiced))progress.practiced=[];if(!progress.answers||typeof progress.answers!=='object')progress.answers={};
+const originalOptions=base.map(x=>x.answers.slice());
+function shuffledOrder(){return base.map(()=>{const a=[0,1,2];for(let i=2;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a})}
+function applyOrder(){base.forEach((x,i)=>{const permutation=progress.quizOrder[i];x.answers=permutation.map(j=>originalOptions[i][j]);x.correct=permutation.indexOf(0)})}
+if(!Array.isArray(progress.quizOrder)||progress.quizOrder.length!==base.length)progress.quizOrder=shuffledOrder();applyOrder();
 const save=()=>{try{localStorage.setItem(key,JSON.stringify(progress))}catch(e){};updateStats()};
 function updateStats(){let answered=Object.keys(progress.answers).length,correct=base.filter(x=>progress.answers[x.id]===x.correct).length; $('stars').textContent=progress.read.length+progress.practiced.length+correct*2; $('readstat').textContent=progress.read.length+' / 4';$('quizstat').textContent=answered+' / 24'}
 let currentTab='words',page=Math.max(0,Math.min(3,progress.page||0)),q=Math.max(0,Math.min(23,progress.question||0));
@@ -124,7 +128,7 @@ $('choices').onclick=e=>{let b=e.target.closest('[data-answer]');if(!b)return;le
 $('qprev').onclick=()=>{q=Math.max(0,q-1);renderQuiz()};$('qnext').onclick=()=>{if(q<base.length-1){q++;renderQuiz()}else {let unanswered=base.findIndex(x=>progress.answers[x.id]===undefined);if(unanswered>=0){q=unanswered;renderQuiz();toast('Answer the remaining questions first.')}else renderQuiz()}};
 $('hear-question').onclick=()=>say(base[q].q);
 $('review-errors').onclick=()=>{const mistakes=base.filter(x=>progress.answers[x.id]!==x.correct);if(!mistakes.length){toast('No mistakes! Perfect!');return}const all=$('review-list').querySelectorAll('.review-item');const hide=$('review-errors').dataset.only!=='1';all.forEach((el,i)=>el.hidden=hide&&progress.answers[base[i].id]===base[i].correct);$('review-errors').dataset.only=hide?'1':'0';$('review-errors').textContent=hide?'📋 Show all answers':'🚩 Show mistakes only';toast(mistakes.length+' mistakes to review.');};
-$('new-exam').onclick=()=>{if(!confirm('Reset quiz answers and begin a new challenge? Reading stars are kept.'))return;progress.answers={};q=0;save();renderQuiz()};
+$('new-exam').onclick=()=>{if(!confirm('Reset quiz answers and begin a new challenge? Reading stars are kept.'))return;progress.answers={};progress.quizOrder=shuffledOrder();applyOrder();q=0;save();renderQuiz()};
 updateStats();renderPage();renderQuiz();
 })();
 </script></body></html>
