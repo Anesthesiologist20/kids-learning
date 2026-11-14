@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#205f49">
+<meta name="description" content="تحدي سكينة: ١٩ مصطلحًا من مفردات الفكرة العامة في علوم الصف الرابع، بثلاثة اختبارات اختيار من متعدد">
+<title>تحدي المصطلحات العلمية | سكينة</title>
+<style>
+:root{--pine:#205f49;--deep:#173f34;--green:#4f9271;--cream:#f9faf1;--line:#ccddcf;--text:#223c34;--muted:#5d7169;--bad:#9b453f;--ok:#216b45;--sand:#fff1cf}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:auto}body{margin:0;font:clamp(16px,1.25vw,20px)/1.7 Tahoma,"Segoe UI",Arial,sans-serif;color:var(--text);background:linear-gradient(140deg,#e8f4e9,#f8faf2 60%,#faf4e8);min-height:100dvh}
+button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #d99b38;outline-offset:3px}[hidden]{display:none!important}
+.wrap{max-width:1100px;margin:auto;padding:12px 18px 34px}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:12px 3px}.top a{font-weight:bold;color:var(--pine);text-decoration:none}.top span{font-size:.9rem;color:var(--muted)}
+.hero{background:linear-gradient(110deg,#21654e,#277b63 55%,#307f87);color:white;border-radius:24px;padding:clamp(23px,4vw,43px);position:relative;overflow:hidden}
+.hero:after{content:"🌿";position:absolute;left:22px;bottom:-46px;font-size:11rem;opacity:.12;pointer-events:none}.eyebrow{font-size:.8rem;letter-spacing:.015em;color:#d6f6dc;font-weight:bold}.hero h1{font-size:clamp(2rem,4.6vw,3rem);line-height:1.35;margin:8px 0}.hero p{max-width:740px;margin:0;color:#e4f6e7}.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.tags span{border:1px solid #ffffff7d;background:#ffffff20;border-radius:30px;padding:3px 12px;font-size:.84rem}
+.panel{border:1px solid var(--line);border-radius:20px;background:#fffefb;box-shadow:0 8px 24px #23523c0a;padding:clamp(17px,3vw,27px);margin:17px 0}.panel h2{margin:0 0 8px;font-size:1.6rem}.sub{color:var(--muted);font-size:.94rem;margin:0 0 16px}
+.models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.model{border:1px solid #c4d9c7;padding:21px 15px 16px;border-radius:16px;background:#f5faf3;display:flex;flex-direction:column;align-items:flex-start}.model:nth-child(2){background:#eef7f7}.model:nth-child(3){background:#fff7e6;border-color:#e2d4b6}.emoji{font-size:2.1rem}.model h3{font-size:1.22rem;line-height:1.5;margin:7px 0}.model p{font-size:.9rem;flex:1;color:#526960;margin:0 0 13px}.model button,.primary,.soft,.danger{border-radius:12px;border:1px solid var(--pine);padding:9px 18px;min-height:47px;font-weight:bold}.model button,.primary{background:var(--pine);color:white}.model button{width:100%}.soft{background:#eaf3e8;color:var(--pine);border-color:#b1c8b8}.danger{background:#fff2ed;color:#913e34;border-color:#e2b1a3}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}.counter,.status{font-weight:700;color:var(--muted);font-size:.92rem}.bar{width:100%;height:10px;overflow:hidden;border-radius:10px;background:#e0eae0;margin:14px 0 23px}.bar>i{display:block;width:0;background:linear-gradient(90deg,#62a66d,#27755b);height:100%;transition:width .2s}
+.topic{display:inline-block;font-size:.84rem;font-weight:bold;background:#e7f2df;color:#306047;border-radius:24px;padding:3px 12px}
+.qtitle{margin:10px 0 8px;font-size:clamp(1.2rem,3vw,1.55rem)}.prompt{background:#f7faf1;border:1px solid #d6e4d2;border-radius:14px;padding:19px 17px;font-size:clamp(1.08rem,2.2vw,1.4rem);font-weight:bold;min-height:95px;line-height:1.8}
+.answers{display:grid;gap:10px;margin:18px 0}.choice{min-height:54px;display:flex;align-items:center;gap:12px;width:100%;text-align:right;padding:11px 14px;background:white;border:2px solid #cbdccf;border-radius:13px;line-height:1.7}.choice:enabled:hover{background:#f0f8ed;border-color:#75a880}.choice .letter{display:grid;place-items:center;flex:none;width:32px;height:32px;border-radius:8px;background:#e8f0e7;color:#3b6650;font-weight:bold;font-size:.88rem}.choice.correct{background:#e6f6ea;border-color:#65a77b;color:var(--ok)}.choice.incorrect{background:#fff0e9;border-color:#d89c8f;color:var(--bad)}.choice:disabled{cursor:default}
+.feedback{border-radius:12px;padding:12px 15px;margin:9px 0 17px;background:#f1f4ee;color:#506258}.feedback.good{background:#e6f6ea;color:var(--ok)}.feedback.bad{background:#fff1e9;color:var(--bad)}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px;justify-content:space-between;border-top:1px solid #dae5d8;padding-top:17px}.controls .group{display:flex;gap:8px;flex-wrap:wrap}.controls button:disabled{opacity:.43;cursor:default}
+.map{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;margin:12px 0}.map button{border:1px solid #cdd9cc;min-height:43px;border-radius:9px;background:#f0f3ef;font-weight:bold;position:relative}.map button.donegood{background:#d4eddb;border-color:#91c59e;color:#245c37}.map button.donebad{background:#f7dcd6;border-color:#d9a69b;color:#91372e}.map button.current{outline:3px solid #335e50;outline-offset:1px}.map button.flagged:after{content:"⚑";position:absolute;top:-7px;left:3px;color:#bd771b;font-size:.8rem}.legend{display:flex;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:.8rem}
+.result{text-align:center}.medal{font-size:4.3rem}.bigscore{font-size:clamp(2rem,5vw,3rem);font-weight:900;color:var(--pine)}.stars{font-size:2rem;color:#bd8521}.reviewrow{border:1px solid #e0e8dc;border-radius:12px;margin:10px 0;padding:12px 15px;text-align:right;background:#fff}.reviewrow p{margin:4px 0}.wrongtext{color:var(--bad)}.righttext{color:var(--ok);font-weight:bold}
+.studymap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.termcard{border:1px solid #d2dfd0;border-radius:13px;padding:13px;background:#fbfcf7}.termcard strong{color:var(--pine);font-size:1.08rem}.termcard p{margin:4px 0 0;font-size:.9rem;line-height:1.8}.backrow{margin:15px 0}.save{font-size:.82rem;color:var(--muted);margin-top:12px}footer{text-align:center;color:#597469;font-size:.83rem;padding:20px}
+@media(max-width:650px){.wrap{padding:9px 13px 20px}.models,.studymap{grid-template-columns:1fr}.model{padding:15px}.hero{padding:22px 17px}.map{grid-template-columns:repeat(5,minmax(0,1fr))}.controls{justify-content:stretch}.controls .group{width:100%}.controls .group button{flex:1}.prompt{min-height:75px}.top span{display:none}}
+@media(min-width:790px){.wrap{width:94%;max-width:none}.panel{max-width:1250px;margin-left:auto;margin-right:auto}.quizpanel{max-width:1000px}}
+</style>
+<link rel="manifest" href="/kids-learning/manifest.webmanifest">
+</head><body><div class="wrap">
+<nav class="top"><a href="./">← العودة إلى ركن سكينة</a><span>🎒 مغامرات التعلّم / العلوم</span></nav>
+<header class="hero"><div class="eyebrow">✦ علوم الصف الرابع · مفردات الفكرة العامة</div><h1>🌿 تحدي المصطلحات العلمية</h1><p>يا سكينة، اقرئي التعريف جيدًا، واختاري المصطلح الصحيح. ثم اعكسي اللعبة: شاهدي المصطلح واختاري تعريفه! جميع الأسئلة من أوراقك الثلاث.</p><div class="tags"><span>١٩ مصطلحًا</span><span>٤ اختيارات</span><span>٣ اختبارات</span><span>حفظ التقدم ⭐</span></div></header>
+<section class="panel" id="home">
+<h2>🎯 اختاري مغامرتك</h2><p class="sub">كل إجابة تُثبّت بعد اختيارها، ويمكنك الرجوع للأسئلة ومراجعة أخطائك. لا يوجد وقت محدد.</p>
+<div class="models">
+<div class="model"><span class="emoji">🔍</span><h3>من التعريف إلى المصطلح</h3><p>سيظهر التعريف من الكتاب، وأمامك أربعة مصطلحات. اختاري المناسب.</p><button data-start="term">ابدئي · ١٩ سؤالًا</button></div>
+<div class="model"><span class="emoji">📖</span><h3>من المصطلح إلى التعريف</h3><p>سيظهر مصطلح واحد وأربعة تعريفات. اختاري التعريف الصحيح.</p><button data-start="definition">ابدئي · ١٩ سؤالًا</button></div>
+<div class="model"><span class="emoji">🏆</span><h3>تحدي سكينة الشامل</h3><p>الـ١٩ مصطلحًا بالاتجاهين، مرتبة بشكل عشوائي في تحدي نهائي.</p><button data-start="mixed">ابدئي · ٣٨ سؤالًا</button></div>
+</div><p class="save">💾 يُحفظ تقدم كل اختبار تلقائيًا على هذا الجهاز.</p></section>
+<section class="panel quizpanel" id="quiz" hidden>
+<div class="row"><span id="modeTitle" class="counter"></span><span id="position" class="counter"></span></div><div class="bar" aria-hidden="true"><i id="bar"></i></div>
+<div class="row"><span class="topic" id="group"></span><button class="soft" id="flag" aria-pressed="false">⚑ للمراجعة</button></div>
+<h2 id="qtitle" class="qtitle">اختاري الإجابة الصحيحة</h2><div id="prompt" class="prompt"></div><div id="answers" class="answers" role="group" aria-label="الاختيارات الأربعة"></div>
+<div id="feedback" class="feedback" aria-live="polite" hidden></div>
+<div class="controls"><div class="group"><button class="soft" id="prev">السابق</button><button class="primary" id="next">التالي</button></div><div class="group"><button class="soft" id="backhome">الاختبارات</button><button class="danger" id="finish">إنهاء الاختبار</button></div></div>
+<details class="panel" style="box-shadow:none;margin:18px 0 0"><summary style="cursor:pointer;font-weight:bold">🗺️ خريطة الأسئلة: أخضر صحيح · أحمر خطأ · رمادي لم يُحل</summary>
+<div class="legend"><span>🟩 إجابة صحيحة</span><span>🟥 إجابة خاطئة</span><span>⬜ لم يُحل</span><span>⚑ للمراجعة</span></div><div id="map" class="map"></div></details>
+<p class="save">تُحفظ الإجابات تلقائيًا، ويمكنك إكمال الاختبار لاحقًا.</p>
+</section>
+<section class="panel quizpanel result" id="results" hidden><div class="medal" id="medal">🏆</div><h2>أحسنتِ يا سكينة!</h2><div id="bigscore" class="bigscore"></div><div id="stars" class="stars"></div><p id="summary"></p><div class="row" style="justify-content:center"><button id="reviewMistakes" class="soft">مراجعة الأخطاء</button><button id="restart" class="primary">اختبار جديد</button><button id="resultHome" class="soft">قائمة الاختبارات</button></div><div id="review" style="margin-top:22px;text-align:right"></div></section>
+<section class="panel" id="glossary"><h2>📚 بطاقات المراجعة قبل الاختبار</h2><p class="sub">التعريفات كما وردت في الصور المرفوعة، مقسمة بحسب موضوعها.</p><div id="study" class="studymap"></div></section>
+<footer>صُنعت هذه المغامرة لسكينة 🌱 — علوم الصف الرابع</footer></div>
+<script>
+(function(){
+"use strict";
+var TERMS=[
+["الخلية","أصغر وحدة في المخلوق الحي.","المخلوقات الحية"],
+["النسيج","مجموعة من الخلايا المتشابهة.","المخلوقات الحية"],
+["العضو","مجموعة من الأنسجة تقوم معًا بأداء وظيفة معينة.","المخلوقات الحية"],
+["الجهاز الحيوي","مجموعة من الأعضاء في الجسم تتآزر معًا للقيام بوظائف الحياة الأساسية.","المخلوقات الحية"],
+["الصفة","خاصية من خصائص المخلوق الحي.","المخلوقات الحية"],
+["المملكة","المجموعة الكبرى التي تصنف فيها المخلوقات الحية.","المخلوقات الحية"],
+["الوراثة","انتقال الصفات الوراثية من الآباء إلى الأبناء.","المخلوقات الحية"],
+["اللافقاريات","حيوانات ليس لها عمود فقري.","تصنيف الحيوانات"],
+["المفصليات","أكبر مجموعة في اللافقاريات، لها أرجل مفصلية، وأجسامها مقسمة.","تصنيف الحيوانات"],
+["الفقاريات","حيوانات لها عمود فقري.","تصنيف الحيوانات"],
+["الثدييات","حيوانات فقارية ثابتة درجة الحرارة، يكسو جسمها الشعر أو الفرو.","تصنيف الحيوانات"],
+["الجهاز العضلي","جهاز يتكون من عضلات تحرك العظام.","أجهزة الجسم"],
+["الجهاز الهضمي","جهاز يحلل الطعام للحصول على الطاقة.","أجهزة الجسم"],
+["النظام البيئي","مخلوقات حية وأشياء غير حية يتفاعل بعضها مع بعض في بيئة معينة.","النظام البيئي"],
+["الموطن","مكان يعيش فيه المخلوق الحي.","النظام البيئي"],
+["المنتجات","مخلوقات حية، منها النباتات، قادرة على صنع الغذاء.","النظام البيئي"],
+["هرم الطاقة","مخطط يوضح كيف تنتقل الطاقة في النظام البيئي.","النظام البيئي"],
+["المواءمة","قدرة المخلوق الحي على الاستجابة للتغيرات في البيئة المحيطة به.","النظام البيئي"],
+["الانقراض","فناء جميع أفراد نوع أو أكثر إلى الأبد.","النظام البيئي"]
+];
+var labels={term:"التعريف ← المصطلح",definition:"المصطلح ← التعريف",mixed:"التحدي الشامل"};
+var current=null;var idx=0;var mode="term";var KEY="sakinah-science-definitions-v1-";
+function el(id){return document.getElementById(id)}
+function show(which){["home","quiz","results"].forEach(function(id){el(id).hidden=(id!==which)});el("glossary").hidden=(which!=="home");window.scrollTo({top:0,behavior:"instant"})}
+function shuffled(a){var b=a.slice();for(var i=b.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=b[i];b[i]=b[j];b[j]=t}return b}
+function choicesFor(termIndex,type){var g=TERMS[termIndex][2];var nearby=TERMS.map(function(t,i){return i}).filter(function(i){return i!==termIndex&&TERMS[i][2]===g});var other=TERMS.map(function(t,i){return i}).filter(function(i){return i!==termIndex&&TERMS[i][2]!==g});var pool=shuffled(nearby).concat(shuffled(other));var ids=shuffled([termIndex].concat(pool.slice(0,3)));return ids.map(function(i){return TERMS[i][type==="term"?0:1]})}
+function makeQuestions(which){var qs=[];for(var i=0;i<TERMS.length;i++){if(which!=="definition")qs.push({id:i+"-term",termIndex:i,type:"term",opts:choicesFor(i,"term"),answer:null,flag:false});if(which!=="term")qs.push({id:i+"-definition",termIndex:i,type:"definition",opts:choicesFor(i,"definition"),answer:null,flag:false})}return shuffled(qs)}
+function save(){try{localStorage.setItem(KEY+mode,JSON.stringify(current))}catch(e){}}
+function load(which){try{var raw=localStorage.getItem(KEY+which);var parsed=raw?JSON.parse(raw):null;var expected=which==="mixed"?38:19;if(parsed&&Array.isArray(parsed.questions)&&parsed.questions.length===expected&&parsed.questions.every(function(q){return q.opts&&q.opts.length===4&&TERMS[q.termIndex]}))return parsed}catch(e){}return null}
+function start(which,force){mode=which;current=force?null:load(which);if(!current)current={questions:makeQuestions(which),index:0,ended:false};idx=current.index||0;if(current.ended)result();else render()}
+function correct(q){return TERMS[q.termIndex][q.type==="term"?0:1]}
+function answeredCount(){return current.questions.filter(function(q){return q.answer!==null}).length}
+function rightCount(){return current.questions.filter(function(q){return q.answer===correct(q)}).length}
+function render(){
+show("quiz");var q=current.questions[idx];var c=correct(q);current.index=idx;save();
+el("modeTitle").textContent=labels[mode];el("position").textContent="السؤال "+(idx+1)+" من "+current.questions.length;
+el("bar").style.width=(100*answeredCount()/current.questions.length)+"%";
+el("group").textContent=TERMS[q.termIndex][2];el("qtitle").textContent=q.type==="term"?"🔍 ما المصطلح المناسب لهذا التعريف؟":"📖 ما تعريف المصطلح الآتي؟";
+el("prompt").textContent=TERMS[q.termIndex][q.type==="term"?1:0];el("flag").setAttribute("aria-pressed",q.flag?"true":"false");el("flag").textContent=q.flag?"⚑ محدد للمراجعة":"⚑ للمراجعة";
+var answers=el("answers");answers.replaceChildren();q.opts.forEach(function(opt,i){var b=document.createElement("button");b.className="choice";b.type="button";var letter=document.createElement("span");letter.className="letter";letter.textContent=["أ","ب","ج","د"][i];var tx=document.createElement("span");tx.textContent=opt;b.append(letter,tx);
+if(q.answer!==null){b.disabled=true;if(opt===c)b.classList.add("correct");if(opt===q.answer&&opt!==c)b.classList.add("incorrect")}else b.addEventListener("click",function(){choose(opt)});
+answers.appendChild(b)});
+el("feedback").hidden=(q.answer===null);if(q.answer!==null){var ok=q.answer===c;el("feedback").className="feedback "+(ok?"good":"bad");el("feedback").textContent=ok?"✅ ممتاز يا سكينة! إجابة صحيحة.":"❌ الإجابة الصحيحة: "+c}
+el("prev").disabled=idx===0;el("next").textContent=idx===current.questions.length-1?"النتيجة 🏆":"التالي";
+renderMap()
+}
+function choose(opt){var q=current.questions[idx];if(q.answer!==null)return;q.answer=opt;save();render()}
+function renderMap(){var map=el("map");map.replaceChildren();current.questions.forEach(function(q,i){var b=document.createElement("button");b.type="button";b.textContent=i+1;b.className=(q.answer===null?"":q.answer===correct(q)?"donegood":"donebad")+(i===idx?" current":"")+(q.flag?" flagged":"");b.setAttribute("aria-label","السؤال "+(i+1));b.addEventListener("click",function(){idx=i;render()});map.appendChild(b)})}
+function finish(){if(!current)return;var remaining=current.questions.length-answeredCount();if(remaining&&!window.confirm("باقي "+remaining+" أسئلة بدون إجابة. هل تريدين إنهاء الاختبار الآن؟"))return;current.ended=true;save();result()}
+function result(){show("results");var n=current.questions.length;var right=rightCount();var done=answeredCount();var score=Math.round(100*right/n);var stars=score>=90?3:score>=75?2:score>=50?1:0;
+el("bigscore").textContent=right+" / "+n+" ("+score+"%)";el("medal").textContent=score>=90?"🏆":score>=75?"🥇":score>=50?"🌟":"🌱";el("stars").textContent="⭐".repeat(stars)+"☆".repeat(3-stars);
+el("summary").textContent="إجابات صحيحة: "+right+" · خاطئة: "+(done-right)+" · بدون إجابة: "+(n-done)+".";
+renderReview(false)}
+function renderReview(onlyWrong){var container=el("review");container.replaceChildren();var arr=current.questions.filter(function(q){return !onlyWrong||q.answer!==correct(q)});var title=document.createElement("h3");title.textContent=onlyWrong?"📝 مراجعة الأخطاء والأسئلة غير المحلولة":"📚 مراجعة الإجابات كاملة";container.appendChild(title);
+if(!arr.length){var p=document.createElement("p");p.textContent="رائع! لا توجد أخطاء 🎉";container.appendChild(p);return}
+arr.forEach(function(q){var div=document.createElement("div");div.className="reviewrow";var p=document.createElement("p");p.textContent=q.type==="term"?"التعريف: "+TERMS[q.termIndex][1]:"المصطلح: "+TERMS[q.termIndex][0];var mine=document.createElement("p");mine.className=q.answer===correct(q)?"righttext":"wrongtext";mine.textContent="إجابتك: "+(q.answer===null?"لم تجيبي":q.answer);var right=document.createElement("p");right.className="righttext";right.textContent="الصحيح: "+correct(q);div.append(p,mine,right);container.appendChild(div)})}
+document.querySelectorAll("[data-start]").forEach(function(b){b.addEventListener("click",function(){start(b.getAttribute("data-start"),false)})});
+el("prev").addEventListener("click",function(){if(idx>0){idx--;render()}});
+el("next").addEventListener("click",function(){if(idx<current.questions.length-1){idx++;render()}else finish()});
+el("flag").addEventListener("click",function(){var q=current.questions[idx];q.flag=!q.flag;save();render()});
+el("finish").addEventListener("click",finish);el("backhome").addEventListener("click",function(){show("home")});
+el("resultHome").addEventListener("click",function(){show("home")});
+el("reviewMistakes").addEventListener("click",function(){renderReview(true);el("review").scrollIntoView({behavior:"smooth"})});
+el("restart").addEventListener("click",function(){if(window.confirm("بدء اختبار جديد؟ ستُحذف إجابات هذا الاختبار فقط.")){start(mode,true)}});
+var study=el("study");TERMS.forEach(function(t,i){var div=document.createElement("div");div.className="termcard";var h=document.createElement("strong");h.textContent=(i+1)+". "+t[0];var p=document.createElement("p");p.textContent=t[1];div.append(h,p);study.appendChild(div)});
+})();
+</script></body></html>
