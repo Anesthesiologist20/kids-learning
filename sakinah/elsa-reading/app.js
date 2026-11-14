@@ -54,6 +54,7 @@ function listen(items, label, target) {
   audio.preservesPitch=true;
   if("webkitPreservesPitch" in audio) audio.webkitPreservesPitch=true;
   audio.playbackRate=rate;
+  audio.onloadedmetadata=()=>{if(token===playToken)audio.playbackRate=rate;};
   audio.onended=()=>{if(token===playToken)setTimeout(step,270)};
   audio.onerror=()=>failed();
   audio.play().catch(failed);
@@ -93,9 +94,11 @@ function wordCard(word, core) {
  const c=make("article","vocab-card"+(core?" featured":""));
  c.append(make("div","vocab-word",word.term),make("p","vocab-en",word.en),make("div","vocab-ar",word.ar));
  const actions=make("div","vocab-controls"), sound=button("🔊 Listen","sound-btn");
- sound.addEventListener("click",()=>listen([{word}],word.term,$("gloss-status")));
+ const audioStatus=make("p","voice-status","");
+ audioStatus.setAttribute("role","status");
+ sound.addEventListener("click",()=>{audioStatus.textContent="Playing "+state.voice+"…";listen([{word}],word.term,audioStatus)});
  const tag=make("span","source-tag",core?"★ BOOK WORD":"STORY WORD");
- actions.append(sound,tag);c.append(actions);
+ actions.append(sound,tag);c.append(actions,audioStatus);
  c.addEventListener("click",event=>{if(event.target.closest("button"))return;openGloss(word.term)});
  c.style.cursor="pointer";
  return c;
