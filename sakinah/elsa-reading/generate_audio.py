@@ -47,7 +47,7 @@ def write_audio(text, filename, voice):
                        check=True)
     if filename.stat().st_size <= 600:
         raise RuntimeError(f"Empty or corrupt recording: {filename}")
-    print(f"Created {filename.relative_to(ROOT)} ({len(samples)/24000:.1f}s)", flush=True)
+    print(f"Created {filename.relative_to(ROOT.parent)} ({len(samples)/24000:.1f}s)", flush=True)
 
 for folder, voice in (("bella", "af_bella"), ("heart", "af_heart")):
     out = ROOT / "audio" / folder
@@ -77,3 +77,11 @@ if missing:
     raise RuntimeError(f"ELSA Bella/Heart audio incomplete: {missing[:10]} (total {len(missing)})")
 print(f"Validated all {len(expected)} Bella and Heart recordings.", flush=True)
 
+
+# Week 13 extends ELSA to pages 63–65 and the assigned grammar/homework.
+week13 = ROOT.parent / 'week13'
+if (week13 / 'clips.json').exists():
+    week13_clips = json.loads((week13 / 'clips.json').read_text(encoding='utf-8'))
+    for clip_id, text in week13_clips.items():
+        write_audio(text, week13 / 'audio' / 'heart' / (clip_id + '.mp3'), 'af_heart')
+    print(f'Validated {len(week13_clips)} Week 13 Heart recordings.', flush=True)
