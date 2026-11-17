@@ -1,0 +1,176 @@
+{
+  "voice_speed": 0.9,
+  "voices": {
+    "heart": "af_heart"
+  },
+  "lines": [
+    {
+      "id": "midterm-vocab-29-0",
+      "text": "space probe."
+    },
+    {
+      "id": "midterm-vocab-29-1",
+      "text": "space station."
+    },
+    {
+      "id": "midterm-vocab-29-2",
+      "text": "gravity."
+    },
+    {
+      "id": "midterm-vocab-29-3",
+      "text": "scientific experiment."
+    },
+    {
+      "id": "midterm-vocab-29-4",
+      "text": "GPS."
+    },
+    {
+      "id": "midterm-vocab-29-5",
+      "text": "observe."
+    },
+    {
+      "id": "midterm-vocab-29-6",
+      "text": "constellation."
+    },
+    {
+      "id": "midterm-vocab-29-7",
+      "text": "Milky Way."
+    },
+    {
+      "id": "midterm-vocab-38-0",
+      "text": "disappointed."
+    },
+    {
+      "id": "midterm-vocab-38-1",
+      "text": "float."
+    },
+    {
+      "id": "midterm-vocab-38-2",
+      "text": "translate."
+    },
+    {
+      "id": "midterm-vocab-38-3",
+      "text": "ring."
+    },
+    {
+      "id": "midterm-vocab-38-4",
+      "text": "universe."
+    },
+    {
+      "id": "midterm-vocab-38-5",
+      "text": "asteroid."
+    },
+    {
+      "id": "midterm-vocab-38-6",
+      "text": "seatbelt."
+    },
+    {
+      "id": "midterm-vocab-38-7",
+      "text": "poison."
+    },
+    {
+      "id": "midterm-vocab-38-8",
+      "text": "space."
+    },
+    {
+      "id": "midterm-vocab-38-9",
+      "text": "galaxy."
+    },
+    {
+      "id": "midterm-spell-0",
+      "text": "tea."
+    },
+    {
+      "id": "midterm-spell-1",
+      "text": "bee."
+    },
+    {
+      "id": "midterm-spell-2",
+      "text": "pea."
+    },
+    {
+      "id": "midterm-spell-3",
+      "text": "beach."
+    },
+    {
+      "id": "midterm-spell-4",
+      "text": "please."
+    },
+    {
+      "id": "midterm-spell-5",
+      "text": "easy."
+    },
+    {
+      "id": "midterm-spell-6",
+      "text": "clean."
+    },
+    {
+      "id": "midterm-spell-7",
+      "text": "peanut."
+    },
+    {
+      "id": "midterm-spell-8",
+      "text": "reason."
+    },
+    {
+      "id": "midterm-spell-9",
+      "text": "green."
+    },
+    {
+      "id": "midterm-spell-10",
+      "text": "street."
+    },
+    {
+      "id": "midterm-spell-11",
+      "text": "between."
+    },
+    {
+      "id": "midterm-spell-12",
+      "text": "feet."
+    },
+    {
+      "id": "midterm-spell-13",
+      "text": "asleep."
+    },
+    {
+      "id": "midterm-spell-14",
+      "text": "coffee."
+    },
+    {
+      "id": "midterm-spell-15",
+      "text": "cheese."
+    },
+    {
+      "id": "midterm-reflex-0",
+      "text": "myself."
+    },
+    {
+      "id": "midterm-reflex-1",
+      "text": "yourself."
+    },
+    {
+      "id": "midterm-reflex-2",
+      "text": "himself."
+    },
+    {
+      "id": "midterm-reflex-3",
+      "text": "herself."
+    },
+    {
+      "id": "midterm-reflex-4",
+      "text": "itself."
+    },
+    {
+      "id": "midterm-reflex-5",
+      "text": "ourselves."
+    },
+    {
+      "id": "midterm-reflex-6",
+      "text": "yourselves."
+    },
+    {
+      "id": "midterm-reflex-7",
+      "text": "themselves."
+    }
+  ]
+}
