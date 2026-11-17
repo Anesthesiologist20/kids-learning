@@ -1,0 +1,57 @@
+name: Sakinah Midterm Heart Words
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sakinah-midterm-heart.yml'
+      - 'sakinah/midterm-heart-manifest.json'
+      - 'scripts/generate_kokoro_sakinah.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: sakinah-midterm-heart
+  cancel-in-progress: false
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install free Kokoro speech engine
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install 'kokoro>=0.9.4,<1.0' numpy soundfile
+      - name: Generate 42 Heart recordings
+        run: python scripts/generate_kokoro_sakinah.py sakinah/midterm-heart-manifest.json
+      - name: Check all audio files exist
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          lines=json.loads(Path('sakinah/midterm-heart-manifest.json').read_text())['lines']
+          paths=[Path('sakinah/audio/kokoro/heart')/(e['id']+'.mp3') for e in lines]
+          assert len(paths)==42
+          assert all(p.exists() and p.stat().st_size>1000 for p in paths)
+          print('PASS: 42 Heart word recordings')
+          PY
+      - name: Publish Heart audio without replacing other files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add 'sakinah/audio/kokoro/heart/midterm-*.mp3'
+          if git diff --cached --quiet; then echo 'Already published'; exit 0; fi
+          git commit -m 'audio(sakinah): publish 42 midterm Heart pronunciation clips'
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then echo 'Heart audio published'; exit 0; fi
+            sleep 5
+          done
+          exit 1
