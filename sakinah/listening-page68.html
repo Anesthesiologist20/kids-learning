@@ -99,6 +99,67 @@ footer{text-align:center;padding:22px 0;color:#5d4f98;font-size:.9rem;font-weigh
 @media(max-width:690px){.hero{grid-template-columns:1fr}.topic-art{min-height:175px}.illus{font-size:3rem}.qa,.audio-grid{grid-template-columns:1fr}.vocab-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{gap:6px}.steps a{font-size:.91rem;padding:13px 6px}.hero h1{font-size:2.35rem}.audio-card{min-height:175px}.tech-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.layout{width:94%}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
+
+/* Expanded lesson: story lab */
+.steps{grid-template-columns:repeat(5,minmax(0,1fr))}
+.steps a:nth-child(4){background:#e5efff;border-color:#b6d6fd}
+.steps a:nth-child(5){background:#ffebf4;border-color:#ffc5da}
+#hologram-lab{background:linear-gradient(145deg,#fff,#f6f0ff)}
+.lab-banner{padding:23px;border-radius:23px;background:linear-gradient(110deg,#352269,#553a94 60%,#7750c8);color:#fff;display:grid;grid-template-columns:1fr 180px;gap:15px;align-items:center;overflow:hidden}
+.lab-banner h2{color:white;font-size:clamp(1.7rem,3vw,2.4rem);margin:6px 0}
+.lab-banner p{font-size:1.06rem;line-height:1.6;font-weight:750;margin:7px 0}
+.lab-art{height:175px;display:grid;place-items:center;position:relative}
+.lab-art:before{content:"";position:absolute;width:152px;height:152px;background:radial-gradient(circle,#80f7ffc0,transparent 68%);border-radius:50%;filter:blur(6px)}
+.lab-art span{position:relative;font-size:6.8rem;filter:drop-shadow(0 0 12px #87faff);animation:labfloat 3s ease-in-out infinite}
+@keyframes labfloat{50%{transform:translateY(-12px)}}
+.lab-kicker{display:inline-block;background:#fff2bd;color:#6542a2;border-radius:40px;font-size:.8rem;font-weight:1000;padding:7px 12px;text-transform:uppercase;letter-spacing:.08em}
+.lab-progress{background:#fff7d6;border:2px solid #ffde78;border-radius:18px;padding:15px 18px;margin:18px 0;font-size:1.02rem;font-weight:950;color:#77531d;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lab-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin:16px 0}
+.lab-line{background:#fff;border:2px solid #dfd4fa;border-radius:20px;padding:18px;box-shadow:0 7px 15px #453c7910}
+.lab-line.done{background:#f4fff8;border-color:#67cba6}
+.lab-line h3{font-size:1.16rem;line-height:1.6;color:#2c296b;margin:5px 0 11px}
+.lab-line .num{display:inline-flex;align-items:center;justify-content:center;background:#f0e9ff;color:#634ab0;padding:5px 10px;border-radius:40px;font-weight:950}
+.lab-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.lab-btn{font:inherit;font-weight:900;font-size:.87rem;min-height:44px;border-radius:12px;border:2px solid #ddd2fa;background:#f3edff;color:#563ba1;padding:8px 12px}
+.lab-btn.mic{background:#ffeaf1;border-color:#ffc1da;color:#ad335f}
+.lab-btn.mic.active{background:#d93469;color:white}
+.lab-btn.complete{background:#e4f7ee;border-color:#97dbc0;color:#146e50}
+.lab-btn[disabled]{opacity:.45;cursor:not-allowed}
+.lab-meaning{display:none;background:#f9f5ff;padding:13px;border-radius:12px;font-weight:850;color:#603c91;margin:10px 0;line-height:1.7}
+.lab-meaning.open{display:block}
+.lab-status{font-size:.89rem;line-height:1.6;font-weight:850;color:#745797;margin-top:9px;min-height:24px}
+.lab-subheading{font-size:1.48rem;font-weight:1000;color:#4e358b;margin:27px 0 7px}
+.lab-small{font-size:.94rem;color:#56477d;font-weight:700;line-height:1.8}
+.lab-scenes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:15px 0}
+.lab-scene{background:#fff;border:2px solid #e1d6f7;border-radius:21px;overflow:hidden;box-shadow:0 8px 22px #4c397414}
+.lab-scene .visual{min-height:154px;display:grid;place-items:center;font-size:4.3rem;background:radial-gradient(circle at 70% 15%,#fff6c9,transparent 50%),linear-gradient(125deg,#cbdcff,#edddff)}
+.lab-scene:nth-child(2) .visual{background:radial-gradient(circle at 70% 12%,#c9fff2,transparent 60%),linear-gradient(125deg,#d7f5ff,#b3e6ed)}
+.lab-scene:nth-child(3) .visual{background:radial-gradient(circle at 70% 12%,#fff0b9,transparent 60%),linear-gradient(125deg,#fce1f4,#e5d0ff)}
+.lab-scene .copy{padding:17px}
+.lab-scene h3{font-size:1.3rem;color:#44327d;margin:0 0 9px}
+.lab-scene p{font-size:1rem;line-height:1.72;font-weight:730;color:#3f3a6a;margin:0 0 13px}
+.lab-scene details summary{font-weight:950;color:#7152ab;cursor:pointer}
+.lab-scene details div{direction:rtl;text-align:right;font-size:.88rem;color:#705b92;font-weight:800;line-height:1.65;margin-top:8px}
+.lab-quiz{background:linear-gradient(135deg,#eff9ff,#fff6fc);border:2px solid #cce3fa;border-radius:23px;padding:22px}
+.lab-quiz h2{font-size:1.9rem;margin:0 0 8px;color:#3e3b85}
+.lab-map{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.lab-map button{height:42px;width:42px;border-radius:12px;border:2px solid #d4c7f7;background:white;color:#624e9f;font-weight:1000}
+.lab-map button.ok{background:#208d69;border-color:#208d69;color:#fff}
+.lab-map button.no{background:#d94e70;border-color:#d94e70;color:#fff}
+.lab-question{background:white;border:2px solid #e0ddf3;border-radius:18px;margin:12px 0;padding:15px}
+.lab-question h3{font-size:1.11rem;color:#2e326d;line-height:1.65;margin:3px 0 12px}
+.lab-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.lab-options button{font-weight:850;font-size:.97rem;line-height:1.45;min-height:53px;background:#f8f5ff;color:#463777;border:2px solid #d8caef;border-radius:13px;padding:10px}
+.lab-options button:disabled{opacity:1;cursor:default}
+.lab-options button.right{background:#ddfaed;border-color:#4dba88;color:#175a40}
+.lab-options button.bad{background:#ffedf0;border-color:#dc7086;color:#a02e4c}
+.lab-feedback{margin:10px 0 0;background:#f1f9ff;border-radius:13px;padding:10px 12px;font-size:.92rem;line-height:1.6;font-weight:800;color:#444d78}
+.lab-results{padding:16px;background:#fff;border:2px solid #e0d8f3;border-radius:15px;margin:16px 0 0;line-height:1.65;font-weight:850}
+.lab-note{margin-top:15px;padding:12px 16px;background:#fff5d9;border-radius:14px;color:#6c4c20;font-weight:800;line-height:1.6}
+@media(max-width:900px){.lab-scenes{grid-template-columns:1fr 1fr}.lab-scenes .lab-scene:last-child{grid-column:1/-1}}
+@media(max-width:670px){.steps{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-banner{grid-template-columns:1fr 94px;padding:16px}.lab-art{height:115px}.lab-art span{font-size:4.2rem}.lab-cards,.lab-scenes{grid-template-columns:1fr}.lab-scenes .lab-scene:last-child{grid-column:auto}.lab-options{grid-template-columns:1fr}.lab-quiz{padding:14px}.lab-line{padding:13px}}
+@media(prefers-reduced-motion:reduce){.lab-art span{animation:none}}
+
 </style>
 </head>
 <body>
@@ -106,12 +167,12 @@ footer{text-align:center;padding:22px 0;color:#5d4f98;font-size:.9rem;font-weigh
 <main class="layout">
 <div class="hero">
 <div><span class="eyebrow">🎧 English · Student Book · Page 68</span><h1>Technology<br>at School! 🚀</h1>
-<p>🎮 Games + 🌈 Holograms = A fun listening adventure!</p>
+<p>🌈 Discover holograms, explore stories, and learn with games!</p>
 <span class="pill">💜 Heart voice · 🐢 Extra Slow</span></div>
 <div class="topic-art" aria-hidden="true"><div class="illus">🎮<small>Video Games</small></div><div class="illus">🌐<small>Holograms</small></div></div>
 </div>
 <div class="notice ar">🎧 التسجيلات للتدريب على موضوع وأسئلة صفحة 68، وليست التسجيل الأصلي للكتاب.</div>
-<nav class="steps" aria-label="Lesson steps"><a href="#listen">🎧 Listen</a><a href="#words">🪄 Learn</a><a href="#quiz">🏆 Play!</a></nav>
+<nav class="steps" aria-label="Lesson steps"><a href="#listen">🎧 Listen</a><a href="#hologram-lab">🌈 Read</a><a href="#words">🪄 Words</a><a href="#quiz">🏆 Quiz</a><a href="#story-challenge">🎁 Bonus</a></nav>
 <section class="section" id="listen">
 <h2>🎧 1. Listen & Imagine!</h2>
 <p class="muted">Tap PLAY! Listen twice, then collect your stars. ⭐</p>
@@ -122,6 +183,22 @@ footer{text-align:center;padding:22px 0;color:#5d4f98;font-size:.9rem;font-weigh
 </div>
 <details class="reveal"><summary>📖 Read the story</summary><div class="script"><p><b>Part 1 — Video Games.</b> Hello! I am Doctor Ava Long. Today I want to talk about technology in schools. Let's start with video games. Pilots use special computer games and simulators to learn how to fly. Students can use games to learn, too. For example, experts changed a popular video game to teach science. They didn't fill it with math facts. The science game helped many students understand new ideas. But a computer game cannot replace a good teacher. Teachers still explain ideas, ask questions, and help students when they have problems.</p><p><b>Part 2 — Holograms.</b> Now let's talk about holograms. A hologram is a three-dimensional image made with light. It is not a picture made from paper. Using holograms, we can see things that are not really there. Imagine exploring the human body, visiting an ancient city, or looking at a model of a planet. Schools and universities are using more holograms today than in the past. Holograms can help us explore both the past and the future. Technology is exciting, but remember: good learning needs curious students and helpful teachers.</p></div></details>
 </section>
+
+<section class="section" id="hologram-lab">
+ <div class="lab-banner"><div><span class="lab-kicker">Sakinah's 3D Adventure</span><h2>🌈 The Hologram Lab</h2><p>Six clear sentences. Three mini-stories. Listen, read, speak, and collect your stars!</p><span class="pill">💜 Heart · Extra Slow</span></div><div class="lab-art" aria-hidden="true"><span>🪐</span></div></div>
+ <div class="lab-note">🎧 Listen to the complete Holograms recording first. The six reading cards below divide our practice text into smaller parts. The mini-stories are extra original practice, not Cambridge's official script.</div>
+ <p style="margin:17px 0"><button type="button" class="btn" data-audio="p68-holograms">🔊 Play Holograms · Heart · 0.70×</button></p>
+ <div class="lab-progress" role="status"><span>🌟 My reading stars:</span><span id="lab-star-count">0 / 6</span><span id="lab-read-hint">Read each line, then mark it done!</span></div>
+ <div class="lab-cards" id="lab-lines"></div>
+ <h3 class="lab-subheading">📚 Bonus mini-stories</h3>
+ <p class="lab-small">Read the stories in English, then open the Arabic explanation when needed. These are practice stories inspired by the lesson topic.</p>
+ <div class="lab-scenes">
+  <article class="lab-scene"><div class="visual" aria-hidden="true">🫀✨</div><div class="copy"><h3>1 · Inside the Body</h3><p>One day, Sakinah sees a glowing heart in science class. It is a hologram, not a real heart. Her teacher shows how blood moves through the body. Everyone asks questions. Sakinah loves this new way to learn!</p><details><summary>🇸🇦 Arabic help</summary><div>ترى سكينة صورة مجسمة للقلب في حصة العلوم. يشرح المعلم كيف يتحرك الدم. الهولوغرام صورة بالضوء وليست عضوًا حقيقيًا.</div></details></div></article>
+  <article class="lab-scene"><div class="visual" aria-hidden="true">🏛️✨</div><div class="copy"><h3>2 · A Trip to the Past</h3><p>Omar's class studies an ancient city. A hologram shows old buildings in the classroom. The children walk around the glowing model. They can see the city, but they cannot touch it. They learn about history without leaving school.</p><details><summary>🇸🇦 Arabic help</summary><div>تدرس الصف مدينة قديمة. يعرض الهولوغرام المباني القديمة مجسمة في الفصل. يستطيع الأطفال رؤيتها من جوانب مختلفة، لكن لا يمكنهم لمسها.</div></details></div></article>
+  <article class="lab-scene"><div class="visual" aria-hidden="true">🎮✈️</div><div class="copy"><h3>3 · Games Help Us Learn</h3><p>Hala likes video games. Today, she tries a flight simulator. It helps her practice flying safely. Her teacher also uses a game to explain science. Hala learns that games can be useful, but teachers are still important.</p><details><summary>🇸🇦 Arabic help</summary><div>تحب هالة ألعاب الفيديو. تجرب محاكاة الطيران لتتعلم بشكل آمن. يساعدها المعلم باستخدام لعبة تعليمية، لكن اللعبة لا تغني عن وجود المعلم.</div></details></div></article>
+ </div>
+</section>
+
 <section class="section" id="words"><h2>🪄 2. Magic Words!</h2><p class="muted">Touch a word and listen! 🔊</p><div class="vocab-grid" id="wordsGrid"></div></section>
 <section class="section" id="quiz">
 <div class="exercise-top"><div><span class="eyebrow">⭐ 9 stars to collect!</span><h2>🏆 3. Listening Game!</h2></div><button id="reset" class="btn secondary small" type="button">↻ Start a new attempt</button></div>
@@ -132,6 +209,20 @@ footer{text-align:center;padding:22px 0;color:#5d4f98;font-size:.9rem;font-weigh
 <h3 style="margin-top:28px">🌈 Holograms · True or False?</h3><div class="qa" id="holoQuestions"></div>
 <div id="result" class="summary"></div>
 </section>
+
+<section class="section" id="story-challenge">
+ <div class="lab-quiz">
+  <span class="lab-kicker">Bonus challenge</span>
+  <h2>🏆 The 3D Story Challenge</h2>
+  <p class="lab-small">Nine questions about holograms, mini-stories and video games. Every answer is saved. You can review mistakes at the end.</p>
+  <div class="lab-progress"><span>⭐ Bonus score:</span><span id="lab-quiz-score">0 / 9 answered</span></div>
+  <div id="lab-question-map" class="lab-map" aria-label="Bonus question map"></div>
+  <div id="lab-questions"></div>
+  <div class="lab-results" id="lab-quiz-results" role="status">Complete all nine questions to unlock your reward! 🎁</div>
+  <p style="margin-top:16px"><button id="lab-restart" class="btn secondary" type="button">↻ Start a new bonus challenge</button></p>
+ </div>
+</section>
+
 <section class="section" id="review"><h2>🌟 4. My Stars & Speaking!</h2><div id="mistakes" class="summary"></div>
 <h3>🎤 Your Turn!</h3><p>Games or teachers? Which helps you learn more? Why?</p>
 <textarea class="write" id="opinion" placeholder="I think it is better to ... because ..."></textarea>
@@ -196,4 +287,113 @@ window.addEventListener("pagehide",function(){stopAudio();if(recorder&&recorder.
 renderAll();
 })();
 </script>
+
+<script>
+(function(){
+"use strict";
+const get=id=>document.getElementById(id);
+const STORE="sakinah-p68-hologram-lab-v2";
+let saved={};
+try{saved=JSON.parse(localStorage.getItem(STORE)||"{}")}catch(e){}
+let state={done:saved.done||{},answers:saved.answers||{}};
+function save(){try{localStorage.setItem(STORE,JSON.stringify(state))}catch(e){}}
+const sentences=[
+ {en:"A hologram is a three-dimensional image made with light.",ar:"الهولوغرام صورة ثلاثية الأبعاد مصنوعة باستخدام الضوء."},
+ {en:"It is not a picture made from paper.",ar:"ليست صورة مطبوعة على ورقة."},
+ {en:"Using holograms, we can see things that are not really there.",ar:"بالهولوغرام نستطيع رؤية أشياء ليست موجودة أمامنا في الحقيقة."},
+ {en:"Imagine exploring the human body, visiting an ancient city, or looking at a model of a planet.",ar:"تخيلي استكشاف جسم الإنسان، وزيارة مدينة قديمة، أو مشاهدة نموذج لكوكب."},
+ {en:"Schools and universities are using more holograms today than in the past.",ar:"تستخدم المدارس والجامعات الهولوغرامات أكثر من الماضي."},
+ {en:"Holograms can help us explore both the past and the future.",ar:"تساعدنا الهولوغرامات على استكشاف الماضي والمستقبل معًا."}
+];
+const questions=[
+ {q:"What is a hologram?",a:["A 3D image made with light","A picture drawn on paper","A real planet","A video game"],ok:0,why:"A hologram is a three-dimensional image made with light."},
+ {q:"Can you touch a hologram as if it were a real object?",a:["Yes, always","No, it is an image","Only at night","Only outside"],ok:1,why:"Holograms show images; they do not make a real object appear."},
+ {q:"What can holograms help us explore?",a:["Only the present","Only video games","The past and the future","Only books"],ok:2,why:"Holograms can help learners explore the past and the future."},
+ {q:"In the heart story, what does the teacher show?",a:["How a car works","How blood moves","How to fly","How to draw a tree"],ok:1,why:"The class uses a glowing model of a heart to learn about blood."},
+ {q:"In the ancient city story, where are the children?",a:["In a spaceship","At an airport","In their classroom","Under the sea"],ok:2,why:"They explore a model of the city while still in school."},
+ {q:"What does the class learn from the ancient city hologram?",a:["History","Cooking","Swimming","Football"],ok:0,why:"The glowing city model helps them learn about history."},
+ {q:"What does a flight simulator help people do?",a:["Grow flowers","Practice flying safely","Make paper pictures","Send emails"],ok:1,why:"A simulator offers a safe way to practice."},
+ {q:"Does a good educational game replace the teacher?",a:["Yes, always","Only if it is fun","No, teachers still help students","Only in science"],ok:2,why:"Games support learning, but teachers explain, guide and answer questions."},
+ {q:"Which sentence is correct?",a:["Holograms are always made of paper","A hologram can show a planet model","Schools never use holograms","Video games can never teach science"],ok:1,why:"Holograms can show models of objects, including planets."}
+];
+const list=get("lab-lines");
+let recorder=null,stream=null,chunks=[],active=-1,urls={};
+function stopStream(){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}}
+function stopRecord(){if(recorder&&recorder.state==="recording")recorder.stop()}
+function renderReading(){
+ list.innerHTML="";
+ sentences.forEach((s,i)=>{
+  const card=document.createElement("article");
+  card.className="lab-line"+(state.done[i]?" done":"");
+  const heading=document.createElement("h3");heading.textContent=s.en;
+  const badge=document.createElement("span");badge.className="num";badge.textContent="Sentence "+(i+1);
+  const meaning=document.createElement("div");meaning.className="lab-meaning ar";meaning.textContent=s.ar;
+  const tools=document.createElement("div");tools.className="lab-actions";
+  function button(label,cls,fn){let b=document.createElement("button");b.type="button";b.className="lab-btn "+(cls||"");b.textContent=label;b.addEventListener("click",fn);tools.appendChild(b);return b}
+  button("🌍 Meaning","",()=>{meaning.classList.toggle("open")});
+  const micBtn=button("🎙️ Record","mic",()=>recordLine(i,micBtn,status));
+  button(state.done[i]?"✓ Practiced":"⭐ I practised","complete",()=>{state.done[i]=!state.done[i];save();renderReading()});
+  if(urls[i])button("▶ My voice","",()=>{new Audio(urls[i]).play().catch(()=>{status.textContent="Could not replay. Try again."})});
+  const status=document.createElement("div");status.className="lab-status";status.id="lab-status-"+i;
+  status.textContent=state.done[i]?"Great reading! Your star is saved.":"Read aloud slowly, then collect your star.";
+  card.append(badge,heading,tools,meaning,status);list.appendChild(card)
+ });
+ const n=Object.values(state.done).filter(Boolean).length;
+ get("lab-star-count").textContent=n+" / 6";
+ get("lab-read-hint").textContent=n===6?"🎉 All reading stars earned!":"Keep reading, superstar!";
+}
+async function recordLine(i,btn,status){
+ if(active===i&&recorder&&recorder.state==="recording"){stopRecord();return}
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){status.textContent="This browser cannot record. Read the sentence aloud instead.";return}
+ if(recorder&&recorder.state==="recording"){status.textContent="Stop the other recording first.";return}
+ try{
+  stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];active=i;
+  const r=new MediaRecorder(stream);recorder=r;
+  r.ondataavailable=e=>{if(e.data&&e.data.size)chunks.push(e.data)};
+  r.onstop=()=>{
+   const b=new Blob(chunks,{type:r.mimeType||"audio/webm"});
+   if(urls[i])URL.revokeObjectURL(urls[i]);
+   if(b.size>0)urls[i]=URL.createObjectURL(b);
+   stopStream();active=-1;recorder=null;renderReading();
+   const st=get("lab-status-"+i);if(st)st.textContent="🎧 Your recording is ready. Play My voice!";
+  };
+  r.start();btn.classList.add("active");btn.textContent="■ Stop";status.textContent="Recording... say the sentence, then press Stop.";
+ }catch(e){stopStream();active=-1;status.textContent="Microphone access was not allowed."}
+}
+const wrap=get("lab-questions");
+function renderQuiz(){
+ wrap.replaceChildren();
+ let answered=Object.keys(state.answers).filter(k=>Number(k)>=0&&Number(k)<questions.length);
+ let good=answered.filter(k=>state.answers[k]===questions[Number(k)].ok).length;
+ get("lab-quiz-score").textContent=answered.length+" / 9 answered · "+good+" correct";
+ const map=get("lab-question-map");map.replaceChildren();
+ questions.forEach((o,i)=>{
+  let selected=state.answers[i],has=selected!==undefined;
+  let item=document.createElement("article");item.className="lab-question";item.id="lab-q-"+i;
+  let head=document.createElement("h3");head.textContent="⭐ "+(i+1)+". "+o.q;item.append(head);
+  let opts=document.createElement("div");opts.className="lab-options";
+  o.a.forEach((answer,j)=>{
+   let b=document.createElement("button");b.type="button";b.textContent=answer;b.disabled=has;
+   if(has&&j===o.ok)b.classList.add("right");if(has&&j===selected&&j!==o.ok)b.classList.add("bad");
+   b.addEventListener("click",()=>{if(state.answers[i]!==undefined)return;state.answers[i]=j;save();renderQuiz()});
+   opts.append(b)
+  });
+  item.append(opts);
+  if(has){let f=document.createElement("div");f.className="lab-feedback";f.textContent=(selected===o.ok?"✅ Correct! ":"🔎 Let's review: ")+o.why;item.append(f)}
+  wrap.append(item);
+  let nav=document.createElement("button");nav.type="button";nav.textContent=i+1;nav.title="Question "+(i+1);
+  if(has)nav.className=selected===o.ok?"ok":"no";
+  nav.addEventListener("click",()=>get("lab-q-"+i).scrollIntoView({behavior:"smooth",block:"center"}));map.append(nav)
+ });
+ const result=get("lab-quiz-results");
+ if(answered.length===questions.length){
+  result.textContent="🏆 "+good+" / 9 stars! "+(good===9?"Amazing, Sakinah! Perfect score! 🌟":"Open the red questions to study the corrections. You can try again. 💜");
+ }else result.textContent="🌟 "+answered.length+" / 9 questions completed. "+(questions.length-answered.length)+" left to unlock your reward!";
+}
+get("lab-restart").addEventListener("click",()=>{if(!window.confirm("Clear the bonus quiz answers and start again?"))return;state.answers={};save();renderQuiz();get("story-challenge").scrollIntoView({behavior:"smooth"})});
+window.addEventListener("pagehide",()=>{stopRecord();stopStream();Object.values(urls).forEach(u=>URL.revokeObjectURL(u))});
+renderReading();renderQuiz();
+})();
+</script>
+
 </body></html>
