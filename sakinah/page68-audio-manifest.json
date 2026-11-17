@@ -1,0 +1,36 @@
+{
+  "voice_speed": 0.88,
+  "voices": {
+    "heart": "af_heart"
+  },
+  "lines": [
+    {
+      "id": "p68-games",
+      "text": "Hello! I am Doctor Ava Long. Today I want to talk about technology in schools. Let's start with video games. Pilots use special computer games and simulators to learn how to fly. Students can use games to learn, too. For example, experts changed a popular video game to teach science. They didn't fill it with math facts. The science game helped many students understand new ideas. But a computer game cannot replace a good teacher. Teachers still explain ideas, ask questions, and help students when they have problems."
+    },
+    {
+      "id": "p68-holograms",
+      "text": "Now let's talk about holograms. A hologram is a three-dimensional image made with light. It is not a picture made from paper. Using holograms, we can see things that are not really there. Imagine exploring the human body, visiting an ancient city, or looking at a model of a planet. Schools and universities are using more holograms today than in the past. Holograms can help us explore both the past and the future. Technology is exciting, but remember: good learning needs curious students and helpful teachers."
+    },
+    {
+      "id": "p68-word-simulator",
+      "text": "Simulator. A simulator helps people practice a real activity safely."
+    },
+    {
+      "id": "p68-word-hologram",
+      "text": "Hologram. A three-dimensional image that looks real."
+    },
+    {
+      "id": "p68-word-pilot",
+      "text": "Pilot. A person who flies an airplane."
+    },
+    {
+      "id": "p68-word-expert",
+      "text": "Expert. A person who knows a lot about one subject."
+    },
+    {
+      "id": "p68-word-university",
+      "text": "University. A place where people continue studying after school."
+    }
+  ]
+}
