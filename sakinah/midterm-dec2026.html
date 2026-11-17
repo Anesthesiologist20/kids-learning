@@ -33,6 +33,8 @@ h1{font-size:clamp(1.8rem,3.4vw,3rem);line-height:1.13;margin:6px 0}h2{font-size
 .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px}
 .word{border:2px solid #e2e6f4;background:white;border-radius:17px;padding:14px;text-align:left;min-height:142px}
 .word strong{font-size:1.14rem;display:block;color:#4b378f}.word em{font-style:normal;color:#675e92;font-size:.9rem}.word small{display:block;color:#596782;margin-top:7px}
+.word .speakbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#6852b3;color:white;border:0;border-radius:12px;padding:8px 12px;font-size:.78rem;font-weight:850;min-height:44px;margin-top:11px}
+.word .revealbtn{border:1px solid #d9d6e9;background:#f4f0ff;color:#5b458d;border-radius:10px;padding:8px 11px;margin-top:8px;font-size:.74rem;min-height:40px}
 .word .tag{display:inline-block;font-size:.69rem;font-weight:850;color:#a0513a;background:#fff1e2;padding:3px 10px;border-radius:99px;margin:0 0 7px}
 .rule{padding:15px 16px;border-radius:16px;background:#f2f7ff;border:1px solid #d9e7fb;margin:12px 0}
 .table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.87rem}th,td{padding:11px 12px;border-bottom:1px solid #e2e4f0;text-align:left}th{background:#ede9fa}
@@ -43,6 +45,11 @@ input,textarea{width:100%;padding:12px;border:2px solid #dcdff0;border-radius:12
 textarea{min-height:190px;resize:vertical;line-height:1.75}
 .formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.formgrid label{font-weight:800;font-size:.87rem}
 .email-sample{font-size:.92rem;white-space:pre-wrap;line-height:1.95;background:#f5f8fe;padding:18px;border-radius:12px}
+.minioption{border:2px solid #dfe0ed;border-radius:14px;background:#fff;color:#3d4162;padding:12px;font-size:.95rem;min-height:53px;text-align:left;font-weight:780}
+.minioption.correct{border-color:#3aaf77;background:#e3faed;color:#216747}.minioption.wrong{border-color:#df786c;background:#ffebe9;color:#9b4439}
+.listenpanel{background:linear-gradient(135deg,#f4efff,#edfafd);border:2px solid #ded7f3;border-radius:19px;padding:20px}
+.listen-choices{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:14px}
+.listening-counter{font-size:.76rem;letter-spacing:.07em;color:#6d538e;font-weight:850}
 .modelbox{padding:15px;border:2px solid #e1d8f6;background:#faf8ff;border-radius:17px}
 .modelbox h3{margin-bottom:5px}
 .modelbox .btn{margin-top:10px}
@@ -107,7 +114,14 @@ footer{font-size:.76rem;text-align:center;color:#69738a;padding-top:20px}
 
 <section id="words" class="panel">
 <div class="sheet"><h2>🌌 Student Book · Page 29</h2><p class="small">These eight words are listed in the book's Key Words 1 box. Tap any card to reveal the Arabic meaning and a short English definition.</p><div class="books" id="words29"></div></div>
-<div class="sheet"><h2>🔭 Student Book · Page 38</h2><p class="small">These ten words appear in the book's Key Words 4 activity.</p><div class="books" id="words38"></div></div></section>
+<div class="sheet"><h2>🔭 Student Book · Page 38</h2><p class="small">These ten words appear in the book's Key Words 4 activity.</p><div class="books" id="words38"></div><div id="wordAudioStatus" class="status" role="status" aria-live="polite"></div></div>
+<div class="sheet"><div class="listenpanel"><h2>🎧 Listen & Choose · 18 Words</h2>
+<p>Close your eyes, listen to Heart, then choose the word you heard. ⭐ The words come only from pages 29 and 38.</p>
+<div class="listening-counter" id="listeningCount"></div>
+<div class="actions"><button class="btn" id="listenWord">🔊 Hear the word</button><button class="btn alt" id="repeatWord">↻ Hear again</button></div>
+<div class="listen-choices" id="listenChoices"></div><p class="status" id="listenResult" role="status" aria-live="polite"></p>
+<div class="actions"><button class="btn green" id="nextListen">Next word →</button><button class="btn alt" id="resetListen">Start again</button></div>
+</div></div></section>
 
 <section id="grammar" class="panel">
 <div class="sheet"><h2>🪞 Page 34 · Reflexive pronouns</h2>
@@ -117,10 +131,11 @@ footer{font-size:.76rem;text-align:center;color:#69738a;padding-top:20px}
 <tr><td>he</td><td>himself</td><td>He looked at himself.</td></tr><tr><td>she</td><td>herself</td><td>She taught herself.</td></tr>
 <tr><td>it</td><td>itself</td><td>The robot turned itself off.</td></tr><tr><td>we</td><td>ourselves</td><td>We protected ourselves.</td></tr>
 <tr><td>you (many)</td><td>yourselves</td><td>Help yourselves.</td></tr><tr><td>they</td><td>themselves</td><td>They made it themselves.</td></tr>
-</tbody></table></div><p class="small">Book examples include Cassini destroying itself and children shading themselves from the sun.</p></div>
+</tbody></table></div><p class="small">Book examples include Cassini destroying itself and children shading themselves from the sun.</p><h3>🎤 Hear all eight pronouns</h3><div class="books" id="pronounSoundGrid"></div></div>
 <div class="sheet"><h2>🐝 Page 35 · Spelling patterns</h2><div class="patterns">
 <div class="pattern"><b>ea</b><p>tea · pea · beach · please · easy · clean · peanut · reason</p></div>
 <div class="pattern"><b>ee</b><p>bee · green · street · between · feet · asleep · coffee · cheese</p></div></div>
+<h3 style="margin-top:18px">🔊 Listen & practise the spelling words</h3><div class="books" id="spellingSoundGrid"></div><div id="spellAudioStatus" class="status" role="status" aria-live="polite"></div>
 <p class="note">Both ea and ee can make a long /ee/ sound. Learn how each word is spelled: the sound alone does not tell you which letters to use.</p></div>
 <div class="sheet"><h2>🪐 Page 45 · Comparatives</h2>
 <div class="rule"><b>more + adjective + than</b> = a greater degree.<p>Space is <b>more interesting than</b> an empty room.</p></div>
@@ -259,11 +274,61 @@ function tab(name){document.querySelectorAll(".panel").forEach(el=>el.classList.
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.tab)));
 document.querySelectorAll("[data-go]").forEach(b=>b.addEventListener("click",()=>tab(b.dataset.go)));
 $("fullscreen").onclick=()=>{if(!document.fullscreenElement){document.documentElement.requestFullscreen?.().catch(()=>{});}else document.exitFullscreen?.().catch(()=>{});};
-function wordCards(id,arr,p){$(id).innerHTML=arr.map(w=>'<button class="word" type="button" aria-label="Reveal meaning"><span class="tag">PAGE '+p+'</span><strong>'+safe(w[0])+'</strong><em>Tap to reveal meaning 👆</em><small hidden><b dir="rtl">'+safe(w[1])+'</b><br>'+safe(w[2])+'</small></button>').join("");$(id).querySelectorAll(".word").forEach(el=>el.onclick=()=>{let d=el.querySelector("small"),e=el.querySelector("em");d.hidden=!d.hidden;e.textContent=d.hidden?"Tap to reveal meaning 👆":"⭐ Great work! Tap to hide";});}
+
+const spellSoundWords=["tea","bee","pea","beach","please","easy","clean","peanut","reason","green","street","between","feet","asleep","coffee","cheese"];
+const pronounSoundWords=["myself","yourself","himself","herself","itself","ourselves","yourselves","themselves"];
+function wordCards(id,arr,p){
+$(id).innerHTML=arr.map((w,i)=>'<div class="word"><span class="tag">PAGE '+p+'</span><strong>'+safe(w[0])+'</strong><em>Listen and learn!</em><div><button class="speakbtn" type="button" data-pronounce="midterm-vocab-'+p+'-'+i+'" aria-label="Hear '+safe(w[0])+'">🔊 Heart · Extra Slow</button></div><button class="revealbtn" type="button" aria-expanded="false">👀 Reveal meaning</button><small hidden><b dir="rtl">'+safe(w[1])+'</b><br>'+safe(w[2])+'</small></div>').join("");
+$(id).querySelectorAll(".revealbtn").forEach(b=>b.onclick=()=>{let d=b.closest(".word").querySelector("small");d.hidden=!d.hidden;b.setAttribute("aria-expanded",String(!d.hidden));b.textContent=d.hidden?"👀 Reveal meaning":"🙈 Hide meaning";});
+}
+function soundGrid(id,words,prefix){$(id).innerHTML=words.map((w,i)=>'<div class="word" style="min-height:115px"><strong>'+safe(w)+'</strong><button class="speakbtn" type="button" data-pronounce="'+prefix+i+'">🔊 Heart · Extra Slow</button></div>').join("");}
 wordCards("words29",vocab29,29);wordCards("words38",vocab38,38);
-let voicePlayer=null;
+soundGrid("spellingSoundGrid",spellSoundWords,"midterm-spell-");
+soundGrid("pronounSoundGrid",pronounSoundWords,"midterm-reflex-");
+let voicePlayer=null, currentVoiceSource="";
+function playHeartClip(id,target){
+ if(voicePlayer){voicePlayer.pause();voicePlayer.src="";voicePlayer=null;}
+ currentVoiceSource=id;
+ const status=$(target||"wordAudioStatus");
+ if(status)status.textContent="🔊 Playing Heart · Extra Slow";
+ const p=new Audio("audio/kokoro/heart/"+encodeURIComponent(id)+".mp3");
+ p.preload="auto";p.playbackRate=.70;
+ voicePlayer=p;
+ p.onended=()=>{if(voicePlayer===p&&status)status.textContent="⭐ Now say the word aloud!"};
+ p.onerror=()=>{if(voicePlayer===p&&status)status.textContent="⚠️ This Heart recording is not available yet. Please try again after the audio files are published."};
+ p.play().catch(()=>{if(voicePlayer===p&&status)status.textContent="Tap again to play, or check that the Heart audio file exists."});
+}
+document.querySelectorAll("[data-pronounce]").forEach(b=>b.onclick=()=>playHeartClip(b.dataset.pronounce,b.closest("#spellingSoundGrid")?"spellAudioStatus":"wordAudioStatus"));
+
 document.querySelectorAll("[data-audio]").forEach(b=>b.onclick=()=>{if(voicePlayer)voicePlayer.pause();voicePlayer=new Audio("audio/kokoro/heart/"+encodeURIComponent(b.dataset.audio)+".mp3");voicePlayer.playbackRate=.7;$("audioStatus").textContent="🔊 Heart at Extra Slow";voicePlayer.onerror=()=>$("audioStatus").textContent="This saved Heart audio clip is currently unavailable.";voicePlayer.play().catch(()=>$("audioStatus").textContent="Could not play audio. Check the recording or try tapping again.");});
 $("stopVoice").onclick=()=>{if(voicePlayer)voicePlayer.pause();$("audioStatus").textContent="Audio stopped."};
+
+const listeningPool=[...vocab29.map((w,i)=>({word:w[0],clip:"midterm-vocab-29-"+i})),...vocab38.map((w,i)=>({word:w[0],clip:"midterm-vocab-38-"+i}))];
+let listeningIndex=0, listeningDone=false, listeningCorrect=0;
+function showListening(){
+ const item=listeningPool[listeningIndex];
+ listeningDone=false;
+ $("listeningCount").textContent="WORD "+(listeningIndex+1)+" / 18 · "+listeningCorrect+" stars ⭐";
+ $("listenResult").textContent="Tap Hear the word, then choose your answer.";
+ const candidates=[item.word];
+ for(let step=1;candidates.length<4;step++){const word=listeningPool[(listeningIndex+step*5)%listeningPool.length].word;if(!candidates.includes(word))candidates.push(word);}
+ const options=shuffleFixed(candidates,listeningIndex+4);
+ $("listenChoices").innerHTML=options.map(w=>'<button type="button" class="minioption" data-listenanswer="'+safe(w)+'">'+safe(w)+'</button>').join("");
+ $("listenChoices").querySelectorAll("button").forEach(b=>b.onclick=()=>{
+ if(listeningDone)return;
+ listeningDone=true;
+ const correct=b.dataset.listenanswer===item.word;
+ if(correct)listeningCorrect++;
+ $("listenChoices").querySelectorAll("button").forEach(bt=>{bt.disabled=true;if(bt.dataset.listenanswer===item.word)bt.classList.add("correct");else if(bt===b)bt.classList.add("wrong");});
+ $("listenResult").textContent=correct?"✅ Great listening! You earned a star.":"💡 The correct word is "+item.word+". Listen again and repeat.";
+ $("listeningCount").textContent="WORD "+(listeningIndex+1)+" / 18 · "+listeningCorrect+" stars ⭐";
+ });
+}
+$("listenWord").onclick=()=>playHeartClip(listeningPool[listeningIndex].clip,"listenResult");
+$("repeatWord").onclick=()=>playHeartClip(listeningPool[listeningIndex].clip,"listenResult");
+$("nextListen").onclick=()=>{if(voicePlayer)voicePlayer.pause();if(listeningIndex<17){listeningIndex++;showListening();}else{$("listenResult").textContent="🏆 Challenge complete! You earned "+listeningCorrect+" of 18 stars."; $("nextListen").disabled=true;}};
+$("resetListen").onclick=()=>{listeningCorrect=0;listeningIndex=0;$("nextListen").disabled=false;showListening();};
+showListening();
 $("readingCards").innerHTML=passages.map((p,i)=>'<div class="modelbox"><h3>'+safe(p.title)+'</h3><p class="small">'+safe(p.text.slice(0,110))+'…</p><button class="btn" data-start="'+i+'">Read in Exam '+(i+1)+'</button></div>').join("");
 function shuffleFixed(arr,seed){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=(seed*13+i*7+17)%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
 function question(cat,prompt,answer,other,seed){let options=shuffleFixed([answer,...other],seed);return {cat,prompt,options,ans:options.indexOf(answer)};}
