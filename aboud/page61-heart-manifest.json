@@ -1,0 +1,228 @@
+{
+  "title": "Identifying Characters",
+  "book": "Cambridge Primary Path 2 • Student Book • Page 61",
+  "voice": "af_heart",
+  "speed": 0.72,
+  "stories": [
+    {
+      "id": "winter",
+      "name": "Preparing for Winter",
+      "label": "🦗 Preparing for Winter",
+      "sentences": [
+        "A grasshopper and an ant are friends.",
+        "It's summer.",
+        "The grasshopper eats and plays music all day.",
+        "The ant works hard and collects food for the winter.",
+        "Winter comes.",
+        "The ant is at home.",
+        "She eats and has a good time.",
+        "The grasshopper is cold and hungry.",
+        "He visits the ant for food.",
+        "The ant gives him some food.",
+        "“You need to work hard to prepare for the winter,” says the ant."
+      ]
+    },
+    {
+      "id": "hansel",
+      "name": "Hansel and Gretel",
+      "label": "🏡 Hansel and Gretel",
+      "sentences": [
+        "Hansel and Gretel get lost in the forest.",
+        "Suddenly, they see a house made of cake and candy.",
+        "They are hungry.",
+        "An old woman invites them in.",
+        "She has food and golden coins in her house.",
+        "But the old woman is bad.",
+        "She opens the oven door.",
+        "She wants to push the children inside!",
+        "Gretel pushes the old woman into the oven instead!",
+        "Hansel and Gretel take the gold coins and return to their father, who is happy to see them.",
+        "They all live happily ever after."
+      ]
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "characters",
+      "word": "characters",
+      "pronunciation": "/ˈkærəktərz/",
+      "english": "The people or animals in a story.",
+      "arabic": "شخصيات القصة",
+      "variants": [
+        "character",
+        "characters"
+      ]
+    },
+    {
+      "id": "grasshopper",
+      "word": "grasshopper",
+      "pronunciation": "/ˈɡræshɑːpər/",
+      "english": "An insect that can jump far.",
+      "arabic": "جرادة",
+      "variants": [
+        "grasshopper"
+      ]
+    },
+    {
+      "id": "ant",
+      "word": "ant",
+      "pronunciation": "/ænt/",
+      "english": "A small insect that lives in groups.",
+      "arabic": "نملة",
+      "variants": [
+        "ant"
+      ]
+    },
+    {
+      "id": "collects",
+      "word": "collects",
+      "pronunciation": "/kəˈlekts/",
+      "english": "Brings things together.",
+      "arabic": "يجمع",
+      "variants": [
+        "collects",
+        "collect"
+      ]
+    },
+    {
+      "id": "winter",
+      "word": "winter",
+      "pronunciation": "/ˈwɪntər/",
+      "english": "The cold season of the year.",
+      "arabic": "فصل الشتاء",
+      "variants": [
+        "winter"
+      ]
+    },
+    {
+      "id": "hungry",
+      "word": "hungry",
+      "pronunciation": "/ˈhʌŋɡri/",
+      "english": "Wanting something to eat.",
+      "arabic": "جائع",
+      "variants": [
+        "hungry"
+      ]
+    },
+    {
+      "id": "prepare",
+      "word": "prepare",
+      "pronunciation": "/prɪˈper/",
+      "english": "To get ready for something.",
+      "arabic": "يستعد أو يُجهّز",
+      "variants": [
+        "prepare"
+      ]
+    },
+    {
+      "id": "forest",
+      "word": "forest",
+      "pronunciation": "/ˈfɔːrɪst/",
+      "english": "A place with many trees.",
+      "arabic": "غابة",
+      "variants": [
+        "forest"
+      ]
+    },
+    {
+      "id": "suddenly",
+      "word": "suddenly",
+      "pronunciation": "/ˈsʌdənli/",
+      "english": "Very quickly, without warning.",
+      "arabic": "فجأة",
+      "variants": [
+        "suddenly"
+      ]
+    },
+    {
+      "id": "invites",
+      "word": "invites",
+      "pronunciation": "/ɪnˈvaɪts/",
+      "english": "Asks someone to come in or visit.",
+      "arabic": "يدعو",
+      "variants": [
+        "invites",
+        "invite"
+      ]
+    },
+    {
+      "id": "golden",
+      "word": "golden",
+      "pronunciation": "/ˈɡoʊldən/",
+      "english": "Made of gold, or gold in color.",
+      "arabic": "ذهبي",
+      "variants": [
+        "golden"
+      ]
+    },
+    {
+      "id": "oven",
+      "word": "oven",
+      "pronunciation": "/ˈʌvən/",
+      "english": "A hot place used to cook food.",
+      "arabic": "فرن",
+      "variants": [
+        "oven"
+      ]
+    },
+    {
+      "id": "pushes",
+      "word": "pushes",
+      "pronunciation": "/ˈpʊʃɪz/",
+      "english": "Moves something away using force.",
+      "arabic": "يدفع",
+      "variants": [
+        "pushes",
+        "push"
+      ]
+    },
+    {
+      "id": "instead",
+      "word": "instead",
+      "pronunciation": "/ɪnˈsted/",
+      "english": "In place of something else.",
+      "arabic": "بدلًا من ذلك",
+      "variants": [
+        "instead"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "q": "Who are the characters in Preparing for Winter?",
+      "opts": [
+        "An ant and a grasshopper",
+        "A dog and a cat",
+        "Hansel and Gretel"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Who collects food for winter?",
+      "opts": [
+        "The grasshopper",
+        "The ant",
+        "The old woman"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Who gets lost in the forest?",
+      "opts": [
+        "Hansel and Gretel",
+        "The ant and the grasshopper",
+        "Two birds"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Who pushes the old woman into the oven?",
+      "opts": [
+        "Hansel",
+        "The father",
+        "Gretel"
+      ],
+      "answer": 2
+    }
+  ]
+}
