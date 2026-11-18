@@ -1,0 +1,59 @@
+name: Raghd Magic Garden - Bella and Heart Story Voices
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/raghd-magic-garden-audio.yml'
+      - 'scripts/generate_raghd_magic_garden_audio.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: raghd-magic-garden-voice
+  cancel-in-progress: false
+jobs:
+  render:
+    name: Generate 16 Kokoro MP3 clips
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install voice dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install 'kokoro>=0.9.4,<1.0' soundfile numpy
+      - name: Render story speech
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python scripts/generate_raghd_magic_garden_audio.py
+      - name: Verify audio files
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          d=Path('experimental/raghd-magic-garden/audio')
+          files=[d/v/f'scene-{i:02d}.mp3' for v in ('bella','heart') for i in range(1,9)]
+          assert len(files)==16 and all(f.exists() and f.stat().st_size>1000 for f in files)
+          print('Verified 16 generated clips')
+          PY
+      - name: Publish recorded voices
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add experimental/raghd-magic-garden/audio/
+          if git diff --cached --quiet; then echo 'Already published'; exit 0; fi
+          git commit -m 'audio(raghd): publish Magic Garden Bella and Heart recordings'
+          for n in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            git push origin HEAD:main && exit 0
+            sleep 4
+          done
+          exit 1
