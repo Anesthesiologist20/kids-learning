@@ -9,7 +9,12 @@ header{margin:14px 0 16px;padding:22px 25px;background:linear-gradient(110deg,#2
 h1{font-size:clamp(27px,4vw,38px);line-height:1.15;margin:8px 0}h2{font-size:22px;margin:0 0 9px}p{margin:8px 0}
 .pill{display:inline-block;padding:5px 12px;border-radius:30px;background:#ffffff27;font-size:13px;font-weight:850}
 .card{padding:20px;background:#fff;border:1px solid var(--line);border-radius:20px;margin-bottom:16px;box-shadow:0 4px 20px #2036530a}
-.cols{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:16px;align-items:start}
+.vocab-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,1fr);gap:16px;align-items:start}
+.story-navigation{display:flex;gap:15px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+#storyHeading{font-size:25px}
+#tabs{margin-bottom:14px;position:static}
+#tabs button{font-size:18px}
+#wordList{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 button{font:inherit;font-weight:800;cursor:pointer;min-height:43px;padding:8px 13px;border:1px solid #d0deee;border-radius:12px;background:#edf5ff;color:#295485;touch-action:manipulation}
 button:focus-visible{outline:3px solid #d79629;outline-offset:2px}button:disabled{opacity:.55;cursor:default}
 .primary{color:white;background:var(--blue);border-color:var(--blue)}.mic{background:#ffeff5;color:#a83366;border-color:#edbdd3}
@@ -21,7 +26,7 @@ button:focus-visible{outline:3px solid #d79629;outline-offset:2px}button:disable
 .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.actions button{font-size:14px}
 .state{color:#358358;font-size:13px;font-weight:800}
 .word-mark{display:inline;min-height:0;padding:0 3px;border:0;border-bottom:2px dotted #ca8e2e;background:#fff0a5;border-radius:4px;line-height:inherit;font:inherit;font-weight:850;color:inherit;cursor:pointer}
-#wordList{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+
 #wordList button{text-align:left;overflow-wrap:anywhere;font-size:15px;background:#fff7e5;border-color:#efdfb6}
 #wordList button.active{background:#ffdb96;color:#573b12;border-color:#c88b32}
 #wordInfo{margin-top:14px;padding:14px;background:#f1f6ff;border-radius:14px}
@@ -35,7 +40,7 @@ button:focus-visible{outline:3px solid #d79629;outline-offset:2px}button:disable
 #status{display:none;position:sticky;z-index:4;top:5px;background:#fff7df;border:1px solid #e6ce7a;border-radius:13px;padding:10px;font-weight:750}
 #status.show{display:block}.quiznav{display:flex;justify-content:space-between;gap:8px}
 footer{text-align:center;color:#71829a;font-size:13px;padding:16px}
-@media(max-width:800px){.cols{grid-template-columns:1fr}#wordList{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:800px){.vocab-layout{grid-template-columns:1fr}#wordList{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:490px){main{padding:10px}.card{padding:14px}header{padding:19px}.story-tabs button{min-width:0}.actions button{flex:1 1 135px}#wordList{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style></head><body>
 <main><a href="./">← Aboud's Learning Corner</a>
@@ -43,21 +48,28 @@ footer{text-align:center;color:#71829a;font-size:13px;padding:16px}
 <h1>🔎 Identifying Characters</h1><p>Read • Listen to Heart • Record yourself • Review vocabulary</p>
 <span class="pill">❤️ Heart only</span> <span class="pill">🐌 Extra Slow only</span></header>
 <div id="status" role="status" aria-live="polite"></div>
-<div class="cols">
-<section class="card"><h2>📖 Read and repeat</h2>
-<p class="small">One sentence at a time. Press Heart to listen, then the mic beside it to read aloud.</p>
-<div class="story-tabs" id="tabs"></div>
-<div class="toolbar"><button id="readAll" class="primary">🔊 Read all sentences</button><button id="stopAll">■ Stop</button><span id="progress" class="small"></span></div>
-<div id="sentences"></div></section>
-<aside class="card" id="vocabulary"><h2>🔤 Vocabulary <span id="vocabCount"></span></h2>
-<p class="small">New words are highlighted in yellow. Tap them to see English meaning, Arabic meaning and pronunciation.</p>
+<nav id="tabs" class="story-tabs card" aria-label="Choose the reading story"></nav>
+<div id="storyArea">
+<section class="card" id="reading">
+<h2 id="storyHeading">📖 Story 1 · Preparing for Winter</h2>
+<p class="small">Listen to Heart at Extra Slow speed, then record yourself after each sentence.</p>
+<div class="toolbar"><button id="readAll" class="primary">🔊 Read this story</button><button id="stopAll">■ Stop</button><span id="progress" class="small"></span></div>
+<div id="sentences"></div>
+</section>
+<section class="card" id="vocabulary">
+<h2>🔤 This story's Vocabulary <span id="vocabCount"></span></h2>
+<p class="small">Tap the highlighted words to hear Heart's pronunciation and see their English and Arabic meanings.</p>
+<div class="vocab-layout">
 <div id="wordList"></div>
-<div id="wordInfo"><h3 id="wordTitle"></h3><p id="wordPron"></p><p id="wordEnglish"></p><p id="wordArabic" lang="ar"></p><button id="wordListen" class="primary">🔊 Heart · Extra Slow</button></div></aside>
+<div id="wordInfo"><h3 id="wordTitle"></h3><p id="wordPron"></p><p id="wordEnglish"></p><p id="wordArabic" lang="ar"></p><button id="wordListen" class="primary">🔊 Heart · Extra Slow</button></div>
 </div>
-<section class="card" id="quiz"><h2>🏆 Reading quiz <span id="quizCount"></span></h2>
+</section>
+<section class="card" id="quiz"><h2>🏆 This story’s questions <span id="quizCount"></span></h2>
 <div class="small" id="qCount"></div><p id="qText"></p><div id="qChoices"></div>
 <p id="qFeedback" role="status"></p><div class="quiznav"><button id="qBack">← Previous</button><button class="primary" id="qNext">Next →</button></div>
 <p id="qScore"></p><button id="reset">↻ Restart quiz</button></section>
+<div class="story-navigation card"><span class="small" id="sectionNote">Read the story, learn its words, then answer its questions.</span><button id="switchStory" class="primary">Next story →</button></div>
+</div>
 <footer>⭐ Great reading, Aboud! • Cambridge Primary Path 2 • Page 61</footer>
 <audio id="audio" preload="none" playsinline hidden></audio></main>
 <script>
@@ -85,34 +97,92 @@ function audioPlay(file,row){
  });
 }
 function idOf(s,i){return s.id+"-"+String(i+1).padStart(2,"0")}
+const VOCAB_BY_STORY={winter:["characters","grasshopper","ant","collects","winter","hungry","prepare"],hansel:["forest","suddenly","invites","golden","oven","pushes","instead"]};
+function storyVocabIndices(){
+ const group=VOCAB_BY_STORY[d.stories[story].id]||[];
+ return group.map(id=>d.vocabulary.findIndex(w=>w.id===id)).filter(i=>i>=0);
+}
+function storyQuestionIndices(){
+ const id=d.stories[story].id,arr=[];
+ d.questions.forEach((item,i)=>{if(item.story===id)arr.push(i)});
+ return arr;
+}
 function markWords(txt){
  const root=document.createElement("span"),tokens=txt.split(/(\b[a-zA-Z]+\b)/g);
- const lookup=new Map();d.vocabulary.forEach((v,i)=>v.variants.forEach(s=>lookup.set(s.toLowerCase(),i)));
- for(const token of tokens){const index=lookup.get(token.toLowerCase());
-  if(index===undefined){root.append(document.createTextNode(token));continue}
-  const b=document.createElement("button");b.className="word-mark";b.type="button";b.textContent=token;b.title="Vocabulary: "+d.vocabulary[index].word;
-  b.onclick=()=>{showWord(index);el("vocabulary").scrollIntoView({block:"start",behavior:"smooth"});audioPlay(audioFile("word",d.vocabulary[index].id))};root.append(b);
+ const lookup=new Map();
+ for(const i of storyVocabIndices()){const v=d.vocabulary[i];v.variants.forEach(t=>lookup.set(t.toLowerCase(),i))}
+ for(const token of tokens){
+   const index=lookup.get(token.toLowerCase());
+   if(index===undefined){root.append(document.createTextNode(token));continue}
+   const b=document.createElement("button");
+   b.className="word-mark";b.type="button";b.textContent=token;b.title="Vocabulary: "+d.vocabulary[index].word;
+   b.onclick=()=>{showWord(index);el("vocabulary").scrollIntoView({block:"start",behavior:"smooth"});audioPlay(audioFile("word",d.vocabulary[index].id))};
+   root.append(b);
  }return root;
 }
-function showWord(index){word=index;const v=d.vocabulary[index];el("wordTitle").textContent=v.word;el("wordPron").textContent="Pronunciation: "+v.pronunciation;el("wordEnglish").textContent="English: "+v.english;el("wordArabic").textContent=v.arabic;for(const b of el("wordList").children)b.classList.toggle("active",Number(b.dataset.i)===index)}
-function renderVocab(){el("vocabCount").textContent="("+d.vocabulary.length+" words)";for(const [i,v] of d.vocabulary.entries()){const b=document.createElement("button");b.dataset.i=i;b.textContent=v.word;b.onclick=()=>{showWord(i);audioPlay(audioFile("word",v.id))};el("wordList").append(b)}showWord(0);el("wordListen").onclick=()=>audioPlay(audioFile("word",d.vocabulary[word].id))}
-function updateProgress(){const s=d.stories[story],count=s.sentences.filter((_,i)=>progress.spoken.includes(idOf(s,i))).length;el("progress").textContent=count+" / "+s.sentences.length+" recorded"}
-function renderStory(){playRun++;stopAudio();const tabs=el("tabs");tabs.replaceChildren();d.stories.forEach((s,i)=>{const b=document.createElement("button");b.textContent=s.label;b.className=i===story?"active":"";b.onclick=()=>{if(recording)stopMic();story=i;renderStory()};tabs.append(b)});
- const s=d.stories[story],box=el("sentences");box.replaceChildren();
- s.sentences.forEach((text,i)=>{
-  const id=idOf(s,i),article=document.createElement("article");article.className="sentence-row";if(progress.spoken.includes(id))article.classList.add("practiced");
-  const p=document.createElement("p");p.className="sentence";p.append(markWords(text));
-  const actions=document.createElement("div");actions.className="actions";
-  const listen=document.createElement("button");listen.className="primary";listen.textContent="🔊 Heart · Extra Slow";
-  const mic=document.createElement("button");mic.className="mic";mic.textContent="🎙️ Read after Heart";
-  const mine=document.createElement("button");mine.textContent="▶ My reading";mine.hidden=!ownClips.has(id);
-  const state=document.createElement("span");state.className="state";state.textContent=progress.spoken.includes(id)?"✓ Practiced":"";
-  listen.onclick=async()=>{playRun++;if(await audioPlay(audioFile("sentence",id),article)){if(!progress.heard.includes(id))progress.heard.push(id);save()}};
-  mic.onclick=()=>toggleMic(id,mic,mine,article,state);
-  mine.onclick=()=>{playRun++;const clip=ownClips.get(id);if(clip)audioPlay(clip)};
-  actions.append(listen,mic,mine,state);article.append(p,actions);box.append(article);
- });updateProgress();
+function showWord(index){
+ word=index;const v=d.vocabulary[index];
+ el("wordTitle").textContent=v.word;
+ el("wordPron").textContent="Pronunciation: "+v.pronunciation;
+ el("wordEnglish").textContent="English: "+v.english;
+ el("wordArabic").textContent=v.arabic;
+ for(const b of el("wordList").children)b.classList.toggle("active",Number(b.dataset.i)===index);
 }
+function renderVocab(){
+ const indices=storyVocabIndices(),box=el("wordList");
+ box.replaceChildren();
+ el("vocabCount").textContent="("+indices.length+" words)";
+ for(const i of indices){
+   const v=d.vocabulary[i],b=document.createElement("button");
+   b.dataset.i=i;b.textContent=v.word;
+   b.onclick=()=>{showWord(i);audioPlay(audioFile("word",v.id))};
+   box.append(b);
+ }
+ if(indices.length)showWord(indices[0]);
+ el("wordListen").onclick=()=>audioPlay(audioFile("word",d.vocabulary[word].id));
+}
+function updateProgress(){
+ const st=d.stories[story],count=st.sentences.filter((_,i)=>progress.spoken.includes(idOf(st,i))).length;
+ el("progress").textContent=count+" / "+st.sentences.length+" recorded";
+}
+function switchToStory(i){
+ if(recording)stopMic();
+ story=i;question=0;
+ renderStory();
+ el("tabs").scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderStory(){
+ playRun++;stopAudio();
+ const st=d.stories[story],tabs=el("tabs");tabs.replaceChildren();
+ d.stories.forEach((one,i)=>{
+   const b=document.createElement("button");
+   b.textContent="Story "+(i+1)+" · "+one.name;
+   b.className=i===story?"active":"";
+   b.setAttribute("aria-pressed",String(i===story));
+   b.onclick=()=>switchToStory(i);
+   tabs.append(b);
+ });
+ el("storyHeading").textContent="📖 Story "+(story+1)+" · "+st.name;
+ el("switchStory").textContent=story===0?"Story 2 · Hansel and Gretel →":"← Story 1 · Preparing for Winter";
+ el("sectionNote").textContent="Story "+(story+1)+": "+storyVocabIndices().length+" vocabulary words + "+storyQuestionIndices().length+" reading questions";
+ const box=el("sentences");box.replaceChildren();
+ st.sentences.forEach((txt,i)=>{
+   const id=idOf(st,i),article=document.createElement("article");article.className="sentence-row";
+   if(progress.spoken.includes(id))article.classList.add("practiced");
+   const p=document.createElement("p");p.className="sentence";p.append(markWords(txt));
+   const actions=document.createElement("div");actions.className="actions";
+   const listen=document.createElement("button");listen.className="primary";listen.textContent="🔊 Heart · Extra Slow";
+   const mic=document.createElement("button");mic.className="mic";mic.textContent="🎙️ Read after Heart";
+   const mine=document.createElement("button");mine.textContent="▶ My reading";mine.hidden=!ownClips.has(id);
+   const state=document.createElement("span");state.className="state";state.textContent=progress.spoken.includes(id)?"✓ Practiced":"";
+   listen.onclick=async()=>{playRun++;if(await audioPlay(audioFile("sentence",id),article)){if(!progress.heard.includes(id))progress.heard.push(id);save()}};
+   mic.onclick=()=>toggleMic(id,mic,mine,article,state);
+   mine.onclick=()=>{playRun++;const clip=ownClips.get(id);if(clip)audioPlay(clip)};
+   actions.append(listen,mic,mine,state);article.append(p,actions);box.append(article);
+ });
+ updateProgress();renderVocab();renderQ();
+}
+el("switchStory").onclick=()=>switchToStory(story===0?1:0);
 function stopMic(){if(recording&&recording.rec.state==="recording")recording.rec.stop()}
 async function toggleMic(id,mic,mine,row,label){
  if(recording){if(recording.id===id)stopMic();else status("Stop the current microphone recording first.");return}
@@ -134,24 +204,27 @@ el("readAll").onclick=async()=>{
 };
 el("stopAll").onclick=()=>{playRun++;stopAudio()};
 function renderQ(){
- const item=d.questions[question];el("quizCount").textContent="("+d.questions.length+" questions)";
- el("qCount").textContent="Question "+(question+1)+" of "+d.questions.length+" · "+(item.story==="winter"?"Preparing for Winter":"Hansel and Gretel");
- el("qText").textContent=item.q;const box=el("qChoices");box.replaceChildren();
- const previous=progress.answers[question];
- item.opts.forEach((text,i)=>{
-  const b=document.createElement("button");b.className="choice";b.textContent=String.fromCharCode(65+i)+". "+text;
+ const qs=storyQuestionIndices(),globalIndex=qs[question],item=d.questions[globalIndex];
+ el("quizCount").textContent="("+qs.length+" questions)";
+ el("qCount").textContent="Story "+(story+1)+" • Question "+(question+1)+" of "+qs.length;
+ el("qText").textContent=item.q;
+ const box=el("qChoices");box.replaceChildren();
+ const previous=progress.answers[globalIndex];
+ item.opts.forEach((txt,i)=>{
+  const b=document.createElement("button");b.className="choice";b.textContent=String.fromCharCode(65+i)+". "+txt;
   if(Number.isInteger(previous)){b.disabled=true;if(i===item.answer)b.classList.add("good");else if(i===previous)b.classList.add("bad")}
-  b.onclick=()=>{if(Number.isInteger(progress.answers[question]))return;progress.answers[question]=i;save();renderQ()};box.append(b);
+  b.onclick=()=>{if(Number.isInteger(progress.answers[globalIndex]))return;progress.answers[globalIndex]=i;save();renderQ()};
+  box.append(b);
  });
  el("qFeedback").textContent=Number.isInteger(previous)?(previous===item.answer?"✅ Correct!":"↪ Correct answer: "+item.opts[item.answer]):"";
- el("qBack").disabled=question===0;el("qNext").disabled=question===d.questions.length-1;
- const complete=d.questions.reduce((n,_,i)=>n+(Number.isInteger(progress.answers[i])?1:0),0);
- const score=d.questions.reduce((n,item,i)=>n+(progress.answers[i]===item.answer?1:0),0);
- el("qScore").textContent=complete===d.questions.length?"⭐ Score: "+score+" / "+complete:"Answered "+complete+" / "+d.questions.length;
+ el("qBack").disabled=question===0;el("qNext").disabled=question===qs.length-1;
+ const complete=qs.reduce((n,id)=>n+(Number.isInteger(progress.answers[id])?1:0),0);
+ const score=qs.reduce((n,id)=>n+(progress.answers[id]===d.questions[id].answer?1:0),0);
+ el("qScore").textContent=complete===qs.length?"⭐ Story "+(story+1)+" score: "+score+" / "+qs.length:"Answered "+complete+" / "+qs.length;
 }
 el("qBack").onclick=()=>{question=Math.max(0,question-1);renderQ()};
-el("qNext").onclick=()=>{question=Math.min(d.questions.length-1,question+1);renderQ()};
-el("reset").onclick=()=>{progress.answers=[];question=0;save();renderQ()};
-fetch("page61-heart-manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("load");return r.json()}).then(manifest=>{d=manifest;if(!d?.stories?.length||d.vocabulary.length<11||d.questions.length<11)throw Error("invalid manifest");renderVocab();renderStory();renderQ()}).catch(()=>status("The new lesson could not load. Refresh the page."));
+el("qNext").onclick=()=>{question=Math.min(storyQuestionIndices().length-1,question+1);renderQ();el("quiz").scrollIntoView({behavior:"smooth",block:"start"})};
+el("reset").onclick=()=>{for(const id of storyQuestionIndices())progress.answers[id]=null;question=0;save();renderQ()};
+fetch("page61-heart-manifest.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("load");return r.json()}).then(manifest=>{d=manifest;if(!d?.stories?.length||d.vocabulary.length<11||d.questions.length<11)throw Error("invalid manifest");renderStory()}).catch(()=>status("The new lesson could not load. Refresh the page."));
 window.addEventListener("beforeunload",()=>{stopAudio();if(recording)stopMic();for(const u of ownClips.values())URL.revokeObjectURL(u)});
 </script></body></html>
