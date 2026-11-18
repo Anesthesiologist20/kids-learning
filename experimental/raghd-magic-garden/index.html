@@ -13,10 +13,10 @@ button,a{touch-action:manipulation}button{font:inherit;cursor:pointer}button:foc
 .wrap{max-width:1240px;margin:auto;padding:clamp(10px,2vw,24px)}.homebar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.back{font-weight:800;color:#35527c;text-decoration:none}.tag{font-size:12px;font-weight:900;letter-spacing:1.2px;border-radius:30px;background:#fff8d1;padding:9px 13px;color:#7c5d1e}
 h1{font-size:clamp(25px,3.6vw,42px);margin:7px 0 5px;line-height:1.16}p{margin:7px 0 15px}.subhead{color:#61748a;font-size:14px}
 .cinema{position:relative;isolation:isolate;overflow:hidden;background:#aee8ef;border:4px solid white;box-shadow:0 24px 70px #385e8655;border-radius:26px;height:min(72vh,calc((100vw - 32px)*.563));min-height:365px}
-.cinema:fullscreen,.cinema:-webkit-full-screen{width:100vw;height:100dvh;min-height:0;max-width:none;border:0;border-radius:0}
-.scene{position:absolute;inset:0;overflow:hidden;background:#a5d9ee}
+.cinema:fullscreen,.cinema:-webkit-full-screen{width:100vw;height:100dvh;min-height:0;max-width:none;border:0;border-radius:0;display:block;background:#a7dcf1}.cinema:fullscreen .scene,.cinema:-webkit-full-screen .scene{inset:0}.cinema:fullscreen svg,.cinema:-webkit-full-screen svg{width:100%;height:100%;object-fit:contain}
+.scene{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,#9cd5f7,#b5edc8)}
 .scene::after{content:"";pointer-events:none;position:absolute;inset:55% 0 0;background:linear-gradient(transparent 70%,#16365680)}
-.scene svg{display:block;width:100%;height:100%;object-fit:cover}
+.scene svg{display:block;width:100%;height:100%;object-fit:contain}
 .cloud1{animation:cloud 19s ease-in-out infinite alternate}.cloud2{animation:cloud 25s ease-in-out infinite alternate-reverse}
 .spark{animation:twinkle 2s ease-in-out infinite alternate;transform-origin:center;transform-box:fill-box}.spark:nth-child(2n){animation-delay:.7s}
 .flower-small{transform-origin:center bottom;transform-box:fill-box;animation:sway 3s ease-in-out infinite alternate}
@@ -44,7 +44,7 @@ h1{font-size:clamp(25px,3.6vw,42px);margin:7px 0 5px;line-height:1.16}p{margin:7
 .timeline{position:absolute;bottom:57px;left:0;height:4px;width:100%;background:#fff5;z-index:5}.timeline>span{display:block;height:100%;background:#ffdd65;width:0;transition:width .3s}
 .scene-dots{display:flex;justify-content:center;gap:7px;margin:15px 0 8px;flex-wrap:wrap}.scene-dot{border:2px solid #b7cee7;border-radius:14px;background:white;min-width:36px;height:35px;padding:0 8px;font-weight:900;color:#596b85}.scene-dot.active{background:#5375cf;color:white;border-color:#5375cf}.scene-dot.seen:not(.active){border-color:#67b89a;background:#e9ffed}
 .hint{text-align:center;color:#677b93;font-size:13px;margin:7px auto 18px;line-height:1.6}
-.last{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.last button{border:0;border-radius:10px;background:#e9f4ff;color:#315384;padding:9px 15px;font-weight:800}
+.last{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}.last button,.last select{border:0;border-radius:10px;background:#e9f4ff;color:#315384;padding:9px 12px;font-weight:800}.last label{display:inline-flex;gap:7px;align-items:center;background:white;padding:6px 9px;border-radius:10px;color:#315384;font-size:13px;font-weight:800}.voice-status{text-align:center;color:#526f80;min-height:21px;font-size:12px;margin:7px auto 6px}
 .cinema:fullscreen .subtitles{bottom:72px}.cinema:fullscreen .caption{font-size:clamp(14px,1.65vw,20px)}
 @keyframes cloud{to{transform:translateX(40px)}}@keyframes twinkle{to{opacity:.25;transform:scale(.6) rotate(15deg)}}@keyframes sway{to{transform:rotate(6deg)}}@keyframes hop{0%,65%,100%{transform:translateY(0)}30%{transform:translateY(-22px)}}@keyframes catSway{to{transform:rotate(2.5deg)}}@keyframes tail{to{transform:rotate(23deg)}}@keyframes grow{from{transform:scaleY(.08)}to{transform:scaleY(1)}}@keyframes flowerPop{from{transform:scale(0)}to{transform:scale(1)}}@keyframes rainbowAppear{from{transform:scale(.45);opacity:.1}to{transform:scale(1);opacity:1}}@keyframes water{from{transform:translateY(-15px);opacity:0}40%{opacity:1}to{transform:translateY(45px);opacity:0}}@keyframes fly{to{transform:translate(35px,-38px) rotate(8deg)}}
 @media(max-width:600px){.wrap{padding:9px}.homebar{gap:6px}.tag{font-size:10px;padding:7px}.cinema{height:min(70vh,calc(100vw*.76));min-height:320px;border-width:2px;border-radius:18px}.controls{gap:6px;padding:8px}.control{min-width:44px;padding:0 9px;font-size:16px}.control.primary{min-width:92px}.caption{padding:7px 12px;font-size:13px}.subtitles{bottom:62px}.timeline{bottom:54px}.toptools{padding:7px}.iconbtn{min-width:35px;min-height:36px;padding:5px 8px;font-size:17px}.episode{font-size:11px}}
@@ -58,7 +58,7 @@ h1{font-size:clamp(25px,3.6vw,42px);margin:7px 0 5px;line-height:1.16}p{margin:7
   <p class="subhead">An animated English picture story with Bunny, Kitty, and a magic flower.</p>
   <section class="cinema" id="cinema" data-scene="0" aria-label="Animated story of Bunny and Kitty">
     <div class="scene">
-      <svg viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="scene-title scene-description" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="scene-title scene-description" xmlns="http://www.w3.org/2000/svg">
       <title id="scene-title">Bunny and Kitty in a magic garden</title><desc id="scene-description">A pastel animated garden, a cheerful rabbit, an orange cat, growing flowers and a rainbow.</desc>
       <defs>
       <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#8dc9fc"/><stop offset=".7" stop-color="#d9f9fc"/><stop offset="1" stop-color="#f9fbcc"/></linearGradient>
@@ -113,15 +113,17 @@ h1{font-size:clamp(25px,3.6vw,42px);margin:7px 0 5px;line-height:1.16}p{margin:7
       <g id="butterflies"><g class="butterfly" transform="translate(500 215)"><ellipse cx="-12" cy="-7" rx="20" ry="12" fill="#eb83c5" transform="rotate(36 -12 -7)"/><ellipse cx="12" cy="-7" rx="20" ry="12" fill="#f5a3d3" transform="rotate(-36 12 -7)"/><path d="M0-14V11" stroke="#695691" stroke-width="4"/></g><g class="butterfly" transform="translate(848 248)"><ellipse cx="-12" cy="-7" rx="22" ry="14" fill="#ba9bff" transform="rotate(40 -12 -7)"/><ellipse cx="12" cy="-7" rx="22" ry="14" fill="#8cc6ff" transform="rotate(-40 12 -7)"/><path d="M0-14V11" stroke="#695691" stroke-width="4"/></g></g>
       </svg>
     </div>
-    <div class="toptools"><div class="episode"><span id="counter">1 / 8</span><span>🌸 Magic Garden</span></div><div class="righttools"><button id="sound" class="iconbtn" type="button" title="Toggle magic sound effects" aria-label="Sound off">🔇</button><button id="full" class="iconbtn" type="button" title="Fullscreen" aria-label="Enter fullscreen">⛶</button></div></div>
+    <div class="toptools"><div class="episode"><span id="counter">1 / 8</span><span>🌸 Magic Garden</span></div><div class="righttools"><button id="sound" class="iconbtn" type="button" title="Mute or play English narration" aria-label="Mute narration">🔊</button><button id="full" class="iconbtn" type="button" title="Fullscreen" aria-label="Enter fullscreen">⛶</button></div></div>
+    <audio id="narration" preload="none" playsinline></audio>
     <div class="subtitles"><span class="caption" id="caption" aria-live="polite">Bunny finds a magic seed.</span></div>
     <div class="timeline"><span id="progress"></span></div>
-    <nav class="controls" aria-label="Story controls"><button id="prev" class="control" aria-label="Previous scene">❮</button><button id="play" class="control primary" aria-label="Play story">▶ Play</button><button id="next" class="control" aria-label="Next scene">❯</button><button id="restart" class="control" aria-label="Start over">↻</button></nav>
+    <nav class="controls" aria-label="Story controls"><button id="prev" class="control" aria-label="Previous scene">❮</button><button id="play" class="control primary" aria-label="Play story">▶ Play</button><button id="next" class="control" aria-label="Next scene">❯</button><button id="replay" class="control" aria-label="Hear this sentence again" title="Listen again">🎧</button><button id="restart" class="control" aria-label="Start over">↻</button></nav>
     <div class="overlay" id="intro"><div class="welcome"><div class="mascots">🐰 🌷 🐱</div><h2>Magic Garden!</h2><p>Eight easy English sentences.<br>Watch Bunny and Kitty's magical adventure.</p><button id="start" class="big">▶ Start the Story</button></div></div>
     <div class="overlay" id="finish" hidden><div class="welcome"><div class="mascots">🌈 ⭐ 🏆</div><h2>Great job, Raghd!</h2><p>You finished Bunny and Kitty's magical adventure!</p><button id="again" class="big">↻ Watch Again</button></div></div>
   </section>
   <div class="scene-dots" id="dots" aria-label="Jump to scene"></div>
-  <div class="last"><button id="read-mode" type="button">🎬 Auto Movie: ON</button><button id="caption-toggle" type="button">Aa Captions: ON</button></div>
+  <div class="last"><button id="read-mode" type="button">🎬 Auto Movie: ON</button><button id="caption-toggle" type="button">Aa Captions: ON</button><label>🎤 Teacher <select id="voice-select" aria-label="Narrator voice"><option value="bella">Bella</option><option value="heart">Heart</option></select></label><label>🐢 Speed <select id="speed-select" aria-label="Narration speed"><option value="0.8">Slow</option><option value="1" selected>Normal</option></select></label></div>
+  <p id="voice-status" class="voice-status" role="status" aria-live="polite">🎧 Bella reads each scene. Tap 🎧 to listen again.</p>
   <p class="hint">One short sentence per scene · Automatic animation, or use ❮ and ❯ · Tap ⛶ for fullscreen · No extra subscription.</p>
 </main>
 <script>
@@ -137,18 +139,28 @@ var lines=[
 'The flower makes a rainbow.',
 'Bunny and Kitty dance with joy!'
 ];
-var duration=5700, scene=0, running=false, started=false, autostory=true, captions=true, sound=false, timer=null, startedAt=0, remaining=duration, raf=0;
-var $=function(id){return document.getElementById(id)},cinema=$('cinema'),dots=$('dots');
+var duration=6500, scene=0, running=false, started=false, autostory=true, captions=true, sound=true, timer=null, startedAt=0, remaining=duration, raf=0;
+var $=function(id){return document.getElementById(id)},cinema=$('cinema'),dots=$('dots'),narration=$('narration');
+var voice='bella', rate='1';
+try{var preference=JSON.parse(localStorage.getItem('raghd-magic-garden-voice-v1')||'{}');if(['bella','heart'].includes(preference.voice))voice=preference.voice;if(['0.8','1'].includes(preference.rate))rate=preference.rate}catch(e){}
+$('voice-select').value=voice;$('speed-select').value=rate;
+function saveVoice(){try{localStorage.setItem('raghd-magic-garden-voice-v1',JSON.stringify({voice:voice,rate:rate}))}catch(e){}}
+function speechUrl(){return 'audio/'+voice+'/scene-'+String(scene+1).padStart(2,'0')+'.mp3'}
+function resetNarration(){narration.pause();narration.removeAttribute('src');narration.load();narration.src=speechUrl();narration.playbackRate=Number(rate);}
+function playNarration(){if(!sound)return;if(!narration.getAttribute('src'))resetNarration();narration.playbackRate=Number(rate);var result=narration.play();if(result&&result.catch)result.catch(function(){$('voice-status').textContent='Voice not loaded yet. The animated story still works.'})}
+narration.addEventListener('error',function(){$('voice-status').textContent='The English voice recordings are not published yet. Please refresh later.'});
+narration.addEventListener('playing',function(){$('voice-status').textContent='🎧 '+(voice==='bella'?'Bella':'Heart')+' is reading scene '+(scene+1)+'.'});
+
 var watched={};try{watched=JSON.parse(localStorage.getItem('raghd-magic-garden-scenes-v1')||'{}')||{}}catch(e){}
 function save(){try{localStorage.setItem('raghd-magic-garden-scenes-v1',JSON.stringify(watched))}catch(e){}}
 function tone(){if(!sound)return;try{var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var ctx=window._raghdMagicAudio||(window._raghdMagicAudio=new C());if(ctx.state==='suspended')ctx.resume();[0,0.11,0.22].forEach(function(d,i){var o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=[523,659,784][i];o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(.0001,ctx.currentTime+d);g.gain.exponentialRampToValueAtTime(.035,ctx.currentTime+d+.01);g.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+d+.22);o.start(ctx.currentTime+d);o.stop(ctx.currentTime+d+.24)})}catch(e){}}
 function updateDots(){dots.replaceChildren();for(var i=0;i<8;i++){(function(n){var b=document.createElement('button');b.type='button';b.className='scene-dot'+(n===scene?' active':'')+(watched[n]?' seen':'');b.textContent=n+1;b.setAttribute('aria-label','Scene '+(n+1));b.addEventListener('click',function(){goto(n,started&&autostory)});dots.appendChild(b)})(i)}}
 function update(){cinema.dataset.scene=scene;$('caption').textContent=lines[scene];$('caption').hidden=!captions;$('counter').textContent=(scene+1)+' / 8';$('prev').disabled=scene===0;$('next').disabled=scene===7;$('play').textContent=running?'❚❚ Pause':'▶ Play';$('play').setAttribute('aria-label',running?'Pause story':'Play story');$('read-mode').textContent='🎬 Auto Movie: '+(autostory?'ON':'OFF');$('caption-toggle').textContent='Aa Captions: '+(captions?'ON':'OFF');$('progress').style.width=((scene+(duration-remaining)/duration)/8*100)+'%';updateDots()}
-function halt(){running=false;clearTimeout(timer);cancelAnimationFrame(raf);remaining=Math.max(0,remaining-(Date.now()-startedAt));update()}
+function halt(){if(!running)return;running=false;clearTimeout(timer);cancelAnimationFrame(raf);narration.pause();remaining=Math.max(0,remaining-(Date.now()-startedAt));update()}
 function bar(){if(!running)return;var passed=Date.now()-startedAt;var frac=Math.min(1,(duration-remaining+passed)/duration);$('progress').style.width=((scene+frac)/8*100)+'%';raf=requestAnimationFrame(bar)}
-function run(){if(running)return;running=true;started=true;$('intro').hidden=true;$('finish').hidden=true;startedAt=Date.now();timer=setTimeout(function(){if(scene===7){complete()}else{goto(scene+1,true)}},remaining);bar();update()}
-function goto(n,autoplay){if(running)halt();scene=Math.max(0,Math.min(7,n));remaining=duration;watched[scene]=true;save();tone();update();if(autoplay)run()}
-function complete(){if(running)halt();running=false;remaining=0;update();$('progress').style.width='100%';$('finish').hidden=false}
+function run(){if(running)return;running=true;started=true;$('intro').hidden=true;$('finish').hidden=true;startedAt=Date.now();playNarration();timer=setTimeout(function(){if(scene===7){complete()}else{goto(scene+1,true)}},remaining);bar();update()}
+function goto(n,autoplay){if(running)halt();scene=Math.max(0,Math.min(7,n));remaining=duration;watched[scene]=true;save();resetNarration();tone();update();if(autoplay)run()}
+function complete(){if(running)halt();narration.pause();running=false;remaining=0;update();$('progress').style.width='100%';$('finish').hidden=false}
 function restart(){if(running)halt();$('finish').hidden=true;goto(0,true)}
 $('start').addEventListener('click',function(){goto(0,true)});
 $('again').addEventListener('click',restart);
@@ -158,13 +170,17 @@ $('prev').addEventListener('click',function(){if(scene>0)goto(scene-1,autostory&
 $('restart').addEventListener('click',restart);
 $('read-mode').addEventListener('click',function(){autostory=!autostory;if(!autostory&&running)halt();update()});
 $('caption-toggle').addEventListener('click',function(){captions=!captions;update()});
-$('sound').addEventListener('click',function(){sound=!sound;$('sound').textContent=sound?'🔊':'🔇';$('sound').setAttribute('aria-label',sound?'Sound on':'Sound off');tone()});
+$('sound').addEventListener('click',function(){sound=!sound;$('sound').textContent=sound?'🔊':'🔇';$('sound').setAttribute('aria-label',sound?'Mute narration':'Enable narration');if(sound){if(running)playNarration();else tone()}else{narration.pause()}});
+$('replay').addEventListener('click',function(){if(!sound){sound=true;$('sound').textContent='🔊';$('sound').setAttribute('aria-label','Mute narration')}resetNarration();playNarration()});
+$('voice-select').addEventListener('change',function(){voice=this.value;saveVoice();resetNarration();$('voice-status').textContent='🎤 '+(voice==='bella'?'Bella':'Heart')+' selected.';if(running)playNarration()});
+$('speed-select').addEventListener('change',function(){rate=this.value;saveVoice();narration.playbackRate=Number(rate)});
+
 $('full').addEventListener('click',function(){if(document.fullscreenElement||document.webkitFullscreenElement){(document.exitFullscreen||document.webkitExitFullscreen).call(document).catch?.(function(){})}else{var f=cinema.requestFullscreen||cinema.webkitRequestFullscreen;if(f){var result=f.call(cinema);if(result&&result.catch)result.catch(function(){})}}});
 document.addEventListener('fullscreenchange',function(){$('full').textContent=document.fullscreenElement?'⤡':'⛶'});
 document.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){$('next').click()}else if(e.key==='ArrowLeft'){$('prev').click()}else if(e.key===' '&&e.target.tagName!=='BUTTON'){e.preventDefault();$('play').click()}});
 document.addEventListener('visibilitychange',function(){if(document.hidden&&running)halt()});
 var x0=null,y0=null;cinema.addEventListener('touchstart',function(e){if(e.touches.length===1){x0=e.touches[0].clientX;y0=e.touches[0].clientY}},{passive:true});cinema.addEventListener('touchend',function(e){if(x0===null||!e.changedTouches.length)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;if(Math.abs(dx)>85&&Math.abs(dy)<70){if(dx<0)$('next').click();else $('prev').click()}},{passive:true});
-watched[0]=true;save();update();
+watched[0]=true;save();resetNarration();update();
 })();
 </script>
 </body>
