@@ -66,22 +66,30 @@ body{background:radial-gradient(circle at 7% 6%,#fae8c1 0,transparent 32%),radia
 .journey-card strong{display:block;font-size:.88rem;line-height:1.5}.journey-card small{color:#486c5b}
 .journey-card .track{height:7px;background:#dfe9e0;border-radius:12px;margin-top:9px;overflow:hidden}
 .journey-card .track i{display:block;height:100%;background:linear-gradient(90deg,#5cae72,#e3b345);border-radius:12px}
-.speech-settings{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 0;background:#fffdf9e8;border:1px solid #d7e5d4;padding:8px 12px;border-radius:13px;color:var(--deep)}
-.speech-settings label{font-weight:bold;font-size:.87rem}.speech-settings select{font:inherit;border:1px solid #b6cbbb;border-radius:9px;background:white;color:var(--text);padding:6px;max-width:175px}
-.speech-settings .soft{padding:5px 12px;min-height:36px;font-size:.86rem}
-.listen-row{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0}
-.listen{border:1px solid #afc8bd;background:#ecf8f1;color:#185f45;border-radius:11px;font-weight:bold;padding:7px 13px;min-height:42px}
-.listen:hover{background:#daf0e1}.listen:disabled{opacity:.48}
-.listen.mini{min-height:36px;padding:4px 10px;font-size:.87rem}
-.paper-term .listen{margin-inline-start:7px}
-.study-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .paper-tab .score-stars{display:block;color:#f1b52e;letter-spacing:2px}
 .celebrate{font-size:1.25rem;min-height:24px;letter-spacing:7px}
 @keyframes cheers{0%{transform:scale(.8);opacity:.3}50%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
 .celebrate.active{animation:cheers .65s ease both}
 @media(max-width:850px){.journey-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:650px){.model:hover{transform:none}.journey-card{padding:8px}.listen-row .listen{flex:1}}
+@media(max-width:650px){.model:hover{transform:none}.journey-card{padding:8px}}
 @media(prefers-reduced-motion:reduce){.model,.celebrate{transition:none!important;animation:none!important}}
+
+/* Consistent action buttons in normal and fullscreen views. */
+.paper-actions,.result-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;align-items:stretch;width:100%}
+.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:12px}
+.controls .group{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;min-width:0}
+.paper-actions button,.controls button,.result-actions button{display:flex;align-items:center;justify-content:center;width:100%;min-width:0;min-height:56px;height:100%;padding:11px 12px;line-height:1.4;font-size:clamp(.9rem,1.3vw,1rem);text-align:center;white-space:normal;overflow-wrap:anywhere}
+.paper-actions button{flex:none}
+@media(max-width:650px){
+ .paper-actions,.result-actions{grid-template-columns:minmax(0,1fr);gap:9px}
+ .controls{grid-template-columns:minmax(0,1fr);gap:9px}
+ .controls .group{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .paper-actions button,.controls button,.result-actions button{min-height:52px;padding:10px 9px}
+}
+@media(min-width:651px) and (max-width:890px){
+ .paper-actions,.result-actions{gap:8px}
+ .paper-actions button,.result-actions button{font-size:.91rem;padding:10px 7px}
+}
 </style>
 <link rel="manifest" href="/kids-learning/manifest.webmanifest">
 </head><body><div class="wrap">
@@ -115,7 +123,7 @@ body{background:radial-gradient(circle at 7% 6%,#fae8c1 0,transparent 32%),radia
 <div class="legend"><span>🟩 إجابة صحيحة</span><span>🟥 إجابة خاطئة</span><span>⬜ لم يُحل</span><span>⚑ للمراجعة</span></div><div id="map" class="map"></div></details>
 <p class="save">تُحفظ الإجابات تلقائيًا، ويمكنك إكمال الاختبار لاحقًا.</p>
 </section>
-<section class="panel quizpanel result" id="results" hidden><div class="medal" id="medal">🏆</div><h2>أحسنتِ يا سكينة!</h2><div id="bigscore" class="bigscore"></div><div id="stars" class="stars"></div><p id="summary"></p><div class="row" style="justify-content:center"><button id="reviewMistakes" class="soft">مراجعة الأخطاء</button><button id="restart" class="primary">اختبار جديد</button><button id="resultHome" class="soft">قائمة الاختبارات</button></div><div id="review" style="margin-top:22px;text-align:right"></div></section>
+<section class="panel quizpanel result" id="results" hidden><div class="medal" id="medal">🏆</div><h2>أحسنتِ يا سكينة!</h2><div id="bigscore" class="bigscore"></div><div id="stars" class="stars"></div><p id="summary"></p><div class="result-actions"><button id="reviewMistakes" class="soft">مراجعة الأخطاء</button><button id="restart" class="primary">اختبار جديد</button><button id="resultHome" class="soft">قائمة الاختبارات</button></div><div id="review" style="margin-top:22px;text-align:right"></div></section>
 <section class="panel" id="glossary"><h2>📚 بطاقات المراجعة قبل الاختبار</h2><p class="sub">التعريفات كما وردت في الصور المرفوعة، مقسمة بحسب موضوعها.</p><div id="study" class="studymap"></div></section>
 <footer>صُنعت هذه المغامرة لسكينة 🌱 — علوم الصف الرابع</footer></div><div id="screenNotice" class="screen-notice" role="status" hidden></div>
 <script>
@@ -284,24 +292,6 @@ el("dropdownRetry").addEventListener("click",function(){
 });
 var study=el("study");TERMS.forEach(function(t,i){var div=document.createElement("div");div.className="termcard";var h=document.createElement("strong");h.textContent=(i+1)+". "+t[0];var p=document.createElement("p");p.textContent=t[1];div.append(h,p);study.appendChild(div)});
 
-/* Optional Arabic read-aloud and progress dashboard; existing answers stay untouched. */
-var speechTools=document.createElement("div");speechTools.className="speech-settings";speechTools.setAttribute("role","group");speechTools.setAttribute("aria-label","إعدادات نطق الكلمات");
-speechTools.innerHTML='<label for="voiceSpeed">🔊 سرعة النطق</label><select id="voiceSpeed"><option value="0.65">بطيء جدًا</option><option value="0.82" selected>بطيء</option><option value="1">طبيعي</option></select><button type="button" class="soft" id="stopSpeech">■ إيقاف الصوت</button><small>الصوت العربي حسب المتوفر على الجهاز</small>';
-document.querySelector(".top").insertAdjacentElement("afterend",speechTools);
-function stopReading(){if("speechSynthesis" in window)window.speechSynthesis.cancel()}
-function readArabic(t){
- if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){screenNotice("النطق غير متاح في هذا المتصفح.");return}
- stopReading();
- var utterance=new SpeechSynthesisUtterance(String(t));utterance.lang="ar-SA";utterance.rate=Number(el("voiceSpeed").value)||0.82;utterance.pitch=1.04;
- var v=window.speechSynthesis.getVoices().find(function(x){return /^ar[-_]/i.test(x.lang)})||null;if(v)utterance.voice=v;
- try{window.speechSynthesis.speak(utterance)}catch(e){screenNotice("تعذّر تشغيل الصوت في الجهاز.")}
-}
-el("stopSpeech").addEventListener("click",stopReading);
-document.addEventListener("visibilitychange",function(){if(document.hidden)stopReading()});
-var listenPanel=document.createElement("div");listenPanel.className="listen-row";listenPanel.innerHTML='<button type="button" class="listen" id="speakPrompt">🔊 اسمعي السؤال</button><button type="button" class="listen" id="speakCorrect" hidden>🔉 اسمعي الإجابة الصحيحة</button>';
-el("prompt").insertAdjacentElement("afterend",listenPanel);
-el("speakPrompt").addEventListener("click",function(){if(current){var q=current.questions[idx];readArabic(TERMS[q.termIndex][q.type==="term"?1:0])}});
-el("speakCorrect").addEventListener("click",function(){if(current&&current.questions[idx].answer!==null)readArabic(correct(current.questions[idx]))});
 var journeyBox=document.createElement("div");journeyBox.className="journey";journeyBox.innerHTML='<h3>🌈 رحلة إنجاز سكينة</h3><div id="journey" class="journey-cards" aria-live="polite"></div>';
 document.querySelector("#home .models").insertAdjacentElement("afterend",journeyBox);
 function renderJourney(){
@@ -318,14 +308,6 @@ function renderJourney(){
  });
 }
 var oldShow=show;show=function(which){oldShow(which);if(which==="home")renderJourney()};
-var oldRender=render;render=function(toQuestion){stopReading();oldRender(toQuestion);el("speakCorrect").hidden=(current.questions[idx].answer===null)};
-var oldUpdateAnswerState=updateAnswerState;updateAnswerState=function(){oldUpdateAnswerState();el("speakCorrect").hidden=(current.questions[idx].answer===null)};
-var oldDropdown=renderDropdown;renderDropdown=function(){
- stopReading();oldDropdown();var group=PAPER_GROUPS[dropdownIndex];
- Array.prototype.forEach.call(document.querySelectorAll("#dropdownRows .paper-term"),function(container,n){
-  var termId=group.ids[n],button=document.createElement("button");button.type="button";button.className="listen mini";button.textContent="🔊";button.title="نطق المصطلح";button.setAttribute("aria-label","اسمعي مصطلح "+TERMS[termId][0]);button.addEventListener("click",function(){readArabic(TERMS[termId][0])});container.appendChild(button)
- })
-};
 var oldPaperTabs=renderPaperTabs;renderPaperTabs=function(){
  oldPaperTabs();
  Array.prototype.forEach.call(document.querySelectorAll("#dropdownTabs .paper-tab"),function(button,i){
@@ -334,13 +316,7 @@ var oldPaperTabs=renderPaperTabs;renderPaperTabs=function(){
  })
 };
 var celebration=document.createElement("div");celebration.id="celebrate";celebration.className="celebrate";celebration.setAttribute("aria-hidden","true");el("stars").insertAdjacentElement("afterend",celebration);
-var oldResult=result;result=function(){stopReading();oldResult();var percentage=rightCount()/current.questions.length;celebration.textContent=percentage>=.9?"🎉 ✨ 🏆 ✨ 🎉":percentage>=.75?"✨ ⭐ ✨":"";celebration.classList.toggle("active",percentage>=.75)};
-TERMS.forEach(function(t,i){
- var card=el("study").children[i];if(!card)return;
- var buttons=document.createElement("div");buttons.className="study-actions";
- [["🔊 المصطلح",t[0]],["🔊 التعريف",t[1]]].forEach(function(item){var button=document.createElement("button");button.type="button";button.className="listen mini";button.textContent=item[0];button.addEventListener("click",function(){readArabic(item[1])});buttons.appendChild(button)});
- card.appendChild(buttons)
-});
+var oldResult=result;result=function(){oldResult();var percentage=rightCount()/current.questions.length;celebration.textContent=percentage>=.9?"🎉 ✨ 🏆 ✨ 🎉":percentage>=.75?"✨ ⭐ ✨":"";celebration.classList.toggle("active",percentage>=.75)};
 renderJourney();
 })();
 </script></body></html>
