@@ -49,6 +49,39 @@ html:fullscreen{overflow-y:auto;background:#f5f9ef}body.screen-mode .wrap{width:
 .paper-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:18px 0}.paper-actions button{flex:0 0 auto}
 .paper-feedback{border:1px solid #d7e4dc;border-radius:12px;padding:12px 15px;margin-top:12px;background:#f8fbf6;font-weight:800}
 @media(max-width:650px){.paper-tabs{grid-template-columns:1fr}.paper-row{grid-template-columns:1fr;gap:5px}.paper-right{grid-column:1}.paper-actions button{flex:1}}
+
+/* Sakinah: playful polished learning interface, with reduced-motion support */
+body{background:radial-gradient(circle at 7% 6%,#fae8c1 0,transparent 32%),radial-gradient(circle at 89% 32%,#d8eeeb 0,transparent 31%),linear-gradient(135deg,#eaf5e8,#fffdf7 66%,#f6f0fc)}
+.hero{background:radial-gradient(circle at 95% 2%,#7dc4aa55,transparent 45%),linear-gradient(110deg,#175c44,#27816c 56%,#45699d);box-shadow:0 15px 32px #194e3544;border:2px solid #ffffff35}
+.hero h1{text-shadow:0 2px 10px #0c453750}
+.panel{box-shadow:0 10px 28px #23523c12}
+.model{transition:transform .18s,box-shadow .18s;border-width:2px;position:relative;overflow:hidden}
+.model:before{content:"";position:absolute;right:0;top:0;width:80px;height:6px;background:linear-gradient(90deg,#f1c356,#75bd92);border-radius:0 0 0 8px}
+.model:hover{transform:translateY(-3px);box-shadow:0 12px 25px #2a574b16}
+.model button,.primary{background:linear-gradient(115deg,#205f49,#298e6c);box-shadow:0 3px 0 #174837}
+.choice:focus-visible,.paper-tab:focus-visible{outline:3px solid #f3ae35;outline-offset:2px}
+.journey{margin:22px 0 2px}.journey h3{margin:0 0 10px;color:var(--deep)}
+.journey-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.journey-card{background:#f8fbf6;border:1px solid #d7e5d7;border-radius:13px;padding:11px}
+.journey-card strong{display:block;font-size:.88rem;line-height:1.5}.journey-card small{color:#486c5b}
+.journey-card .track{height:7px;background:#dfe9e0;border-radius:12px;margin-top:9px;overflow:hidden}
+.journey-card .track i{display:block;height:100%;background:linear-gradient(90deg,#5cae72,#e3b345);border-radius:12px}
+.speech-settings{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:10px 0 0;background:#fffdf9e8;border:1px solid #d7e5d4;padding:8px 12px;border-radius:13px;color:var(--deep)}
+.speech-settings label{font-weight:bold;font-size:.87rem}.speech-settings select{font:inherit;border:1px solid #b6cbbb;border-radius:9px;background:white;color:var(--text);padding:6px;max-width:175px}
+.speech-settings .soft{padding:5px 12px;min-height:36px;font-size:.86rem}
+.listen-row{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0}
+.listen{border:1px solid #afc8bd;background:#ecf8f1;color:#185f45;border-radius:11px;font-weight:bold;padding:7px 13px;min-height:42px}
+.listen:hover{background:#daf0e1}.listen:disabled{opacity:.48}
+.listen.mini{min-height:36px;padding:4px 10px;font-size:.87rem}
+.paper-term .listen{margin-inline-start:7px}
+.study-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.paper-tab .score-stars{display:block;color:#f1b52e;letter-spacing:2px}
+.celebrate{font-size:1.25rem;min-height:24px;letter-spacing:7px}
+@keyframes cheers{0%{transform:scale(.8);opacity:.3}50%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+.celebrate.active{animation:cheers .65s ease both}
+@media(max-width:850px){.journey-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){.model:hover{transform:none}.journey-card{padding:8px}.listen-row .listen{flex:1}}
+@media(prefers-reduced-motion:reduce){.model,.celebrate{transition:none!important;animation:none!important}}
 </style>
 <link rel="manifest" href="/kids-learning/manifest.webmanifest">
 </head><body><div class="wrap">
@@ -250,5 +283,64 @@ el("dropdownRetry").addEventListener("click",function(){
  paperProgress[dropdownIndex]=emptyPaper();savePapers();renderDropdown();
 });
 var study=el("study");TERMS.forEach(function(t,i){var div=document.createElement("div");div.className="termcard";var h=document.createElement("strong");h.textContent=(i+1)+". "+t[0];var p=document.createElement("p");p.textContent=t[1];div.append(h,p);study.appendChild(div)});
+
+/* Optional Arabic read-aloud and progress dashboard; existing answers stay untouched. */
+var speechTools=document.createElement("div");speechTools.className="speech-settings";speechTools.setAttribute("role","group");speechTools.setAttribute("aria-label","إعدادات نطق الكلمات");
+speechTools.innerHTML='<label for="voiceSpeed">🔊 سرعة النطق</label><select id="voiceSpeed"><option value="0.65">بطيء جدًا</option><option value="0.82" selected>بطيء</option><option value="1">طبيعي</option></select><button type="button" class="soft" id="stopSpeech">■ إيقاف الصوت</button><small>الصوت العربي حسب المتوفر على الجهاز</small>';
+document.querySelector(".top").insertAdjacentElement("afterend",speechTools);
+function stopReading(){if("speechSynthesis" in window)window.speechSynthesis.cancel()}
+function readArabic(t){
+ if(!("speechSynthesis" in window)||!("SpeechSynthesisUtterance" in window)){screenNotice("النطق غير متاح في هذا المتصفح.");return}
+ stopReading();
+ var utterance=new SpeechSynthesisUtterance(String(t));utterance.lang="ar-SA";utterance.rate=Number(el("voiceSpeed").value)||0.82;utterance.pitch=1.04;
+ var v=window.speechSynthesis.getVoices().find(function(x){return /^ar[-_]/i.test(x.lang)})||null;if(v)utterance.voice=v;
+ try{window.speechSynthesis.speak(utterance)}catch(e){screenNotice("تعذّر تشغيل الصوت في الجهاز.")}
+}
+el("stopSpeech").addEventListener("click",stopReading);
+document.addEventListener("visibilitychange",function(){if(document.hidden)stopReading()});
+var listenPanel=document.createElement("div");listenPanel.className="listen-row";listenPanel.innerHTML='<button type="button" class="listen" id="speakPrompt">🔊 اسمعي السؤال</button><button type="button" class="listen" id="speakCorrect" hidden>🔉 اسمعي الإجابة الصحيحة</button>';
+el("prompt").insertAdjacentElement("afterend",listenPanel);
+el("speakPrompt").addEventListener("click",function(){if(current){var q=current.questions[idx];readArabic(TERMS[q.termIndex][q.type==="term"?1:0])}});
+el("speakCorrect").addEventListener("click",function(){if(current&&current.questions[idx].answer!==null)readArabic(correct(current.questions[idx]))});
+var journeyBox=document.createElement("div");journeyBox.className="journey";journeyBox.innerHTML='<h3>🌈 رحلة إنجاز سكينة</h3><div id="journey" class="journey-cards" aria-live="polite"></div>';
+document.querySelector("#home .models").insertAdjacentElement("afterend",journeyBox);
+function renderJourney(){
+ var target=el("journey");target.replaceChildren();
+ [{title:"🔎 التعريف ← المصطلح",kind:"term",total:19},{title:"📖 المصطلح ← التعريف",kind:"definition",total:19},{title:"🏆 التحدي الشامل",kind:"mixed",total:38},{title:"📋 القوائم المنسدلة",kind:"papers",total:19}].forEach(function(info){
+  var done=0,complete=false;
+  if(info.kind==="papers"){PAPER_GROUPS.forEach(function(g,i){done+=chosenPaperCount(g,paperProgress[i])});complete=paperProgress.every(function(p){return p.checked})}
+  else{var state=load(info.kind);if(state){done=state.questions.filter(function(q){return q.answer!==null}).length;complete=state.ended}}
+  var card=document.createElement("div");card.className="journey-card";
+  var title=document.createElement("strong");title.textContent=info.title;
+  var sub=document.createElement("small");sub.textContent=(complete?"✅ مكتمل · ":"")+done+" / "+info.total;
+  var track=document.createElement("div");track.className="track";var fill=document.createElement("i");fill.style.width=Math.round(100*done/info.total)+"%";track.appendChild(fill);
+  card.append(title,sub,track);target.appendChild(card)
+ });
+}
+var oldShow=show;show=function(which){oldShow(which);if(which==="home")renderJourney()};
+var oldRender=render;render=function(toQuestion){stopReading();oldRender(toQuestion);el("speakCorrect").hidden=(current.questions[idx].answer===null)};
+var oldUpdateAnswerState=updateAnswerState;updateAnswerState=function(){oldUpdateAnswerState();el("speakCorrect").hidden=(current.questions[idx].answer===null)};
+var oldDropdown=renderDropdown;renderDropdown=function(){
+ stopReading();oldDropdown();var group=PAPER_GROUPS[dropdownIndex];
+ Array.prototype.forEach.call(document.querySelectorAll("#dropdownRows .paper-term"),function(container,n){
+  var termId=group.ids[n],button=document.createElement("button");button.type="button";button.className="listen mini";button.textContent="🔊";button.title="نطق المصطلح";button.setAttribute("aria-label","اسمعي مصطلح "+TERMS[termId][0]);button.addEventListener("click",function(){readArabic(TERMS[termId][0])});container.appendChild(button)
+ })
+};
+var oldPaperTabs=renderPaperTabs;renderPaperTabs=function(){
+ oldPaperTabs();
+ Array.prototype.forEach.call(document.querySelectorAll("#dropdownTabs .paper-tab"),function(button,i){
+  if(paperProgress[i].checked){var n=paperScore(PAPER_GROUPS[i],paperProgress[i]),percent=n/PAPER_GROUPS[i].ids.length;
+  var stars=document.createElement("span");stars.className="score-stars";stars.textContent="⭐".repeat(percent===1?3:percent>=.75?2:percent>=.5?1:0);button.appendChild(stars)}
+ })
+};
+var celebration=document.createElement("div");celebration.id="celebrate";celebration.className="celebrate";celebration.setAttribute("aria-hidden","true");el("stars").insertAdjacentElement("afterend",celebration);
+var oldResult=result;result=function(){stopReading();oldResult();var percentage=rightCount()/current.questions.length;celebration.textContent=percentage>=.9?"🎉 ✨ 🏆 ✨ 🎉":percentage>=.75?"✨ ⭐ ✨":"";celebration.classList.toggle("active",percentage>=.75)};
+TERMS.forEach(function(t,i){
+ var card=el("study").children[i];if(!card)return;
+ var buttons=document.createElement("div");buttons.className="study-actions";
+ [["🔊 المصطلح",t[0]],["🔊 التعريف",t[1]]].forEach(function(item){var button=document.createElement("button");button.type="button";button.className="listen mini";button.textContent=item[0];button.addEventListener("click",function(){readArabic(item[1])});buttons.appendChild(button)});
+ card.appendChild(buttons)
+});
+renderJourney();
 })();
 </script></body></html>
