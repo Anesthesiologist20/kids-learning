@@ -13,7 +13,7 @@ button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible
 .hero{background:linear-gradient(110deg,#21654e,#277b63 55%,#307f87);color:white;border-radius:24px;padding:clamp(23px,4vw,43px);position:relative;overflow:hidden}
 .hero:after{content:"🌿";position:absolute;left:22px;bottom:-46px;font-size:11rem;opacity:.12;pointer-events:none}.eyebrow{font-size:.8rem;letter-spacing:.015em;color:#d6f6dc;font-weight:bold}.hero h1{font-size:clamp(2rem,4.6vw,3rem);line-height:1.35;margin:8px 0}.hero p{max-width:740px;margin:0;color:#e4f6e7}.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.tags span{border:1px solid #ffffff7d;background:#ffffff20;border-radius:30px;padding:3px 12px;font-size:.84rem}
 .panel{border:1px solid var(--line);border-radius:20px;background:#fffefb;box-shadow:0 8px 24px #23523c0a;padding:clamp(17px,3vw,27px);margin:17px 0}.panel h2{margin:0 0 8px;font-size:1.6rem}.sub{color:var(--muted);font-size:.94rem;margin:0 0 16px}
-.models{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.model{border:1px solid #c4d9c7;padding:21px 15px 16px;border-radius:16px;background:#f5faf3;display:flex;flex-direction:column;align-items:flex-start}.model:nth-child(2){background:#eef7f7}.model:nth-child(3){background:#fff7e6;border-color:#e2d4b6}.emoji{font-size:2.1rem}.model h3{font-size:1.22rem;line-height:1.5;margin:7px 0}.model p{font-size:.9rem;flex:1;color:#526960;margin:0 0 13px}.model button,.primary,.soft,.danger{border-radius:12px;border:1px solid var(--pine);padding:9px 18px;min-height:47px;font-weight:bold}.model button,.primary{background:var(--pine);color:white}.model button{width:100%}.soft{background:#eaf3e8;color:var(--pine);border-color:#b1c8b8}.danger{background:#fff2ed;color:#913e34;border-color:#e2b1a3}
+.models{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.model{border:1px solid #c4d9c7;padding:21px 15px 16px;border-radius:16px;background:#f5faf3;display:flex;flex-direction:column;align-items:flex-start}.model:nth-child(2){background:#eef7f7}.model:nth-child(3){background:#fff7e6;border-color:#e2d4b6}.model:nth-child(4){background:#f1efff;border-color:#d6cced}.emoji{font-size:2.1rem}.model h3{font-size:1.22rem;line-height:1.5;margin:7px 0}.model p{font-size:.9rem;flex:1;color:#526960;margin:0 0 13px}.model button,.primary,.soft,.danger{border-radius:12px;border:1px solid var(--pine);padding:9px 18px;min-height:47px;font-weight:bold}.model button,.primary{background:var(--pine);color:white}.model button{width:100%}.soft{background:#eaf3e8;color:var(--pine);border-color:#b1c8b8}.danger{background:#fff2ed;color:#913e34;border-color:#e2b1a3}
 .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:space-between}.counter,.status{font-weight:700;color:var(--muted);font-size:.92rem}.bar{width:100%;height:10px;overflow:hidden;border-radius:10px;background:#e0eae0;margin:14px 0 23px}.bar>i{display:block;width:0;background:linear-gradient(90deg,#62a66d,#27755b);height:100%;transition:width .2s}
 .topic{display:inline-block;font-size:.84rem;font-weight:bold;background:#e7f2df;color:#306047;border-radius:24px;padding:3px 12px}
 .qtitle{margin:10px 0 8px;font-size:clamp(1.2rem,3vw,1.55rem)}.prompt{background:#f7faf1;border:1px solid #d6e4d2;border-radius:14px;padding:19px 17px;font-size:clamp(1.08rem,2.2vw,1.4rem);font-weight:bold;min-height:95px;line-height:1.8}
@@ -31,24 +31,47 @@ html{scroll-padding-top:86px}body{padding:env(safe-area-inset-top) env(safe-area
 .quizpanel{scroll-margin-top:86px;overflow-anchor:none;min-width:0}.choice>span:last-child{min-width:0;overflow-wrap:anywhere}.choice[aria-pressed="true"] .letter{box-shadow:0 0 0 2px currentColor}
 .choice:disabled{opacity:1}.choice:disabled:not(.correct):not(.incorrect){color:var(--text)}
 .feedback{min-height:3.5em}.feedback:empty{visibility:hidden}.controls .group{min-width:0}
-body[data-view="quiz"] .hero,body[data-view="quiz"] footer{display:none}body[data-view="quiz"] .wrap{padding-bottom:12px}body[data-view="quiz"] .quizpanel{margin-top:8px}
+body[data-view="quiz"] .hero,body[data-view="quiz"] footer,body[data-view="dropdown"] .hero,body[data-view="dropdown"] footer{display:none}body[data-view="quiz"] .wrap{padding-bottom:12px}body[data-view="quiz"] .quizpanel{margin-top:8px}
 body[data-view="quiz"] .bar{margin:10px 0 14px}body[data-view="quiz"] .prompt{padding:14px 16px}body[data-view="quiz"] .answers{margin:12px 0}
 .screen-notice{position:fixed;z-index:20;inset:auto 16px 18px;margin:auto;max-width:560px;border-radius:12px;padding:12px 16px;background:var(--deep);color:white;text-align:center;box-shadow:0 4px 20px #173f3433}
 html:fullscreen{overflow-y:auto;background:#f5f9ef}body.screen-mode .wrap{width:100%;max-width:1320px}body.screen-mode .hero{padding:18px 22px}body.screen-mode .hero p,body.screen-mode .hero .tags,body.screen-mode footer{display:none}
 @media(max-width:650px){.top{gap:6px;padding:6px 0}.top-actions{margin-inline-start:auto}.top .screen-button{font-size:.86rem;min-width:136px}.quizpanel{padding:15px}.prompt{line-height:1.7}.choice{padding:10px;gap:9px}.controls{gap:10px}}
 @media(min-width:700px) and (max-height:850px){body[data-view="quiz"] .quizpanel{max-width:1160px;padding:16px 20px}body[data-view="quiz"] .answers{grid-template-columns:repeat(2,minmax(0,1fr))}body[data-view="quiz"] .prompt{min-height:65px}body[data-view="quiz"] .qtitle{font-size:1.25rem}body[data-view="quiz"] .controls{padding-top:12px}body[data-view="quiz"] .feedback{margin:6px 0 12px}}
+/* Fourth activity: paper-by-paper dropdown matching. */
+.paper-head{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between;margin-bottom:14px}
+.paper-head h2{margin:0}.paper-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:18px 0}
+.paper-tab{padding:13px 9px;border-radius:13px;border:2px solid #c4d9c7;background:#f4f8f5;color:var(--deep);font-weight:800;cursor:pointer;min-height:58px}
+.paper-tab.selected{background:var(--pine);border-color:var(--pine);color:#fff}.paper-tab span{display:block;font-size:.78rem;font-weight:500;margin-top:2px}
+.paper-row{display:grid;grid-template-columns:minmax(130px,0.75fr) minmax(0,2fr);align-items:center;gap:12px;padding:14px;border:1px solid #d5e3d9;border-radius:14px;margin:11px 0;background:#fcfefb}
+.paper-row.matched{border-color:#84bf97;background:#edf9ef}.paper-row.missed{border-color:#dca39b;background:#fff4ef}
+.paper-term{font-weight:800;color:var(--deep);font-size:1.04rem}.paper-row select{width:100%;min-width:0;max-width:100%;border:1.5px solid #bacfc2;background:#fff;color:var(--text);border-radius:11px;padding:12px;font:inherit;font-size:1rem;min-height:52px}
+.paper-row select:disabled{opacity:1;color:var(--text);background:#f7faf8}.paper-right{grid-column:2;color:#a03d36;font-size:.92rem;font-weight:bold}
+.paper-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:18px 0}.paper-actions button{flex:0 0 auto}
+.paper-feedback{border:1px solid #d7e4dc;border-radius:12px;padding:12px 15px;margin-top:12px;background:#f8fbf6;font-weight:800}
+@media(max-width:650px){.paper-tabs{grid-template-columns:1fr}.paper-row{grid-template-columns:1fr;gap:5px}.paper-right{grid-column:1}.paper-actions button{flex:1}}
 </style>
 <link rel="manifest" href="/kids-learning/manifest.webmanifest">
 </head><body><div class="wrap">
 <nav class="top"><a href="./">← العودة إلى ركن سكينة</a><div class="top-actions"><span>🎒 مغامرات التعلّم / العلوم</span><button type="button" class="soft screen-button" id="fullscreen" aria-pressed="false">⛶ ملء الشاشة</button></div></nav>
-<header class="hero"><div class="eyebrow">✦ علوم الصف الرابع · مفردات الفكرة العامة</div><h1>🌿 تحدي المصطلحات العلمية</h1><p>يا سكينة، اقرئي التعريف جيدًا، واختاري المصطلح الصحيح. ثم اعكسي اللعبة: شاهدي المصطلح واختاري تعريفه! جميع الأسئلة من أوراقك الثلاث.</p><div class="tags"><span>١٩ مصطلحًا</span><span>٤ اختيارات</span><span>٣ اختبارات</span><span>حفظ التقدم ⭐</span></div></header>
+<header class="hero"><div class="eyebrow">✦ علوم الصف الرابع · مفردات الفكرة العامة</div><h1>🌿 تحدي المصطلحات العلمية</h1><p>يا سكينة، اقرئي التعريف جيدًا، واختاري المصطلح الصحيح. ثم اعكسي اللعبة: شاهدي المصطلح واختاري تعريفه! جميع الأسئلة من أوراقك الثلاث.</p><div class="tags"><span>١٩ مصطلحًا</span><span>٤ اختيارات</span><span>٤ أقسام</span><span>حفظ التقدم ⭐</span></div></header>
 <section class="panel" id="home">
 <h2>🎯 اختاري مغامرتك</h2><p class="sub">كل إجابة تُثبّت بعد اختيارها، ويمكنك الرجوع للأسئلة ومراجعة أخطائك. لا يوجد وقت محدد.</p>
 <div class="models">
 <div class="model"><span class="emoji">🔍</span><h3>من التعريف إلى المصطلح</h3><p>سيظهر التعريف من الكتاب، وأمامك أربعة مصطلحات. اختاري المناسب.</p><button data-start="term">ابدئي · ١٩ سؤالًا</button></div>
 <div class="model"><span class="emoji">📖</span><h3>من المصطلح إلى التعريف</h3><p>سيظهر مصطلح واحد وأربعة تعريفات. اختاري التعريف الصحيح.</p><button data-start="definition">ابدئي · ١٩ سؤالًا</button></div>
 <div class="model"><span class="emoji">🏆</span><h3>تحدي سكينة الشامل</h3><p>الـ١٩ مصطلحًا بالاتجاهين، مرتبة بشكل عشوائي في تحدي نهائي.</p><button data-start="mixed">ابدئي · ٣٨ سؤالًا</button></div>
+<div class="model"><span class="emoji">📋</span><h3>تحدي القوائم المنسدلة</h3><p>القسم الرابع: المصطلحات من أوراقك الثلاث، موزعة على ثلاث مجموعات مستقلة.</p><button type="button" id="openDropdown">ابدئي · ٣ مجموعات</button></div>
 </div><p class="save">💾 يُحفظ تقدم كل اختبار تلقائيًا على هذا الجهاز.</p></section>
+<section class="panel" id="dropdown" hidden>
+<div class="backrow"><button class="soft" id="dropdownBack">← قائمة التحديات</button></div>
+<div class="paper-head"><h2>📋 القسم الرابع · تحدي المصطلحات بالقوائم المنسدلة</h2><strong id="dropdownCount" class="topic"></strong></div>
+<p class="sub">اختاري تعريف كل مصطلح من القائمة المنسدلة، ثم اضغطي «تحقّق من إجاباتي». كل ورقة لها أسئلتها ونتيجتها الخاصة.</p>
+<div id="dropdownTabs" class="paper-tabs" role="group" aria-label="اختيار ورقة المصطلحات"></div>
+<h3 id="dropdownTitle"></h3><div id="dropdownRows"></div>
+<div class="paper-actions"><button type="button" id="dropdownCheck" class="primary">✅ تحقّق من إجاباتي</button><button type="button" id="dropdownRetry" class="soft">↻ إعادة هذه المجموعة</button><button type="button" id="dropdownReturn" class="soft">الاختبارات</button></div>
+<div id="dropdownFeedback" class="paper-feedback" role="status" aria-live="polite"></div>
+<p class="save">💾 إجابات كل مجموعة تُحفظ تلقائيًا على هذا الجهاز دون التأثير في الاختبارات الثلاثة الأخرى.</p>
+</section>
 <section class="panel quizpanel" id="quiz" hidden>
 <div class="row"><span id="modeTitle" class="counter"></span><span id="position" class="counter"></span></div><div class="bar" aria-hidden="true"><i id="bar"></i></div>
 <div class="row"><span class="topic" id="group"></span><button class="soft" id="flag" aria-pressed="false">⚑ للمراجعة</button></div>
@@ -89,7 +112,7 @@ var TERMS=[
 var labels={term:"التعريف ← المصطلح",definition:"المصطلح ← التعريف",mixed:"التحدي الشامل"};
 var current=null;var idx=0;var mode="term";var KEY="sakinah-science-definitions-v1-";
 function el(id){return document.getElementById(id)}
-function show(which){var changed=document.body.dataset.view!==which;["home","quiz","results"].forEach(function(id){el(id).hidden=(id!==which)});el("glossary").hidden=(which!=="home");document.body.dataset.view=which;if(changed)window.scrollTo({top:0,behavior:"instant"})}
+function show(which){var changed=document.body.dataset.view!==which;["home","quiz","results","dropdown"].forEach(function(id){el(id).hidden=(id!==which)});el("glossary").hidden=(which!=="home");document.body.dataset.view=which;if(changed)window.scrollTo({top:0,behavior:"instant"})}
 var screenPending=false;var noticeTimer;
 function fullscreenElement(){return document.fullscreenElement||document.webkitFullscreenElement}
 function syncScreenButton(){var active=!!fullscreenElement()||document.body.classList.contains("screen-mode");el("fullscreen").setAttribute("aria-pressed",String(active));el("fullscreen").textContent=active?"✕ خروج من ملء الشاشة":"⛶ ملء الشاشة"}
@@ -154,6 +177,78 @@ el("finish").addEventListener("click",finish);el("backhome").addEventListener("c
 el("resultHome").addEventListener("click",function(){show("home")});
 el("reviewMistakes").addEventListener("click",function(){renderReview(true);el("review").scrollIntoView({behavior:"smooth"})});
 el("restart").addEventListener("click",function(){if(window.confirm("بدء اختبار جديد؟ ستُحذف إجابات هذا الاختبار فقط.")){start(mode,true)}});
+/* Dropdown matching, independently saved for each of the three original sheets. */
+var PAPER_GROUPS=[
+{name:"الورقة الأولى",topic:"المخلوقات الحية",ids:[0,1,2,3,4,5,6]},
+{name:"الورقة الثانية",topic:"تصنيف الحيوانات وأجهزة الجسم",ids:[7,8,9,10,11,12]},
+{name:"الورقة الثالثة",topic:"النظام البيئي",ids:[13,14,15,16,17,18]}
+];
+var dropdownIndex=0;
+var dropdownKey=KEY+"dropdown-papers-v1";
+function emptyPaper(){return {answers:{},checked:false}}
+var paperProgress=PAPER_GROUPS.map(function(){return emptyPaper()});
+try{
+  var storedPapers=JSON.parse(localStorage.getItem(dropdownKey)||"null");
+  if(Array.isArray(storedPapers)&&storedPapers.length===3){
+    paperProgress=storedPapers.map(function(p){return p&&p.answers&&typeof p.answers==="object"?{answers:p.answers,checked:p.checked===true}:emptyPaper()});
+  }
+}catch(e){}
+function savePapers(){try{localStorage.setItem(dropdownKey,JSON.stringify(paperProgress))}catch(e){}}
+function chosenPaperCount(group,state){return group.ids.filter(function(id){return state.answers[id]!==null&&state.answers[id]!==undefined&&group.ids.indexOf(Number(state.answers[id]))!==-1}).length}
+function paperScore(group,state){return group.ids.filter(function(id){return Number(state.answers[id])===id}).length}
+function renderPaperTabs(){
+ var tabs=el("dropdownTabs");tabs.replaceChildren();
+ PAPER_GROUPS.forEach(function(group,i){
+  var state=paperProgress[i],button=document.createElement("button");button.type="button";button.className="paper-tab"+(i===dropdownIndex?" selected":"");
+  button.setAttribute("aria-pressed",String(i===dropdownIndex));
+  var label=document.createElement("strong");label.textContent=group.name;
+  var sub=document.createElement("span");sub.textContent=state.checked?("✅ النتيجة "+paperScore(group,state)+" من "+group.ids.length):(chosenPaperCount(group,state)+" من "+group.ids.length+" مكتملة");
+  button.append(label,sub);button.addEventListener("click",function(){dropdownIndex=i;renderDropdown();});tabs.appendChild(button);
+ });
+}
+function syncPaperCount(){
+ var group=PAPER_GROUPS[dropdownIndex],state=paperProgress[dropdownIndex],count=chosenPaperCount(group,state);
+ el("dropdownCount").textContent=count+" من "+group.ids.length+" تعريفات";
+ el("dropdownCheck").disabled=state.checked||count!==group.ids.length;
+ if(!state.checked){el("dropdownFeedback").textContent=count===group.ids.length?"رائع! جميع التعريفات مختارة. اضغطي «تحقّق من إجاباتي».":"باقي "+(group.ids.length-count)+" تعريفات لإكمال هذه المجموعة."}
+ renderPaperTabs();
+}
+function renderDropdown(){
+ show("dropdown");var group=PAPER_GROUPS[dropdownIndex],state=paperProgress[dropdownIndex];
+ el("dropdownTitle").textContent=group.name+" · "+group.topic+" ("+group.ids.length+" مصطلحات)";
+ var rows=el("dropdownRows");rows.replaceChildren();
+ group.ids.forEach(function(termId,n){
+  var row=document.createElement("div");row.className="paper-row";
+  var term=document.createElement("div");term.className="paper-term";term.textContent=(n+1)+". "+TERMS[termId][0];
+  var select=document.createElement("select");select.setAttribute("aria-label","اختاري تعريف "+TERMS[termId][0]);
+  var blank=document.createElement("option");blank.value="";blank.textContent="اختاري تعريفًا…";select.appendChild(blank);
+  shuffled(group.ids).forEach(function(optionId){var opt=document.createElement("option");opt.value=String(optionId);opt.textContent=TERMS[optionId][1];select.appendChild(opt)});
+  var selected=state.answers[termId];select.value=selected===null||selected===undefined?"":String(selected);
+  select.disabled=state.checked;
+  select.addEventListener("change",function(){state.answers[termId]=select.value===""?null:Number(select.value);savePapers();syncPaperCount()});
+  row.append(term,select);
+  if(state.checked){
+   if(Number(state.answers[termId])===termId){row.classList.add("matched")}
+   else{row.classList.add("missed");var hint=document.createElement("div");hint.className="paper-right";hint.textContent="الصحيح: "+TERMS[termId][1];row.appendChild(hint)}
+  }
+  rows.appendChild(row);
+ });
+ if(state.checked){var points=paperScore(group,state);el("dropdownFeedback").textContent="نتيجة "+group.name+": "+points+" من "+group.ids.length+" صحيحة. "+(points===group.ids.length?"ممتاز يا سكينة! 🌟":"راجعي التعريفات المصحّحة ثم أعيدي المجموعة إذا أحببتِ.")}
+ syncPaperCount();
+ if(state.checked)el("dropdownFeedback").textContent="نتيجة "+group.name+": "+paperScore(group,state)+" من "+group.ids.length+" صحيحة. "+(paperScore(group,state)===group.ids.length?"ممتاز يا سكينة! 🌟":"راجعي التعريفات المصحّحة ثم أعيدي المجموعة إذا أحببتِ.");
+}
+el("openDropdown").addEventListener("click",function(){renderDropdown()});
+el("dropdownBack").addEventListener("click",function(){show("home")});
+el("dropdownReturn").addEventListener("click",function(){show("home")});
+el("dropdownCheck").addEventListener("click",function(){
+ var group=PAPER_GROUPS[dropdownIndex],state=paperProgress[dropdownIndex];
+ if(state.checked||chosenPaperCount(group,state)!==group.ids.length)return;
+ state.checked=true;savePapers();renderDropdown();
+});
+el("dropdownRetry").addEventListener("click",function(){
+ if(!window.confirm("إعادة "+PAPER_GROUPS[dropdownIndex].name+"؟ ستُحذف إجابات هذه المجموعة فقط."))return;
+ paperProgress[dropdownIndex]=emptyPaper();savePapers();renderDropdown();
+});
 var study=el("study");TERMS.forEach(function(t,i){var div=document.createElement("div");div.className="termcard";var h=document.createElement("strong");h.textContent=(i+1)+". "+t[0];var p=document.createElement("p");p.textContent=t[1];div.append(h,p);study.appendChild(div)});
 })();
 </script></body></html>
