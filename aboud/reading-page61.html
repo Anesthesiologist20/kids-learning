@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#2876a7">
+<title>Aboud • Reading Page 61</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<style>
+:root{--blue:#267bb0;--ink:#22354c;--soft:#eef7ff;--line:#dbe7f1}
+*{box-sizing:border-box}body{margin:0;background:#f4f8fd;color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:800px;margin:auto;padding:16px 15px 55px}a{color:#245d9d;text-decoration:none;font-weight:700}
+header{margin:15px 0 18px;border-radius:23px;background:linear-gradient(120deg,#1f75ac,#6570c6);color:#fff;padding:24px}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.18;margin:4px 0}h2{margin:0 0 8px;font-size:22px}
+header p{margin:8px 0 0;opacity:.95}.pill{display:inline-block;background:#ffffff25;padding:4px 10px;border-radius:30px;font-weight:800;font-size:13px}
+.card{padding:20px;background:#fff;border:1px solid var(--line);border-radius:20px;margin:14px 0;box-shadow:0 5px 22px #30405b0a}
+.explain{font-size:21px;font-weight:750;margin:6px 0}.ar{color:#65758a;font-size:15px;margin:2px 0 8px}
+button{font:inherit;cursor:pointer;min-height:46px;padding:9px 15px;border:1px solid #c5d9e9;border-radius:13px;background:#eef5fc;color:#254b79;font-weight:800;touch-action:manipulation}
+button:disabled{opacity:.45;cursor:default}.primary{background:var(--blue);color:white;border-color:var(--blue)}
+.tabs,.controls{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0}
+.tabs button{flex:1;min-width:150px}.tabs button[aria-pressed=true]{background:#2876aa;color:white;border-color:#2876aa}
+.characters{font-weight:700;color:#43617c;font-size:15px;margin:10px 0}
+.sentence{font-size:clamp(23px,4vw,30px);font-weight:700;line-height:1.6;background:#f1f8ff;padding:18px;border-radius:17px;min-height:145px;display:flex;align-items:center}
+.controls button{flex:1}.counter{font-size:14px;color:#6c7c93;font-weight:750}
+.words{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.words button{font-size:15px;background:#fff7e6;border-color:#f0ddac}
+.word-result{min-height:25px;font-weight:700;color:#956a16;margin:10px 0 0}
+.quiz-question{font-size:22px;font-weight:800;margin:14px 0}.option{width:100%;display:block;text-align:left;margin:8px 0;background:#f5f8fc}
+.option.good{background:#dcf5e5;color:#195e36;border-color:#75b891}.option.bad{background:#ffe3e8;color:#892f42;border-color:#e9a2ae}
+#feedback{font-weight:800;min-height:27px}#score{font-size:22px;font-weight:800;color:#176c46}
+#playback{width:100%;margin-top:10px}#recordStatus{font-size:14px;color:#6b788a}
+footer{text-align:center;font-size:13px;color:#74839a;padding-top:10px}
+@media(max-width:430px){main{padding:11px}.card{padding:16px}.tabs button{min-width:0}.sentence{min-height:145px}}
+</style></head><body><main>
+<a href="./">← Aboud's Learning Corner</a>
+<header><span class="pill">📘 Grade 2 · Student Book · p. 61</span><h1>🔎 Identifying Characters</h1><p>Read a little • Find the characters • Answer 4 questions</p></header>
+<section class="card"><h2>💡 One simple idea</h2><p class="explain">Characters are the people or animals in a story.</p><p class="ar" lang="ar" dir="rtl">الشخصيات: الأشخاص أو الحيوانات الموجودة في القصة. بس هذا المطلوب نفهمه.</p></section>
+<section class="card"><h2>📖 Let's read</h2>
+<div class="tabs"><button id="story0" type="button" aria-pressed="true">🐜 Preparing for Winter</button><button id="story1" type="button" aria-pressed="false">🏡 Hansel and Gretel</button></div>
+<p class="characters" id="characters"></p><p class="counter" id="counter"></p><div class="sentence" id="sentence" aria-live="polite"></div>
+<div class="controls"><button id="prev" type="button">← Previous</button><button class="primary" id="next" type="button">Next →</button></div>
+<details><summary style="cursor:pointer;font-weight:750;color:#406e9b">Show all the reading text</summary><p id="allText" style="white-space:pre-line;font-size:19px;line-height:1.8"></p></details>
+</section>
+<section class="card"><h2>🔤 Just 5 words</h2><p class="ar" lang="ar" dir="rtl">اضغط الكلمة لمعرفة معناها.</p><div class="words" id="words"></div><p class="word-result" id="wordResult" aria-live="polite"></p></section>
+<section class="card"><h2>🎯 Quick practice</h2><p class="ar" lang="ar" dir="rtl">أربع أسئلة فقط عن شخصيات القصتين.</p>
+<div id="quiz"><p class="counter" id="qCounter"></p><p class="quiz-question" id="qText"></p><div id="options"></div><p id="feedback" aria-live="polite"></p><div class="controls"><button class="primary" id="qNext" type="button" hidden>Next question →</button><button id="restart" type="button" hidden>Try again</button></div><p id="score"></p></div>
+</section>
+<section class="card"><h2>🎙️ Read in your own voice</h2><p class="ar" lang="ar" dir="rtl">اختياري: خلّ عبود يقرأ جملة، ويسمع تسجيله. ما يحتاج حساب.</p>
+<div class="controls"><button id="record" class="primary" type="button">🎙️ Start recording</button><button id="stop" type="button" disabled>■ Stop</button></div><p id="recordStatus" aria-live="polite"></p><audio id="playback" controls hidden></audio>
+</section><footer>⭐ Great job, Aboud! · Source: Cambridge Primary Path 2, Student Book p. 61</footer>
+</main>
+<script>
+const stories=[
+{characters:"Characters: the grasshopper 🦗 and the ant 🐜",lines:[
+"A grasshopper and an ant are friends. It's summer.",
+"The grasshopper eats and plays music all day.",
+"The ant works hard and collects food for the winter.",
+"Winter comes. The ant is at home.",
+"She eats and has a good time.",
+"The grasshopper is cold and hungry.",
+"He visits the ant for food. The ant gives him some food.",
+'"You need to work hard to prepare for the winter," says the ant.'
+]},
+{characters:"Characters: Hansel, Gretel and the old woman 👧🏡",lines:[
+"Hansel and Gretel get lost in the forest.",
+"Suddenly, they see a house made of cake and candy.",
+"They are hungry. An old woman invites them in.",
+"She has food and golden coins in her house.",
+"But the old woman is bad. She opens the oven door.",
+"She wants to push the children inside!",
+"Gretel pushes the old woman into the oven instead!",
+"Hansel and Gretel take the gold coins and return to their father, who is happy to see them.",
+"They all live happily ever after."
+]}];
+let which=0,line=0;function renderStory(){const s=stories[which];document.getElementById('characters').textContent=s.characters;document.getElementById('sentence').textContent=s.lines[line];document.getElementById('counter').textContent='Sentence '+(line+1)+' of '+s.lines.length;document.getElementById('prev').disabled=line===0;document.getElementById('next').textContent=line===s.lines.length-1?'Start again ↻':'Next →';document.getElementById('allText').textContent=s.lines.join(' ');for(let i=0;i<2;i++)document.getElementById('story'+i).setAttribute('aria-pressed',String(i===which))}
+for(let i=0;i<2;i++)document.getElementById('story'+i).onclick=()=>{which=i;line=0;renderStory()};
+document.getElementById('prev').onclick=()=>{line=Math.max(0,line-1);renderStory()};
+document.getElementById('next').onclick=()=>{line=line===stories[which].lines.length-1?0:line+1;renderStory()};
+const words=[["character","شخصية"],["grasshopper","جرادة"],["ant","نملة"],["winter","الشتاء"],["forest","غابة"]];
+for(const [en,ar] of words){const b=document.createElement('button');b.textContent=en;b.onclick=()=>document.getElementById('wordResult').textContent=en+' = '+ar;document.getElementById('words').append(b)}
+const questions=[
+{q:"Who are the characters in Preparing for Winter?",a:["An ant and a grasshopper","Hansel and Gretel","A cat and a dog"],correct:0},
+{q:"Who works hard to collect food?",a:["The grasshopper","The ant","The old woman"],correct:1},
+{q:"Who invites Hansel and Gretel inside?",a:["Their father","The ant","The old woman"],correct:2},
+{q:"Who saves Hansel from the old woman?",a:["Gretel","The grasshopper","The ant"],correct:0}
+];
+let q=0,chosen=null,points=0;
+function renderQuiz(){const ques=questions[q];document.getElementById('qCounter').textContent='Question '+(q+1)+' of '+questions.length;document.getElementById('qText').textContent=ques.q;const box=document.getElementById('options');box.replaceChildren();document.getElementById('qNext').hidden=true;document.getElementById('feedback').textContent='';document.getElementById('score').textContent='';for(const [i,answer] of ques.a.entries()){const b=document.createElement('button');b.className='option';b.textContent=answer;b.onclick=()=>{if(chosen!==null)return;chosen=i;if(i===ques.correct)points++;for(const [j,btn] of Array.from(box.children).entries()){btn.disabled=true;if(j===ques.correct)btn.classList.add('good');else if(j===i)btn.classList.add('bad')}document.getElementById('feedback').textContent=i===ques.correct?'✅ Correct!':'↪ Correct answer: '+ques.a[ques.correct];document.getElementById('qNext').hidden=false;document.getElementById('qNext').textContent=q===questions.length-1?'See my score ⭐':'Next question →'};box.append(b)}}
+document.getElementById('qNext').onclick=()=>{if(q===questions.length-1){document.getElementById('qCounter').textContent='Finished!';document.getElementById('qText').textContent='🌟 Well done, Aboud!';document.getElementById('options').replaceChildren();document.getElementById('qNext').hidden=true;document.getElementById('feedback').textContent='';document.getElementById('score').textContent=points+' / '+questions.length+' correct';document.getElementById('restart').hidden=false}else{q++;chosen=null;renderQuiz()}};
+document.getElementById('restart').onclick=()=>{q=0;points=0;chosen=null;document.getElementById('restart').hidden=true;renderQuiz()};
+let recorder=null,stream=null,chunks=[],audioURL=null;const rec=document.getElementById('record'),stop=document.getElementById('stop'),status=document.getElementById('recordStatus'),play=document.getElementById('playback');
+rec.onclick=async()=>{if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){status.textContent='Recording is not supported in this browser.';return}try{stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{stream?.getTracks().forEach(t=>t.stop());const blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});if(audioURL)URL.revokeObjectURL(audioURL);audioURL=URL.createObjectURL(blob);play.src=audioURL;play.hidden=false;status.textContent='▶ Play your reading below.';rec.disabled=false;stop.disabled=true};recorder.start();rec.disabled=true;stop.disabled=false;status.textContent='🔴 Recording… read one sentence aloud.'}catch(e){status.textContent='Microphone access was not available.'}};
+stop.onclick=()=>{if(recorder?.state==='recording')recorder.stop()};
+renderStory();renderQuiz();
+</script></body></html>
