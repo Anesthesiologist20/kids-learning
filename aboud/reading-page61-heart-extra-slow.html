@@ -65,19 +65,20 @@ footer{text-align:center;color:#71829a;font-size:13px;padding:16px}
 const el=id=>document.getElementById(id), BASE="audio/page61-heart/";
 const savedKey="aboud-page61-heart-v2";
 let d=null,story=0,word=0,question=0,player=el("audio"),currentRow=null,playRun=0;
-let recording=null,voiceStream=null,ownClips=new Map();
+let recording=null,voiceStream=null,ownClips=new Map(),pendingAudioFinish=null;
 let progress={heard:[],spoken:[],answers:[]};
 try{const p=JSON.parse(localStorage.getItem(savedKey)||"{}");if(p&&typeof p==="object")for(const k of Object.keys(progress))if(Array.isArray(p[k]))progress[k]=p[k]}catch(e){}
 function save(){try{localStorage.setItem(savedKey,JSON.stringify(progress))}catch(e){}}
 function status(t){el("status").textContent=t;el("status").classList.add("show")}
 function clearStatus(){el("status").classList.remove("show")}
-function stopAudio(){player.pause();player.onended=null;player.onerror=null;player.removeAttribute("src");if(currentRow)currentRow.classList.remove("playing");currentRow=null}
+function stopAudio(){player.pause();player.onended=null;player.onerror=null;player.removeAttribute("src");if(currentRow)currentRow.classList.remove("playing");currentRow=null;if(pendingAudioFinish){const f=pendingAudioFinish;pendingAudioFinish=null;f(false)}}
 function audioFile(prefix,id){return BASE+prefix+"-"+id+".mp3"}
 function audioPlay(file,row){
  stopAudio();player.src=file;player.playbackRate=1;currentRow=row||null;if(row)row.classList.add("playing");
  return new Promise(resolve=>{
   let finished=false;
-  function done(ok){if(finished)return;finished=true;if(row)row.classList.remove("playing");if(ok)clearStatus();resolve(ok)}
+  pendingAudioFinish=ok=>done(ok);
+  function done(ok){if(finished)return;finished=true;pendingAudioFinish=null;if(row)row.classList.remove("playing");if(ok)clearStatus();resolve(ok)}
   player.onended=()=>done(true);
   player.onerror=()=>{status("Heart audio is not published yet. Please try again when the recording becomes available.");done(false)};
   player.play().catch(()=>{status("Tap Listen again to start Heart audio.");done(false)});
