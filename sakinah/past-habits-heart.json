@@ -1,0 +1,176 @@
+{
+  "voice_speed": 0.86,
+  "voices": {
+    "heart": "af_heart"
+  },
+  "lines": [
+    {
+      "id": "past-habits-s1",
+      "text": "When Grandpa Omar was five years old, he rode a small red tricycle around his neighborhood."
+    },
+    {
+      "id": "past-habits-s2",
+      "text": "Riding outside every afternoon was a regular habit, but he stopped riding it as he grew older."
+    },
+    {
+      "id": "past-habits-s3",
+      "text": "In the past, daily life looked very different before modern computers and smartphones arrived."
+    },
+    {
+      "id": "past-habits-s4",
+      "text": "People used to play their favorite music on plastic tape cassettes."
+    },
+    {
+      "id": "past-habits-s5",
+      "text": "In those days, families listened to the morning news together on tabletop radios."
+    },
+    {
+      "id": "past-habits-s6",
+      "text": "Drivers could not look at digital touchscreens, so they opened large paper maps to find their way across town."
+    },
+    {
+      "id": "past-habits-s7",
+      "text": "Instead of sending instant text messages, people mailed handwritten letters to their friends and relatives."
+    },
+    {
+      "id": "past-habits-s8",
+      "text": "A past situation can be a repeated action or a personal condition that lasted for a long time."
+    },
+    {
+      "id": "past-habits-s9",
+      "text": "In English grammar, when we talk about these past routines, we always follow \"used to\" with the base form of the main verb."
+    },
+    {
+      "id": "past-habits-s10",
+      "text": "If an action did not happen, we say that someone didn't use to do it."
+    },
+    {
+      "id": "past-habits-s11",
+      "text": "When asking a question with \"Did you,\" we drop the letter \"d\" and write use to keep the sentence correct."
+    },
+    {
+      "id": "past-habits-s12",
+      "text": "All of these old habits are no longer true today, but remembering them helps us understand how our daily routines change over time."
+    },
+    {
+      "id": "past-habits-w1",
+      "text": "tricycle"
+    },
+    {
+      "id": "past-habits-w2",
+      "text": "neighborhood"
+    },
+    {
+      "id": "past-habits-w3",
+      "text": "regular"
+    },
+    {
+      "id": "past-habits-w4",
+      "text": "habit"
+    },
+    {
+      "id": "past-habits-w5",
+      "text": "past"
+    },
+    {
+      "id": "past-habits-w6",
+      "text": "daily life"
+    },
+    {
+      "id": "past-habits-w7",
+      "text": "modern"
+    },
+    {
+      "id": "past-habits-w8",
+      "text": "smartphones"
+    },
+    {
+      "id": "past-habits-w9",
+      "text": "tape cassettes"
+    },
+    {
+      "id": "past-habits-w10",
+      "text": "tabletop radios"
+    },
+    {
+      "id": "past-habits-w11",
+      "text": "digital touchscreens"
+    },
+    {
+      "id": "past-habits-w12",
+      "text": "maps"
+    },
+    {
+      "id": "past-habits-w13",
+      "text": "instead of"
+    },
+    {
+      "id": "past-habits-w14",
+      "text": "instant"
+    },
+    {
+      "id": "past-habits-w15",
+      "text": "mailed"
+    },
+    {
+      "id": "past-habits-w16",
+      "text": "handwritten letters"
+    },
+    {
+      "id": "past-habits-w17",
+      "text": "relatives"
+    },
+    {
+      "id": "past-habits-w18",
+      "text": "situation"
+    },
+    {
+      "id": "past-habits-w19",
+      "text": "repeated action"
+    },
+    {
+      "id": "past-habits-w20",
+      "text": "personal condition"
+    },
+    {
+      "id": "past-habits-w21",
+      "text": "lasted"
+    },
+    {
+      "id": "past-habits-w22",
+      "text": "routines"
+    },
+    {
+      "id": "past-habits-w23",
+      "text": "base form"
+    },
+    {
+      "id": "past-habits-w24",
+      "text": "main verb"
+    },
+    {
+      "id": "past-habits-w25",
+      "text": "no longer"
+    },
+    {
+      "id": "past-habits-w26",
+      "text": "over time"
+    },
+    {
+      "id": "past-habits-r1",
+      "text": "I used to take naps."
+    },
+    {
+      "id": "past-habits-r2",
+      "text": "People didn't use to carry smartphones."
+    },
+    {
+      "id": "past-habits-r3",
+      "text": "Did you use to ride a tricycle?"
+    },
+    {
+      "id": "past-habits-r4",
+      "text": "I used to be shy."
+    }
+  ]
+}

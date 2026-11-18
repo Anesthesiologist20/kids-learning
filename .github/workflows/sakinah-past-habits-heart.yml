@@ -1,0 +1,72 @@
+name: Sakinah Past Habits Heart
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sakinah-past-habits-heart.yml'
+      - 'sakinah/past-habits-heart.json'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: sakinah-past-habits-heart
+  cancel-in-progress: false
+jobs:
+  synthesize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Kokoro
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install 'kokoro>=0.9.4,<1.0' numpy soundfile
+      - name: Generate and verify Heart clips
+        run: |
+          python scripts/generate_kokoro_sakinah.py sakinah/past-habits-heart.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          entries=json.loads(Path('sakinah/past-habits-heart.json').read_text())['lines']
+          assert len(entries)==42
+          assert all((Path('sakinah/audio/kokoro/heart')/(e['id']+'.mp3')).stat().st_size>1000 for e in entries)
+          PY
+      - name: Publish only new Heart recordings
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add sakinah/audio/kokoro/heart/past-habits-*.mp3
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'audio(sakinah): publish Past Habits Heart clips'
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort; exit 1; }
+            if git push origin HEAD:main; then exit 0; fi
+            sleep 5
+          done
+          exit 1
+  deploy:
+    needs: synthesize
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pages
+      cancel-in-progress: false
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - uses: actions/deploy-pages@v4
+        id: deployment
