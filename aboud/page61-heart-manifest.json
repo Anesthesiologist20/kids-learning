@@ -189,16 +189,38 @@
   ],
   "questions": [
     {
+      "story": "winter",
       "q": "Who are the characters in Preparing for Winter?",
       "opts": [
         "An ant and a grasshopper",
-        "A dog and a cat",
-        "Hansel and Gretel"
+        "Hansel and Gretel",
+        "A cat and a dog"
       ],
       "answer": 0
     },
     {
-      "q": "Who collects food for winter?",
+      "story": "winter",
+      "q": "What season is it at the beginning?",
+      "opts": [
+        "Summer",
+        "Winter",
+        "Spring"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "winter",
+      "q": "What does the grasshopper do in summer?",
+      "opts": [
+        "He plays music",
+        "He builds a house",
+        "He reads books"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "winter",
+      "q": "Who collects food for the winter?",
       "opts": [
         "The grasshopper",
         "The ant",
@@ -207,6 +229,37 @@
       "answer": 1
     },
     {
+      "story": "winter",
+      "q": "What happens when winter comes?",
+      "opts": [
+        "The grasshopper is cold and hungry",
+        "The grasshopper goes swimming",
+        "The ant forgets her food"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "winter",
+      "q": "Who gives the grasshopper food?",
+      "opts": [
+        "The ant",
+        "Gretel",
+        "His teacher"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "winter",
+      "q": "What does the ant tell the grasshopper?",
+      "opts": [
+        "Work hard to prepare for winter",
+        "Play music all winter",
+        "Go to the forest"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "hansel",
       "q": "Who gets lost in the forest?",
       "opts": [
         "Hansel and Gretel",
@@ -216,13 +269,64 @@
       "answer": 0
     },
     {
-      "q": "Who pushes the old woman into the oven?",
+      "story": "hansel",
+      "q": "What is the house made of?",
       "opts": [
-        "Hansel",
-        "The father",
-        "Gretel"
+        "Cake and candy",
+        "Wood and stone",
+        "Glass and ice"
       ],
-      "answer": 2
+      "answer": 0
+    },
+    {
+      "story": "hansel",
+      "q": "Who invites the children into the house?",
+      "opts": [
+        "An old woman",
+        "Their father",
+        "The ant"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "hansel",
+      "q": "What does the old woman have in her house?",
+      "opts": [
+        "Food and golden coins",
+        "Toy cars",
+        "School books"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "hansel",
+      "q": "What does the old woman want to do?",
+      "opts": [
+        "Push the children into the oven",
+        "Help them bake bread",
+        "Take them to school"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "hansel",
+      "q": "Who pushes the old woman into the oven instead?",
+      "opts": [
+        "Gretel",
+        "Hansel",
+        "Their father"
+      ],
+      "answer": 0
+    },
+    {
+      "story": "hansel",
+      "q": "How does the story end?",
+      "opts": [
+        "They return to their father",
+        "They stay in the forest forever",
+        "They meet the grasshopper"
+      ],
+      "answer": 0
     }
   ]
 }
