@@ -71,6 +71,10 @@ textarea{min-height:190px;resize:vertical;line-height:1.75}
 .feedback{border-radius:12px;padding:13px 14px;margin-top:15px;font-weight:750}
 .feedback.ok{background:#e5f8eb;color:#1e724b}.feedback.no{background:#fff0e9;color:#994d32}
 .reading{background:#f8fbff;border:1px solid #dce8f4;border-radius:14px;padding:18px;font-size:1rem;line-height:1.95;max-height:none;overflow:visible;white-space:normal}
+#readingPractice .reading{margin:15px 0 20px}
+#readingPractice .reading p{margin:9px 0 0}
+#readingPractice .opt{width:100%}
+.reading-practice-result{padding:15px;border:1px solid #e2def2;border-radius:13px;background:#faf9ff;margin:10px 0}
 .resultBig{font-size:3.6rem;font-weight:900;color:#6147aa}
 .rlist{display:grid;gap:12px}.ritem{background:#fafaff;border:1px solid #e4e2f2;border-radius:12px;padding:13px;font-size:.9rem}
 .badge{display:inline-block;background:#e8e1ff;color:#584196;padding:4px 9px;font-size:.75rem;border-radius:99px;font-weight:850}
@@ -143,7 +147,20 @@ footer{font-size:.76rem;text-align:center;color:#69738a;padding-top:20px}
 <div class="audiobar"><button class="btn alt" data-audio="beautiful">🔊 Heart: more beautiful</button><button class="btn alt" data-audio="less">🔊 Heart: less noisy</button><button class="btn alt" data-audio="compare">🔊 Heart: use than</button><button class="btn warn" id="stopVoice">⏹ Stop</button></div><p class="small">Pre-recorded Kokoro Heart samples at Extra Slow (0.70×). No browser text-to-speech or ElevenLabs. These samples teach the rule; they are not recordings of the whole book.</p><div id="audioStatus" class="status" role="status"></div></div>
 </section>
 
-<section id="reading" class="panel"><div class="sheet"><h2>📖 Practise understanding a passage</h2><p>Each mock exam contains a different original reading passage with four questions. Read first, then look for <b>who, what, where, why</b> and the main idea.</p><div class="grid3" id="readingCards"></div></div><div class="sheet"><h2>🔎 Smart reading strategy</h2><p>1. Read the title and predict the topic. 2. Read every sentence slowly. 3. Underline the important clue in your mind. 4. Choose the answer supported by the passage, not by guessing.</p></div></section>
+<section id="reading" class="panel">
+<div id="readingLibrary">
+<div class="sheet"><h2>📖 Reading Practice</h2><p>Practice reading here before the mock exams. Choose a passage, read the full story above each question, and answer four comprehension questions. Your practice answers are saved separately from the mock exams.</p><div class="grid3" id="readingCards"></div></div>
+<div class="sheet"><h2>🔎 Smart reading strategy</h2><p>1. Read the title and predict the topic. 2. Read every sentence slowly. 3. Underline the important clue in your mind. 4. Choose the answer supported by the passage, not by guessing.</p></div>
+</div>
+<div id="readingPractice" class="sheet" hidden>
+<div class="actions" style="justify-content:space-between;align-items:center;margin:0 0 12px"><button class="btn alt" id="backToReadings" type="button">← All reading practice</button><span class="badge" id="readingPracticeCount"></span></div>
+<h2 id="readingPracticeTitle"></h2>
+<div class="progress-shell"><div class="progress-fill" id="readingPracticeProgress"></div></div>
+<div id="readingPracticeQuestion"></div>
+<div class="actions"><button class="btn alt" id="previousReading" type="button">← Previous question</button><button class="btn" id="nextReading" type="button">Next question →</button><button class="btn warn" id="resetReading" type="button">↻ Restart this passage</button></div>
+<p id="readingPracticeSummary" class="status" role="status" aria-live="polite"></p>
+</div>
+</section>
 
 <section id="writing" class="panel">
 <div class="sheet"><h2>💌 An Email to a Friend About a Useful Technology Tool</h2><p><b>Teacher's checklist:</b> date · To · From · 8 sentences · a useful technology tool · a question at the end.</p>
@@ -329,7 +346,7 @@ $("repeatWord").onclick=()=>playHeartClip(listeningPool[listeningIndex].clip,"li
 $("nextListen").onclick=()=>{if(voicePlayer)voicePlayer.pause();if(listeningIndex<17){listeningIndex++;showListening();}else{$("listenResult").textContent="🏆 Challenge complete! You earned "+listeningCorrect+" of 18 stars."; $("nextListen").disabled=true;}};
 $("resetListen").onclick=()=>{listeningCorrect=0;listeningIndex=0;$("nextListen").disabled=false;showListening();};
 showListening();
-$("readingCards").innerHTML=passages.map((p,i)=>'<div class="modelbox"><h3>'+safe(p.title)+'</h3><p class="small">'+safe(p.text.slice(0,110))+'…</p><button class="btn" data-start="'+i+'">Read in Exam '+(i+1)+'</button></div>').join("");
+$("readingCards").innerHTML=passages.map((p,i)=>'<div class="modelbox"><h3>'+safe(p.title)+'</h3><p class="small">'+safe(p.text.slice(0,110))+'…</p><p class="small">4 practice questions · independent of the exam</p><button class="btn" type="button" data-reading-start="'+i+'">Practise reading →</button></div>').join("");
 function shuffleFixed(arr,seed){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=(seed*13+i*7+17)%(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
 function question(cat,prompt,answer,other,seed){let options=shuffleFixed([answer,...other],seed);return {cat,prompt,options,ans:options.indexOf(answer)};}
 function buildExam(n){
@@ -344,6 +361,65 @@ return all.map((q,i)=>Object.assign({id:"m"+n+"q"+i},q));
 }
 const models=[0,1,2].map(buildExam);
 const KEY="sakinah_midterm_2026_v1";
+// Reading practice is independent from the three saved mock exam missions.
+const READING_KEY=KEY+"_reading_practice";
+let readingProgress={};
+try{const saved=JSON.parse(localStorage.getItem(READING_KEY)||"{}");if(saved&&typeof saved==="object"&&!Array.isArray(saved))readingProgress=saved;}catch{}
+let readingActive=0,readingAt=0;
+function readingState(n){
+ const k="p"+n;
+ if(!readingProgress[k]||!readingProgress[k].answers||typeof readingProgress[k].answers!=="object")readingProgress[k]={answers:{}};
+ return readingProgress[k];
+}
+function saveReading(){try{localStorage.setItem(READING_KEY,JSON.stringify(readingProgress));}catch{}}
+function readingScores(n){
+ const p=passages[n],s=readingState(n);
+ return {answered:p.qs.filter((_,i)=>Number.isInteger(s.answers[i])).length,
+ correct:p.qs.filter((r,i)=>{const q=question("Reading",r[0],r[1],r[2],n*5+i);return s.answers[i]===q.ans;}).length};
+}
+function renderReadingPractice(){
+ const p=passages[readingActive],s=readingState(readingActive),total=p.qs.length,stats=readingScores(readingActive);
+ $("readingPracticeTitle").textContent="📖 "+p.title;
+ $("readingPracticeCount").textContent=readingAt>=total?"Practice results":"Question "+(readingAt+1)+" / "+total;
+ $("readingPracticeProgress").style.width=(100*stats.answered/total)+"%";
+ $("readingPracticeSummary").textContent=stats.answered+" / "+total+" answered · "+stats.correct+" correct ⭐ · Practice only";
+ if(readingAt>=total){
+  $("readingPracticeQuestion").innerHTML='<h3>🌟 Reading practice complete</h3><p class="big">You got '+stats.correct+' / '+total+' correct! Review your answers or restart this passage to try again.</p><div class="rlist">'+p.qs.map((r,i)=>{
+   const q=question("Reading",r[0],r[1],r[2],readingActive*5+i),v=s.answers[i],ok=v===q.ans;
+   return '<div class="reading-practice-result"><b>'+(i+1)+'. '+safe(r[0])+'</b><p>Your answer: '+(Number.isInteger(v)?safe(q.options[v]):'Not answered')+' '+(ok?'✅':'❌')+'</p>'+(!ok?'<p>Correct answer: <b>'+safe(q.options[q.ans])+'</b></p>':'')+'</div>';
+  }).join("")+'</div>';
+ }else{
+  const r=p.qs[readingAt],q=question("Reading",r[0],r[1],r[2],readingActive*5+readingAt),chosen=s.answers[readingAt],done=Number.isInteger(chosen);
+  const passage='<div class="reading"><h3>'+safe(p.title)+'</h3><p>'+safe(p.text)+'</p></div>';
+  $("readingPracticeQuestion").innerHTML=passage+'<p class="question">'+safe(q.prompt)+'</p><div class="options">'+q.options.map((option,i)=>
+   '<button type="button" class="opt '+(done&&i===chosen?(chosen===q.ans?'picked good':'picked bad'):done&&i===q.ans?'answer':'')+'" data-reading-answer="'+i+'" '+(done?'disabled':'')+'><span class="letter">'+String.fromCharCode(65+i)+'</span><span>'+safe(option)+'</span></button>'
+  ).join("")+'</div>'+(done?'<div class="feedback '+(chosen===q.ans?'ok':'no')+'">'+(chosen===q.ans?'✅ Correct! Great reading!':'💡 Correct answer: '+safe(q.options[q.ans]))+'</div>':'<p class="small">Read the passage above, then choose the best answer.</p>');
+  $("readingPracticeQuestion").querySelectorAll("[data-reading-answer]").forEach(b=>b.onclick=()=>{
+   if(Number.isInteger(readingState(readingActive).answers[readingAt]))return;
+   readingState(readingActive).answers[readingAt]=+b.dataset.readingAnswer;
+   saveReading();renderReadingPractice();
+  });
+ }
+ $("previousReading").disabled=readingAt===0;
+ $("nextReading").textContent=readingAt>=total?"← All reading passages":readingAt===total-1?"🏁 See practice results →":"Next question →";
+}
+function openReadingPractice(n){
+ readingActive=n;
+ const p=passages[n],s=readingState(n),firstMissing=p.qs.findIndex((_,i)=>!Number.isInteger(s.answers[i]));
+ readingAt=firstMissing>=0?firstMissing:p.qs.length;
+ $("readingLibrary").hidden=true;$("readingPractice").hidden=false;
+ renderReadingPractice();
+ $("readingPractice").scrollIntoView({block:"start"});
+}
+function closeReadingPractice(){
+ $("readingPractice").hidden=true;$("readingLibrary").hidden=false;
+ $("readingLibrary").scrollIntoView({block:"start"});
+}
+$("readingCards").querySelectorAll("[data-reading-start]").forEach(b=>b.onclick=()=>openReadingPractice(+b.dataset.readingStart));
+$("backToReadings").onclick=closeReadingPractice;
+$("previousReading").onclick=()=>{readingAt=Math.max(0,readingAt-1);renderReadingPractice();};
+$("nextReading").onclick=()=>{if(readingAt>=passages[readingActive].qs.length){closeReadingPractice();return;}readingAt++;renderReadingPractice();$("readingPractice").scrollIntoView({block:"start"});};
+$("resetReading").onclick=()=>{readingProgress["p"+readingActive]={answers:{}};readingAt=0;saveReading();renderReadingPractice();};
 function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch{return {};}}
 let store=load(),active=0,at=0,reviewOpen=false;
 function state(n){let k="m"+n;if(!store[k])store[k]={answers:{},flags:{},complete:false};return store[k];}
