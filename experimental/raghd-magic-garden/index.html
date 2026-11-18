@@ -145,7 +145,7 @@ var voice='bella', rate='1';
 try{var preference=JSON.parse(localStorage.getItem('raghd-magic-garden-voice-v1')||'{}');if(['bella','heart'].includes(preference.voice))voice=preference.voice;if(['0.8','1'].includes(preference.rate))rate=preference.rate}catch(e){}
 $('voice-select').value=voice;$('speed-select').value=rate;
 function saveVoice(){try{localStorage.setItem('raghd-magic-garden-voice-v1',JSON.stringify({voice:voice,rate:rate}))}catch(e){}}
-function speechUrl(){return 'audio/'+voice+'/scene-'+String(scene+1).padStart(2,'0')+'.mp3'}
+function speechUrl(){return 'audio/'+voice+'/scene-'+String(scene+1).padStart(2,'0')+'.mp3?v=20261118-bella-heart'}
 function resetNarration(){narration.pause();narration.removeAttribute('src');narration.load();narration.src=speechUrl();narration.playbackRate=Number(rate);}
 function playNarration(){if(!sound)return;if(!narration.getAttribute('src'))resetNarration();narration.playbackRate=Number(rate);var result=narration.play();if(result&&result.catch)result.catch(function(){$('voice-status').textContent='Voice not loaded yet. The animated story still works.'})}
 narration.addEventListener('error',function(){$('voice-status').textContent='The English voice recordings are not published yet. Please refresh later.'});
