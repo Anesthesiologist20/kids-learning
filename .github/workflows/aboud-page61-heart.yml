@@ -1,0 +1,57 @@
+name: Aboud Page 61 Heart Extra Slow Audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'aboud/page61-heart-manifest.json'
+      - 'scripts/generate_aboud_page61_heart.py'
+      - '.github/workflows/aboud-page61-heart.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aboud-page61-heart-audio
+  cancel-in-progress: false
+
+jobs:
+  generate-heart:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install audio tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y espeak-ng ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install 'kokoro>=0.9.4,<1.0' numpy soundfile
+      - name: Render Heart only at Extra Slow
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+        run: python scripts/generate_aboud_page61_heart.py
+      - name: Validate number of clips
+        run: |
+          test "$(find aboud/audio/page61-heart -name 'sentence-*.mp3' -size +1k | wc -l)" -eq 22
+          test "$(find aboud/audio/page61-heart -name 'word-*.mp3' -size +1k | wc -l)" -eq 14
+      - name: Publish Heart clips to GitHub Pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aboud/audio/page61-heart/
+          if git diff --cached --quiet; then echo "Recordings already published"; exit 0; fi
+          git commit -m "Add 36 Heart Extra Slow recordings for Aboud page 61"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin main
+            git rebase origin/main || { git rebase --abort || true; exit 1; }
+            if git push origin HEAD:main; then echo "Heart audio published"; exit 0; fi
+            sleep 4
+          done
+          exit 1
